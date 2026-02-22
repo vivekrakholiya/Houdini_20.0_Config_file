@@ -1,0 +1,57 @@
+// Magic: bb1227fe
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Apr 27 10:43:37 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+primType.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+primType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    primType.label = PARM_LABEL_SIMPLE("Primitive Type", "primType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    primType.menu;
+
+    {  }
+
+    {  }
+}
+
+add.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("add", "Add")
+	push VALUE(add.val);
+
+    {  }
+}
+}	// Template join.bot
+
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    primType.row.join; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

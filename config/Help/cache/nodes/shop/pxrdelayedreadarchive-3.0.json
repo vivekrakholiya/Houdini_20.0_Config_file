@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "node", "context": "shop", "internal": "pxrdelayedreadarchive", "version": "3.0", "namespace": null}, "body": [{"type": "para", "indent": 0, "text": ["DelayedReadArchive"], "extent": [0, 20]}, {"type": "para", "indent": 0, "text": ["This procedural will load a RIB file at render time"], "extent": [20, 71]}]}

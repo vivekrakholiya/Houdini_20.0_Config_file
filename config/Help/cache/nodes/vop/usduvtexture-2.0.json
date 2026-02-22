@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "node", "context": "vop", "tags": "usd", "internal": "usduvtexture", "version": "2.0", "namespace": null}, "body": [{"level": 0, "type": "title", "indent": 0, "text": ["USD UV Texture"], "extent": [38, 57]}, {"type": "para", "indent": 0, "text": ["Represents a USD UV Texture reader shader."], "extent": [57, 102]}], "title": ["USD UV Texture"]}

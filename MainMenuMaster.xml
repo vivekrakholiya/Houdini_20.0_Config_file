@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainMenu>
+  <menuBar>
+    <subMenu id="vr tools">
+      <label>vr_tools</label>
+
+      <scriptItem>
+        <label>version++</label>
+        <scriptPath>/home/vivek-nr/houdini20.0/scripts/vr_scripts/v++.py</scriptPath>
+      </scriptItem>
+
+      <titleItem>
+        <label>uitiliti</label>
+      </titleItem>
+
+      <scriptItem id="open project folder">
+        <label>open_project_folder</label>
+        <scriptPath>/home/vivek-nr/houdini20.0/scripts/vr_scripts/open_project_folder.py</scriptPath>
+      </scriptItem>
+
+      <separatorItem/>
+
+      <scriptItem id="retime sequnce">
+        <label>retime sequnce</label>
+        <scriptPath>/home/vivek-nr/houdini20.0/scripts/vr_scripts/retime_s.py</scriptPath>
+      </scriptItem>
+    </subMenu>
+  </menuBar>
+</mainMenu>

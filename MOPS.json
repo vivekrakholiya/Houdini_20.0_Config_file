@@ -1,0 +1,10 @@
+{
+   "env": [
+      {
+         "MOPS": "D:/Projects/VFX/MOPs"
+      }
+   ],
+   "hpath": [
+      "$MOPS"
+   ]
+}

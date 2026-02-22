@@ -1,0 +1,87 @@
+// Magic: 83fe5df0
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Thu Jun 26 07:47:53 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+showscalar.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showscalar", "Visualize Scalar Values") toggle VALUE(showscalar.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+showvector.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showvector", "Visualize Vector Values") toggle VALUE(showvector.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+showhistogram.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showhistogram", "Display Value Histogram") toggle VALUE(showhistogram.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+showinfo.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showinfo", "Display Info") toggle VALUE(showinfo.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    showscalar.gad; 
+    showvector.gad; 
+    showhistogram.gad; 
+    showinfo.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Clock" transform="matrix(0.565521,4.18254e-32,-6.9709e-33,0.565521,-109.065,0.652098)">
+        <path d="M207.876,15.14L200.733,15.14C200.341,15.14 200.024,14.823 200.024,14.43C200.024,14.038 200.341,13.72 200.733,13.72L206.456,13.72L206.456,4.986C206.456,4.595 206.773,4.276 207.166,4.276C207.558,4.276 207.876,4.595 207.876,4.986L207.876,15.14ZM206.999,0.499C200.096,0.499 194.5,6.096 194.5,12.999C194.5,19.902 200.096,25.5 206.999,25.5C213.903,25.5 219.5,19.902 219.5,12.999C219.5,6.096 213.903,0.499 206.999,0.499Z" style="fill:rgb(0,188,255);"/>
+    </g>
+    <g transform="matrix(0.131306,1.61847e-33,1.61847e-33,0.131306,-142.856,-182.904)">
+        <g id="Layer1">
+            <g id="Table-Delete" serif:id="Table Delete">
+                <g transform="matrix(1,6.16298e-32,2.46519e-32,1,1157.7,1332.9)">
+                    <circle cx="25.3" cy="88.1" r="22" style="fill:rgb(255,59,48);"/>
+                </g>
+                <g transform="matrix(1,6.16298e-32,2.46519e-32,1,1157.7,1332.9)">
+                    <rect x="14.3" y="87.1" width="22" height="2" style="fill:white;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,88 @@
+{
+	"fileversion":"19.0.562",
+	"name":"ODTools",
+	"categories":"ODTools",
+	"pane":"scene",
+	"label":"ODTools",
+	"type":"submenu",
+	"items":{
+		"0":{
+			"label":"Go To Frame",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'goToFrame')"
+		},
+		"1":{
+			"label":"Del Key",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'tool_19')"
+		},
+		"2":{
+			"label":"Isolate",
+			"type":"script_action",
+			"icon":"MISC_python",
+			"script":"from OD import shelftools\nshelftools.isolate(mode=\"startIsolation\", nodes=hou.selectedNodes())"
+		},
+		"3":{
+			"label":"Set IN Frame",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'setInPoint')"
+		},
+		"4":{
+			"label":"I / O",
+			"type":"submenu",
+			"items":{
+				"1":{
+					"label":"LWO Import",
+					"type":"script_action",
+					"icon":"PLASMA_App",
+					"script":"radialmenu.runShelfTool(kwargs, 'tool_11')"
+				},
+				"2":{
+					"label":"LW Import (Scene)",
+					"type":"script_action",
+					"icon":"PLASMA_App",
+					"script":"radialmenu.runShelfTool(kwargs, 'LW Import')"
+				},
+				"5":{
+					"label":"MDD Export",
+					"type":"script_action",
+					"icon":"PLASMA_App",
+					"script":"radialmenu.runShelfTool(kwargs, 'MDD Export')"
+				},
+				"6":{
+					"label":"Export PFX",
+					"type":"script_action",
+					"icon":"PLASMA_App",
+					"script":"radialmenu.runShelfTool(kwargs, 'Export PFX')"
+				},
+				"7":{
+					"label":"OBJ Export",
+					"type":"script_action",
+					"icon":"PLASMA_App",
+					"script":"radialmenu.runShelfTool(kwargs, 'OBJ Export')"
+				}
+			}
+		},
+		"5":{
+			"label":"Set OUT Frame",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'setOutPoint')"
+		},
+		"6":{
+			"label":"End Isolation",
+			"type":"script_action",
+			"icon":"MISC_python",
+			"script":"from OD import shelftools\nshelftools.isolate(mode=\"endIsolation\")"
+		},
+		"7":{
+			"label":"Set Key",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'tool_18')"
+		}
+	}
+}

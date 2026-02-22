@@ -1,0 +1,24 @@
+= Introduction to the OD Houdini Shelf Tools =
+
+"""A short introduction to the tools"""
+
+The OD Houdini Shelftools started as a small collection of tools, that helped me be more efficient and endure less pain when I finally made the choice to switch from another DCC to Houdini.
+
+It has since grown to so much more.  "Shelftools" doesnt really classify the collection anymore as it is an ever evolving toolset used by many artists around the world to make their workflow more efficient.  I would say one of its most popular tools is the material conversion, and while that tool alone can save you days of work, maybe even weeks over the run of a production, there are a lot of "larger" tools that you should experiment with.  
+
+The asset library is a corner stone.  In my humble opinion, having assets scattered around your drives is cool, but doesnt really help you much.  We all have 1000's of texture libraries, but, most of us, still go to google and search for a texture.  Why ? Because it is more convenient and visual.  
+
+That is where the asset library comes in, because whether its objects, or images, hdas, or vdbs, it lets you build catalogs and visualize all these assets and use them with ease.
+
+Dont forget the Drag and Drop from your desktop and the many, many benefits that feature provides.
+
+The project switcher is equally great, and its power lies in its simplicity. 
+
+That is what really all the tools are about.  Making your life simpler and more efficient.  I'll invite you to try the various tools, dont just settle at one, but let the exploration take you on a wild ride.
+
+Last, but not least, I want to take a moment to acknowledge all users and supporters of ODTools.  I appreciate all your feedback, ideas and suggestions, comments, whether good or bad.... Keep it coming.  That is how the toolset grows.
+
+Enjoy the toolset and have fun with it.
+
+Oliver Hotz / 
+Origami Digital, LLC.

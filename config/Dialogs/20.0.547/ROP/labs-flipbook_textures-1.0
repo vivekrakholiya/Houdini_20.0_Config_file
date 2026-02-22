@@ -1,0 +1,3439 @@
+// Magic: a66a444a
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Apr 27 17:28:25 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+renderdialog.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+renderdialog.gad = NULL { }
+
+execute.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("execute", "Render")
+	push VALUE(execute.val);
+
+    {  }
+}
+sepparm4.gad = NULL { }
+}	// Template join.bot
+
+render_all.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+render_all.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("render_all", "Render All Passes")
+	push VALUE(render_all.val);
+
+    {  }
+}
+sepparm18.gad = NULL { }
+}	// Template join.bot
+
+
+lb_rendering.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(lb_rendering.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+renderer_fc.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_fc.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_fc.menu;
+
+    {  }
+
+    {  }
+}
+
+render_fc.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_fc", "Render Final Color")
+	push VALUE(render_fc.val);
+
+    {  }
+}
+
+lb_timestamp_fc.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_fc.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+renderer_sa.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_sa.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_sa.menu;
+
+    {  }
+
+    {  }
+}
+
+render_sa.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_sa", "Render Separate Alphas")
+	push VALUE(render_sa.val);
+
+    {  }
+}
+
+lb_timestamp_sa.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_sa.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+renderer_nc.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_nc.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_nc.menu;
+
+    {  }
+
+    {  }
+}
+
+render_nc.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_nc", "Render Non-emissive Color")
+	push VALUE(render_nc.val);
+
+    {  }
+}
+
+lb_timestamp_nc.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_nc.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+renderer_mdc.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_mdc.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_mdc.menu;
+
+    {  }
+
+    {  }
+}
+
+render_mdc.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_mdc", "Render MDC / MDC Normal")
+	push VALUE(render_mdc.val);
+
+    {  }
+}
+
+lb_timestamp_mdc.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_mdc.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+renderer_sn.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_sn.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_sn.menu;
+
+    {  }
+
+    {  }
+}
+
+render_sn.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_sn", "Render Surface Normal")
+	push VALUE(render_sn.val);
+
+    {  }
+}
+
+lb_timestamp_sn.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_sn.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+renderer_mv.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_mv.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_mv.menu;
+
+    {  }
+
+    {  }
+}
+
+render_mv.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_mv", "Render Motion Vector")
+	push VALUE(render_mv.val);
+
+    {  }
+}
+
+lb_timestamp_mv.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_mv.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+renderer_d.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+renderer_d.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    renderer_d.menu;
+
+    {  }
+
+    {  }
+}
+
+render_d.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("render_d", "Render Depth")
+	push VALUE(render_d.val);
+
+    {  }
+}
+
+lb_timestamp_d.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        {  }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_timestamp_d.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+}	// Template join.bot
+
+
+sepparm19.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+frange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   frange.label = PARM_LABEL("Start/End/Inc", "frange") WIDTH(1.5);
+   PARM(integer, 3, "frange", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(frange.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+f.gad = NULL { }
+
+camerapath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ camerapath.label = PARM_LABEL("Camera", "camerapath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "camerapath") VALUE(camerapath.val) 
+	LABELREF(camerapath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(camerapath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(camerapath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+bakevolpath1.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ bakevolpath1.label = PARM_LABEL("Pyro Bake Volume Path", "bakevolpath1") WIDTH(1.5);
+ PARM_FIELD(pathstring, "bakevolpath1") VALUE(bakevolpath1.val) 
+	LABELREF(bakevolpath1.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(bakevolpath1.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(bakevolpath1.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+bakevolpath2.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ bakevolpath2.label = PARM_LABEL("Pyro Bake Volume 2", "bakevolpath2") WIDTH(1.5);
+ PARM_FIELD(pathstring, "bakevolpath2") VALUE(bakevolpath2.val) 
+	LABELREF(bakevolpath2.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(bakevolpath2.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(bakevolpath2.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+bakevolpath3.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ bakevolpath3.label = PARM_LABEL("Pyro Bake Volume 3", "bakevolpath3") WIDTH(1.5);
+ PARM_FIELD(pathstring, "bakevolpath3") VALUE(bakevolpath3.val) 
+	LABELREF(bakevolpath3.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(bakevolpath3.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(bakevolpath3.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+bakevolpath4.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ bakevolpath4.label = PARM_LABEL("Pyro Bake Volume 4", "bakevolpath4") WIDTH(1.5);
+ PARM_FIELD(pathstring, "bakevolpath4") VALUE(bakevolpath4.val) 
+	LABELREF(bakevolpath4.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(bakevolpath4.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(bakevolpath4.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+bakevolpath5.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ bakevolpath5.label = PARM_LABEL("Pyro Bake Volume 5", "bakevolpath5") WIDTH(1.5);
+ PARM_FIELD(pathstring, "bakevolpath5") VALUE(bakevolpath5.val) 
+	LABELREF(bakevolpath5.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(bakevolpath5.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(bakevolpath5.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+nonvolpath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ nonvolpath.label = PARM_LABEL("Final Color Path", "nonvolpath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "nonvolpath") VALUE(nonvolpath.val) 
+	LABELREF(nonvolpath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(nonvolpath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(nonvolpath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+nonvolemissive.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    nonvolemissive.label = PARM_LABEL_SIMPLE("Emissive Property", "nonvolemissive") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    nonvolemissive.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+nonvolncpath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ nonvolncpath.label = PARM_LABEL("Non-emissive Path", "nonvolncpath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "nonvolncpath") VALUE(nonvolncpath.val) 
+	LABELREF(nonvolncpath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(nonvolncpath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(nonvolncpath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+lb_totalres.sval := 1;
+
+lb_totalres.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    SWITCHER tight
+    {
+	VALUE(lb_totalres.sval) HSTRETCH
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[10]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[11]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[12]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[12]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[13]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[12]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[13]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[14]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL VALUE(lb_totalres.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[12]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[13]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[14]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(lb_totalres.val[15]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+    }
+}
+frameres.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+frameres.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   frameres.label = PARM_LABEL("Resolution Per Frame", "frameres") WIDTH(1.5);
+   PARM(integer, 2, "frameres", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(frameres.label)
+	HSTRETCH;
+
+    {  }
+}
+
+resolutionMenu.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+    {  }
+
+    resolutionMenu.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+}
+}	// Template join.bot
+
+
+gridsize.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   gridsize.label = PARM_LABEL("Columns/Rows", "gridsize") WIDTH(1.5);
+   PARM(integer, 2, "gridsize", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(gridsize.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+interdir.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ interdir.label = PARM_LABEL("Intermediate Directory", "interdir") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "interdir") LABELREF(interdir.label)
+	VALUE(interdir.val) HSTRETCH;
+
+    interdir.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(interdir.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+texlimit3dlvl.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    texlimit3dlvl.label = PARM_LABEL_SIMPLE("3D Resolution Limit", "texlimit3dlvl") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    texlimit3dlvl.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+texlimit3d.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   texlimit3d.label = PARM_LABEL("Max 3D Resolution", "texlimit3d") WIDTH(1.5);
+   PARM(integer, 3, "texlimit3d", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(texlimit3d.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+colspace.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+colspace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    colspace.label = PARM_LABEL_SIMPLE("Color Space", "colspace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    colspace.menu;
+
+    {  }
+
+    {  }
+}
+
+setupocio.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("setupocio", "Set Up OCIO ACES")
+	push VALUE(setupocio.val);
+
+    {  }
+}
+}	// Template join.bot
+
+ocioisset.gad = NULL { }
+
+lb_gammamsg.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_gammamsg.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm12.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+warmuptime.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ warmuptime.label = PARM_LABEL("Warmup Time", "warmuptime") WIDTH(1.5);
+ PARM(float, 1, "warmuptime", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(warmuptime.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+shadowmapres.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shadowmapres.label = PARM_LABEL("Shadow Map Resolution", "shadowmapres") WIDTH(1.5);
+ PARM(integer, 1, "shadowmapres", none, none) RANGE(16,2048)
+	 LABELREF(shadowmapres.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+singletexmemlimit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ singletexmemlimit.label = PARM_LABEL("Single Tex Mem Limit", "singletexmemlimit") WIDTH(1.5);
+ PARM(integer, 1, "singletexmemlimit", none, none) RANGE(1,2048)
+	 LABELREF(singletexmemlimit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+nearcliplimit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ nearcliplimit.label = PARM_LABEL("Minimum Near Clipping", "nearcliplimit") WIDTH(1.5);
+ PARM(float, 1, "nearcliplimit", none, none) RANGE(0,10)
+	 LABELREF(nearcliplimit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+volquality.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    volquality.label = PARM_LABEL_SIMPLE("Volume Quality", "volquality") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    volquality.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+aasamples.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    aasamples.label = PARM_LABEL_SIMPLE("Antialias", "aasamples") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    aasamples.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+lb_litpasslist.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(lb_litpasslist.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+pointsize_lit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pointsize_lit.label = PARM_LABEL("Point Size", "pointsize_lit") WIDTH(1.5);
+ PARM(float, 1, "pointsize_lit", none, none) RANGE(1,10)
+	LOCK_RANGE_MIN LABELREF(pointsize_lit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+wirewidth_lit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ wirewidth_lit.label = PARM_LABEL("Wire Width", "wirewidth_lit") WIDTH(1.5);
+ PARM(float, 1, "wirewidth_lit", none, none) RANGE(0.1,3)
+	LOCK_RANGE_MIN LABELREF(wirewidth_lit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+lighting.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    lighting.label = PARM_LABEL_SIMPLE("Lighting", "lighting") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    lighting.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+enablespecincols.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enablespecincols", "Specular in Color Passes") toggle VALUE(enablespecincols.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+lb_unlitpasslist.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(lb_unlitpasslist.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+pointsize_unlit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pointsize_unlit.label = PARM_LABEL("Point Size", "pointsize_unlit") WIDTH(1.5);
+ PARM(float, 1, "pointsize_unlit", none, none) RANGE(1,10)
+	LOCK_RANGE_MIN LABELREF(pointsize_unlit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+wirewidth_unlit.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ wirewidth_unlit.label = PARM_LABEL("Wire Width", "wirewidth_unlit") WIDTH(1.5);
+ PARM(float, 1, "wirewidth_unlit", none, none) RANGE(0.1,3)
+	LOCK_RANGE_MIN LABELREF(wirewidth_unlit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+nonvolmvsource.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    nonvolmvsource.label = PARM_LABEL_SIMPLE("Motion Vector Source", "nonvolmvsource") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    nonvolmvsource.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+nonvolmvscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ nonvolmvscale.label = PARM_LABEL("Correction Scale", "nonvolmvscale") WIDTH(1.5);
+ PARM(float, 1, "nonvolmvscale", none, none) RANGE(0,5)
+	LOCK_RANGE_MIN LABELREF(nonvolmvscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+nonvolmvclamp.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    nonvolmvclamp.label = PARM_LABEL_SIMPLE("Frame Range Clamp", "nonvolmvclamp") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    nonvolmvclamp.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+nonvolmvtracking.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    nonvolmvtracking.label = PARM_LABEL_SIMPLE("Point Tracking", "nonvolmvtracking") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    nonvolmvtracking.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+detectidduplicates.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("detectidduplicates", "Detect Unresolved Duplicates after Auto ID-Serialization") toggle VALUE(detectidduplicates.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm15.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+previewimage.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    previewimage.label = PARM_LABEL_SIMPLE("Preview Image", "previewimage") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    previewimage.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+singletilepreview.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+singletilepreview.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+singletilepreview.gad = PARM_BUTTON("singletilepreview", "") toggle VALUE(singletilepreview.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+previewtile.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ previewtile.label = PARM_LABEL("Preview Tile", "previewtile") WIDTH(1.32);
+ PARM(integer, 1, "previewtile", none, none) RANGE(1,64)
+	LOCK_RANGE_MIN LABELREF(previewtile.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+sepparm9.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+res_fc.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+res_fc.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   res_fc.label = PARM_LABEL("Export Resolution", "res_fc") WIDTH(1.5);
+   PARM(float, 2, "res_fc", none, none, "X,Y")
+	RANGE(1,8192) LOCK_RANGE_MIN LABELREF(res_fc.label)
+	HSTRETCH;
+
+    {  }
+}
+
+resfactor_fc.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+    {  }
+
+    resfactor_fc.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+}
+}	// Template join.bot
+
+filter_fc1.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+filter_fc1.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_fc1.label = PARM_LABEL_SIMPLE("Down/Up Res Filters", "filter_fc1") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filter_fc1.menu;
+
+    {  }
+
+    {  }
+}
+
+filter_fc2.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_fc2.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+greyscalemode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    greyscalemode.label = PARM_LABEL_SIMPLE("Convert to Greyscale", "greyscalemode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    greyscalemode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+relluminancer.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ relluminancer.label = PARM_LABEL("R Weight", "relluminancer") WIDTH(1.5);
+ PARM(float, 1, "relluminancer", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(relluminancer.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+relluminanceg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ relluminanceg.label = PARM_LABEL("G Weight", "relluminanceg") WIDTH(1.5);
+ PARM(float, 1, "relluminanceg", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(relluminanceg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+relluminanceb.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ relluminanceb.label = PARM_LABEL("B Weight", "relluminanceb") WIDTH(1.5);
+ PARM(float, 1, "relluminanceb", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(relluminanceb.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+lb_greyscalemsg.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_greyscalemsg.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+res_mdc.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+res_mdc.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   res_mdc.label = PARM_LABEL("Export Resolution", "res_mdc") WIDTH(1.5);
+   PARM(float, 2, "res_mdc", none, none, "X,Y")
+	RANGE(1,8192) LOCK_RANGE_MIN LABELREF(res_mdc.label)
+	HSTRETCH;
+
+    {  }
+}
+
+resfactor_mdc.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+    {  }
+
+    resfactor_mdc.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+}
+}	// Template join.bot
+
+filter_mdc1.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+filter_mdc1.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_mdc1.label = PARM_LABEL_SIMPLE("Down/Up Res Filters", "filter_mdc1") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filter_mdc1.menu;
+
+    {  }
+
+    {  }
+}
+
+filter_mdc2.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_mdc2.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+mdcintensity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mdcintensity.label = PARM_LABEL("MDC Intensity", "mdcintensity") WIDTH(1.5);
+ PARM(float, 1, "mdcintensity", none, none) RANGE(0,4)
+	LOCK_RANGE_MIN LABELREF(mdcintensity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+res_n.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+res_n.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   res_n.label = PARM_LABEL("Export Resolution", "res_n") WIDTH(1.5);
+   PARM(float, 2, "res_n", none, none, "X,Y")
+	RANGE(1,8192) LOCK_RANGE_MIN LABELREF(res_n.label)
+	HSTRETCH;
+
+    {  }
+}
+
+resfactor_n.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+    {  }
+
+    resfactor_n.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+}
+}	// Template join.bot
+
+filter_n1.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+filter_n1.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_n1.label = PARM_LABEL_SIMPLE("Down/Up Res Filters", "filter_n1") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filter_n1.menu;
+
+    {  }
+
+    {  }
+}
+
+filter_n2.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_n2.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+outputnormal.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    outputnormal.label = PARM_LABEL_SIMPLE("Output Normal", "outputnormal") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    outputnormal.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+snweight.si_rampedit = FLOAT_RAMP VALUE(snweight.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+snweight.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	snweight.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(snweight.pointno.val) HSTRETCH;
+    }
+}
+
+snweight.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(snweight.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(snweight.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    snweight.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(snweight.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    snweight.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(snweight.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+snweight.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    snweight.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	snweight.buttons.gad VSTRETCH;
+
+	snweight.si_rampedit HSTRETCH;
+    }
+}
+
+snweight.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Surface Normal Blend Weight across Frame Range", "snweight");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(snweight.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(snweight.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	snweight.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	snweight.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	snweight.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(snweight.hideparms.val) HSTRETCH
+	    snweight.multiramp;
+	    {}
+	}
+    }
+}
+
+mdcnormalintensity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mdcnormalintensity.label = PARM_LABEL("MDC Normal Intensity", "mdcnormalintensity") WIDTH(1.5);
+ PARM(float, 1, "mdcnormalintensity", none, none) RANGE(0,4)
+	LOCK_RANGE_MIN LABELREF(mdcnormalintensity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+normalaxes.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    normalaxes.label = PARM_LABEL_SIMPLE("Normal Axis System", "normalaxes") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    normalaxes.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+res_mv.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+res_mv.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   res_mv.label = PARM_LABEL("Export Resolution", "res_mv") WIDTH(1.5);
+   PARM(float, 2, "res_mv", none, none, "X,Y")
+	RANGE(1,8192) LOCK_RANGE_MIN LABELREF(res_mv.label)
+	HSTRETCH;
+
+    {  }
+}
+
+resfactor_mv.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+    {  }
+
+    resfactor_mv.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+}
+}	// Template join.bot
+
+filter_mv1.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+filter_mv1.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_mv1.label = PARM_LABEL_SIMPLE("Down/Up Res Filters", "filter_mv1") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filter_mv1.menu;
+
+    {  }
+
+    {  }
+}
+
+filter_mv2.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_mv2.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+mvencoding.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    mvencoding.label = PARM_LABEL_SIMPLE("Motion Vector Encoding", "mvencoding") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    mvencoding.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+mvboundaryalpha.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mvboundaryalpha.label = PARM_LABEL("Boundary Alpha", "mvboundaryalpha") WIDTH(1.5);
+ PARM(float, 1, "mvboundaryalpha", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(mvboundaryalpha.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+mvpaddingratio.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mvpaddingratio.label = PARM_LABEL("Padding Ratio", "mvpaddingratio") WIDTH(1.5);
+ PARM(float, 1, "mvpaddingratio", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(mvpaddingratio.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+maxmvspeed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxmvspeed.label = PARM_LABEL("Max Speed Allowed", "maxmvspeed") WIDTH(1.5);
+ PARM(float, 1, "maxmvspeed", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(maxmvspeed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+res_d.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+res_d.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   res_d.label = PARM_LABEL("Export Resolution", "res_d") WIDTH(1.5);
+   PARM(float, 2, "res_d", none, none, "X,Y")
+	RANGE(1,8192) LOCK_RANGE_MIN LABELREF(res_d.label)
+	HSTRETCH;
+
+    {  }
+}
+
+resfactor_d.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+    {  }
+
+    resfactor_d.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+}
+}	// Template join.bot
+
+filter_d1.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+filter_d1.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_d1.label = PARM_LABEL_SIMPLE("Down/Up Res Filters", "filter_d1") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filter_d1.menu;
+
+    {  }
+
+    {  }
+}
+
+filter_d2.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    filter_d2.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+maxdepth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxdepth.label = PARM_LABEL("Max Depth Allowed", "maxdepth") WIDTH(1.5);
+ PARM(float, 1, "maxdepth", none, none) RANGE(0,10000)
+	LOCK_RANGE_MIN LABELREF(maxdepth.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+bgpos.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ bgpos.label = PARM_LABEL("Background Position", "bgpos") WIDTH(1.5);
+ PARM(float, 1, "bgpos", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(bgpos.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+depthbitdepth.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    depthbitdepth.label = PARM_LABEL_SIMPLE("Output Bit Depth", "depthbitdepth") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    depthbitdepth.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+img_fc.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_fc.label = PARM_LABEL("Final Color", "img_fc") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_fc") LABELREF(img_fc.label)
+	VALUE(img_fc.val) HSTRETCH;
+
+    img_fc.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_fc.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_nc.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_nc.label = PARM_LABEL("Non-emissive Color", "img_nc") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_nc") LABELREF(img_nc.label)
+	VALUE(img_nc.val) HSTRETCH;
+
+    img_nc.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_nc.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_mdc_a.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_mdc_a.label = PARM_LABEL("MDC A", "img_mdc_a") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_mdc_a") LABELREF(img_mdc_a.label)
+	VALUE(img_mdc_a.val) HSTRETCH;
+
+    img_mdc_a.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_mdc_a.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_mdc_b.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_mdc_b.label = PARM_LABEL("MDC B", "img_mdc_b") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_mdc_b") LABELREF(img_mdc_b.label)
+	VALUE(img_mdc_b.val) HSTRETCH;
+
+    img_mdc_b.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_mdc_b.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_mdc_c.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_mdc_c.label = PARM_LABEL("MDC C", "img_mdc_c") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_mdc_c") LABELREF(img_mdc_c.label)
+	VALUE(img_mdc_c.val) HSTRETCH;
+
+    img_mdc_c.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_mdc_c.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_sn.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_sn.label = PARM_LABEL("Surface Normal", "img_sn") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_sn") LABELREF(img_sn.label)
+	VALUE(img_sn.val) HSTRETCH;
+
+    img_sn.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_sn.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_mv.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_mv.label = PARM_LABEL("Motion Vector", "img_mv") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_mv") LABELREF(img_mv.label)
+	VALUE(img_mv.val) HSTRETCH;
+
+    img_mv.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_mv.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_d.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_d.label = PARM_LABEL("Depth", "img_d") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_d") LABELREF(img_d.label)
+	VALUE(img_d.val) HSTRETCH;
+
+    img_d.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_d.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_va.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_va.label = PARM_LABEL("Volumetric Alpha", "img_va") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_va") LABELREF(img_va.label)
+	VALUE(img_va.val) HSTRETCH;
+
+    img_va.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_va.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+img_na.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ img_na.label = PARM_LABEL("Non-volumetric Alpha", "img_na") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "img_na") LABELREF(img_na.label)
+	VALUE(img_na.val) HSTRETCH;
+
+    img_na.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(img_na.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+sepparm13.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+export_all.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+export_all.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("export_all", "Export All Textures")
+	push VALUE(export_all.val);
+
+    {  }
+}
+
+export_tex1.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("export_tex1", "Tex 1")
+	push VALUE(export_tex1.val);
+
+    {  }
+}
+
+export_tex2.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("export_tex2", "Tex 2")
+	push VALUE(export_tex2.val);
+
+    {  }
+}
+
+export_tex3.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("export_tex3", "Tex 3")
+	push VALUE(export_tex3.val);
+
+    {  }
+}
+
+export_tex4.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("export_tex4", "Tex 4")
+	push VALUE(export_tex4.val);
+
+    {  }
+}
+
+export_tex5.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("export_tex5", "Tex 5")
+	push VALUE(export_tex5.val);
+
+    {  }
+}
+sepparm11.gad = NULL { }
+}	// Template join.bot
+
+
+sepparm20.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+expdir.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ expdir.label = PARM_LABEL("Export Directory", "expdir") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "expdir") LABELREF(expdir.label)
+	VALUE(expdir.val) HSTRETCH;
+
+    expdir.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(expdir.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+asset.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    asset.label = PARM_LABEL("Asset Name", "asset") WIDTH(1.5);
+    PARM_FIELD(string, "asset") VALUE(asset.val) 
+	LABELREF(asset.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sepparm6.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+lb_channelres.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(lb_channelres.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+sepparm2.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+enabletex1.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enabletex1.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enabletex1.gad = PARM_BUTTON("enabletex1", "") toggle VALUE(enabletex1.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+output_tex1.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ output_tex1.label = PARM_LABEL("Output Texture 1", "output_tex1") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "output_tex1") LABELREF(output_tex1.label)
+	VALUE(output_tex1.val) HSTRETCH;
+
+    output_tex1.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(output_tex1.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+tex1_r.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+tex1_r.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex1_r.menu;
+
+    {  }
+
+    {  }
+}
+
+tex1_g.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex1_g.menu;
+
+    {  }
+
+    {  }
+}
+
+tex1_b.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex1_b.menu;
+
+    {  }
+
+    {  }
+}
+
+tex1_a.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex1_a.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm21.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+enabletex2.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enabletex2.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enabletex2.gad = PARM_BUTTON("enabletex2", "") toggle VALUE(enabletex2.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+output_tex2.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ output_tex2.label = PARM_LABEL("Output Texture 2", "output_tex2") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "output_tex2") LABELREF(output_tex2.label)
+	VALUE(output_tex2.val) HSTRETCH;
+
+    output_tex2.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(output_tex2.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+tex2_r.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+tex2_r.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex2_r.menu;
+
+    {  }
+
+    {  }
+}
+
+tex2_g.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex2_g.menu;
+
+    {  }
+
+    {  }
+}
+
+tex2_b.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex2_b.menu;
+
+    {  }
+
+    {  }
+}
+
+tex2_a.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex2_a.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm8.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+enabletex3.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enabletex3.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enabletex3.gad = PARM_BUTTON("enabletex3", "") toggle VALUE(enabletex3.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+output_tex3.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ output_tex3.label = PARM_LABEL("Output Texture 3", "output_tex3") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "output_tex3") LABELREF(output_tex3.label)
+	VALUE(output_tex3.val) HSTRETCH;
+
+    output_tex3.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(output_tex3.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+tex3_r.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+tex3_r.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex3_r.menu;
+
+    {  }
+
+    {  }
+}
+
+tex3_g.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex3_g.menu;
+
+    {  }
+
+    {  }
+}
+
+tex3_b.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex3_b.menu;
+
+    {  }
+
+    {  }
+}
+
+tex3_a.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex3_a.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm17.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+enabletex4.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enabletex4.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enabletex4.gad = PARM_BUTTON("enabletex4", "") toggle VALUE(enabletex4.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+output_tex4.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ output_tex4.label = PARM_LABEL("Output Texture 4", "output_tex4") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "output_tex4") LABELREF(output_tex4.label)
+	VALUE(output_tex4.val) HSTRETCH;
+
+    output_tex4.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(output_tex4.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+tex4_r.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+tex4_r.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex4_r.menu;
+
+    {  }
+
+    {  }
+}
+
+tex4_g.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex4_g.menu;
+
+    {  }
+
+    {  }
+}
+
+tex4_b.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex4_b.menu;
+
+    {  }
+
+    {  }
+}
+
+tex4_a.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex4_a.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm22.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+enabletex5.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enabletex5.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enabletex5.gad = PARM_BUTTON("enabletex5", "") toggle VALUE(enabletex5.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+output_tex5.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ output_tex5.label = PARM_LABEL("Output Texture 5", "output_tex5") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "output_tex5") LABELREF(output_tex5.label)
+	VALUE(output_tex5.val) HSTRETCH;
+
+    output_tex5.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(output_tex5.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+tex5_r.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+tex5_r.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex5_r.menu;
+
+    {  }
+
+    {  }
+}
+
+tex5_g.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex5_g.menu;
+
+    {  }
+
+    {  }
+}
+
+tex5_b.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex5_b.menu;
+
+    {  }
+
+    {  }
+}
+
+tex5_a.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    tex5_a.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm3.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+shaderengine.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    shaderengine.label = PARM_LABEL_SIMPLE("Find Shaders For", "shaderengine") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    shaderengine.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm14.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+openunrealshaderpath.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("openunrealshaderpath", "Unreal Engine Content Plugin and Guides")
+	push VALUE(openunrealshaderpath.val);
+
+    { WIDTH(0.1) }
+}
+
+sepparm10.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+lb_shaderinfo.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_shaderinfo.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+enableextravolpaths.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enableextravolpaths", "Additional Volume Paths") toggle VALUE(enableextravolpaths.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+explicitsacontrol.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("explicitsacontrol", "Explicit Render Control for Separate Alphas") toggle VALUE(explicitsacontrol.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+viewerpos.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   viewerpos.label = PARM_LABEL("Floating Viewer Position", "viewerpos") WIDTH(1.5);
+   PARM(integer, 2, "viewerpos", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(viewerpos.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+viewportpadding.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ viewportpadding.label = PARM_LABEL("Viewport Padding", "viewportpadding") WIDTH(1.5);
+ PARM(integer, 1, "viewportpadding", none, none) RANGE(0,200)
+	LOCK_RANGE_MIN LABELREF(viewportpadding.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+printprogressofrops.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("printprogressofrops", "Print Non-Viewport Render Progress") toggle VALUE(printprogressofrops.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+enabletimestamps.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enabletimestamps", "Record Render Completion Time") toggle VALUE(enabletimestamps.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outputtomplay.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("outputtomplay", "Display Viewport Render Outputs in MPlay") toggle VALUE(outputtomplay.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+appendrenders.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("appendrenders", "Append Render Outputs in MPlay") toggle VALUE(appendrenders.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm5.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+tprerender.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+tprerender.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+tprerender.gad = PARM_BUTTON("tprerender", "") toggle VALUE(tprerender.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+prerender.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ prerender.label = PARM_LABEL("Pre-Render Script", "prerender") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "prerender") LABELREF(prerender.label)
+	VALUE(prerender.val) HSTRETCH;
+
+    prerender.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(prerender.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+
+lprerender.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    lprerender.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+tpostrender.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+tpostrender.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+tpostrender.gad = PARM_BUTTON("tpostrender", "") toggle VALUE(tpostrender.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+postrender.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ postrender.label = PARM_LABEL("Post-Render Script", "postrender") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "postrender") LABELREF(postrender.label)
+	VALUE(postrender.val) HSTRETCH;
+
+    postrender.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(postrender.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+
+lpostrender.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    lpostrender.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+fd_scripts.gad = 
+GROUP collapsible "Scripts" flat   
+{
+    VALUE(fd_scripts.gad.val) LAYOUT(vertical) HSTRETCH
+	    tprerender.row.join;		
+	    tpostrender.row.join;		
+} 
+
+fd_packtex5.gad = 
+
+{
+    VALUE(fd_packtex5.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    enabletex5.row.join;		
+	    tex5_r.row.join;		
+} 
+
+fd_packtex4.gad = 
+
+{
+    VALUE(fd_packtex4.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    enabletex4.row.join;		
+	    tex4_r.row.join;		
+	    sepparm22.gad;		
+} 
+
+fd_packtex3.gad = 
+
+{
+    VALUE(fd_packtex3.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    enabletex3.row.join;		
+	    tex3_r.row.join;		
+	    sepparm17.gad;		
+} 
+
+fd_packtex2.gad = 
+
+{
+    VALUE(fd_packtex2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    enabletex2.row.join;		
+	    tex2_r.row.join;		
+	    sepparm8.gad;		
+} 
+
+fd_packtex1.gad = 
+
+{
+    VALUE(fd_packtex1.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    enabletex1.row.join;		
+	    tex1_r.row.join;		
+	    sepparm21.gad;		
+} 
+
+fd_interimgs.gad = 
+GROUP collapsible "Intermediate Images" flat   
+{
+    VALUE(fd_interimgs.gad.val) LAYOUT(vertical) HSTRETCH
+	    img_fc.gad;		
+	    img_nc.gad;		
+	    img_mdc_a.gad;		
+	    img_mdc_b.gad;		
+	    img_mdc_c.gad;		
+	    img_sn.gad;		
+	    img_mv.gad;		
+	    img_d.gad;		
+	    img_va.gad;		
+	    img_na.gad;		
+} 
+
+fd_compsettings.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_compsettings.gad"
+    { 
+	VALUE(fd_compsettings.gad.val) STRETCH(1,0)
+
+	TAB "Colors"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    res_fc.row.join;		
+	    filter_fc1.row.join;		
+	    greyscalemode.gad;		
+	    relluminancer.gad;		
+	    relluminanceg.gad;		
+	    relluminanceb.gad;		
+	    lb_greyscalemsg.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Multi-directional Contribution"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    res_mdc.row.join;		
+	    filter_mdc1.row.join;		
+	    mdcintensity.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Normal"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    res_n.row.join;		
+	    filter_n1.row.join;		
+	    outputnormal.gad;		
+	    snweight.gad;		
+	    mdcnormalintensity.gad;		
+	    normalaxes.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Motion Vector"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    res_mv.row.join;		
+	    filter_mv1.row.join;		
+	    mvencoding.gad;		
+	    mvboundaryalpha.gad;		
+	    mvpaddingratio.gad;		
+	    maxmvspeed.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Depth"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    res_d.row.join;		
+	    filter_d1.row.join;		
+	    maxdepth.gad;		
+	    bgpos.gad;		
+	    depthbitdepth.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+fd_nonvolmv.gad = 
+
+GROUP simple "Non-volumetric Motion Vector" flat 
+{ 
+    VALUE(fd_nonvolmv.gad.val) LAYOUT(vertical) HSTRETCH 
+	    nonvolmvsource.gad;		
+	    nonvolmvscale.gad;		
+	    nonvolmvclamp.gad;		
+	    nonvolmvtracking.gad;		
+	    detectidduplicates.gad;		
+} 
+
+fd_unlit.gad = 
+
+GROUP simple "Unlit Passes" flat 
+{ 
+    VALUE(fd_unlit.gad.val) LAYOUT(vertical) HSTRETCH 
+	    lb_unlitpasslist.gad;		
+	    pointsize_unlit.gad;		
+	    wirewidth_unlit.gad;		
+	    fd_nonvolmv.gad;		
+} 
+
+fd_lit.gad = 
+
+GROUP simple "Lit Passes" flat 
+{ 
+    VALUE(fd_lit.gad.val) LAYOUT(vertical) HSTRETCH 
+	    lb_litpasslist.gad;		
+	    pointsize_lit.gad;		
+	    wirewidth_lit.gad;		
+	    lighting.gad;		
+	    enablespecincols.gad;		
+} 
+
+fd_performance.gad = 
+
+GROUP simple "Performance" flat 
+{ 
+    VALUE(fd_performance.gad.val) LAYOUT(vertical) HSTRETCH 
+	    warmuptime.gad;		
+	    shadowmapres.gad;		
+	    singletexmemlimit.gad;		
+	    nearcliplimit.gad;		
+	    volquality.gad;		
+	    aasamples.gad;		
+} 
+
+fd_advanced.gad = 
+GROUP collapsible "Advanced" flat   
+{
+    VALUE(fd_advanced.gad.val) LAYOUT(vertical) HSTRETCH
+	    fd_performance.gad;		
+	    fd_lit.gad;		
+	    fd_unlit.gad;		
+} 
+
+fd_nonvol.gad = 
+GROUP collapsible "Non-volumetric Geometry Paths" flat   
+{
+    VALUE(fd_nonvol.gad.val) LAYOUT(vertical) HSTRETCH
+	    nonvolpath.gad;		
+	    nonvolemissive.gad;		
+	    nonvolncpath.gad;		
+} 
+
+fd_extravolpaths.gad = 
+GROUP collapsible "Additional Volume Paths" flat   
+{
+    VALUE(fd_extravolpaths.gad.val) LAYOUT(vertical) HSTRETCH
+	    bakevolpath2.gad;		
+	    bakevolpath3.gad;		
+	    bakevolpath4.gad;		
+	    bakevolpath5.gad;		
+} 
+
+fd_d.gad = 
+
+{
+    VALUE(fd_d.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_d.row.join;		
+} 
+
+fd_mv.gad = 
+
+{
+    VALUE(fd_mv.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_mv.row.join;		
+} 
+
+fd_n.gad = 
+
+{
+    VALUE(fd_n.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_sn.row.join;		
+} 
+
+fd_mdc.gad = 
+
+{
+    VALUE(fd_mdc.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_mdc.row.join;		
+} 
+
+fd_ne.gad = 
+
+{
+    VALUE(fd_ne.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_nc.row.join;		
+} 
+
+fd_sa.gad = 
+
+{
+    VALUE(fd_sa.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_sa.row.join;		
+} 
+
+fd_fc.gad = 
+
+{
+    VALUE(fd_fc.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    renderer_fc.row.join;		
+} 
+
+fd_renderpassctrl.gad = 
+GROUP collapsible "Render Pass Control" flat   
+{
+    VALUE(fd_renderpassctrl.gad.val) LAYOUT(vertical) HSTRETCH
+	    render_all.row.join;		
+	    lb_rendering.gad;		
+	    fd_fc.gad;		
+	    fd_sa.gad;		
+	    fd_ne.gad;		
+	    fd_mdc.gad;		
+	    fd_n.gad;		
+	    fd_mv.gad;		
+	    fd_d.gad;		
+	    sepparm19.gad;		
+} 
+
+fd_general.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_general.gad"
+    { 
+	VALUE(fd_general.gad.val) STRETCH(1,0)
+
+	TAB "Render Intermediate Images"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    fd_renderpassctrl.gad;		
+	    frange.gad;		
+	    f.gad;		
+	    camerapath.gad;		
+	    bakevolpath1.gad;		
+	    fd_extravolpaths.gad;		
+	    fd_nonvol.gad;		
+	    sepparm.gad;		
+	    lb_totalres.gad;		
+	    frameres.row.join;		
+	    gridsize.gad;		
+	    interdir.gad;		
+	    texlimit3dlvl.gad;		
+	    texlimit3d.gad;		
+	    colspace.row.join;		
+	    ocioisset.gad;		
+	    lb_gammamsg.gad;		
+	    sepparm12.gad;		
+	    fd_advanced.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Composite"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm15.gad;		
+	    previewimage.gad;		
+	    singletilepreview.row.join;		
+	    sepparm9.gad;		
+	    fd_compsettings.gad;		
+	    fd_interimgs.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Export"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm13.gad;		
+	    export_all.row.join;		
+	    sepparm20.gad;		
+	    expdir.gad;		
+	    asset.gad;		
+	    sepparm6.gad;		
+	    lb_channelres.gad;		
+	    sepparm2.gad;		
+	    fd_packtex1.gad;		
+	    fd_packtex2.gad;		
+	    fd_packtex3.gad;		
+	    fd_packtex4.gad;		
+	    fd_packtex5.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Real-Time Shaders"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm3.gad;		
+	    shaderengine.gad;		
+	    sepparm14.gad;		
+	    openunrealshaderpath.gad;		
+	    sepparm10.gad;		
+	    lb_shaderinfo.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Interface"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    enableextravolpaths.gad;		
+	    explicitsacontrol.gad;		
+	    viewerpos.gad;		
+	    viewportpadding.gad;		
+	    printprogressofrops.gad;		
+	    enabletimestamps.gad;		
+	    outputtomplay.gad;		
+	    appendrenders.gad;		
+	    sepparm5.gad;		
+	    fd_scripts.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    renderdialog.row.join; 
+    fd_general.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

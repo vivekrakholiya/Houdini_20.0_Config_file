@@ -1,0 +1,5 @@
+= Disable Octane Isolation =
+
+"""Removes the Octane Isolation String from the Octane Quick Setup"""
+
+This tool clears the Isolation string from the Octane Quick Setup and enables rendering of all Objects again.   This can be called from any context.

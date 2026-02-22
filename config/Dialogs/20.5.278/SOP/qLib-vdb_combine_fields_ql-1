@@ -1,0 +1,259 @@
+// Magic: db650e7f
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Dec 22 11:26:08 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+nameattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    nameattrib.label = PARM_LABEL("Name Attribute", "nameattrib") WIDTH(1.5);
+    PARM_FIELD(string, "nameattrib") VALUE(nameattrib.val) 
+	LABELREF(nameattrib.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+flattens.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Operations", "flattens") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(flattens.val)
+
+        flattens.field = PARM_FIELD (integer, "flattens")
+				VALUE(flattens.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(flattens.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(flattens.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(flattens.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+flattens.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+flattens.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(flattens.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    flattens.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    flattens.multilist;
+}
+
+resample.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    resample.label = PARM_LABEL_SIMPLE("Resample", "resample") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    resample.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+resampleinterp.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    resampleinterp.label = PARM_LABEL_SIMPLE("Interpolation", "resampleinterp") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    resampleinterp.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+deactivate.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+deactivate.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+deactivate.gad = PARM_BUTTON("deactivate", "") toggle VALUE(deactivate.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+bgtolerance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ bgtolerance.label = PARM_LABEL("Deactivate Tolerance", "bgtolerance") WIDTH(1.32);
+ PARM(float, 1, "bgtolerance", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(bgtolerance.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+prune.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+prune.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+prune.gad = PARM_BUTTON("prune", "") toggle VALUE(prune.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+tolerance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ tolerance.label = PARM_LABEL("Prune Tolerance", "tolerance") WIDTH(1.32);
+ PARM(float, 1, "tolerance", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(tolerance.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+flood.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("flood", "Signed-Flood-Fill Output SDFs") toggle VALUE(flood.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+addflatteninfoattrib.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("addflatteninfoattrib", "Add Flatten Info Attrib") toggle VALUE(addflatteninfoattrib.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+flatteninfoattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    flatteninfoattrib.label = PARM_LABEL("Flatten Info Attrib", "flatteninfoattrib") WIDTH(1.5);
+    PARM_FIELD(string, "flatteninfoattrib") VALUE(flatteninfoattrib.val) 
+	LABELREF(flatteninfoattrib.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+folder2.gad = 
+GROUP collapsible "Debug" flat   
+{
+    VALUE(folder2.gad.val) LAYOUT(vertical) HSTRETCH
+	    addflatteninfoattrib.gad;		
+	    flatteninfoattrib.gad;		
+} 
+
+folder1.gad = 
+GROUP collapsible "Combine Settings" flat   
+{
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH
+	    resample.gad;		
+	    resampleinterp.gad;		
+	    deactivate.row.join;		
+	    prune.row.join;		
+	    flood.gad;		
+} 
+
+flatten_ops.gad = 
+GROUP collapsible "Combine (Flatten) Operations" flat   
+{
+    VALUE(flatten_ops.gad.val) LAYOUT(vertical) HSTRETCH
+	    flattens.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "VDB Combine Fields" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    nameattrib.gad;		
+	    flatten_ops.gad;		
+	    folder1.gad;		
+	    folder2.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

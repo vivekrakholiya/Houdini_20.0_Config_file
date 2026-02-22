@@ -1,0 +1,59 @@
+{
+	Tools = ordered() {
+		CameraFromMetadata = Camera3D {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = {
+				["Transform3DOp.Translate.X"] = Input {
+					Value = -5.449999,
+					Expression = "self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform4",
+				},
+				["Transform3DOp.Translate.Y"] = Input {
+					Value = 6.049999,
+					Expression = "self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform8",
+				},
+				["Transform3DOp.Translate.Z"] = Input { 
+					Value = 6.049999,
+					Expression = "self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform12", 
+				},
+				["Transform3DOp.Rotate.X"] = Input {
+					Value = -31.2999908334753,
+					Expression = "iif(cos(-asin(self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform9)) ~=0, deg(-atan2(-self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform10,self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform11)), deg(-atan2(self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform2,self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform6)))",
+				},
+				["Transform3DOp.Rotate.Y"] = Input {
+					Value = -30.5999723253455,
+					Expression = "-deg(asin(self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform9))",
+				},
+				["Transform3DOp.Rotate.Z"] = Input { Expression = "iif(cos(-asin(-self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform9)) ~=0, deg(atan2(self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform5,self:GetSourceTool(\"LoadersName\").Output.Metadata.cameraTransform1)),0)", },
+				["Transform3DOp.PivotNest"] = Input { Value = 1, },
+				AovType = Input { Value = 1, },
+				AoV = Input { Value = 45.4771154969511, },
+				FLength = Input {
+					Value = 24,
+					Expression = "self:GetSourceTool(\"LoadersName\").Output.Metadata.focalLength",
+				},
+				["Stereo.Mode"] = Input { Value = FuID { "Mono" }, },
+				FilmBack = Input { Value = 1, },
+				FilmGate = Input { Value = FuID { "User" }, },
+				ResolutionGateFit = Input { Value = FuID { "Width" }, },
+				["SurfacePlaneInputs.ObjectID.ObjectID"] = Input { Value = 1, },
+				["MtlStdInputs.MaterialID"] = Input { Value = 1, },
+				Comments = Input { Value = "Gets the camera parameters from metadata of an image sequence.\nDrag and drop the Loader to the Loader's Name field.\n\nby Oliver Hotz @ Origami Digital, (original code by Gregory Chalenko)", },
+				LoadersName = Input {
+					SourceOp = "Loader1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = OperatorInfo { Pos = { 715, 82.5 } },
+			UserControls = ordered() {
+				LoadersName = {
+					LINKID_DataType = "Image",
+					INP_Default = 0,
+					IC_ControlPage = 1,
+					INPID_InputControl = "ImageControl",
+					LINKS_Name = "Loader's Name",
+				}
+			}
+		}
+	}
+}

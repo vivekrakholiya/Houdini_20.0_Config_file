@@ -1,0 +1,88 @@
+// Magic: f988b142
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Thu Oct  2 11:58:39 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+uvattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    uvattrib.label = PARM_LABEL("UV Attribute", "uvattrib") WIDTH(1.5);
+    PARM_FIELD(string, "uvattrib") VALUE(uvattrib.val) 
+	LABELREF(uvattrib.label) HSTRETCH;
+
+    uvattrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+udimattrib.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+udimattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    udimattrib.label = PARM_LABEL("UDIM Tile Attribute", "udimattrib") WIDTH(1.5);
+    PARM_FIELD(string, "udimattrib") VALUE(udimattrib.val) 
+	LABELREF(udimattrib.label) HSTRETCH;
+
+    {  }
+}
+
+udimattribclass.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    udimattribclass.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+visualize.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualize", "Visualize UDIM Tile Numbers") toggle VALUE(visualize.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    uvattrib.gad; 
+    udimattrib.row.join; 
+    visualize.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

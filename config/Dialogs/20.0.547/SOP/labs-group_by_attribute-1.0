@@ -1,0 +1,81 @@
+// Magic: b1c3ace7
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat May 11 12:40:05 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+entity.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    entity.label = PARM_LABEL_SIMPLE("Attribute Type", "entity") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    entity.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+attribute_name.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attribute_name.label = PARM_LABEL("Attribute Name", "attribute_name") WIDTH(1.5);
+    PARM_FIELD(string, "attribute_name") VALUE(attribute_name.val) 
+	LABELREF(attribute_name.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+group_prefix.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    group_prefix.label = PARM_LABEL("Group Prefix", "group_prefix") WIDTH(1.5);
+    PARM_FIELD(string, "group_prefix") VALUE(group_prefix.val) 
+	LABELREF(group_prefix.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+precision.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ precision.label = PARM_LABEL("Precision", "precision") WIDTH(1.5);
+ PARM(integer, 1, "precision", none, none) RANGE(0,10)
+	 LABELREF(precision.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    entity.gad; 
+    attribute_name.gad; 
+    group_prefix.gad; 
+    precision.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

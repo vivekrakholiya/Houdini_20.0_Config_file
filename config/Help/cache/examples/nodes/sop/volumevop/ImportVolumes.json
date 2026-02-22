@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["ImportVolumes"]}, {"type": "para", "indent": 0, "text": ["This example shows how to import multiple volumes into a \nVolume VOP SOP."], "extent": [0, 74]}], "examplefor": "/nodes/sop/volumevop", "examplefile": "/examples/nodes/sop/volumevop/ImportVolumes.otl"}

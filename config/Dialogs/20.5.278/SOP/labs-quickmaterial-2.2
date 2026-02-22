@@ -1,0 +1,101 @@
+// Magic: 7fc40bd0
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Wed Jul 17 21:20:30 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+switchoriginal.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+switchoriginal.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("switchoriginal", "Switch to Original Materials")
+	push VALUE(switchoriginal.val);
+
+    {  }
+}
+
+usemikkt.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("usemikkt", "Use MikkT") toggle VALUE(usemikkt.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+mMaterialEntries.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Materials", "mMaterialEntries") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(mMaterialEntries.val)
+
+	mMaterialEntries.field = PARM_FIELD(integer, "mMaterialEntries") 
+		VALUE(mMaterialEntries.val) HSTRETCH(0.5) PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(mMaterialEntries.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(mMaterialEntries.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+	}
+	ACTION_BUTTON "Clear" VALUE(mMaterialEntries.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+mMaterialEntries.multiswitch =
+{
+    LAYOUT(vertical) STRETCH
+}
+
+mMaterialEntries.gad =
+{
+    LAYOUT(vertical) STRETCH HMARGIN(0.18, 0.1)
+        NO_MARGIN_SPACING_SCALE
+
+    mMaterialEntries.parm;
+    mMaterialEntries.multiswitch;
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    switchoriginal.row.join; 
+    mMaterialEntries.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

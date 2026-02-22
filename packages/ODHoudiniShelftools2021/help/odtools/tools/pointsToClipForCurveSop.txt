@@ -1,0 +1,12 @@
+= Points to Clipboard for Curve Sop =
+
+"""Accumulates the current position of points to be used in a Curve Sop."""
+
+A lot of times when working with the curve sop it is difficult to arrange multiple points at the same time, ie. flattening a curve, so usually a transform, or edit sop used.  However, doing so, takes away the ability to simply drag the points via the curve sop's UI.
+
+This tool takes the current nodes's position of points, in their order, and arranges it in a way to be used within the Curve Sops' coordinate parm.  The original node does not have to be curve sop, but it is typically how this tool is being used.
+
+After you run the tool on the selected node, simply paste the result into the coordinate parm of the Curve sop.
+
+:vimeo: Example Use of the Tool
+    #id: 483815387

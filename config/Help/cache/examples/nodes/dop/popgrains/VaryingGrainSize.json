@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["VaryingGrainSize"]}, {"type": "para", "indent": 0, "text": ["This example demonstrates interacting grain simulations\nof very different sizes."], "extent": [0, 82]}], "examplefor": "/nodes/dop/popgrains", "examplefile": "/examples/nodes/dop/popgrains/VaryingGrainSize.otl"}

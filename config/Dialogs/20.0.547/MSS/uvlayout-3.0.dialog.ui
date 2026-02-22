@@ -1,0 +1,258 @@
+// Magic: 531cb9d5
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Wed Sep 17 20:21:08 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+showseams.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showseams", "Show Seams") toggle VALUE(showseams.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+seamcolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    seamcolor.label = PARM_LABEL("Seams", "seamcolor") WIDTH(1.5);
+    PARM(float, 4, "seamcolor", none, COLOR, "R,G,B,A") 
+	LABELREF(seamcolor.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+locateislands.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("locateislands", "Locate Islands") toggle VALUE(locateislands.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+islandlocatecolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    islandlocatecolor.label = PARM_LABEL("Located Island Color", "islandlocatecolor") WIDTH(1.5);
+    PARM(float, 4, "islandlocatecolor", none, COLOR, "R,G,B,A") 
+	LABELREF(islandlocatecolor.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+showlocatedborder.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showlocatedborder", "Locate Shared Borders") toggle VALUE(showlocatedborder.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+borderlocatecolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    borderlocatecolor.label = PARM_LABEL("Located Border Color", "borderlocatecolor") WIDTH(1.5);
+    PARM(float, 4, "borderlocatecolor", none, COLOR, "R,G,B,A") 
+	LABELREF(borderlocatecolor.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+showpattern.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showpattern", "Show Texture Pattern") toggle VALUE(showpattern.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+patterncolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    patterncolor.label = PARM_LABEL("Pattern", "patterncolor") WIDTH(1.5);
+    PARM(float, 4, "patterncolor", none, COLOR, "R,G,B,A") 
+	LABELREF(patterncolor.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+pattern.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    pattern.label = PARM_LABEL_SIMPLE("Texture Pattern", "pattern") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pattern.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+patternsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ patternsize.label = PARM_LABEL("Pattern Size", "patternsize") WIDTH(1.5);
+ PARM(float, 1, "patternsize", none, none) RANGE(0.0001,1)
+	LOCK_RANGE_MIN LABELREF(patternsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+showglyph.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showglyph", "Show Orientation Glyph") toggle VALUE(showglyph.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+invertpattern.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invertpattern", "Invert Pattern") toggle VALUE(invertpattern.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+overridechoice.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    overridechoice.label = PARM_LABEL_SIMPLE("Override", "overridechoice") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    overridechoice.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+intoverride.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ PARM(integer, 1, "intoverride", none, none) RANGE(0,2000)
+	LOCK_RANGE_MIN HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+floatoverride.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ PARM(float, 1, "floatoverride", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+apply.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("apply", "Apply")
+	push VALUE(apply.val);
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    showseams.gad; 
+    seamcolor.gad; 
+    locateislands.gad; 
+    islandlocatecolor.gad; 
+    showlocatedborder.gad; 
+    borderlocatecolor.gad; 
+    showpattern.gad; 
+    patterncolor.gad; 
+    pattern.gad; 
+    patternsize.gad; 
+    showglyph.gad; 
+    invertpattern.gad; 
+    overridechoice.gad; 
+    intoverride.gad; 
+    floatoverride.gad; 
+    apply.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,1118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <tool name="obj_mrg" label="obj_mrg" icon="SOP_object_merge">
+    <script scriptType="python"><![CDATA[import hou
+
+def mergeCopiedNodes():
+    network = hou.ui.curDesktop().paneTabUnderCursor()
+    networkPath = network.pwd().path()
+    pos = network.cursorPosition()
+
+    copiedNodes = hou.ui.getTextFromClipboard()
+
+    newPos = 0
+    a = 0
+
+    if copiedNodes:
+        list = copiedNodes.split()
+        for item in list:
+            if hou.node(item) != None:
+                merge = hou.node(networkPath).createNode('object_merge','IN_'+item.split('/')[-1])
+                merge.parm('objpath1').set(str(item))
+                merge.parm('xformtype').set(1)
+                merge.setPosition(pos)             
+                merge.move([newPos*2,0])
+                if newPos == 0:
+                    merge.setSelected(True,True)
+                else:
+                    merge.setSelected(True,False)
+
+                newPos = newPos + 1
+
+                # create parameter in refr node
+                node = hou.node(item)
+                parm_template_group = node.parmTemplateGroup()
+            
+                for parm in node.parms():
+                    if 'op_path' in str(parm.name()):
+                        a = str(parm.name()).replace('op_path','')
+                    parm_label = "obj_mrg_path_" + str(int(a)+1)
+                    par_name = 'op_path' + str(int(a)+1)
+                op_path_parm = hou.StringParmTemplate(par_name,parm_label , 1, string_type=hou.stringParmType.NodeReference)
+                parm_template_group.addParmTemplate(op_path_parm)
+                node.setParmTemplateGroup(parm_template_group)
+                node.parm(par_name).set(merge.path())
+                        
+
+
+
+mergeCopiedNodes()]]></script>
+  </tool>
+
+  <tool name="Version_up" label="v++" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+      <contextNetType>TOP</contextNetType>
+      <contextNetType>LOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import hou
+import os
+current_file = hou.hipFile.name()
+
+
+file_dir = os.path.dirname(current_file)
+file_name = os.path.splitext(os.path.basename(current_file))[0]
+file_ext = os.path.splitext(os.path.basename(current_file))[1]
+version_number = int(file_name[-2:]) + 1
+new_name = "{}/{}{:02d}{}".format(file_dir, file_name[:-2], version_number, file_ext)
+
+hou.hipFile.save(new_name)]]></script>
+  </tool>
+
+  <tool name="Quixel_Bridge_Import" label="Quixel_Bridge_Import" icon="SOP_subnet">
+    <script scriptType="python"><![CDATA[import hou
+import os
+
+
+
+
+
+# replace Your Folder Path With path
+
+def DownloadFolderPath():
+    path = "E:\\quixel\\Downloaded" # replace Your Folder Path With path 
+    return path
+
+
+
+
+
+
+
+
+
+
+download_path = DownloadFolderPath()
+
+
+
+folders = os.listdir(download_path)
+
+def search_files_by_extension(start_path, target_extension):
+    result_files = []
+    files_list=[]
+    
+    for root, dirs, files in os.walk(start_path):
+        for file in files:
+            if file.endswith(target_extension):
+                result_files.append(os.path.join(root, file))
+                files_list.append(file)
+    
+    return result_files, files_list
+
+abc_list = search_files_by_extension(download_path,'.abc')
+fbx_list = search_files_by_extension(download_path,'.fbx')
+obj_list = search_files_by_extension(download_path,'.obj')
+
+
+def display_tree(list):
+    ext= ['abc','fbx','obj']
+    ls = list
+    emp_ls=[]
+    for index,i in enumerate(list):
+        for f in i:
+            emp_ls.append(str(ext[index] +'/' + str(f)))
+    return emp_ls
+
+total_file_list = [abc_list[1],fbx_list[1],obj_list[1]]
+main_tree_window = display_tree(total_file_list)
+
+
+#  display tree windows
+
+
+
+window_input = hou.ui.selectFromTree(main_tree_window, picked=(), exclusive=False, message=None, title="quixel import", clear_on_cancel=False, width=0, height=0)
+
+# check file format and find file path
+
+if 'abc/' in str(window_input[0]):
+    window_input_file_name = str(window_input[0]).replace('abc/','')
+    file_format = '.abc'
+    file_format_extansion_name ='abc'
+elif 'fbx/' in str(window_input[0]):
+    window_input_file_name = str(window_input[0]).replace('fbx/','')
+    file_format = '.fbx'
+    file_format_extansion_name ='fbx'
+elif 'obj/' in str(window_input[0]):
+    window_input_file_name = str(window_input[0]).replace('obj/','')
+    file_format = '.obj'
+    file_format_extansion_name ='obj'
+
+
+def findeFilePath(fileList,file,forment):
+    for f in fileList:
+        if file in str(f):
+            filePath = f
+            folder_path = str(filePath).replace(str(file),'')
+        else:
+            pass
+    
+    return filePath , folder_path
+
+
+# export data to main.py
+
+def importFilePath():
+    filePath = findeFilePath(search_files_by_extension(download_path,file_format)[0],window_input_file_name,file_format)
+    return filePath
+
+
+def texture_list():
+    
+    filePathparentDir = os.path.dirname(os.path.dirname(importFilePath()[1]))
+    texture_list = search_files_by_extension(filePathparentDir,'.exr')
+    return texture_list
+
+
+fileName = str(str(window_input[0]).replace(str(file_format_extansion_name)+'/',''))
+
+obj = hou.node('/obj/')
+geo = obj.createNode('geo',fileName)
+
+
+# alembic_create and par set
+if file_format == ".abc":
+    file = geo.createNode('alembic',fileName)
+    file.parm('fileName').set(importFilePath()[0])
+else:
+    file = geo.createNode('file',fileName)
+    file.parm('file').set(importFilePath()[0])
+print('create_import_node inside obj....')
+
+
+# material node
+material_assing = geo.createNode('material',"assing_material")
+material_assing.setNextInput(file)
+
+# out null
+out_null = geo.createNode("null",'out_'+ fileName)
+out_null.setNextInput(material_assing)
+out_null.setRenderFlag(1)
+
+# render_flage_node
+display_flag_null = geo.createNode('null','display_flag')
+display_flag_null.setDisplayFlag(1)
+
+# layout network
+geo.layoutChildren()
+
+# Config Mat Network
+
+mat  = hou.node('/mat/')
+shader = mat.createNode('principledshader',"mat_" + fileName)
+print('create_principledshader_inside mat....')
+# set shader perameters
+bascolour = 1
+shader.parm('basecolorr').set(bascolour)
+shader.parm('basecolorg').set(bascolour)
+shader.parm('basecolorb').set(bascolour)
+shader.parm('reflect').set(0)
+
+# assing texture in shaders
+
+texture=[]
+
+# print(texture_list())
+for t in texture_list()[0]:
+    if 'Albedo.exr' in t:
+        texture.append(t)
+        shader.parm('basecolor_useTexture').set(1)
+        path = str(t) #str(str(download_path) + '\\' + str(t))
+        shader.parm('basecolor_texture').set(path)
+
+    elif 'Displacement.exr' in t:
+        texture.append(t)
+        shader.parm('dispTex_enable').set(1)
+        path = str(t) #str(str(download_path) + '\\' + str(t))
+        shader.parm('dispTex_texture').set(path)
+
+    elif 'Normal.exr' in t:
+        texture.append(t)
+        shader.parm('baseBumpAndNormal_enable').set(1)
+        path = str(t) #str(str(download_path) + '\\' + str(t))
+        shader.parm('baseNormal_texture').set(path)
+
+    elif 'Metallic.exr' in t:
+        texture.append(t)
+        shader.parm('metallic_useTexture').set(1)
+        path = str(t) #str(str(download_path) + '\\' + str(t))
+        shader.parm('metallic_texture').set(path)
+        shader.parm('metallic').set(1)   
+
+    elif 'Roughness.exr' in t:
+        texture.append(t)
+        shader.parm('rough_useTexture').set(1)
+        path = str(t) #str(str(download_path) + '\\' + str(t))
+        shader.parm('rough_texture').set(path)
+        shader.parm('rough').set(1)
+
+
+
+    else:
+        pass
+
+
+
+
+
+
+# assing shader to material assing node
+    
+material_assing.parm('shop_materialpath1').set(str(shader.path()))
+
+
+
+]]></script>
+  </tool>
+
+  <tool name="sendToLops" label="sendToLops" icon="OBJ_lopimport">
+    <toolMenuContext name="viewer">
+      <contextOpType>beta_tools/</contextOpType>
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextOpType>beta_tools/</contextOpType>
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>beta_tools/</toolSubmenu>
+    <script scriptType="python"><![CDATA[import hou
+
+selectedNodes = hou.selectedNodes()
+
+selectedNodeslen = len(selectedNodes)
+
+if selectedNodeslen == 0:
+    print('Please some node and tr again....')
+
+
+
+geoCount=0
+lightCount=0
+cameCount=0
+stage = hou.node('/stage/')
+
+geo_merge_created_check = 0
+merge_light_data_to_stream_created_check = 0
+cam_merge_all_created_check = 0
+materieLibrary_created_check= 0
+
+
+
+################################################################################
+#  defines inputes
+################################################################################
+
+
+
+
+for index,node in enumerate(selectedNodes):
+    nodeType = node.type()
+    if 'geo' in str(nodeType):
+        if index == 0:
+            # text = "do you want"
+            userMaterial_inpute = hou.ui.displayMessage("Do You want to transfer materials ?", buttons=("No", "Yes"))
+            # if userMaterial_inpute == 1:
+            #     userMaterial_type = hou.ui.displayMessage("materials from Obj assing or assingmaterials attrib !!{FROM ATTRIB IS IN DEV STAGE NOT WORKING NOW)!! ?", buttons=("From OBJ", "From Attrib"))
+
+            if userMaterial_inpute == 1:
+                
+                materieLibrary = stage.createNode('materiallibrary',"ImportMaterials")
+                materieLibrary_created_check = 1
+        else:
+            pass
+        
+
+
+               
+    else:
+        pass
+
+
+index = 0
+i = 0
+for node in selectedNodes:
+    nodeType = node.type()
+    
+    
+    
+    if 'geo' in str(nodeType):
+        sopImportGeo = stage.createNode('sopimport',str(node))
+        sopImportGeo.parm('soppath').set(str(node.path()))
+
+        
+        if geoCount <= 0:
+           
+            geo_merge_all = stage.createNode ('merge','merge_all_geo_nodes')
+        geo_merge_all.setNextInput(sopImportGeo)
+        geo_merge_created_check = 1
+            
+        geoCount += 1
+
+    if materieLibrary_created_check == 1:
+        if index == 0:
+            
+            if geo_merge_created_check == 1:
+                materieLibrary.setNextInput(geo_merge_all)
+            else:
+                pass
+
+    else:
+        pass
+    
+    
+    
+            
+    if "geo" in str(nodeType):
+        if userMaterial_inpute == 1:
+            if materieLibrary_created_check == 1:
+                materieLibrary.parm('materials').set(str(i+1))
+                objMaterielPath = node.parm('shop_materialpath').eval()
+                materieLibrary.parm('matnode' + str(i+1)).set(str(objMaterielPath))
+                materieLibrary.parm('assign'+str(i+1)).set(1)
+                materieLibrary.parm('geopath'+str(i+1)).set('/' + str(node.name()).replace('.','_'))
+
+                
+
+                i+=1
+
+
+
+    # if lightCount <= 0:
+    if 'hlight' in str(nodeType) or 'envlight' in str(nodeType):
+        sopImportLight = stage.createNode('sceneimport::2.0',str(node))
+        sopImportLight.parm('filter').set("Lights")
+        sopImportLight.parm('objects').set(str(node.path()))
+        if lightCount <= 0:
+            light_merge_all = stage.createNode('merge','merge_all_lights')
+
+        light_merge_all.setNextInput(sopImportLight)
+
+        if lightCount <= 0:
+            merge_light_data_to_stream = stage.createNode('merge','merge_light_to_stream')
+            merge_light_data_to_stream_created_check = 1
+            merge_light_data_to_stream.setNextInput(light_merge_all)
+            if geoCount>= 1:
+                if userMaterial_inpute == 1:
+                    merge_light_data_to_stream.setNextInput(materieLibrary)
+                else:
+                    merge_light_data_to_stream.setNextInput(geo_merge_all)
+
+        lightCount +=1
+        
+    if 'cam' in str(nodeType):
+        sopImportCam = stage.createNode('sceneimport::2.0',str(node))
+        sopImportCam.parm('filter').set("Cameras")
+        sopImportCam.parm('objects').set(str(node.path()))
+        if cameCount <= 0:
+            cam_merge_all = stage.createNode('merge','merge_all_Cameras')
+            cam_merge_all_created_check = 1
+
+        cam_merge_all.setNextInput(sopImportCam)
+
+        if cameCount <= 0:
+            merge_cam_data_to_stream = stage.createNode('merge','merge_Cameras_to_stream')
+            merge_cam_data_to_stream.setNextInput(cam_merge_all)
+            if lightCount >= 1:
+                merge_cam_data_to_stream.setNextInput(merge_light_data_to_stream)
+            elif geoCount >= 1:
+                if userMaterial_inpute == 1:
+                    merge_light_data_to_stream.setNextInput(materieLibrary)
+                else:
+                    merge_light_data_to_stream.setNextInput(geo_merge_all)
+            else:
+                pass
+
+        cameCount += 1
+
+    
+    
+
+
+    index += 1  
+        
+   
+
+####################################################################
+
+##########################################################################
+
+
+
+
+
+#stage.layoutChildren()
+
+
+
+#############################################################################################
+if selectedNodeslen != 0:
+    hou.ui.displayMessage("All Selected Node Tranfer to Lops Network >>>", buttons=("cool",))]]></script>
+  </tool>
+
+  <tool name="attribwrangle" label="Cam_Frustrum" icon="SOP_attribwrangle">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if "outputnodename" in kwargs and "inputindex" in kwargs:
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if "inputnodename" in kwargs and "outputindex" in kwargs:
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9
+    if "autoplace" in kwargs:
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if "shiftclick" in kwargs and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if "nodepositionx" in kwargs and             "nodepositiony" in kwargs:
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if "node_bbox" in kwargs:
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if 'attribwrangle' not in child_type:
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r'''
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_obj_geo_Cam_Frustrum (Sop/attribwrangle)
+set _obj_geo_Cam_Frustrum = `run("opadd -e -n -v attribwrangle Cam_Frustrum")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_geo_Cam_Frustrum
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector points "Modify Points"                 "Select the points to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "cam"                 label   "Cam"                 type    string                 default { "" }             }             parm {                 name    "near"                 label   "Near"                 type    float                 default { "0" }                 range   { 0 1 }             }             parm {                 name    "far"                 label   "Far"                 type    float                 default { "0" }                 range   { 0 1 }             }             parm {                 name    "iteration"                 label   "Iteration"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             invisible             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' $_obj_geo_Cam_Frustrum
+opparm $_obj_geo_Cam_Frustrum  bindings ( 0 ) groupbindings ( 0 )
+opparm $_obj_geo_Cam_Frustrum class ( detail ) snippet ( 'string cam = chs("cam");\nfloat near = -ch("near") - 0.0000001;\nfloat far = -ch("far");\nfloat p = ch("../padding");\n \nfloat w = distance ( fromNDC ( cam, set ( 0, 0, near ) ), fromNDC ( cam, set ( 1, 0, near ) ) );\nfloat h = distance ( fromNDC ( cam, set ( 0, 0, near ) ), fromNDC ( cam, set ( 0, 1, near ) ) );\nfloat w2 = distance ( fromNDC ( cam, set ( 0, 0, far ) ), fromNDC ( cam, set ( 1, 0, far ) ) );\nfloat h2 = distance ( fromNDC ( cam, set ( 0, 0, far ) ), fromNDC ( cam, set ( 0, 1, far ) ) );\n \nfloat pw = p / w;\nfloat ph = p / h;\nfloat pw2 = p / w2;\nfloat ph2 = p / h2;\n \nvector pnear = fromNDC ( cam, set ( 0.5, 0.5, near ) );\nvector pfar = fromNDC ( cam, set ( 0.5, 0.5, far ) );\nvector dir = normalize ( pfar - pnear );\n \nv@pnear = pnear;\nv@pfar = pfar;\nv@dir = dir;\n \naddpoint ( 0, fromNDC ( cam, set ( -pw, -ph, near ) ) );\naddpoint ( 0, fromNDC ( cam, set ( 1 + pw, -ph, near ) ) );\naddpoint ( 0, fromNDC ( cam, set ( 1 + pw, 1 + ph, near ) ) );\naddpoint ( 0, fromNDC ( cam, set ( -pw, 1 + ph, near ) ) );\naddpoint ( 0, fromNDC ( cam, set ( -pw2, -ph2, far ) ) );\naddpoint ( 0, fromNDC ( cam, set ( 1 + pw2, -ph2, far ) ) );\naddpoint ( 0, fromNDC ( cam, set ( 1 + pw2, 1 + ph2, far ) ) );\naddpoint ( 0, fromNDC ( cam, set ( -pw2, 1 + ph2, far ) ) );\n \naddprim ( geoself ( ), "poly", 3, 2, 1, 0 );\naddprim ( geoself ( ), "poly", 4, 5, 6, 7 );\naddprim ( geoself ( ), "poly", 1, 5, 4, 0 );\naddprim ( geoself ( ), "poly", 0, 4, 7, 3 );\naddprim ( geoself ( ), "poly", 3, 7, 6, 2 );\naddprim ( geoself ( ), "poly", 2, 6, 5, 1 );\n \nint iteration = chi("iteration");\nfor ( int i = 0; i < 6; ++i )\n    setprimattrib ( 0, "zone", i, iteration );\nif ( chi("../visualize") && chi("../zones") > 1 )\n{\n    float f = iteration;\n    float seed = 0.99 + 0.591 + ch("../seed");\n    float rr = rand ( f + seed + sin ( 13 * f + 19 * seed ) );\n    float s = fit ( random ( 17 * f + 91 * seed ), 0, 1, 0.5, 1 );\n    vector color = hsvtorgb ( ( rr + 0.618033988749895 ) % 1, s, 1 );\n    for ( int i = 0; i < 6; ++i )\n        setprimattrib ( 0, "Cd", i, color );\n}' ) near ( 0.01 ) far ( 5 )
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off $_obj_geo_Cam_Frustrum
+opexprlanguage -s hscript $_obj_geo_Cam_Frustrum
+opuserdata -n '___Version___' -v '' $_obj_geo_Cam_Frustrum
+opset -p on $_obj_geo_Cam_Frustrum
+
+opcf $arg1
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_obj_geo_Cam_Frustrum
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_obj_geo_Cam_Frustrum
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="Hold_out" label="hold_out_exp" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[holdouts;shadow;CDL]]></script>
+  </tool>
+
+  <tool name="Hip_open" label="Hip_open" icon="SOP_flatten">
+    <script scriptType="python"><![CDATA[import os,datetime
+import hou
+
+job = hou.hscriptExpression('$HIP')
+
+files = os.listdir(str(job))
+
+hiplist = []
+for file in files:
+    hips = os.path.splitext(file)
+    if hips[1] == '.hip':
+        hiplist.append(hips[0])
+
+        
+
+dateTime = []
+for lst in hiplist:
+    filePaths = str(str(job) + '/' + str(lst) + '.hip')
+    d = os.path.getmtime(filePaths)
+    data = datetime.datetime.fromtimestamp(d)
+    dateTime.append(str(str(lst) + '          '+ str(data)))
+ 
+
+windowList = hou.ui.selectFromTree(dateTime,picked=(),exclusive=False,message=None,title='All Current Hip Versions',clear_on_cancel=False, width=500, height=500)      
+
+for hi in hiplist:
+    if hi in str(windowList[0]):
+        hipPath = str(str(job) + '/' + str(hi) + '.hip')
+        hou.hipFile.load(hipPath)
+        print(hipPath)
+
+
+
+
+]]></script>
+  </tool>
+
+  <tool name="create_render_node" label="create_render_node" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+
+#set your deafult obj path here 
+create_node_network = 'obj/'
+
+
+
+
+
+
+
+
+
+#####################################################
+#####################################################
+#####################################################
+
+node_render_path = "/obj/RENDER"
+node_render = hou.node(node_render_path)
+
+if node_render is not None:
+    create_node_network = 'obj/RENDER'
+
+else:
+    create_node_network = 'obj/'
+
+
+selected_node = hou.selectedNodes()
+obj = hou.node(create_node_network)
+
+for node in selected_node:
+    #print(type(node.name())
+    geo = obj.createNode('geo','RENDER_' + node.name())
+    objMrg = geo.createNode('object_merge',node.name())
+    objMrg.parm('objpath1').set(node.path())
+    objMrg.parm('xformtype').set(1)
+    r_null = geo.createNode('null',node.name())
+    r_null.setNextInput(objMrg)
+    r_null.setRenderFlag(1)
+    r_null.setDisplayFlag(1)
+    
+    geo.parm('geo_velocityblur').set('on')
+    
+    geo.layoutChildren()
+    geo.setDisplayFlag(0)
+    
+
+    
+    
+
+
+
+]]></script>
+  </tool>
+
+  <tool name="sent_to_rop" label="sent_to_rop" icon="ROP_mantra">
+    <script scriptType="python"><![CDATA[import hou
+
+specular_value = (hou.ui.readInput("Enter a default Out network path:", buttons=("OK", "Cancel"), initial_contents="/out/")[1])
+rop_path = str(specular_value)
+b = hou.ui.displayMessage("Do You Wants Other Obj in matte or phantom ?", buttons=("matte_objects", "phantom_objects"))
+forceobj = b
+
+out = hou.node(str(rop_path))
+selected_node = hou.selectedNodes()
+
+
+master = out.createNode('null','Master_Control')
+
+for node in selected_node:
+    mantra = out.createNode('ifd',node.name())
+    mantra.setNextInput(master)
+    #set parm
+    mantra.parm('trange').set('on')
+    mantra.parm('allowmotionblur').set(1)
+    #mantra.parm('vm_deepresolver').set('camera')
+    mantra.parm('vobject').set('')
+    mantra.parm('forceobject').set(str(node.path()))
+    mantra.parm('vm_picture').set('$HIP/render/$OS/v1/$OS.$F4.exr')
+    mantra.parm('vm_readcheckpoint').set(1)
+    #mantra.parm('override_camerares').set(1)
+    phantom =[]
+    for n in selected_node:
+        if n != node:
+            phantom.append(str(n.path()))
+            
+        else:
+            pass
+    if forceobj == 1:
+        mantra.parm('phantom_objects').set(str(' '.join(phantom)))
+    else:
+        mantra.parm('matte_objects').set(str(' '.join(phantom)))
+    
+        
+        
+    ]]></script>
+  </tool>
+
+  <toolshelf name="vr_tool" label="vr_tools">
+    <memberTool name="Version_up"/>
+    <memberTool name="obj_mrg"/>
+    <memberTool name="Quixel_Bridge_Import"/>
+    <memberTool name="sendToLops"/>
+    <memberTool name="Hold_out"/>
+    <memberTool name="KB3D2MTLX"/>
+    <memberTool name="Hip_open"/>
+    <memberTool name="create_render_node"/>
+    <memberTool name="sent_to_rop"/>
+    <memberTool name="hincTohip0"/>
+    <memberTool name="vr_megaTO_lops"/>
+    <memberTool name="Create_index_in_lop"/>
+    <memberTool name="tool_1"/>
+    <memberTool name="tool_3"/>
+  </toolshelf>
+
+  <tool name="vr_megaTO_lops" label="vr_megaTO_lops" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou , os
+
+selectednodes = hou.selectedNodes()
+
+stage = hou.node('/stage/')
+
+
+subnet = hou.selectedNodes()
+
+for n in subnet: 
+    if n.isSubNetwork():
+        subChildren = n.children()
+        for geo in subChildren:
+            if 'geo' in str(geo.type()):
+                displaynode = geo.displayNode()
+
+                node = displaynode
+
+                node_path = node.path()
+                node_name = node.name()
+                geometry = node.geometry()
+                for attrib in geometry.primAttribs():
+                    attrib_name = attrib.name()
+                    if attrib_name == 'shop_materialpath':
+                        prims = geometry.prims()
+                        shop_path = prims[0].attribValue(str(attrib_name))
+                        mat_node = hou.node(str(shop_path))
+                        
+                        
+                        # create nodes in stage
+                        
+                        subnet = stage.createNode('subnet',str(node_name))
+                        sopimport = subnet.createNode('sopimport',str(node_name))
+                        #set parm sop import 
+                        sopimport.parm('soppath').set(str(node_path))
+                        sopimport.parm('asreference').set(1)
+                        
+                        # create mtlx
+                        
+                        materiallibrary = subnet.createNode('materiallibrary')
+                        materiallibrary.setNextInput(sopimport)
+                        
+                        
+                        mtlxsubnet = materiallibrary.createNode("subnet", str(mat_node.name()))
+                        standar_surface = mtlxsubnet.createNode('mtlxstandard_surface')
+                        sub_out = mtlxsubnet.createNode('subnetconnector')
+                        sub_out.parm('connectorkind').set(1)
+                        sub_out.parm('parmname').set('surface')
+                        sub_out.parm('parmlabel').set('Surface')
+                        
+                        sub_out.parm('parmtype').set('surface')
+                        
+                        sub_out.setInput(0,standar_surface,0)
+                        
+                        displacement = mtlxsubnet.createNode('mtlxdisplacement')
+                        displace_out = mtlxsubnet.createNode('subnetconnector','displacement')
+                        displace_out.parm('connectorkind').set(1)
+                        displace_out.parm('parmname').set('displacement')
+                        displace_out.parm('parmlabel').set('Displacement')
+                        
+                        
+                        displace_out.parm('parmtype').set('displacement')
+                        
+                        
+                        
+                        displace_out.setInput(0,displacement,0)
+                        
+                        sub_output0 = hou.node(str(subnet.path()) + '/' + 'output0')
+                        sub_output0.setInput(0,materiallibrary,0)
+                        
+                        
+                        materiallibrary.parm('matflag1').set(0)
+                        materiallibrary.parm('matnode1').set(str(mtlxsubnet.path()))
+                        materiallibrary.parm('matpath1').set('/'+str(sopimport.name()) + '/' + 'mat/' )
+                        materiallibrary.parm('assign1').set(1)
+                        materiallibrary.parm('geopath1').set('/' + str(sopimport.name()))
+                    
+                        
+                        
+                        base_clr = mat_node.parm('basecolor_useTexture').eval()
+                        
+                        if base_clr == 1:
+                            base_clr_mtlx = mtlxsubnet.createNode('mtlximage','base_color')
+                            base_txt_path = mat_node.parm('basecolor_texture').eval()
+                            
+                            base_clr_mtlx.parm('file').set(os.path.splitext(base_txt_path)[0] + '.exr')
+                            standar_surface.setNamedInput('base_color',base_clr_mtlx,0)
+                        else:  
+                            pass
+                            
+            
+                        
+                        rough_clr = mat_node.parm('rough_useTexture').eval()
+                        
+                        
+                        
+                        if rough_clr == 1:
+                            rough_clr_mtlx = mtlxsubnet.createNode('mtlximage','rough_color')
+                            rough_txt_path = mat_node.parm('rough_texture').eval()
+                            rough_clr_mtlx.parm('file').set(os.path.splitext(rough_txt_path)[0] + '.exr')
+                            rough_clr_mtlx.parm('signature').set('Float')
+                            standar_surface.setNamedInput('specular_roughness',rough_clr_mtlx,0)
+                        else:  
+                            pass
+                        
+                        
+                        
+                        
+                        metal_clr = mat_node.parm('metallic_useTexture').eval()
+                        
+                        
+                        if metal_clr == 1:
+                            metal_clr_mtlx = mtlxsubnet.createNode('mtlximage','metal_color')
+                            metal_clr_path = mat_node.parm('metallic_texture').eval()
+                            metal_clr_mtlx.parm('file').set(os.path.splitext(metal_clr_path)[0] + '.exr')
+                            metal_clr_mtlx.parm('signature').set('Float')
+                            standar_surface.setNamedInput('metalness',metal_clr_mtlx,0)
+                        else:  
+                            pass
+                        
+                    
+                        
+                        transmiss_clr = mat_node.parm('transparency_useTexture').eval()
+                        
+                        if transmiss_clr == 1:
+                            transmiss_clr_mtlx = mtlxsubnet.createNode('mtlximage','transparency_color')
+                            transmiss_clr_path = mat_node.parm('transparency_texture').eval()
+                            transmiss_clr_mtlx.parm('file').set(os.path.splitext(transmiss_clr_path)[0] + '.exr')
+                            transmiss_clr_mtlx.parm('signature').set('Float')
+                            standar_surface.setNamedInput('transmission',transmiss_clr_mtlx,0)
+                        else:  
+                            pass
+                            
+                            
+                            
+                        emission_clr = mat_node.parm('emitcolor_useTexture').eval()
+                        
+                        
+                        if emission_clr == 1:
+                            emission_clr_mtlx = mtlxsubnet.createNode('mtlximage','emission_color')
+                            emission_clr_path = mat_node.parm('emitcolor_texture').eval()
+                            emission_clr_mtlx.parm('file').set(os.path.splitext(emission_clr_path)[0] + '.exr')
+                            emission_clr_mtlx.parm('signature').set('Float')
+                            standar_surface.setNamedInput('emission',emission_clr_mtlx,0)
+                        else:  
+                            pass
+                        
+                        
+                        opac_clr = mat_node.parm('opaccolor_useTexture').eval()
+                        
+                        
+                        if opac_clr == 1:
+                            opac_clr_mtlx = mtlxsubnet.createNode('mtlximage','opaccolor_color')
+                            opac_clr_path = mat_node.parm('opaccolor_texture').eval()
+                            opac_clr_mtlx.parm('file').set(os.path.splitext(opac_clr_path)[0] + '.exr')
+                            opac_clr_mtlx.parm('signature').set('Float')
+                            standar_surface.setNamedInput('opacity',opac_clr_mtlx,0)
+                        else:  
+                            pass
+                        
+                        
+                        normal_clr = mat_node.parm('baseBumpAndNormal_enable').eval()
+                        
+                        if normal_clr == 1:
+                            normal_clr_mtlx = mtlxsubnet.createNode('mtlximage','normal_color')
+                            normal_clr_path = mat_node.parm('baseNormal_texture').eval()
+                            normal_clr_mtlx.parm('file').set(os.path.splitext(normal_clr_path)[0] + '.exr')
+                            mtlx_normal_map = mtlxsubnet.createNode('mtlxnormalmap')
+                            
+                            #normal_clr_mtlx.parm('signature').set('Float')
+                            mtlx_normal_map.setNamedInput('in',normal_clr_mtlx,0)
+                            #mtlx_normal_map.parm('space').set('object')
+                            standar_surface.setNamedInput('normal',mtlx_normal_map,0)
+                            
+                            
+                        else:  
+                            pass
+                        
+                        
+                        displce_clr = mat_node.parm('dispTex_enable').eval()
+                    
+                        if displce_clr == 1:
+                            displce_clr_mtlx = mtlxsubnet.createNode('mtlximage','displce__color')
+                            displce_clr_path = mat_node.parm('dispTex_texture').eval()
+                            displce_clr_mtlx.parm('file').set(os.path.splitext(displce_clr_path)[0] + '.exr')
+                            displce_clr_mtlx.parm('signature').set('Float')
+                            displacement.setNamedInput('displacement',displce_clr_mtlx,0)
+                            displacement.parm('scale').set(0.005)
+                        else:  
+                            pass
+                        
+                        
+                        
+                        subnet.layoutChildren()
+                        mtlxsubnet.layoutChildren()
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                
+                    
+    else:
+         
+         pass
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+        
+    ]]></script>
+  </tool>
+
+  <tool name="Create_index_in_lop" label="Create_index_in_lop" icon="LOP_attribwrangle">
+    <script scriptType="python"><![CDATA[import hou
+
+nodelist = hou.selectedNodes()
+i = 0
+for node in nodelist:
+    stage = hou.node(str(node.path()).replace(str(node.name()),''))
+    node_position = node.position()
+    wrangle = stage.createNode('attribwrangle')
+    wrangle.setPosition([node_position[0],node_position[1]-1.5])
+    
+    wrangle.parm('primpattern').set('{ usd_haspayload(0, @primpath) == 1 }')
+    code = 'i@index='
+    wrangle.parm('snippet').set(code + str(i) + ';')
+    wrangle.setNextInput(node)
+    
+    i+=1
+    
+    
+    
+   ]]></script>
+  </tool>
+
+  <tool name="hincTohip0" label="hincTohip" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou , sys
+
+def convert_hipnc_to_hip(input_file, output_file):
+    try:
+        # Load the non-commercial file
+        hou.hipFile.load(input_file)
+        
+        # Save it as a commercial .hip file
+        hou.hipFile.save(output_file)
+        
+        print(f"Successfully converted {input_file} to {output_file}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+
+input_file = str(input('enter your hinc file path :- '))
+
+
+if sys.platform.startswith('linux'):
+    folder_path = input_file.rsplit('/', 1)[0]
+    file_name_with_extension = folder_path.rsplit('/', 1)[-1]
+    file_name = file_name_with_extension.rsplit('.', 1)[0]
+    output_file = str(folder_path + '/' + file_name + '.hip').replace('"', '')
+    
+    
+elif sys.platform.startswith('win'):
+    folder_path = input_file.rsplit('\\', 1)[0]
+    file_name_with_extension = folder_path.rsplit('\\', 1)[-1]
+    file_name = file_name_with_extension.rsplit('.', 1)[0]
+    output_file = str(folder_path + '\\' + file_name + '.hip').replace('"', '')
+
+    
+
+print(output_file)
+#output_file = "/path/to/your/file.hip"
+
+
+
+
+convert_hipnc_to_hip(input_file, output_file)
+]]></script>
+  </tool>
+
+  <tool name="tool_1" label="New Tool" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+
+selected_nodes = hou.selectedNodes()
+
+node_groups = {}
+
+# Loop through the selected nodes
+for node in selected_nodes:
+    groups = []
+    
+    # Check if the node is a geometry node
+    if node.type().category() == hou.sopNodeTypeCategory():
+        geo = node.geometry()
+        
+        # Check if the node has a geometry object
+        if geo:
+            # Get all group names (point, prim, edge groups)
+            point_groups = [grp.name() for grp in geo.pointGroups()]
+            prim_groups = [grp.name() for grp in geo.primGroups()]
+            edge_groups = [grp.name() for grp in geo.edgeGroups()]
+            
+            # Combine all groups
+            groups = {
+                "point_groups": point_groups,
+                "prim_groups": prim_groups,
+                "edge_groups": edge_groups,
+            }
+    
+    # Store the groups in the dictionary
+    node_groups[node.name()] = groups
+
+
+print(groups)
+]]></script>
+  </tool>
+</shelfDocument>

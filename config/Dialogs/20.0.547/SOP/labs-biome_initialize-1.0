@@ -1,0 +1,1102 @@
+// Magic: 4cfb99d0
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Jul 26 18:23:46 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+sepparm7.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+biomeprofile.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ biomeprofile.label = PARM_LABEL("Biome Profile", "biomeprofile") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "biomeprofile") LABELREF(biomeprofile.label)
+	VALUE(biomeprofile.val) HSTRETCH;
+
+    biomeprofile.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(biomeprofile.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+environmentvar.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("environmentvar", "Environment Variable Set") toggle VALUE(environmentvar.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+terraintype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    terraintype.label = PARM_LABEL_SIMPLE("Terrain Input Type", "terraintype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    terraintype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+gridspacing_mesh.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ gridspacing_mesh.label = PARM_LABEL("Grid Spacing", "gridspacing_mesh") WIDTH(1.5);
+ PARM(float, 1, "gridspacing_mesh", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(gridspacing_mesh.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+size2.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   size2.label = PARM_LABEL("Terrain Size", "size2") WIDTH(1.5);
+   PARM(float, 2, "size2", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(size2.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+t2.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   t2.label = PARM_LABEL("Center", "t2") WIDTH(1.5);
+   PARM(float, 3, "t2", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(t2.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+uniformscale2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ uniformscale2.label = PARM_LABEL("Uniform Scale", "uniformscale2") WIDTH(1.5);
+ PARM(float, 1, "uniformscale2", none, none) RANGE(0,10)
+	 LABELREF(uniformscale2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+autosize.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("autosize", "Auto Size Height Field") toggle VALUE(autosize.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+filename.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ filename.label = PARM_LABEL("File", "filename") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "filename") LABELREF(filename.label)
+	VALUE(filename.val) HSTRETCH;
+
+    filename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(filename.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+monoop.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    monoop.label = PARM_LABEL_SIMPLE("Channel", "monoop") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    monoop.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+gridspacing.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ gridspacing.label = PARM_LABEL("Grid Spacing", "gridspacing") WIDTH(1.5);
+ PARM(float, 1, "gridspacing", none, none) RANGE(0,10)
+	 LABELREF(gridspacing.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+heightscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ heightscale.label = PARM_LABEL("Height Scale", "heightscale") WIDTH(1.5);
+ PARM(float, 1, "heightscale", none, none) RANGE(0,100)
+	 LABELREF(heightscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+clampmintoggle.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+clampmintoggle.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+clampmintoggle.gad = PARM_BUTTON("clampmintoggle", "") toggle VALUE(clampmintoggle.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+clampmin.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ clampmin.label = PARM_LABEL("Clamp Minimum", "clampmin") WIDTH(1.32);
+ PARM(float, 1, "clampmin", none, none) RANGE(0,10)
+	 LABELREF(clampmin.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+clampmaxtoggle.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+clampmaxtoggle.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+clampmaxtoggle.gad = PARM_BUTTON("clampmaxtoggle", "") toggle VALUE(clampmaxtoggle.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+clampmax.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ clampmax.label = PARM_LABEL("Clamp Maximum", "clampmax") WIDTH(1.32);
+ PARM(float, 1, "clampmax", none, none) RANGE(0,10)
+	 LABELREF(clampmax.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+orient.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    orient.label = PARM_LABEL_SIMPLE("Orientation", "orient") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    orient.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sampling.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    sampling.label = PARM_LABEL_SIMPLE("Sampling", "sampling") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    sampling.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+t.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   t.label = PARM_LABEL("Center", "t") WIDTH(1.5);
+   PARM(float, 2, "t", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(t.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+uniformscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ uniformscale.label = PARM_LABEL("Uniform Scale", "uniformscale") WIDTH(1.5);
+ PARM(float, 1, "uniformscale", none, none) RANGE(0,10)
+	 LABELREF(uniformscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+biomeinput.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    biomeinput.label = PARM_LABEL_SIMPLE("Biome Input Type", "biomeinput") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    biomeinput.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm6.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+imagetype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    imagetype.label = PARM_LABEL_SIMPLE("Image Type", "imagetype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    imagetype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+imginput.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ imginput.label = PARM_LABEL("Image Input", "imginput") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "imginput") LABELREF(imginput.label)
+	VALUE(imginput.val) HSTRETCH;
+
+    imginput.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(imginput.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+copinput.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ copinput.label = PARM_LABEL("COP Input", "copinput") WIDTH(1.5);
+ PARM_FIELD(pathstring, "copinput") VALUE(copinput.val) 
+	LABELREF(copinput.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(copinput.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(copinput.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+numcolors.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numcolors.label = PARM_LABEL("Number of Colors", "numcolors") WIDTH(1.5);
+ PARM(integer, 1, "numcolors", none, none) RANGE(1,100)
+	LOCK_RANGE_MIN LABELREF(numcolors.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+strength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ strength.label = PARM_LABEL("Region Smoothing", "strength") WIDTH(1.5);
+ PARM(float, 1, "strength", none, none) RANGE(0,50)
+	LOCK_RANGE_MIN LABELREF(strength.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+extweight.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ extweight.label = PARM_LABEL("Extended Influence", "extweight") WIDTH(1.5);
+ PARM(float, 1, "extweight", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(extweight.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+iterations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ iterations.label = PARM_LABEL("Iterations", "iterations") WIDTH(1.5);
+ PARM(integer, 1, "iterations", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(iterations.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+generatecolors.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("generatecolors", "Extract Regions")
+	push VALUE(generatecolors.val);
+
+    { WIDTH(0.1) }
+}
+
+sepparm5.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+fd_extractcol.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Extracted Colors", "fd_extractcol") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(fd_extractcol.val)
+
+        fd_extractcol.field = PARM_FIELD (integer, "fd_extractcol")
+				VALUE(fd_extractcol.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(fd_extractcol.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(fd_extractcol.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(fd_extractcol.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+fd_extractcol.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+fd_extractcol.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(fd_extractcol.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    fd_extractcol.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    fd_extractcol.multilist;
+}
+
+file.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ file.label = PARM_LABEL("File", "file") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "file") LABELREF(file.label)
+	VALUE(file.val) HSTRETCH;
+
+    file.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(file.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+reload.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("reload", "Reload PSD")
+	push VALUE(reload.val);
+
+    { WIDTH(0.1) }
+}
+
+sepparm.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+folder1.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Layers To Extract", "folder1") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(folder1.val)
+
+        folder1.field = PARM_FIELD (integer, "folder1")
+				VALUE(folder1.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(folder1.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(folder1.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(folder1.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+folder1.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+folder1.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(folder1.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    folder1.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    folder1.multilist;
+}
+
+sepparm4.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+createcurvehda.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("createcurvehda", "Create Curve Setup HDA")
+	push VALUE(createcurvehda.val);
+
+    { WIDTH(0.1) }
+}
+
+layerhierarchy.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    layerhierarchy.label = PARM_LABEL_SIMPLE("Layer Hierarchy Type", "layerhierarchy") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    layerhierarchy.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fd_layers.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Layers", "fd_layers") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(fd_layers.val)
+
+        fd_layers.field = PARM_FIELD (integer, "fd_layers")
+				VALUE(fd_layers.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(fd_layers.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(fd_layers.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(fd_layers.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+fd_layers.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+fd_layers.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(fd_layers.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    fd_layers.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    fd_layers.multilist;
+}
+
+attrname.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attrname.label = PARM_LABEL("Attribute Name", "attrname") WIDTH(1.5);
+    PARM_FIELD(string, "attrname") VALUE(attrname.val) 
+	LABELREF(attrname.label) HSTRETCH;
+
+    attrname.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+sepparm3.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+fd_attribute.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Attribute Settings", "fd_attribute") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(fd_attribute.val)
+
+        fd_attribute.field = PARM_FIELD (integer, "fd_attribute")
+				VALUE(fd_attribute.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(fd_attribute.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(fd_attribute.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(fd_attribute.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+fd_attribute.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+fd_attribute.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(fd_attribute.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    fd_attribute.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    fd_attribute.multilist;
+}
+
+loadvalues.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("loadvalues", "Load Values")
+	push VALUE(loadvalues.val);
+
+    { WIDTH(0.1) }
+}
+
+refreshvalues.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("refreshvalues", "Refresh Values")
+	push VALUE(refreshvalues.val);
+
+    { WIDTH(0.1) }
+}
+attribvalcontainer.gad = NULL { }
+
+cutout.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cutout", "Enable Cutout") toggle VALUE(cutout.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fd_biomeassignmentmesh2.gad = 
+
+GROUP simple "Biome Assignment" flat 
+{ 
+    VALUE(fd_biomeassignmentmesh2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    fd_attribute.gad;		
+	    loadvalues.gad;		
+	    refreshvalues.gad;		
+} 
+
+fd_meshwithattrib2.gad = 
+
+{
+    VALUE(fd_meshwithattrib2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    attrname.gad;		
+	    sepparm3.gad;		
+	    fd_biomeassignmentmesh2.gad;		
+	    attribvalcontainer.gad;		
+} 
+
+fd_biomeassignmenthf2.gad = 
+
+GROUP simple "Biome Assignment" flat 
+{ 
+    VALUE(fd_biomeassignmenthf2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    fd_layers.gad;		
+} 
+
+fd_biomeclass2.gad = 
+
+{
+    VALUE(fd_biomeclass2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    fd_biomeassignmenthf2.gad;		
+} 
+
+fd_houdinihflayers2.gad = 
+
+{
+    VALUE(fd_houdinihflayers2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    layerhierarchy.gad;		
+	    fd_biomeclass2.gad;		
+} 
+
+fd_houdinicurves2.gad = 
+
+{
+    VALUE(fd_houdinicurves2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    sepparm4.gad;		
+	    createcurvehda.gad;		
+} 
+
+fd_biomeassignpsd2.gad = 
+
+GROUP simple "Biome Assignment" flat 
+{ 
+    VALUE(fd_biomeassignpsd2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    folder1.gad;		
+} 
+
+fd_photoshop2.gad = 
+
+{
+    VALUE(fd_photoshop2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    file.gad;		
+	    reload.gad;		
+	    sepparm.gad;		
+	    fd_biomeassignpsd2.gad;		
+} 
+
+fd_biomeassignmentimg2.gad = 
+
+GROUP simple "Biome Assignment" flat 
+{ 
+    VALUE(fd_biomeassignmentimg2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    fd_extractcol.gad;		
+} 
+
+fd_neighbors.gad = 
+GROUP collapsible "Neighbor Consolidation" flat   
+{
+    VALUE(fd_neighbors.gad.val) LAYOUT(vertical) HSTRETCH
+	    extweight.gad;		
+	    iterations.gad;		
+} 
+
+fd_gen.gad = 
+
+GROUP simple "Biome Generation" flat 
+{ 
+    VALUE(fd_gen.gad.val) LAYOUT(vertical) HSTRETCH 
+	    numcolors.gad;		
+	    strength.gad;		
+	    fd_neighbors.gad;		
+	    generatecolors.gad;		
+} 
+
+fd_imagefile2.gad = 
+
+{
+    VALUE(fd_imagefile2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    imagetype.gad;		
+	    imginput.gad;		
+	    copinput.gad;		
+	    fd_gen.gad;		
+	    sepparm5.gad;		
+	    fd_biomeassignmentimg2.gad;		
+} 
+
+fd_inputtype.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_inputtype.gad"
+    { 
+	VALUE(fd_inputtype.gad.val) STRETCH(1,0)
+
+	TAB "Input Type"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    biomeinput.gad;		
+	    sepparm6.gad;		
+	    fd_imagefile2.gad;		
+	    fd_photoshop2.gad;		
+	    fd_houdinicurves2.gad;		
+	    fd_houdinihflayers2.gad;		
+	    fd_meshwithattrib2.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Biome Overlap"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    cutout.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+fd_imagehf_transform2.gad = 
+GROUP collapsible "Transform" flat   
+{
+    VALUE(fd_imagehf_transform2.gad.val) LAYOUT(vertical) HSTRETCH
+	    orient.gad;		
+	    sampling.gad;		
+	    t.gad;		
+	    uniformscale.gad;		
+} 
+
+fd_imagehf_terrain_settings2.gad = 
+
+GROUP simple "Terrain Settings" flat 
+{ 
+    VALUE(fd_imagehf_terrain_settings2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    gridspacing.gad;		
+	    heightscale.gad;		
+	    clampmintoggle.row.join;		
+	    clampmaxtoggle.row.join;		
+	    fd_imagehf_transform2.gad;		
+} 
+
+fd_imgsettings2.gad = 
+
+GROUP simple "Image Settings" flat 
+{ 
+    VALUE(fd_imgsettings2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    filename.gad;		
+	    monoop.gad;		
+} 
+
+fd_hf_4.gad = 
+
+{
+    VALUE(fd_hf_4.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    fd_imgsettings2.gad;		
+	    fd_imagehf_terrain_settings2.gad;		
+} 
+
+fd_customsize2.gad = 
+
+{
+    VALUE(fd_customsize2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    size2.gad;		
+	    t2.gad;		
+} 
+
+fd_meshsettings2.gad = 
+
+GROUP simple "Terrain Settings" flat 
+{ 
+    VALUE(fd_meshsettings2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    gridspacing_mesh.gad;		
+	    fd_customsize2.gad;		
+	    uniformscale2.gad;		
+	    autosize.gad;		
+} 
+
+fd_hf_3.gad = 
+
+{
+    VALUE(fd_hf_3.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    fd_meshsettings2.gad;		
+} 
+
+fd_hf2.gad = 
+
+{
+    VALUE(fd_hf2.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+} 
+
+fd_terrain3.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_terrain3.gad"
+    { 
+	VALUE(fd_terrain3.gad.val) STRETCH(1,0)
+
+	TAB "Terrain Input"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    terraintype.gad;		
+	    fd_hf_3.gad;		
+	    fd_hf_4.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Biome Input"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    fd_inputtype.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    sepparm7.gad; 
+    biomeprofile.gad; 
+    environmentvar.gad; 
+    sepparm2.gad; 
+    fd_terrain3.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

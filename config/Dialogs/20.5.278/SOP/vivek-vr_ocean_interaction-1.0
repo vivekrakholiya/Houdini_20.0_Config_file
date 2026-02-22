@@ -1,0 +1,234 @@
+// Magic: 8d9facf2
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Sep 30 22:02:29 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+resimulate.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("resimulate", "Reset Simulation")
+	push VALUE(resimulate.val);
+
+    { WIDTH(0.1) }
+}
+
+startframe.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ startframe.label = PARM_LABEL("Start Frame", "startframe") WIDTH(1.5);
+ PARM(integer, 1, "startframe", none, none) RANGE(1,240)
+	 LABELREF(startframe.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+vix_points.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("vix_points", "visulize points") toggle VALUE(vix_points.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+div.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ div.label = PARM_LABEL("div", "div") WIDTH(1.5);
+ PARM(float, 1, "div", none, none) RANGE(0,10)
+	 LABELREF(div.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+densityscale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ densityscale.label = PARM_LABEL("Density Scale", "densityscale") WIDTH(1.5);
+ PARM(float, 1, "densityscale", none, LOGSCALE) RANGE(0.1,10000)
+	 LABELREF(densityscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cacheenabled.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cacheenabled", "Cache Simulation") toggle VALUE(cacheenabled.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+cachemaxsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cachemaxsize.label = PARM_LABEL("Cache Memory (MB)", "cachemaxsize") WIDTH(1.5);
+ PARM(integer, 1, "cachemaxsize", none, none) RANGE(0,1000)
+	LOCK_RANGE_MIN LABELREF(cachemaxsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+visualize_surface.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualize_surface", "visualize object interaction") toggle VALUE(visualize_surface.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+density.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ density.label = PARM_LABEL("Density", "density") WIDTH(1.5);
+ PARM(float, 1, "density", none, none) RANGE(0,1)
+	 LABELREF(density.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+viscosity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ viscosity.label = PARM_LABEL("Viscosity", "viscosity") WIDTH(1.5);
+ PARM(float, 1, "viscosity", none, none) RANGE(0,1)
+	 LABELREF(viscosity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+ocen_v.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ ocen_v.label = PARM_LABEL("Ocen V", "ocen_v") WIDTH(1.5);
+ PARM(float, 1, "ocen_v", none, none) RANGE(0,1)
+	 LABELREF(ocen_v.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+gravity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ gravity.label = PARM_LABEL("Gravity", "gravity") WIDTH(1.5);
+ PARM(float, 1, "gravity", none, none) RANGE(0,1)
+	 LABELREF(gravity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+folder0.gad = 
+
+GROUP simple "ocen pamerer" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    visualize_surface.gad;		
+	    density.gad;		
+	    viscosity.gad;		
+	    ocen_v.gad;		
+	    gravity.gad;		
+} 
+
+Pts.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Pts.gad"
+    { 
+	VALUE(Pts.gad.val) STRETCH(1,0)
+
+	TAB "Points For Sim"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    vix_points.gad;		
+	    div.gad;		
+	    densityscale.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "sim"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    cacheenabled.gad;		
+	    cachemaxsize.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    resimulate.gad; 
+    startframe.gad; 
+    Pts.gad; 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

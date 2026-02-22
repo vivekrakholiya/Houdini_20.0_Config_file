@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Menu--narrow-" serif:id="Menu (narrow)" transform="matrix(1.95253e-17,-0.318872,0.759192,4.64871e-17,-768.504,589.359)">
+        <g transform="matrix(0.921177,-7.39557e-32,1.15487e-31,1,1178.1,977.5)">
+            <rect x="676.2" y="36.5" width="44" height="3" style="fill:rgb(254,177,0);"/>
+        </g>
+        <g transform="matrix(0.632158,-7.39557e-32,6.23356e-32,1,1373.53,977.5)">
+            <rect x="676.2" y="43.5" width="44" height="3" style="fill:rgb(254,177,0);"/>
+        </g>
+        <g transform="matrix(0.395688,-7.39557e-32,5.00864e-33,1,1533.44,977.5)">
+            <rect x="676.2" y="50.5" width="44" height="3" style="fill:rgb(254,177,0);"/>
+        </g>
+        <g id="Forward--small-" serif:id="Forward (small)" transform="matrix(-0.702467,0.480949,-0.481554,-0.12408,2140.97,910.698)">
+            <path d="M303.379,211.954L296.161,205.931L295.592,210.725L281.45,210.867L281.45,214.606L295.307,214.606L295.876,218.973L303.379,211.954Z" style="fill:rgb(254,177,0);fill-rule:nonzero;"/>
+        </g>
+    </g>
+</svg>

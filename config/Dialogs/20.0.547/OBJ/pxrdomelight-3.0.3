@@ -1,0 +1,21 @@
+// Magic: 2f38a236
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Apr 26 20:49:30 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+dimmer.gad = NULL { }
+
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    dimmer.gad; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

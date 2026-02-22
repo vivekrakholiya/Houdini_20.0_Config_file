@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["TargetSand"]}, {"type": "para", "indent": 0, "text": ["This example demonstrates attracting grain simulations to points\non the surface of a model."], "extent": [0, 93]}], "examplefor": "/nodes/dop/popgrains", "examplefile": "/examples/nodes/dop/popgrains/TargetSand.otl"}

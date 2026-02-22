@@ -1,0 +1,37 @@
+// Magic: 2d918ec4
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Mon Jun  9 16:33:37 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+U.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ U.label = PARM_LABEL("U", "U") WIDTH(1.5);
+ PARM(float, 1, "U", none, none) RANGE(0,1)
+	 LABELREF(U.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    U.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

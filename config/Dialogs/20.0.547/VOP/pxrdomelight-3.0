@@ -1,0 +1,649 @@
+// Magic: f6c3c867
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Apr 26 20:49:32 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+signature.gad = NULL { }
+
+intensity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ intensity.label = PARM_LABEL("Intensity", "intensity") WIDTH(1.5);
+ PARM(float, 1, "intensity", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(intensity.label) HSTRETCH;
+
+    intensity.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(intensity.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+exposure.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ exposure.label = PARM_LABEL("Exposure", "exposure") WIDTH(1.5);
+ PARM(float, 1, "exposure", none, none) RANGE(-10,10)
+	 LABELREF(exposure.label) HSTRETCH;
+
+    exposure.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(exposure.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+lightColor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    lightColor.label = PARM_LABEL("Color", "lightColor") WIDTH(1.5);
+    PARM(float, 3, "lightColor", none, COLOR, "R,G,B") 
+	LABELREF(lightColor.label) HSTRETCH;
+
+    lightColor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(lightColor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+lightColorMap.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ lightColorMap.label = PARM_LABEL("Color Map", "lightColorMap") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "lightColorMap") LABELREF(lightColorMap.label)
+	VALUE(lightColorMap.val) HSTRETCH;
+
+    lightColorMap.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(lightColorMap.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    lightColorMap.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(lightColorMap.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+lightColorMap_colorspace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    lightColorMap_colorspace.label = PARM_LABEL_SIMPLE("Color Space", "lightColorMap_colorspace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    lightColorMap_colorspace.menu;
+
+    { HSTRETCH }
+
+    lightColorMap_colorspace.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(lightColorMap_colorspace.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+colorMapGamma.gad = ROW 
+{
+    HSTRETCH
+   { WIDTH(0.18) }
+
+    colorMapGamma.label = PARM_LABEL("Map Gamma", "colorMapGamma") WIDTH(1.5);
+    PARM(float, 3, "colorMapGamma", none, none) LABELREF(colorMapGamma.label)
+	HSTRETCH;
+
+    colorMapGamma.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(colorMapGamma.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+   { WIDTH(0.1) }
+}
+
+colorMapSaturation.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ colorMapSaturation.label = PARM_LABEL("Map Saturation", "colorMapSaturation") WIDTH(1.5);
+ PARM(float, 1, "colorMapSaturation", none, none) RANGE(0,2)
+	LOCK_RANGE LABELREF(colorMapSaturation.label) HSTRETCH;
+
+    colorMapSaturation.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(colorMapSaturation.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+enableTemperature.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enableTemperature", "Enable Temperature") toggle VALUE(enableTemperature.val);
+
+    { HSTRETCH }
+
+    enableTemperature.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(enableTemperature.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+temperature.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ temperature.label = PARM_LABEL("Temperature", "temperature") WIDTH(1.5);
+ PARM(float, 1, "temperature", none, none) RANGE(1000,50000)
+	LOCK_RANGE LABELREF(temperature.label) HSTRETCH;
+
+    temperature.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(temperature.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+specular.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ specular.label = PARM_LABEL("Specular Amount", "specular") WIDTH(1.5);
+ PARM(float, 1, "specular", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(specular.label) HSTRETCH;
+
+    specular.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(specular.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+diffuse.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ diffuse.label = PARM_LABEL("Diffuse Amount", "diffuse") WIDTH(1.5);
+ PARM(float, 1, "diffuse", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(diffuse.label) HSTRETCH;
+
+    diffuse.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(diffuse.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+enableShadows.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enableShadows", "Enable Shadows") toggle VALUE(enableShadows.val);
+
+    { HSTRETCH }
+
+    enableShadows.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(enableShadows.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+shadowColor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    shadowColor.label = PARM_LABEL("Shadow Color", "shadowColor") WIDTH(1.5);
+    PARM(float, 3, "shadowColor", none, COLOR, "R,G,B") 
+	LABELREF(shadowColor.label) HSTRETCH;
+
+    shadowColor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowColor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+shadowDistance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shadowDistance.label = PARM_LABEL("Shadow Max Distance", "shadowDistance") WIDTH(1.5);
+ PARM(float, 1, "shadowDistance", none, none) RANGE(0,1)
+	 LABELREF(shadowDistance.label) HSTRETCH;
+
+    shadowDistance.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowDistance.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+shadowFalloff.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shadowFalloff.label = PARM_LABEL("Shadow Falloff", "shadowFalloff") WIDTH(1.5);
+ PARM(float, 1, "shadowFalloff", none, none) RANGE(-1,100)
+	LOCK_RANGE_MIN LABELREF(shadowFalloff.label) HSTRETCH;
+
+    shadowFalloff.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowFalloff.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+shadowFalloffGamma.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shadowFalloffGamma.label = PARM_LABEL("Shadow Falloff Gamma", "shadowFalloffGamma") WIDTH(1.5);
+ PARM(float, 1, "shadowFalloffGamma", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(shadowFalloffGamma.label) HSTRETCH;
+
+    shadowFalloffGamma.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowFalloffGamma.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+shadowSubset.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    shadowSubset.label = PARM_LABEL("Trace Subset", "shadowSubset") WIDTH(1.5);
+    PARM_FIELD(string, "shadowSubset") VALUE(shadowSubset.val) 
+	LABELREF(shadowSubset.label) HSTRETCH;
+
+    shadowSubset.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowSubset.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+shadowExcludeSubset.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    shadowExcludeSubset.label = PARM_LABEL("Don't Trace Subset", "shadowExcludeSubset") WIDTH(1.5);
+    PARM_FIELD(string, "shadowExcludeSubset") VALUE(shadowExcludeSubset.val) 
+	LABELREF(shadowExcludeSubset.label) HSTRETCH;
+
+    shadowExcludeSubset.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowExcludeSubset.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+traceLightPaths.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("traceLightPaths", "Trace Light Paths") toggle VALUE(traceLightPaths.val);
+
+    { HSTRETCH }
+
+    traceLightPaths.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(traceLightPaths.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+thinShadow.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("thinShadow", "Thin Shadow") toggle VALUE(thinShadow.val);
+
+    { HSTRETCH }
+
+    thinShadow.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(thinShadow.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+visibleInRefractionPath.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visibleInRefractionPath", "Visible In Refraction") toggle VALUE(visibleInRefractionPath.val);
+
+    { HSTRETCH }
+
+    visibleInRefractionPath.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(visibleInRefractionPath.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+cheapCaustics.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cheapCaustics", "Manifold Walk") toggle VALUE(cheapCaustics.val);
+
+    { HSTRETCH }
+
+    cheapCaustics.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(cheapCaustics.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+cheapCausticsExcludeGroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    cheapCausticsExcludeGroup.label = PARM_LABEL("Manifold Walk Exclude Group", "cheapCausticsExcludeGroup") WIDTH(1.5);
+    PARM_FIELD(string, "cheapCausticsExcludeGroup") VALUE(cheapCausticsExcludeGroup.val) 
+	LABELREF(cheapCausticsExcludeGroup.label) HSTRETCH;
+
+    cheapCausticsExcludeGroup.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(cheapCausticsExcludeGroup.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+fixedSampleCount.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ fixedSampleCount.label = PARM_LABEL("Light Samples", "fixedSampleCount") WIDTH(1.5);
+ PARM(integer, 1, "fixedSampleCount", none, none) RANGE(0,10)
+	 LABELREF(fixedSampleCount.label) HSTRETCH;
+
+    fixedSampleCount.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fixedSampleCount.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+lightGroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    lightGroup.label = PARM_LABEL("Light Group", "lightGroup") WIDTH(1.5);
+    PARM_FIELD(string, "lightGroup") VALUE(lightGroup.val) 
+	LABELREF(lightGroup.label) HSTRETCH;
+
+    lightGroup.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(lightGroup.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+importanceMultiplier.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ importanceMultiplier.label = PARM_LABEL("Importance Multiplier", "importanceMultiplier") WIDTH(1.5);
+ PARM(float, 1, "importanceMultiplier", none, none) RANGE(0,1)
+	 LABELREF(importanceMultiplier.label) HSTRETCH;
+
+    importanceMultiplier.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(importanceMultiplier.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+msApprox.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ msApprox.label = PARM_LABEL("Multi-Scattering Approx.", "msApprox") WIDTH(1.5);
+ PARM(float, 1, "msApprox", none, none) RANGE(0,1)
+	 LABELREF(msApprox.label) HSTRETCH;
+
+    msApprox.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(msApprox.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+msApproxBleed.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    msApproxBleed.label = PARM_LABEL("MS Approx Bleed", "msApproxBleed") WIDTH(1.5);
+    PARM(float, 3, "msApproxBleed", none, COLOR, "R,G,B") 
+	LABELREF(msApproxBleed.label) HSTRETCH;
+
+    msApproxBleed.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(msApproxBleed.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+msApproxContribution.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    msApproxContribution.label = PARM_LABEL("MS Approx Contribution", "msApproxContribution") WIDTH(1.5);
+    PARM(float, 3, "msApproxContribution", none, COLOR, "R,G,B") 
+	LABELREF(msApproxContribution.label) HSTRETCH;
+
+    msApproxContribution.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(msApproxContribution.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+Basic.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Basic.gad"
+    { 
+	VALUE(Basic.gad.val) STRETCH(1,0)
+
+	TAB "Basic"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    intensity.gad;		
+	    exposure.gad;		
+	    lightColor.gad;		
+	    lightColorMap.gad;		
+	    lightColorMap_colorspace.gad;		
+	    colorMapGamma.gad;		
+	    colorMapSaturation.gad;		
+	    enableTemperature.gad;		
+	    temperature.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Refine"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    specular.gad;		
+	    diffuse.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Shadows"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    enableShadows.gad;		
+	    shadowColor.gad;		
+	    shadowDistance.gad;		
+	    shadowFalloff.gad;		
+	    shadowFalloffGamma.gad;		
+	    shadowSubset.gad;		
+	    shadowExcludeSubset.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Advanced"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    traceLightPaths.gad;		
+	    thinShadow.gad;		
+	    visibleInRefractionPath.gad;		
+	    cheapCaustics.gad;		
+	    cheapCausticsExcludeGroup.gad;		
+	    fixedSampleCount.gad;		
+	    lightGroup.gad;		
+	    importanceMultiplier.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Multi-Scattering Approx"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    msApprox.gad;		
+	    msApproxBleed.gad;		
+	    msApproxContribution.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    signature.gad; 
+    Basic.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

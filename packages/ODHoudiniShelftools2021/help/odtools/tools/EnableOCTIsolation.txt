@@ -1,0 +1,7 @@
+= Enable Octane Isolation =
+
+"""Isolates the current Geo Container for rendering via the Octane Quick Setup"""
+
+When using the Octane Quick Setup, this tool allows the isolation of the currently Geo Context for rendering.  It is important to understand that any objects/lights outside of the selected Geo context are disabled.
+
+The Isolation can be disabled via the Disable Isolation tool.  

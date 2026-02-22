@@ -1,0 +1,37 @@
+= Primitive Group Split =
+
+"""Splits groups into their own Object Context Containers."""
+
+Easy separate different primitive groups into their own geometry containers
+
+@parameters
+
+::Set Pivot To Centroid:
+    Sets the Pivot of each group to its centroid
+
+::Strip shop_materialpath:
+    Removes the shop_materialpath primitive attribute
+
+::Create within a Subnet:
+    Creates a subnet for all the individual Group containers
+
+::Center each Group:
+    Centers each of the groups            
+
+
+:vimeo: Example Use of the Tool
+    #id: 483659162
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+	#!python
+	from OD import shelftools
+	shelftools.primGroupSplit(nodes=None, pivot=-1, stripPrior=-1, subnet=-1, zeroTrans=-1)
+
+	# nodes is an array of nodes
+	# for any parameter thats -1, you will get a popup asking for your choice, otherwise 
+	# 0 is disabling the option
+	# 1 is enabling the option
+	}}}

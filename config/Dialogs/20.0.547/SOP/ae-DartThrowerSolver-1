@@ -1,0 +1,156 @@
+// Magic: b03e4e90
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Mon Jun  9 09:02:06 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+resimulate.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("resimulate", "Reset Simulation")
+	push VALUE(resimulate.val);
+
+    { WIDTH(0.1) }
+}
+
+preview.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("preview", "Visualise Spheres") toggle VALUE(preview.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+substep.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ substep.label = PARM_LABEL("Sub Steps", "substep") WIDTH(1.5);
+ PARM(integer, 1, "substep", none, none) RANGE(1,10)
+	LOCK_RANGE_MIN LABELREF(substep.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Random Seed", "seed") WIDTH(1.5);
+ PARM(integer, 1, "seed", none, none) RANGE(0,10)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+type.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    type.label = PARM_LABEL_SIMPLE("Packing Type", "type") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    type.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+radmin.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ radmin.label = PARM_LABEL("Min Radius", "radmin") WIDTH(1.5);
+ PARM(float, 1, "radmin", none, none) RANGE(0,1)
+	 LABELREF(radmin.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+radmax.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ radmax.label = PARM_LABEL("Max Radius", "radmax") WIDTH(1.5);
+ PARM(float, 1, "radmax", none, none) RANGE(0,1)
+	 LABELREF(radmax.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+rad_attr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    rad_attr.label = PARM_LABEL("Max Radius Attrib", "rad_attr") WIDTH(1.5);
+    PARM_FIELD(string, "rad_attr") VALUE(rad_attr.val) 
+	LABELREF(rad_attr.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+prevent_overlap.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("prevent_overlap", "Prevent Edge Overlap") toggle VALUE(prevent_overlap.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    resimulate.gad; 
+    preview.gad; 
+    substep.gad; 
+    seed.gad; 
+    type.gad; 
+    radmin.gad; 
+    radmax.gad; 
+    rad_attr.gad; 
+    prevent_overlap.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

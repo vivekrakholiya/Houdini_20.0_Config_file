@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="vr_utiliti" label="vr_utiliti">
+    <memberTool name="sequnce_reFrame"/>
+    <memberTool name="Open_Project_dire"/>
+    <memberTool name="trigger"/>
+    <memberTool name="vr_flipbook0"/>
+    <memberTool name="tag_version"/>
+    <memberTool name="bake_camera"/>
+  </toolshelf>
+
+  <tool name="sequnce_reFrame" label="sequnce_reFrame" icon="SOP_retime">
+    <script scriptType="python"><![CDATA[import os , hou
+
+import shutil
+
+
+selected_dir = hou.ui.selectFile(
+    title="Select Directory",
+    collapse_sequences=False,
+    file_type=hou.fileType.Directory
+)
+
+
+if os.name == 'nt':
+    a = str(selected_dir).replace('/','\\')
+
+elif os.name == 'posix':
+    a = selected_dir
+    pass
+    
+    
+
+if a:
+     
+
+    source_folder_path = str(a)
+
+    new_file_name = (hou.ui.readInput("Enter new sequnce name", buttons=("OK", "Cancel"), initial_contents="new_sequnce")[1])
+
+    # new extension
+    #print("example : ---  enter = 1(exr) , 2 (png) , 3(jpg)  -----:   ")
+    extansion = hou.ui.displayMessage("new file extansion", buttons=("exr", "png" , "jpg"))
+    if extansion == 0:
+        new_extension = ".exr"
+    elif extansion== 1:
+        new_extension = ".png"
+    elif extansion== 2:
+        new_extension = ".jpg"
+
+
+    # new start frame
+
+
+    new_start_frame = int((hou.ui.readInput("Enter sequnce start frame", buttons=("OK", "Cancel"), initial_contents='1001')[1]))
+
+    # asking acreat folder or not
+
+    create_folder = hou.ui.displayMessage("Do you want copy re-frame sequce in to separate folde", buttons=("No", "Yes"))
+
+
+    if create_folder == 1:
+        copyFile = 1
+    else:
+        copyFile = 0
+
+
+    # find items in folder path
+    sequnce_list = os.listdir(source_folder_path)
+
+
+
+
+    # create folder re_frame folder if not extis
+    if copyFile == 1:
+        re_frame = source_folder_path + '\\' + 're_frame'
+        if os.path.exists(re_frame):
+            print('reframe folder alredy extist')
+            totle_item = len(sequnce_list) -1
+        else:
+            os.mkdir(re_frame)
+            print('re_frame folder created...')
+            totle_item = len(sequnce_list)
+    else:
+        totle_item = len(sequnce_list)
+        pass
+
+
+    # copy items and rename it
+    if copyFile == 1:
+        for index, file in enumerate(sequnce_list):
+
+            # print(file)
+
+
+            sorce_file_path = str(source_folder_path + '\\' + file)
+
+            destination_file_path = str(re_frame)
+            
+
+
+
+            if os.path.exists(str(destination_file_path + '\\' + file)):
+                print('File Alredy Extis in re_frame Folder')
+                print('frist move or delet files')
+
+                break
+
+            else:
+
+                if index == (totle_item):
+                    break
+                else:
+                    
+
+                    shutil.copy(sorce_file_path,destination_file_path) 
+
+                    # rename File
+
+                    os.rename(str(destination_file_path + '\\' + file),str(destination_file_path + '\\' + new_file_name + "." + str(new_start_frame+index) +new_extension))
+
+
+
+
+                    prograss = index / (totle_item) * 100
+                    print(str(prograss) + '%...')
+                    #print(str(destination_file_path + '\\' + "." + new_file_name + str(new_start_frame+index) +new_extension) +'copy and rename succfully')
+
+    else:
+        for index, file in enumerate(sequnce_list):
+
+            # print(file)
+
+
+            sorce_file_path = str(source_folder_path + '\\' + file)
+
+            destination_file_path = str(source_folder_path)
+            
+
+            if index == (totle_item):
+                break
+            else:
+                    
+
+                # shutil.copy(sorce_file_path,destination_file_path) 
+
+                # rename File
+
+                os.rename(str(sorce_file_path),str(destination_file_path + '\\' + new_file_name + "." + str(new_start_frame+index) +new_extension))
+
+
+                prograss = index / (totle_item) * 100
+                print(str(prograss) + '%...')
+                print(str(destination_file_path + '\\' + new_file_name + "." + str(new_start_frame+index) + new_extension) +'rename succfully')
+
+else:
+    pass
+
+
+
+
+
+]]></script>
+  </tool>
+
+  <tool name="Open_Project_dire" label="Open Project Directory in Explore" icon="SOP_file">
+    <script scriptType="python"><![CDATA[import os , hou
+import subprocess
+
+def open_caja(path):
+    # Expand the user's home directory if ~ is used
+    path = os.path.expanduser(path)
+
+    # Ensure the path exists
+    if os.path.exists(path):
+        try:
+            subprocess.run(['caja', path], check=True)
+            print(f"Caja opened at: {path}")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to open Caja: {e}")
+    else:
+        print(f"Path does not exist: {path}")
+
+
+
+directory_path = hou.hscriptExpression('$HIP')
+
+
+
+open_caja(directory_path)
+]]></script>
+  </tool>
+
+  <tool name="tag_version" label="tag_version" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import os, sys
+import hou
+import json
+
+
+json_dir = 'tag'
+
+# define a files paths and name 
+file_name = hou.hipFile.basename()
+file_path = hou.hipFile.path()
+hip_folder_path = file_path.replace(file_name,'')
+tag_dir = hip_folder_path + '/' + json_dir
+tag_file = tag_dir + '/' + json_dir + '.json'
+
+
+
+# chacking tag directory is exist or not
+
+if not os.path.exists(tag_dir):
+    os.mkdir(tag_dir)
+ 
+    
+    
+
+    
+    
+# open a tag window to add tags   
+pop = hou.ui.readInput('Enter Tag Comments',buttons=('save tag','open previous tag','cancel'))
+
+
+
+
+
+# open a previous tag windows to show a old tags
+if pop[0] == 1:
+     if os.path.exists(tag_file):
+        with open(tag_file,'r') as jfile:
+            try:
+                d = json.load(jfile)
+            except json.JSONDecodeError:
+                d = ['json_file_is_empty']
+     t=[]   
+     for a in d:
+        t.append(a)
+     print(a)
+     a = hou.ui.selectFromList(tag_lst, message='okkk', title='tag version', column_header="Tags", num_visible_rows=20, width=500, height=500)
+
+
+else:
+
+    pass
+
+    
+    
+    
+    
+# write in a json file data    
+    
+if pop[0] == 0:
+   
+   tagdata = {
+   
+   str(pop[1]) : str(file_path)
+   
+   }
+   if os.path.exists(tag_file):
+
+       with open(tag_file,'r') as json_file:
+            try:
+                data = json.load(json_file)
+            except json.JSONDecodeError:
+                data = []
+   else:
+        data=[]
+        
+   data.append(tagdata)
+    
+   with open(tag_file,'w') as j_file:
+        json.dump(data,j_file,indent=4)
+        
+
+else:
+    pass
+    
+
+
+]]></script>
+  </tool>
+
+  <tool name="bake_camera" label="bake_camera" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+# -------------------------------------------------------------
+# CONFIG
+# -------------------------------------------------------------
+src_cam = hou.selectedNodes()[0]
+
+parent = src_cam.parent()
+new_cam = parent.createNode("cam", node_name=src_cam.name() + "_BAKED")
+
+start, end = map(int, hou.playbar.frameRange())
+
+# -------------------------------------------------------------
+# Evaluate world transform at a specific frame
+# -------------------------------------------------------------
+def get_world_transform(node, frame):
+    # store previous time
+    previous = hou.time()
+
+    # set new time
+    hou.setTime(frame / hou.fps())
+
+    # evaluate transform
+    world = node.worldTransform()
+
+    # restore previous time
+    hou.setTime(previous)
+
+    return world
+
+
+# -------------------------------------------------------------
+# BAKE TRANSFORM KEYS
+# -------------------------------------------------------------
+tx, ty, tz = [new_cam.parm(p) for p in ("tx", "ty", "tz")]
+rx, ry, rz = [new_cam.parm(p) for p in ("rx", "ry", "rz")]
+
+for frame in range(start, end + 1):
+
+    world = get_world_transform(src_cam, frame)
+
+    t = world.extractTranslates()
+    r = world.extractRotates()
+
+    # --- Translate ---
+    for parm, val in zip((tx, ty, tz), t):
+        k = hou.Keyframe()
+        k.setFrame(frame)
+        k.setValue(val)
+        parm.setKeyframe(k)
+
+    # --- Rotate ---
+    for parm, val in zip((rx, ry, rz), r):
+        k = hou.Keyframe()
+        k.setFrame(frame)
+        k.setValue(val)
+        parm.setKeyframe(k)
+
+new_cam.moveToGoodPosition()
+
+print("â Camera baked successfully â {}".format(new_cam.path()))
+]]></script>
+  </tool>
+</shelfDocument>

@@ -1,0 +1,185 @@
+// Magic: ea0043b3
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri May 23 15:58:49 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+sepparm7.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+biomeprofile.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ biomeprofile.label = PARM_LABEL("Biome Profile", "biomeprofile") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "biomeprofile") LABELREF(biomeprofile.label)
+	VALUE(biomeprofile.val) HSTRETCH;
+
+    biomeprofile.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(biomeprofile.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+biomeprofileenv.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    biomeprofileenv.label = PARM_LABEL("Biome Profile", "biomeprofileenv") WIDTH(1.5);
+    PARM_FIELD(string, "biomeprofileenv") VALUE(biomeprofileenv.val) 
+	LABELREF(biomeprofileenv.label) HSTRETCH;
+
+    biomeprofileenv.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+environmentvar.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("environmentvar", "Environment Variable Set") toggle VALUE(environmentvar.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+loadsettings.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("loadsettings", "Load Profile")
+	push VALUE(loadsettings.val);
+
+    { WIDTH(0.1) }
+}
+
+savesettings.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("savesettings", "Save and Apply Profile")
+	push VALUE(savesettings.val);
+
+    { WIDTH(0.1) }
+}
+
+fd_settings.parm =
+{
+    LAYOUT(horizontal) SPACING(0.02) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Settings", "fd_settings") WIDTH(1.5);
+    { WIDTH(0.06) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(fd_settings.val) 
+
+	fd_settings.field = PARM_FIELD(integer, "fd_settings") 
+		VALUE(fd_settings.val) HSTRETCH(0.5) PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(fd_settings.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(fd_settings.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+	}
+
+	ACTION_BUTTON "Clear" VALUE(fd_settings.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+fd_settings.multiscroll = SCROLLREGION
+{
+    LAYOUT(vertical) HSTRETCH LOOK(line2) 
+	MARGIN(0.05) SCROLLVALUE(fd_settings.scrollx.val, fd_settings.scrolly.val)
+}
+
+fd_settings.gad =
+{
+    LAYOUT(vertical) STRETCH SPACING(0.02)
+    HMARGIN(0.18, 0.1)
+
+    fd_settings.parm;
+    {
+	LAYOUT(horizontal) STRETCH
+
+        fd_settings.multiscroll;
+
+	SCROLLBAR VALUE(fd_settings.scrolly.val) 
+	    LAYOUT(vertical) WIDTH(0.1) HSTRETCH;
+    }
+}
+
+fd_profile.gad = 
+
+GROUP simple "Biome Profile" flat 
+{ 
+    VALUE(fd_profile.gad.val) LAYOUT(vertical) HSTRETCH 
+	    biomeprofile.gad;		
+	    biomeprofileenv.gad;		
+	    environmentvar.gad;		
+	    sepparm2.gad;		
+	    loadsettings.gad;		
+	    savesettings.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    sepparm7.gad; 
+    fd_profile.gad; 
+    fd_settings.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

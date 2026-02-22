@@ -1,0 +1,686 @@
+// Magic: 332d7194
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Jul 20 23:25:57 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+npts.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ npts.label = PARM_LABEL("Force Total Count", "npts") WIDTH(1.5);
+ PARM(integer, 1, "npts", none, none) RANGE(1,300)
+	 LABELREF(npts.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Global Seed", "seed") WIDTH(1.5);
+ PARM(float, 1, "seed", none, none) RANGE(0,10)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+samplediv.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ samplediv.label = PARM_LABEL("Uniform Sampling Divs", "samplediv") WIDTH(1.5);
+ PARM(integer, 1, "samplediv", none, none) RANGE(1,50)
+	LOCK_RANGE_MIN LABELREF(samplediv.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+type.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    type.label = PARM_LABEL_SIMPLE("Primitive Type", "type") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    type.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+surftype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    surftype.label = PARM_LABEL_SIMPLE("Connectivity", "surftype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    surftype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+size.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   size.label = PARM_LABEL("Size", "size") WIDTH(1.5);
+   PARM(float, 2, "size", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(size.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+rows.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rows.label = PARM_LABEL("Rows", "rows") WIDTH(1.5);
+ PARM(integer, 1, "rows", none, none) RANGE(1,50)
+	LOCK_RANGE_MIN LABELREF(rows.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cols.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cols.label = PARM_LABEL("Columns", "cols") WIDTH(1.5);
+ PARM(integer, 1, "cols", none, none) RANGE(1,50)
+	LOCK_RANGE_MIN LABELREF(cols.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+freq.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ freq.label = PARM_LABEL("Frequency", "freq") WIDTH(1.5);
+ PARM(float, 1, "freq", none, none) RANGE(0,10)
+	 LABELREF(freq.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cc_amp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cc_amp.label = PARM_LABEL("Final Amplitude", "cc_amp") WIDTH(1.5);
+ PARM(float, 1, "cc_amp", none, none) RANGE(0,10)
+	 LABELREF(cc_amp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+fscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ fscale.label = PARM_LABEL("Filter Scale", "fscale") WIDTH(1.5);
+ PARM(float, 1, "fscale", none, none) RANGE(0,2)
+	 LABELREF(fscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+voxelsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ voxelsize.label = PARM_LABEL("Voxel Size", "voxelsize") WIDTH(1.5);
+ PARM(float, 1, "voxelsize", none, none) RANGE(0,5)
+	LOCK_RANGE_MIN LABELREF(voxelsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+voxeloffset.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ voxeloffset.label = PARM_LABEL("Offset", "voxeloffset") WIDTH(1.5);
+ PARM(float, 1, "voxeloffset", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(voxeloffset.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+iterations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ iterations.label = PARM_LABEL("Subdivide_Depth", "iterations") WIDTH(1.5);
+ PARM(integer, 1, "iterations", none, none) RANGE(0,3)
+	LOCK_RANGE_MIN LABELREF(iterations.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+height.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ height.label = PARM_LABEL("Height", "height") WIDTH(1.5);
+ PARM(float, 1, "height", none, none) RANGE(0,10)
+	 LABELREF(height.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+elementsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ elementsize.label = PARM_LABEL("Element Size", "elementsize") WIDTH(1.5);
+ PARM(float, 1, "elementsize", none, none) RANGE(0,10)
+	 LABELREF(elementsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+elementscale.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   elementscale.label = PARM_LABEL("Scale", "elementscale") WIDTH(1.5);
+   PARM(float, 3, "elementscale", none, none, "X,Y,Z")
+	RANGE(0,10)  LABELREF(elementscale.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+offset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   offset.label = PARM_LABEL("Offset", "offset") WIDTH(1.5);
+   PARM(float, 3, "offset", none, none, "X,Y,Z")
+	RANGE(0,10)  LABELREF(offset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+pulselength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pulselength.label = PARM_LABEL("Pulse Length", "pulselength") WIDTH(1.5);
+ PARM(float, 1, "pulselength", none, none) RANGE(0,1)
+	 LABELREF(pulselength.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+oct.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ oct.label = PARM_LABEL("Max Octaves", "oct") WIDTH(1.5);
+ PARM(integer, 1, "oct", none, none) RANGE(0,16)
+	 LABELREF(oct.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+lac.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ lac.label = PARM_LABEL("Lacunarity", "lac") WIDTH(1.5);
+ PARM(float, 1, "lac", none, none) RANGE(0,4)
+	 LABELREF(lac.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+rough.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rough.label = PARM_LABEL("Roughness", "rough") WIDTH(1.5);
+ PARM(float, 1, "rough", none, none) RANGE(0,1)
+	 LABELREF(rough.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Mask_cut.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Mask_cut", "Mask_cutout") toggle VALUE(Mask_cut.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Normal.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Normal", "Add_Normal") toggle VALUE(Normal.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Class.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Class", "Add_class") toggle VALUE(Class.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Uv.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Uv", "Add_Uv") toggle VALUE(Uv.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+coord.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    coord.label = PARM_LABEL_SIMPLE("Attribute Class", "coord") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    coord.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+s2.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   s2.label = PARM_LABEL("Scale", "s2") WIDTH(1.5);
+   PARM(float, 3, "s2", none, none, "U,V,W")
+	RANGE(0,1)  LABELREF(s2.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+offset2.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   offset2.label = PARM_LABEL("Offset", "offset2") WIDTH(1.5);
+   PARM(float, 3, "offset2", none, none, "U,V,W")
+	RANGE(0,1)  LABELREF(offset2.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+angle.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   angle.label = PARM_LABEL( "Angle", "angle" ) WIDTH(1.5);
+   PARM(float, 1, "angle", none, none) RANGE(0, 360)
+	LABELREF( angle.label ) HSTRETCH;
+
+   { WIDTH(0.1) }
+}
+
+Add_Wood_Fracture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Add_Wood_Fracture", "Wood Fracture") toggle VALUE(Add_Wood_Fracture.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+s.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   s.label = PARM_LABEL("Scale", "s") WIDTH(1.5);
+   PARM(float, 3, "s", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(s.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+npts2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ npts2.label = PARM_LABEL("Force Total Count", "npts2") WIDTH(1.5);
+ PARM(integer, 1, "npts2", none, none) RANGE(1,300)
+	 LABELREF(npts2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed2.label = PARM_LABEL("Global Seed", "seed2") WIDTH(1.5);
+ PARM(float, 1, "seed2", none, none) RANGE(0,10)
+	 LABELREF(seed2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+samplediv2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ samplediv2.label = PARM_LABEL("Uniform Sampling Divs", "samplediv2") WIDTH(1.5);
+ PARM(integer, 1, "samplediv2", none, none) RANGE(1,50)
+	LOCK_RANGE_MIN LABELREF(samplediv2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+High_rage_Geo.gad = 
+
+GROUP simple "High_rage_Geo" flat 
+{ 
+    VALUE(High_rage_Geo.gad.val) LAYOUT(vertical) HSTRETCH 
+} 
+
+Scatter_Wood.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Scatter_Wood.gad"
+    { 
+	VALUE(Scatter_Wood.gad.val) STRETCH(1,0)
+
+	TAB "Scatter Wood"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    npts2.gad;		
+	    seed2.gad;		
+	    samplediv2.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+Scale.gad = 
+
+GROUP simple "Scale" flat 
+{ 
+    VALUE(Scale.gad.val) LAYOUT(vertical) HSTRETCH 
+	    s.gad;		
+} 
+
+folder3.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder3.gad"
+    { 
+	VALUE(folder3.gad.val) STRETCH(1,0)
+
+	TAB "Uv Attribute"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    Uv.gad;		
+	    coord.gad;		
+	    s2.gad;		
+	    offset2.gad;		
+	    angle.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+Extra_attributes.gad = 
+
+GROUP simple "Extra attributes" flat 
+{ 
+    VALUE(Extra_attributes.gad.val) LAYOUT(vertical) HSTRETCH 
+	    Normal.gad;		
+	    Class.gad;		
+} 
+
+Mask_Cutter.gad = 
+
+GROUP simple "Mask_Cutter" flat 
+{ 
+    VALUE(Mask_Cutter.gad.val) LAYOUT(vertical) HSTRETCH 
+	    Mask_cut.gad;		
+} 
+
+Noise.gad = 
+
+GROUP simple "Mountain_noise" flat 
+{ 
+    VALUE(Noise.gad.val) LAYOUT(vertical) HSTRETCH 
+	    height.gad;		
+	    elementsize.gad;		
+	    elementscale.gad;		
+	    offset.gad;		
+	    pulselength.gad;		
+	    oct.gad;		
+	    lac.gad;		
+	    rough.gad;		
+} 
+
+High_rage_Geo2.gad = 
+
+GROUP simple "High_rage_Geo" flat 
+{ 
+    VALUE(High_rage_Geo2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    iterations.gad;		
+	    Noise.gad;		
+} 
+
+Group_VDB.gad = 
+
+GROUP simple "Group_VDB" flat 
+{ 
+    VALUE(Group_VDB.gad.val) LAYOUT(vertical) HSTRETCH 
+	    voxelsize.gad;		
+	    voxeloffset.gad;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Waw Displasment" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    freq.gad;		
+	    cc_amp.gad;		
+	    fscale.gad;		
+} 
+
+waw_dis.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "waw_dis.gad"
+    { 
+	VALUE(waw_dis.gad.val) STRETCH(1,0)
+    } 
+}
+
+folder0.gad = 
+
+GROUP simple "Grid" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    type.gad;		
+	    surftype.gad;		
+	    size.gad;		
+	    rows.gad;		
+	    cols.gad;		
+	    folder1.gad;		
+} 
+
+Scatter.gad = 
+
+GROUP simple "Scatter" flat 
+{ 
+    VALUE(Scatter.gad.val) LAYOUT(vertical) HSTRETCH 
+	    npts.gad;		
+	    seed.gad;		
+	    samplediv.gad;		
+} 
+
+folder2.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder2.gad"
+    { 
+	VALUE(folder2.gad.val) STRETCH(1,0)
+
+	TAB "Concreat"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    Scatter.gad;		
+	    folder0.gad;		
+	    Group_VDB.gad;		
+	    High_rage_Geo2.gad;		
+	    Mask_Cutter.gad;		
+	    Extra_attributes.gad;		
+	    folder3.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Wood fracture"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    Add_Wood_Fracture.gad;		
+	    Scale.gad;		
+	    Scatter_Wood.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder2.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

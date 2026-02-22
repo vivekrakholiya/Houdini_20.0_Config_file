@@ -1,0 +1,142 @@
+// Magic: 104d53b2
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Apr 27 17:32:26 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+showgeo.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showgeo", "Show Geometry") toggle VALUE(showgeo.val);
+
+    {  }
+
+    {  }
+}
+
+guidescale.gad = 
+{
+
+ guidescale.label = PARM_LABEL("Guide Scale", "guidescale");
+ PARM(float, 1, "guidescale", none, field) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(guidescale.label) HSTRETCH;
+
+  {  }
+}
+
+drive.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    drive.label = PARM_LABEL_SIMPLE("Drive Mode", "drive") ;
+    { WIDTH(0.09) }
+
+    drive.menu;
+
+    {  }
+
+    {  }
+}
+steer.row.join =		
+{
+
+  LAYOUT(horizontal) JUSTIFY(left, center) UNSCALABLE
+
+steer.gad = 
+{
+
+ steer.label = PARM_LABEL("Steer", "steer");
+ PARM(float, 1, "steer", none, field) RANGE(-1,1)
+	LOCK_RANGE LABELREF(steer.label) HSTRETCH;
+
+  {  }
+}
+
+speed.gad = 
+{
+
+ speed.label = PARM_LABEL("Speed", "speed");
+ PARM(float, 1, "speed", none, field) RANGE(-25,200)
+	 LABELREF(speed.label) HSTRETCH;
+
+  {  }
+}
+
+units.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    units.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+brake.gad = 
+{
+
+ brake.label = PARM_LABEL("Brake", "brake");
+ PARM(float, 1, "brake", none, field) RANGE(0,1)
+	LOCK_RANGE LABELREF(brake.label) HSTRETCH;
+
+  {  }
+}
+
+handbrake.gad = 
+{
+
+ handbrake.label = PARM_LABEL("Hand Brake", "handbrake");
+ PARM(float, 1, "handbrake", none, field) RANGE(0,1)
+	LOCK_RANGE LABELREF(handbrake.label) HSTRETCH;
+
+  {  }
+}
+
+differential.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    differential.label = PARM_LABEL_SIMPLE("Differential", "differential") ;
+    { WIDTH(0.09) }
+
+    differential.menu;
+
+    {  }
+
+    {  }
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":11 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":12 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":13 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    showgeo.gad; 
+    guidescale.gad; 
+    drive.gad; 
+    steer.row.join; 
+    brake.gad; 
+    handbrake.gad; 
+    differential.gad; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

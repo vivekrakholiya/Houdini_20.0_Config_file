@@ -1,0 +1,8 @@
+h.pane.wsheet.view_mode	"View Mode"	"Hold this key to enter view mode"	
+h.pane.wsheet.radial:beta	"Radial Menu: Beta"	"Radial Menu: Beta"	 Space
+HCONTEXT	h.pane.gview.state.sop.capturelayerpaint	"capturelayerpaint Operation"	"These keys apply to the capturelayerpaint operation."
+h.pane.gview.state.sop.capturelayerpaint.select	Select	"Select group"	 G
+h.paste	Paste	"Paste Selection"	 Ctrl+V
+h.pane.wsheet.opmenu.parameters	Parameters	"Open a Parameters window for the node"	 Ctrl+Shift+D
+h.pane.wsheet.scope_chans	"Add to Channel List"	"Add to Channel List"	
+h.tool:obj_mrg	obj_mrg	"Shelf Tool: obj_mrg"	 Alt+V

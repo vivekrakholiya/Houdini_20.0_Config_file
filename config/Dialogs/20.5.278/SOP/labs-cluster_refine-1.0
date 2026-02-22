@@ -1,0 +1,128 @@
+// Magic: a711bdc9
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Dec  1 10:43:21 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    group.label = PARM_LABEL("Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(group.script_action)
+	HELP("Select geometry from an available viewport.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+clustertype.gad = NULL { }
+
+clusterattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    clusterattrib.label = PARM_LABEL("Cluster Attribute", "clusterattrib") WIDTH(1.5);
+    PARM_FIELD(string, "clusterattrib") VALUE(clusterattrib.val) 
+	LABELREF(clusterattrib.label) HSTRETCH;
+
+    clusterattrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+depth.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    depth.label = PARM_LABEL_SIMPLE("Search Depth", "depth") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    depth.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+extweight.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ extweight.label = PARM_LABEL("Extended Influence", "extweight") WIDTH(1.5);
+ PARM(float, 1, "extweight", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(extweight.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+iterations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ iterations.label = PARM_LABEL("Iterations", "iterations") WIDTH(1.5);
+ PARM(integer, 1, "iterations", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(iterations.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+edgelen.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("edgelen", "Scale Influence by Edge Length") toggle VALUE(edgelen.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fd_advanced.gad = 
+GROUP collapsible "Advanced" flat   
+{
+    VALUE(fd_advanced.gad.val) LAYOUT(vertical) HSTRETCH
+	    iterations.gad;		
+	    edgelen.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    group.gad; 
+    clustertype.gad; 
+    clusterattrib.gad; 
+    depth.gad; 
+    extweight.gad; 
+    fd_advanced.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

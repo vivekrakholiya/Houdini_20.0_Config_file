@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["RBDAgeExample"]}, {"type": "para", "indent": 0, "text": ["This example contains a setup that uses the age parameters(and Age-ing RBD feature)"], "extent": [0, 84]}], "examplefor": "/nodes/sop/rbdbulletsolver", "examplefile": "/examples/nodes/sop/rbdbulletsolver/RBDAgeExample.hda"}

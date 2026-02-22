@@ -1,0 +1,68 @@
+// Magic: 53fc7a01
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Aug 22 07:26:23 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+tool_name.gad = NULL { }
+
+reload.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("reload", "Reload")
+	push VALUE(reload.val);
+
+    { WIDTH(0.1) }
+}
+
+filecount.parm =
+{
+    LAYOUT(horizontal) SPACING(0.02) HSTRETCH
+
+    PARM_LABEL_SIMPLE("GoZFiles", "filecount") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    filecount.field = PARM_FIELD (integer, "filecount") 
+			VALUE(filecount.val) HSTRETCH;
+
+    ACTION_BUTTON "More" SENDS(1) VALUE(filecount.more.val);
+    ACTION_BUTTON "Less" SENDS(1) VALUE(filecount.less.val);
+    ACTION_BUTTON "Clear" SENDS(1) VALUE(filecount.clear.val);
+}
+
+filecount.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH
+}
+
+filecount.gad =
+{
+    LAYOUT(vertical) HSTRETCH SPACING(0.02)
+
+    filecount.multilist;
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    tool_name.gad; 
+    reload.gad; 
+    filecount.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

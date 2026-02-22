@@ -1,0 +1,245 @@
+// Magic: be722ce5
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Aug  9 15:17:23 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+voxelsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ voxelsize.label = PARM_LABEL("Voxel Size", "voxelsize") WIDTH(1.5);
+ PARM(float, 1, "voxelsize", none, none) RANGE(0,0.1)
+	LOCK_RANGE_MIN LABELREF(voxelsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+bbox_peak.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ bbox_peak.label = PARM_LABEL("BBox Peak", "bbox_peak") WIDTH(1.5);
+ PARM(float, 1, "bbox_peak", none, none) RANGE(0,1)
+	 LABELREF(bbox_peak.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+process_per_piece.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("process_per_piece", "Process Per Piece") toggle VALUE(process_per_piece.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+piece_attr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    piece_attr.label = PARM_LABEL("Piece Attribute", "piece_attr") WIDTH(1.5);
+    PARM_FIELD(string, "piece_attr") VALUE(piece_attr.val) 
+	LABELREF(piece_attr.label) HSTRETCH;
+
+    piece_attr.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+curvature.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ curvature.label = PARM_LABEL("Curvature", "curvature") WIDTH(1.5);
+ PARM(float, 1, "curvature", none, none) RANGE(-1,1)
+	 LABELREF(curvature.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+accuracyscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ accuracyscale.label = PARM_LABEL("Accuracy Scale", "accuracyscale") WIDTH(1.5);
+ PARM(float, 1, "accuracyscale", none, none) RANGE(1,20)
+	LOCK_RANGE_MIN LABELREF(accuracyscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+antialiasing.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("antialiasing", "Antialiasing") toggle VALUE(antialiasing.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+rebuild_sdf.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("rebuild_sdf", "Rebuild SDF") toggle VALUE(rebuild_sdf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+convert_to_poly.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("convert_to_poly", "Convert to Polygon") toggle VALUE(convert_to_poly.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+adaptivity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ adaptivity.label = PARM_LABEL("Adaptivity", "adaptivity") WIDTH(1.5);
+ PARM(float, 1, "adaptivity", none, none) RANGE(0,2)
+	LOCK_RANGE LABELREF(adaptivity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+fexport.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fexport.gad"
+    { 
+	VALUE(fexport.gad.val) STRETCH(1,0)
+
+	TAB "Export"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    rebuild_sdf.gad;		
+	    convert_to_poly.gad;		
+	    adaptivity.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+shape.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "shape.gad"
+    { 
+	VALUE(shape.gad.val) STRETCH(1,0)
+
+	TAB "Shape"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    curvature.gad;		
+	    accuracyscale.gad;		
+	    antialiasing.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+volume.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "volume.gad"
+    { 
+	VALUE(volume.gad.val) STRETCH(1,0)
+
+	TAB "Volume"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    voxelsize.gad;		
+	    bbox_peak.gad;		
+	    process_per_piece.gad;		
+	    piece_attr.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    volume.gad; 
+    sepparm.gad; 
+    shape.gad; 
+    fexport.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

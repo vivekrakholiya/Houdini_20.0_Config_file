@@ -1,0 +1,188 @@
+// Magic: 328a5039
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Sep 30 20:59:57 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+editable.gad = NULL { }
+numpoints.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+numpoints.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ numpoints.label = PARM_LABEL("Num Points", "numpoints") WIDTH(1.5);
+ PARM(integer, 1, "numpoints", none, none) RANGE(0,1)
+	 LABELREF(numpoints.label) HSTRETCH;
+
+  {  }
+}
+
+c_numpoints.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("c_numpoints", "Changed") toggle VALUE(c_numpoints.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+numprims.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+numprims.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ numprims.label = PARM_LABEL("Num Primitives", "numprims") WIDTH(1.5);
+ PARM(integer, 1, "numprims", none, none) RANGE(0,1)
+	 LABELREF(numprims.label) HSTRETCH;
+
+  {  }
+}
+
+c_numprims.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("c_numprims", "Changed") toggle VALUE(c_numprims.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+numptgroups.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numptgroups.label = PARM_LABEL("Point Groups #", "numptgroups") WIDTH(1.5);
+ PARM(integer, 1, "numptgroups", none, none) RANGE(0,1)
+	 LABELREF(numptgroups.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+numprgroups.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numprgroups.label = PARM_LABEL("Prim. Groups #", "numprgroups") WIDTH(1.5);
+ PARM(integer, 1, "numprgroups", none, none) RANGE(0,1)
+	 LABELREF(numprgroups.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+run_check.gad = NULL { }
+
+do_check.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_check", "Perform Checks for Consistent Topology") toggle VALUE(do_check.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+reset.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("reset", "Check :: Reset")
+	push VALUE(reset.val);
+
+    { WIDTH(0.1) }
+}
+
+numpoints2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numpoints2.label = PARM_LABEL("Points #", "numpoints2") WIDTH(1.5);
+ PARM(integer, 1, "numpoints2", none, none) RANGE(0,1)
+	 LABELREF(numpoints2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+numprims2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numprims2.label = PARM_LABEL("Primitives #", "numprims2") WIDTH(1.5);
+ PARM(integer, 1, "numprims2", none, none) RANGE(0,1)
+	 LABELREF(numprims2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+folder1.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder1.gad"
+    { 
+	VALUE(folder1.gad.val) STRETCH(1,0)
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    editable.gad; 
+    numpoints.row.join; 
+    numprims.row.join; 
+    numptgroups.gad; 
+    numprgroups.gad; 
+    run_check.gad; 
+    do_check.gad; 
+    reset.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

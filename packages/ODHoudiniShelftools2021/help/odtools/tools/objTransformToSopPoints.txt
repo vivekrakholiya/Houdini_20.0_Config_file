@@ -1,0 +1,8 @@
+= OBJ Node Transforms to Sop Points =
+
+"""Takes Object Level Transforms and converts them into sop level points"""
+
+You can select one or multiple object level nodes, and a point is created for each of them on sop level.  The point will have the position/orient and scale attributes of the object level node.  This process can make it very easy to either parent a sop node to an obj level transform, or to set things up for instancing.
+
+:vimeo: Example Use of the Tool.
+    #id: 517282887

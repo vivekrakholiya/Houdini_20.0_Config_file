@@ -1,0 +1,484 @@
+// Magic: e0ed3c39
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:04:32 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+camera.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ camera.label = PARM_LABEL("Camera", "camera") WIDTH(1.5);
+ PARM_FIELD(pathstring, "camera") VALUE(camera.val) 
+	LABELREF(camera.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(camera.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(camera.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+space.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    space.label = PARM_LABEL_SIMPLE("Space", "space") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    space.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+set_near.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+set_near.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+set_near.gad = PARM_BUTTON("set_near", "") toggle VALUE(set_near.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+near.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ near.label = PARM_LABEL("Near Clipping", "near") WIDTH(1.32);
+ PARM(float, 1, "near", none, none) RANGE(0.001,99)
+	 LABELREF(near.label) HSTRETCH;
+
+  {  }
+}
+}	
+
+get_near.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("get_near", "get")
+	push VALUE(get_near.val);
+
+    {  }
+}
+}	// Template join.bot
+
+set_far.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+set_far.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+set_far.gad = PARM_BUTTON("set_far", "") toggle VALUE(set_far.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+far.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ far.label = PARM_LABEL("Far Clipping", "far") WIDTH(1.32);
+ PARM(float, 1, "far", none, none) RANGE(0.001,99)
+	 LABELREF(far.label) HSTRETCH;
+
+  {  }
+}
+}	
+
+get_far.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("get_far", "get")
+	push VALUE(get_far.val);
+
+    {  }
+}
+}	// Template join.bot
+
+useboundsobj.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+useboundsobj.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+useboundsobj.gad = PARM_BUTTON("useboundsobj", "") toggle VALUE(useboundsobj.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+boundsobj.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ {  }
+
+ boundsobj.label = PARM_LABEL("Bounds Geometry", "boundsobj") WIDTH(1.32);
+ PARM_FIELD(pathstring, "boundsobj") VALUE(boundsobj.val) 
+	LABELREF(boundsobj.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(boundsobj.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(boundsobj.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+
+useboundsnear.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useboundsnear", "Use for Near Clip") toggle VALUE(useboundsnear.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+useboundsfar.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useboundsfar", "Use for Far Clip") toggle VALUE(useboundsfar.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+center.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   center.label = PARM_LABEL("Center", "center") WIDTH(1.5);
+   PARM(float, 2, "center", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(center.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+overscan.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   overscan.label = PARM_LABEL("Overscan", "overscan") WIDTH(1.5);
+   PARM(float, 2, "overscan", none, none, "X,Y")
+	RANGE(-1,1)  LABELREF(overscan.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+outputn.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("outputn", "Output N (Projection Direction)") toggle VALUE(outputn.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outputrest.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("outputrest", "Rest Position") toggle VALUE(outputrest.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outputuv.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("outputuv", "UV Coordinates") toggle VALUE(outputuv.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outputinvalid.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("outputinvalid", "Output Invalid Frustums") toggle VALUE(outputinvalid.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+vis_mode.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("vis_mode", "Visual Feedback Mode") toggle VALUE(vis_mode.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+colors.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("colors", "Colors") toggle VALUE(colors.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+frustrum_color.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    frustrum_color.label = PARM_LABEL("Frustrum", "frustrum_color") WIDTH(1.5);
+    PARM(float, 3, "frustrum_color", none, COLOR, "R,G,B") 
+	LABELREF(frustrum_color.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+use_center.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+use_center.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+use_center.gad = PARM_BUTTON("use_center", "") toggle VALUE(use_center.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+center_color.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    center_color.label = PARM_LABEL("Center", "center_color") WIDTH(1.32);
+    PARM(float, 3, "center_color", none, COLOR, "R,G,B") 
+	LABELREF(center_color.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+scale_c.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale_c.label = PARM_LABEL("Center Scale", "scale_c") WIDTH(1.5);
+ PARM(float, 1, "scale_c", none, none) RANGE(0,10)
+	 LABELREF(scale_c.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+solid.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+solid.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+solid.gad = PARM_BUTTON("solid", "") toggle VALUE(solid.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+inset.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ inset.label = PARM_LABEL("Inset", "inset") WIDTH(1.32);
+ PARM(float, 1, "inset", none, none) RANGE(-1,1)
+	 LABELREF(inset.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+shadedmode.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("shadedmode", "Use Lighting") toggle VALUE(shadedmode.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+get_boundary_geo.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("get_boundary_geo", "Get Boundary Geometry as SOP")
+	push VALUE(get_boundary_geo.val);
+
+    { WIDTH(0.1) }
+}
+
+folder0.gad = 
+
+GROUP simple "Visual Feedback" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    vis_mode.gad;		
+	    colors.gad;		
+	    frustrum_color.gad;		
+	    use_center.row.join;		
+	    scale_c.gad;		
+	    solid.row.join;		
+	    shadedmode.gad;		
+	    get_boundary_geo.gad;		
+} 
+
+outputattribs.gad = 
+GROUP collapsible "Output Attributes" flat   
+{
+    VALUE(outputattribs.gad.val) LAYOUT(vertical) HSTRETCH
+	    outputn.gad;		
+	    outputrest.gad;		
+	    outputuv.gad;		
+} 
+
+center_overscan.gad = 
+GROUP collapsible "Center & Overscan" flat   
+{
+    VALUE(center_overscan.gad.val) LAYOUT(vertical) HSTRETCH
+	    center.gad;		
+	    overscan.gad;		
+} 
+
+bounds.gad = 
+GROUP collapsible "Near/Far Bounds Geometry" flat   
+{
+    VALUE(bounds.gad.val) LAYOUT(vertical) HSTRETCH
+	    useboundsobj.row.join;		
+	    useboundsnear.gad;		
+	    useboundsfar.gad;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Frustum Settings" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    set_near.row.join;		
+	    set_far.row.join;		
+	    bounds.gad;		
+	    center_overscan.gad;		
+	    outputattribs.gad;		
+	    outputinvalid.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    camera.gad; 
+    space.gad; 
+    folder1.gad; 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,8 @@
+# New function detit
+detit(i){
+    return detail(i,"iteration",0);
+}
+
+quant(t,i){
+    return ceil(t/i)*i;
+}

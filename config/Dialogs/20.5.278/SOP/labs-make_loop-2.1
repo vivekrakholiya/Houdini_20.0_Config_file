@@ -1,0 +1,331 @@
+// Magic: 490d1c79
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Dec 28 18:18:12 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+inputtype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    inputtype.label = PARM_LABEL_SIMPLE("Input Type", "inputtype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    inputtype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+start_frame.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ start_frame.label = PARM_LABEL("Start Frame", "start_frame") WIDTH(1.5);
+ PARM(integer, 1, "start_frame", none, none) RANGE(0,10)
+	 LABELREF(start_frame.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+end_frame.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ end_frame.label = PARM_LABEL("End Frame", "end_frame") WIDTH(1.5);
+ PARM(integer, 1, "end_frame", none, none) RANGE(0,10)
+	 LABELREF(end_frame.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+loops.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ loops.label = PARM_LABEL("Num of Double-Loops", "loops") WIDTH(1.5);
+ PARM(integer, 1, "loops", none, none) RANGE(1,10)
+	LOCK_RANGE_MIN LABELREF(loops.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm5.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+lb_cachewarning.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_cachewarning.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+bornbeforestartmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    bornbeforestartmode.label = PARM_LABEL_SIMPLE("Born Before Loop Start", "bornbeforestartmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    bornbeforestartmode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+deadafterendmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    deadafterendmode.label = PARM_LABEL_SIMPLE("Dead After Loop End", "deadafterendmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    deadafterendmode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+uniqueid.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("uniqueid", "Prevent Loops from Repeating Particle IDs") toggle VALUE(uniqueid.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+wrapmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    wrapmode.label = PARM_LABEL_SIMPLE("Particle Wrap Mode", "wrapmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    wrapmode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fadein.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("fadein", "Fade In Pscale") toggle VALUE(fadein.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fadeinduration.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ fadeinduration.label = PARM_LABEL("Fade-In Duration", "fadeinduration") WIDTH(1.5);
+ PARM(float, 1, "fadeinduration", none, none) RANGE(0,1)
+	 LABELREF(fadeinduration.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+fadeout.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("fadeout", "Fade Out Pscale") toggle VALUE(fadeout.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fadeoutduration.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ fadeoutduration.label = PARM_LABEL("Fade-Out Duration", "fadeoutduration") WIDTH(1.5);
+ PARM(float, 1, "fadeoutduration", none, none) RANGE(0,10)
+	 LABELREF(fadeoutduration.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+previs.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("previs", "Output Preview Geometry") toggle VALUE(previs.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+previsscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ previsscale.label = PARM_LABEL("Preview Sphere Scale", "previsscale") WIDTH(1.5);
+ PARM(float, 1, "previsscale", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(previsscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+colornage.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("colornage", "Color by Normalized Age") toggle VALUE(colornage.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+recomputemaxid.gad = NULL { }
+
+fd_vis.gad = 
+
+GROUP simple "Visualization" flat 
+{ 
+    VALUE(fd_vis.gad.val) LAYOUT(vertical) HSTRETCH 
+	    previs.gad;		
+	    previsscale.gad;		
+	    colornage.gad;		
+} 
+
+fd_particle.gad = 
+
+{
+    VALUE(fd_particle.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    sepparm.gad;		
+	    bornbeforestartmode.gad;		
+	    deadafterendmode.gad;		
+	    sepparm2.gad;		
+	    uniqueid.gad;		
+	    wrapmode.gad;		
+	    fadein.gad;		
+	    fadeinduration.gad;		
+	    fadeout.gad;		
+	    fadeoutduration.gad;		
+	    fd_vis.gad;		
+} 
+
+fd_volume.gad = 
+
+{
+    VALUE(fd_volume.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    sepparm5.gad;		
+	    lb_cachewarning.gad;		
+} 
+
+fd_loopsettings.gad = 
+
+GROUP simple "Loop Settings" flat 
+{ 
+    VALUE(fd_loopsettings.gad.val) LAYOUT(vertical) HSTRETCH 
+	    start_frame.gad;		
+	    end_frame.gad;		
+	    loops.gad;		
+	    fd_volume.gad;		
+	    fd_particle.gad;		
+	    recomputemaxid.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    inputtype.gad; 
+    fd_loopsettings.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

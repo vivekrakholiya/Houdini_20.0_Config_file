@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["SpeedLimit"]}, {"type": "para", "indent": 0, "text": ["This example shows how to limit the speed of specific objects in the\nsimulation."], "extent": [0, 81]}], "examplefor": "/nodes/dop/rbdpackedobject", "examplefile": "/examples/nodes/dop/rbdpackedobject/SpeedLimit.otl"}

@@ -1,0 +1,813 @@
+// Magic: 4d7ec858
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Sep 22 11:33:50 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+primpattern.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    primpattern.label = PARM_LABEL("Primitives", "primpattern") WIDTH(1.5);
+    PARM_FIELD(string, "primpattern") VALUE(primpattern.val) 
+	LABELREF(primpattern.label) HSTRETCH;
+
+    primpattern.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(primpattern.script_action)
+	HELP("Select primitives in the Scene Viewer or Scene Graph Tree pane. Ctrl-click to select using the primitive picker dialog. Shift-click to select using the primitive pattern editor. Alt-click to toggle movement of the display flag.  ")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+xn__inputsintensity_control_jeb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsintensity_control_jeb.gad = xn__inputsintensity_control_jeb.menu WIDTH(0.27);
+
+xn__inputsintensity_i0a.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsintensity_i0a.label = PARM_LABEL("Intensity", "xn__inputsintensity_i0a") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsintensity_i0a", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsintensity_i0a.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsexposure_control_wcb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsexposure_control_wcb.gad = xn__inputsexposure_control_wcb.menu WIDTH(0.27);
+
+xn__inputsexposure_vya.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsexposure_vya.label = PARM_LABEL("Exposure", "xn__inputsexposure_vya") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsexposure_vya", none, none) RANGE(-10,10)
+	 LABELREF(xn__inputsexposure_vya.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputscolor_control_06a.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputscolor_control_06a.gad = xn__inputscolor_control_06a.menu WIDTH(0.27);
+
+xn__inputscolor_zta.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    xn__inputscolor_zta.label = PARM_LABEL("Color", "xn__inputscolor_zta") WIDTH(1.23);
+    PARM(float, 3, "xn__inputscolor_zta", none, COLOR, "R,G,B") 
+	LABELREF(xn__inputscolor_zta.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsenableColorTemperature_control_pzb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsenableColorTemperature_control_pzb.gad = xn__inputsenableColorTemperature_control_pzb.menu WIDTH(0.27);
+
+xn__inputsenableColorTemperature_omb.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsenableColorTemperature_omb", "Enable Color Temperature") toggle VALUE(xn__inputsenableColorTemperature_omb.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputscolorTemperature_control_xpb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputscolorTemperature_control_xpb.gad = xn__inputscolorTemperature_control_xpb.menu WIDTH(0.27);
+
+xn__inputscolorTemperature_wcb.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputscolorTemperature_wcb.label = PARM_LABEL("Color Temperature", "xn__inputscolorTemperature_wcb") WIDTH(1.23);
+ PARM(float, 1, "xn__inputscolorTemperature_wcb", none, none) RANGE(500,100000)
+	 LABELREF(xn__inputscolorTemperature_wcb.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsnormalize_control_jeb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsnormalize_control_jeb.gad = xn__inputsnormalize_control_jeb.menu WIDTH(0.27);
+
+xn__inputsnormalize_i0a.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsnormalize_i0a", "Normalize Power") toggle VALUE(xn__inputsnormalize_i0a.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsdiffuse_control_99a.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsdiffuse_control_99a.gad = xn__inputsdiffuse_control_99a.menu WIDTH(0.27);
+
+xn__inputsdiffuse_8wa.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsdiffuse_8wa.label = PARM_LABEL("Diffuse Multiplier", "xn__inputsdiffuse_8wa") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsdiffuse_8wa", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsdiffuse_8wa.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsspecular_control_wcb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsspecular_control_wcb.gad = xn__inputsspecular_control_wcb.menu WIDTH(0.27);
+
+xn__inputsspecular_vya.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsspecular_vya.label = PARM_LABEL("Specular Multiplier", "xn__inputsspecular_vya") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsspecular_vya", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsspecular_vya.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__lightfilters_control_m8a.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__lightfilters_control_m8a.gad = xn__lightfilters_control_m8a.menu WIDTH(0.27);
+
+xn__lightfilters_lva.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    xn__lightfilters_lva.label = PARM_LABEL("Light Filters", "xn__lightfilters_lva") WIDTH(1.23);
+    PARM_FIELD(string, "xn__lightfilters_lva") VALUE(xn__lightfilters_lva.val) 
+	LABELREF(xn__lightfilters_lva.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(xn__lightfilters_lva.script_action)
+	HELP("")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__lightmaterialSyncMode_control_9nb.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__lightmaterialSyncMode_control_9nb.gad = xn__lightmaterialSyncMode_control_9nb.menu WIDTH(0.27);
+
+xn__lightmaterialSyncMode_89a.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    {  }
+
+    xn__lightmaterialSyncMode_89a.label = PARM_LABEL_SIMPLE("Material Sync Mode - Mesh Visibility", "xn__lightmaterialSyncMode_89a") WIDTH(1.23);
+    { WIDTH(0.09) }
+
+    xn__lightmaterialSyncMode_89a.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsshadowenable_control_fjbg.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsshadowenable_control_fjbg.gad = xn__inputsshadowenable_control_fjbg.menu WIDTH(0.27);
+
+xn__inputsshadowenable_e5ag.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsshadowenable_e5ag", "Enable") toggle VALUE(xn__inputsshadowenable_e5ag.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsshadowcolor_control_shbg.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsshadowcolor_control_shbg.gad = xn__inputsshadowcolor_control_shbg.menu WIDTH(0.27);
+
+xn__inputsshadowcolor_r3ag.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    xn__inputsshadowcolor_r3ag.label = PARM_LABEL("Color", "xn__inputsshadowcolor_r3ag") WIDTH(1.23);
+    PARM(float, 3, "xn__inputsshadowcolor_r3ag", none, COLOR, "R,G,B") 
+	LABELREF(xn__inputsshadowcolor_r3ag.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsshadowfalloff_control_1kbg.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsshadowfalloff_control_1kbg.gad = xn__inputsshadowfalloff_control_1kbg.menu WIDTH(0.27);
+
+xn__inputsshadowfalloff_06ag.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsshadowfalloff_06ag.label = PARM_LABEL("Falloff Start Distance", "xn__inputsshadowfalloff_06ag") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsshadowfalloff_06ag", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsshadowfalloff_06ag.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsshadowfalloffGamma_control_6sbg.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsshadowfalloffGamma_control_6sbg.gad = xn__inputsshadowfalloffGamma_control_6sbg.menu WIDTH(0.27);
+
+xn__inputsshadowfalloffGamma_5fbg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsshadowfalloffGamma_5fbg.label = PARM_LABEL("Falloff Gamma", "xn__inputsshadowfalloffGamma_5fbg") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsshadowfalloffGamma_5fbg", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsshadowfalloffGamma_5fbg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsshadowdistance_control_ombg.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsshadowdistance_control_ombg.gad = xn__inputsshadowdistance_control_ombg.menu WIDTH(0.27);
+
+xn__inputsshadowdistance_n8ag.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsshadowdistance_n8ag.label = PARM_LABEL("Distance", "xn__inputsshadowdistance_n8ag") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsshadowdistance_n8ag", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsshadowdistance_n8ag.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightintensityNearDist_control_y2bcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightintensityNearDist_control_y2bcf.gad = xn__inputsrilightintensityNearDist_control_y2bcf.menu WIDTH(0.27);
+
+xn__inputsrilightintensityNearDist_xpbcf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsrilightintensityNearDist_xpbcf.label = PARM_LABEL("Intensity Near Dist", "xn__inputsrilightintensityNearDist_xpbcf") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsrilightintensityNearDist_xpbcf", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsrilightintensityNearDist_xpbcf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightdiffuseNearDist_control_pzbcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightdiffuseNearDist_control_pzbcf.gad = xn__inputsrilightdiffuseNearDist_control_pzbcf.menu WIDTH(0.27);
+
+xn__inputsrilightdiffuseNearDist_ombcf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsrilightdiffuseNearDist_ombcf.label = PARM_LABEL("Diffuse Near Dist", "xn__inputsrilightdiffuseNearDist_ombcf") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsrilightdiffuseNearDist_ombcf", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsrilightdiffuseNearDist_ombcf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightspecularNearDist_control_c1bcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightspecularNearDist_control_c1bcf.gad = xn__inputsrilightspecularNearDist_control_c1bcf.menu WIDTH(0.27);
+
+xn__inputsrilightspecularNearDist_bobcf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsrilightspecularNearDist_bobcf.label = PARM_LABEL("Specular Near Dist", "xn__inputsrilightspecularNearDist_bobcf") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsrilightspecularNearDist_bobcf", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsrilightspecularNearDist_bobcf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsrilighttraceLightPaths_control_pzbcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilighttraceLightPaths_control_pzbcf.gad = xn__inputsrilighttraceLightPaths_control_pzbcf.menu WIDTH(0.27);
+
+xn__inputsrilighttraceLightPaths_ombcf.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsrilighttraceLightPaths_ombcf", "Trace Light Paths") toggle VALUE(xn__inputsrilighttraceLightPaths_ombcf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightthinShadow_control_krbcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightthinShadow_control_krbcf.gad = xn__inputsrilightthinShadow_control_krbcf.menu WIDTH(0.27);
+
+xn__inputsrilightthinShadow_jebcf.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsrilightthinShadow_jebcf", "Thin Shadow") toggle VALUE(xn__inputsrilightthinShadow_jebcf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightvisibleInRefractionPath_control_qdccf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightvisibleInRefractionPath_control_qdccf.gad = xn__inputsrilightvisibleInRefractionPath_control_qdccf.menu WIDTH(0.27);
+
+xn__inputsrilightvisibleInRefractionPath_pzbcf.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsrilightvisibleInRefractionPath_pzbcf", "Visible In Refraction") toggle VALUE(xn__inputsrilightvisibleInRefractionPath_pzbcf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightcheapCaustics_control_gwbcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightcheapCaustics_control_gwbcf.gad = xn__inputsrilightcheapCaustics_control_gwbcf.menu WIDTH(0.27);
+
+xn__inputsrilightcheapCaustics_fjbcf.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__inputsrilightcheapCaustics_fjbcf", "Manifold Walk") toggle VALUE(xn__inputsrilightcheapCaustics_fjbcf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightcheapCausticsExcludeGrooup_control_zgccf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightcheapCausticsExcludeGrooup_control_zgccf.gad = xn__inputsrilightcheapCausticsExcludeGrooup_control_zgccf.menu WIDTH(0.27);
+
+xn__inputsrilightcheapCausticsExcludeGroup_y2bcf.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    xn__inputsrilightcheapCausticsExcludeGroup_y2bcf.label = PARM_LABEL("Manifold Walk Caustics Exclude Group", "xn__inputsrilightcheapCausticsExcludeGroup_y2bcf") WIDTH(1.23);
+    PARM_FIELD(string, "xn__inputsrilightcheapCausticsExcludeGroup_y2bcf") VALUE(xn__inputsrilightcheapCausticsExcludeGroup_y2bcf.val) 
+	LABELREF(xn__inputsrilightcheapCausticsExcludeGroup_y2bcf.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightlightGroup_control_krbcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightlightGroup_control_krbcf.gad = xn__inputsrilightlightGroup_control_krbcf.menu WIDTH(0.27);
+
+xn__inputsrilightlightGroup_jebcf.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    xn__inputsrilightlightGroup_jebcf.label = PARM_LABEL("Light Group", "xn__inputsrilightlightGroup_jebcf") WIDTH(1.23);
+    PARM_FIELD(string, "xn__inputsrilightlightGroup_jebcf") VALUE(xn__inputsrilightlightGroup_jebcf.val) 
+	LABELREF(xn__inputsrilightlightGroup_jebcf.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightimportanceMultiplier_control_u7bcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightimportanceMultiplier_control_u7bcf.gad = xn__inputsrilightimportanceMultiplier_control_u7bcf.menu WIDTH(0.27);
+
+xn__inputsrilightimportanceMultiplier_tubcf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsrilightimportanceMultiplier_tubcf.label = PARM_LABEL("Importance Multiplier", "xn__inputsrilightimportanceMultiplier_tubcf") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsrilightimportanceMultiplier_tubcf", none, none) RANGE(0,10)
+	 LABELREF(xn__inputsrilightimportanceMultiplier_tubcf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightmsApprox_control_bobcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightmsApprox_control_bobcf.gad = xn__inputsrilightmsApprox_control_bobcf.menu WIDTH(0.27);
+
+xn__inputsrilightmsApprox_99acf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__inputsrilightmsApprox_99acf.label = PARM_LABEL("Multi-Scattering Approx.", "xn__inputsrilightmsApprox_99acf") WIDTH(1.23);
+ PARM(float, 1, "xn__inputsrilightmsApprox_99acf", none, none) RANGE(0,1)
+	 LABELREF(xn__inputsrilightmsApprox_99acf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightmsApproxBleed_control_gwbcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightmsApproxBleed_control_gwbcf.gad = xn__inputsrilightmsApproxBleed_control_gwbcf.menu WIDTH(0.27);
+
+xn__inputsrilightmsApproxBleed_fjbcf.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    xn__inputsrilightmsApproxBleed_fjbcf.label = PARM_LABEL("MS Approx Bleed", "xn__inputsrilightmsApproxBleed_fjbcf") WIDTH(1.23);
+    PARM(float, 3, "xn__inputsrilightmsApproxBleed_fjbcf", none, COLOR, "R,G,B") 
+	LABELREF(xn__inputsrilightmsApproxBleed_fjbcf.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__inputsrilightmsApproxContribution_control_u7bcf.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__inputsrilightmsApproxContribution_control_u7bcf.gad = xn__inputsrilightmsApproxContribution_control_u7bcf.menu WIDTH(0.27);
+
+xn__inputsrilightmsApproxContribution_tubcf.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    xn__inputsrilightmsApproxContribution_tubcf.label = PARM_LABEL("MS Approx Contribution ", "xn__inputsrilightmsApproxContribution_tubcf") WIDTH(1.23);
+    PARM(float, 3, "xn__inputsrilightmsApproxContribution_tubcf", none, COLOR, "R,G,B") 
+	LABELREF(xn__inputsrilightmsApproxContribution_tubcf.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__primvarsriattributesvisibilitycamera_control_sdcckk.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__primvarsriattributesvisibilitycamera_control_sdcckk.gad = xn__primvarsriattributesvisibilitycamera_control_sdcckk.menu WIDTH(0.27);
+
+xn__primvarsriattributesvisibilitycamera_rzbckk.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__primvarsriattributesvisibilitycamera_rzbckk", "Camera Visibility") toggle VALUE(xn__primvarsriattributesvisibilitycamera_rzbckk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__primvarsriattributesvisibilityindirect_control_1gcckk.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__primvarsriattributesvisibilityindirect_control_1gcckk.gad = xn__primvarsriattributesvisibilityindirect_control_1gcckk.menu WIDTH(0.27);
+
+xn__primvarsriattributesvisibilityindirect_02bckk.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__primvarsriattributesvisibilityindirect_02bckk", "Indirect Visibility") toggle VALUE(xn__primvarsriattributesvisibilityindirect_02bckk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__primvarsriattributesvisibilitytransmission_control_kncckk.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__primvarsriattributesvisibilitytransmission_control_kncckk.gad = xn__primvarsriattributesvisibilitytransmission_control_kncckk.menu WIDTH(0.27);
+
+xn__primvarsriattributesvisibilitytransmission_j9bckk.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__primvarsriattributesvisibilitytransmission_j9bckk", "Transmission Visibility") toggle VALUE(xn__primvarsriattributesvisibilitytransmission_j9bckk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+
+visibility.gad = 
+GROUP collapsible "Visibility" flat   
+{
+    VALUE(visibility.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__primvarsriattributesvisibilitycamera_control_sdcckk.join;		
+	    xn__primvarsriattributesvisibilityindirect_control_1gcckk.join;		
+	    xn__primvarsriattributesvisibilitytransmission_control_kncckk.join;		
+} 
+
+msApprox.gad = 
+GROUP collapsible "Multi-Scattering Approx" flat   
+{
+    VALUE(msApprox.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__inputsrilightmsApprox_control_bobcf.join;		
+	    xn__inputsrilightmsApproxBleed_control_gwbcf.join;		
+	    xn__inputsrilightmsApproxContribution_control_u7bcf.join;		
+} 
+
+advanced.gad = 
+GROUP collapsible "Advanced" flat   
+{
+    VALUE(advanced.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__inputsrilighttraceLightPaths_control_pzbcf.join;		
+	    xn__inputsrilightthinShadow_control_krbcf.join;		
+	    xn__inputsrilightvisibleInRefractionPath_control_qdccf.join;		
+	    xn__inputsrilightcheapCaustics_control_gwbcf.join;		
+	    xn__inputsrilightcheapCausticsExcludeGrooup_control_zgccf.join;		
+	    xn__inputsrilightlightGroup_control_krbcf.join;		
+	    xn__inputsrilightimportanceMultiplier_control_u7bcf.join;		
+} 
+
+refine.gad = 
+GROUP collapsible "Refine" flat   
+{
+    VALUE(refine.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__inputsrilightintensityNearDist_control_y2bcf.join;		
+	    xn__inputsrilightdiffuseNearDist_control_pzbcf.join;		
+	    xn__inputsrilightspecularNearDist_control_c1bcf.join;		
+} 
+
+folder.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder.gad"
+    { 
+	VALUE(folder.gad.val) STRETCH(1,0)
+
+	TAB "Base Properties"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__inputsintensity_control_jeb.join;		
+	    xn__inputsexposure_control_wcb.join;		
+	    xn__inputscolor_control_06a.join;		
+	    xn__inputsenableColorTemperature_control_pzb.join;		
+	    xn__inputscolorTemperature_control_xpb.join;		
+	    xn__inputsnormalize_control_jeb.join;		
+	    xn__inputsdiffuse_control_99a.join;		
+	    xn__inputsspecular_control_wcb.join;		
+	    xn__lightfilters_control_m8a.join;		
+	    xn__lightmaterialSyncMode_control_9nb.join;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Shadow"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__inputsshadowenable_control_fjbg.join;		
+	    xn__inputsshadowcolor_control_shbg.join;		
+	    xn__inputsshadowfalloff_control_1kbg.join;		
+	    xn__inputsshadowfalloffGamma_control_6sbg.join;		
+	    xn__inputsshadowdistance_control_ombg.join;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "RenderMan"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    refine.gad;		
+	    advanced.gad;		
+	    msApprox.gad;		
+	    visibility.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    primpattern.gad; 
+    folder.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

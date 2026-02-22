@@ -1,0 +1,80 @@
+= Network View Menu =
+
+"""Additions to the network editor menu."""
+
+This page describes the ODTools menu items for the network editor menu.
+
+NOTE:
+    This document is a work in progress.
+
+    Existing documentation might not be up to date (especially in User Interface),
+    please report any ideas or inconsistencies. Thank you!
+
+@subtopics
+#display: notitle
+
+:col:
+
+    == Network Menu Items ==
+    ~~~
+    :: [Icon:DESKTOP/application] [Convert Quixel to Octane Quick Material|../tools/convertQuixelToOctaneQuickMaterial]
+    :: [Icon:BUTTONS/network_box] [Save OD .hcam Camera|../tools/savehCam]
+    :: [Icon:PANETYPES/parameters] [Load OD .hcam Camera|../tools/loadhCam]
+    :: [Icon:MISC/shelf] [Isolate Current Context in Octane QuickSetup|../tools/EnableOCTIsolation]
+    :: [Icon:NETWORKS/vop] [Turn Off Isolation in Octane QuickSetup|../tools/DisableOCTIsolation]
+    :: [Icon:BUTTONS/gear] [Import Node Network|../tools/importNodeNetwork]
+    :: [Icon:BUTTONS/gear] [Viewport Info Overlay|../tools/viewportInfoOverlay]
+    :: [Icon:BUTTONS/gear] [Load /obj Display State|../tools/loadObjState]
+    :: [Icon:BUTTONS/gear] [Save /obj Display State|../tools/saveObjState]
+    :: [Icon:BUTTONS/gear] [Hotkeys|../tools/hotkeys]
+
+    == OBJ Level Right Click Additions ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Import Node Network|../tools/importNodeNetwork]
+    :: [Icon:BUTTONS/gear] [Export Node Network|../tools/exportNodeNetwork]
+    :: [Icon:BUTTONS/gear] [Load .mtl and Create Matnet|../tools/loadMtlAndCreateMatnet]
+    :: [Icon:BUTTONS/gear] [Send to LOPS|comingsoon/]
+    :: [Icon:BUTTONS/gear] [OBJ Node Transforms to Sop Points|../tools/objTransformToSopPoints]
+    :: [Icon:BUTTONS/gear] [Prim Group Split|../tools/primGroupSplit]
+    :: [Icon:BUTTONS/gear] [Convert Quixel to Octane Quick Material (Subnet)|../tools/convertQuixelToOctaneQuickMaterial]
+    :: [Icon:BUTTONS/gear] [Export .hcam Camera|../tools/savehCam]
+    :: [Icon:BUTTONS/gear] [Import .hcam Camera|../tools/loadhCam]
+    :: [Icon:BUTTONS/gear] [Set as Viewport Camera|../tools/setAsViewportCamera]
+    :: [Icon:BUTTONS/gear] [Set as Viewport Camera with State|../tools/setAsViewportCameraWithState]
+    :: [Icon:BUTTONS/gear] [Add Camera Overlay|../tools/viewportInfoOverlay]
+    :: [Icon:BUTTONS/gear] [Set View To Camera|../tools/setViewToCamera]
+    :: [Icon:BUTTONS/gear] [Import Syntheyes Camera Clip|../tools/importSyntheyesCameraClip]
+
+:col:
+
+    == SOP Level Right Click Additions ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Rizom Bridge|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Send to Substance Painter|comingsoon/]
+
+    :: [Icon:BUTTONS/gear] [Import Node Network|../tools/importNodeNetwork]
+    :: [Icon:BUTTONS/gear] [Export Node Network|../tools/exportNodeNetwork]
+
+    :: [Icon:BUTTONS/gear] [Save Selection to Separate Hip|../tools/saveSelectionToHip]
+    :: [Icon:BUTTONS/gear] [Points to Clip for Curve Sop|../tools/pointsToClipForCurveSop]
+    :: [Icon:BUTTONS/gear] [Shop MaterialPath to Matnet|../tools/shoptomat]
+    :: [Icon:BUTTONS/gear] [Shop MaterialPath to Octane Quick Material|../tools/shoptooctQuickMat]  
+    :: [Icon:BUTTONS/gear] [KineFX CharacterImport Material Conversion|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Load .mtl and Create Matnet|../tools/loadMtlAndCreateMatnet]
+    :: [Icon:BUTTONS/gear] [Input Connection to Object Merge|comingsoon/]
+
+    :: [Icon:BUTTONS/gear] [Copy Selection to New Geo|../tools/copySelToNewGeo]
+    :: [Icon:BUTTONS/gear] [Move Selection to New Geo|../tools/moveSelToNewGeo]
+    :: [Icon:BUTTONS/gear] [Move Selection to New Geo & Obj Merge|../tools/moveSelToNewGeoAndMerge]
+    :: [Icon:BUTTONS/gear] [Pick N Place to Instances|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Create OUT Null|../tools/createOutNull]
+    :: [Icon:BUTTONS/gear] [Create File Cache|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Save Node State as Thumbnail|../tools/nodeAsThumb]
+    :: [Icon:BUTTONS/gear] [Re-Cook Node|../tools/recookNode]
+
+    == Material/Vop Level Right Click Additions ==
+    ~~~
+    :: [Icon:NETWORKS/vop] [Image to OpenGL (Image Nodes)|../tools/imageToOpenGL]
+    :: [Icon:NETWORKS/vop] [Image to CopNet (Image Nodes)|../tools/imageToCopNet]
+    :: [Icon:NETWORKS/vop] [Image to Copnet Aces (Image Nodes)|../tools/imageToCopNetAces]
+    :: [Icon:NETWORKS/vop] [Convert Material (Principled Shader)|../tools/convertMaterial]

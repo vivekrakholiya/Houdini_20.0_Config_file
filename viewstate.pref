@@ -1,0 +1,30 @@
+ÿÿÿÿ{
+	"invertmousey":{
+		"type":"bool",
+		"value":false
+	},
+	"lockvert":{
+		"type":"bool",
+		"value":false
+	},
+	"mouselook":{
+		"type":"bool",
+		"value":false
+	},
+	"reticle":{
+		"type":"float",
+		"value":1
+	},
+	"reticlesize":{
+		"type":"float",
+		"value":1
+	},
+	"righthanded":{
+		"type":"bool",
+		"value":true
+	},
+	"wheelrate":{
+		"type":"float",
+		"value":1
+	}
+}

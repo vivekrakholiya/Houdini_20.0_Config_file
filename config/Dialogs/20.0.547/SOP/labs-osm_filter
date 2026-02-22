@@ -1,0 +1,231 @@
+// Magic: 77490b96
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Tue Jul 29 11:24:54 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+buildings.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("buildings", "Buildings") toggle VALUE(buildings.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+building_parts.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("building_parts", "Building Parts") toggle VALUE(building_parts.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("roads", "Roads") toggle VALUE(roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+motorway_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("motorway_roads", "Motorway") toggle VALUE(motorway_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+primary_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("primary_roads", "Primary") toggle VALUE(primary_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+secondary_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("secondary_roads", "Secondary") toggle VALUE(secondary_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+tertiary_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("tertiary_roads", "Tertiary") toggle VALUE(tertiary_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+residential_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("residential_roads", "Residential") toggle VALUE(residential_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+footway_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("footway_roads", "Footway") toggle VALUE(footway_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+pedestrian_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("pedestrian_roads", "Pedestrian") toggle VALUE(pedestrian_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+other_roads.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("other_roads", "Other") toggle VALUE(other_roads.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+other_data.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("other_data", "Other Data") toggle VALUE(other_data.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fd_roads.gad = 
+
+GROUP simple "Roads" flat 
+{ 
+    VALUE(fd_roads.gad.val) LAYOUT(vertical) HSTRETCH 
+	    roads.gad;		
+	    motorway_roads.gad;		
+	    primary_roads.gad;		
+	    secondary_roads.gad;		
+	    tertiary_roads.gad;		
+	    residential_roads.gad;		
+	    footway_roads.gad;		
+	    pedestrian_roads.gad;		
+	    other_roads.gad;		
+} 
+
+fd_buildings.gad = 
+
+GROUP simple "Buildings" flat 
+{ 
+    VALUE(fd_buildings.gad.val) LAYOUT(vertical) HSTRETCH 
+	    buildings.gad;		
+	    building_parts.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fd_buildings.gad; 
+    fd_roads.gad; 
+    other_data.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

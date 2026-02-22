@@ -1,0 +1,21 @@
+{
+    "enable" : true,
+    "env":
+    [
+        {"HOUDINI_PATH" : "$HOUDINI_PACKAGE_PATH/../ODHoudiniShelfTools2021"},
+        {"ODAcesSRGBSource" :"srgb_texture"},
+        {"ODAcesLinearSource" : "linear"},
+        {"ODAcesTarget" : "ACES - ACEScg"},
+        {"ODRendererPreference":"Prompt"},
+        {"ODFBXPreference":"Prompt"},
+        {"djvpath":"C:/Program Files/DJV2/bin/djv"},
+        {"photoshoppath":"C:/Program Files/Adobe/Adobe Photoshop 2020/Photoshop.exe"},
+        {"affinitypath":"C:/Program Files/Affinity/Photo/Photo.exe"},
+        {"rizomuvpath":"C:/Program Files/Rizom Lab/RizomUV 2022.0/rizomuv.exe"},
+        {"cineSyncPath":"C:/Program Files (x86)/cineSync Play/cineSyncPlayBeta.exe"},
+        {"DisableODNetworkHotkeys":"0"},
+        {"DisableRandomNullColors":"0"},
+        {"flipBookDestination":"#HIP/flipbook"},
+        {"colorswatchvalue":"asis"}
+    ]
+}

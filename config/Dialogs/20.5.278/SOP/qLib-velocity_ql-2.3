@@ -1,0 +1,98 @@
+// Magic: 6b06ddcf
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:11:14 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+dovelocityxform.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dovelocityxform", "Use Transformations") toggle VALUE(dovelocityxform.val);
+
+    {  }
+
+    {  }
+}
+
+peakdist.gad = 
+{
+
+ peakdist.label = PARM_LABEL("Peak", "peakdist");
+ PARM(float, 1, "peakdist", none, field) RANGE(-1,1)
+	 LABELREF(peakdist.label) HSTRETCH;
+
+  {  }
+}
+
+outvscale.gad = 
+{
+
+ outvscale.label = PARM_LABEL("Output Scale (v)", "outvscale");
+ PARM(float, 1, "outvscale", none, field) RANGE(0,4)
+	 LABELREF(outvscale.label) HSTRETCH;
+
+  {  }
+}
+
+outwscale.gad = 
+{
+
+ outwscale.label = PARM_LABEL("Output Scale (w)", "outwscale");
+ PARM(float, 1, "outwscale", none, field) RANGE(0,4)
+	 LABELREF(outwscale.label) HSTRETCH;
+
+  {  }
+}
+
+guidescale.gad = 
+{
+
+ guidescale.label = PARM_LABEL("Guide / Scale", "guidescale");
+ PARM(float, 1, "guidescale", none, field) RANGE(0,10)
+	 LABELREF(guidescale.label) HSTRETCH;
+
+  {  }
+}
+
+guidehidegeo.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("guidehidegeo", "Hide Geometry (Viewport-only)") toggle VALUE(guidehidegeo.val);
+
+    {  }
+
+    {  }
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":11 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":12 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":13 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    dovelocityxform.gad; 
+    peakdist.gad; 
+    outvscale.gad; 
+    outwscale.gad; 
+    guidescale.gad; 
+    guidehidegeo.gad; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

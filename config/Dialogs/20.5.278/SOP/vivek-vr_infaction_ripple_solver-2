@@ -1,0 +1,247 @@
+// Magic: 6a38d430
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Aug 10 22:49:59 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+speed_off_rippels.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ speed_off_rippels.label = PARM_LABEL("speed_off_rippels", "speed_off_rippels") WIDTH(1.5);
+ PARM(float, 1, "speed_off_rippels", none, none) RANGE(-5,5)
+	 LABELREF(speed_off_rippels.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+main_growth_lumines_substract.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ main_growth_lumines_substract.label = PARM_LABEL("main_growth_lumines_substract", "main_growth_lumines_substract") WIDTH(1.5);
+ PARM(float, 1, "main_growth_lumines_substract", none, none) RANGE(0,1)
+	 LABELREF(main_growth_lumines_substract.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+ramp_waws2interp.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    ramp_waws2interp.label = PARM_LABEL_SIMPLE("Interpolation", "ramp_waws2interp") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    ramp_waws2interp.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+waw_scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ waw_scale.label = PARM_LABEL("waw_scale", "waw_scale") WIDTH(1.5);
+ PARM(float, 1, "waw_scale", none, none) RANGE(0,5)
+	 LABELREF(waw_scale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+ramp_waw.si_rampedit = FLOAT_RAMP VALUE(ramp_waw.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+ramp_waw.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	ramp_waw.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(ramp_waw.pointno.val) HSTRETCH;
+    }
+}
+
+ramp_waw.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(ramp_waw.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(ramp_waw.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    ramp_waw.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(ramp_waw.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    ramp_waw.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(ramp_waw.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+ramp_waw.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    ramp_waw.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	ramp_waw.buttons.gad VSTRETCH;
+
+	ramp_waw.si_rampedit HSTRETCH;
+    }
+}
+
+ramp_waw.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("ramp_waw", "ramp_waw");
+
+	{ HSTRETCH }
+	ramp_waw.interp
+	    = ACTION_MENU_ICONBUTTON ramp_waw.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(ramp_waw.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(ramp_waw.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ramp_waw.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(ramp_waw.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	ramp_waw.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(ramp_waw.hideparms.val) HSTRETCH
+	    ramp_waw.multiramp;
+	    {}
+	}
+    }
+}
+
+iterations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ iterations.label = PARM_LABEL("Blurring Iterations", "iterations") WIDTH(1.5);
+ PARM(integer, 1, "iterations", none, none) RANGE(0,100)
+	 LABELREF(iterations.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+stepsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ stepsize.label = PARM_LABEL("Step Size", "stepsize") WIDTH(1.5);
+ PARM(float, 1, "stepsize", none, none) RANGE(0,1)
+	 LABELREF(stepsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+ripple_effect_2.gad = 
+
+GROUP simple "smooth" flat 
+{ 
+    VALUE(ripple_effect_2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    iterations.gad;		
+	    stepsize.gad;		
+} 
+
+ripple_effect.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "ripple_effect.gad"
+    { 
+	VALUE(ripple_effect.gad.val) STRETCH(1,0)
+
+	TAB "ripple_effect"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    speed_off_rippels.gad;		
+	    main_growth_lumines_substract.gad;		
+	    ramp_waws2interp.gad;		
+	    waw_scale.gad;		
+	    ramp_waw.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    ripple_effect.gad; 
+    ripple_effect_2.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

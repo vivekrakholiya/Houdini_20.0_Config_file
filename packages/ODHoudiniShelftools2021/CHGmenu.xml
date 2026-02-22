@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+  <menu>
+
+	<separatorItem />
+
+    <scriptItem id="OD_cancg">
+      <label>Channel Group for all Selected Nodes [OD]</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createAllAnimationChannelGroup()
+                ]]></scriptCode>
+            </scriptItem>
+  </menu>
+</menuDocument>

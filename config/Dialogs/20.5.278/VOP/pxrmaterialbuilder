@@ -1,0 +1,42 @@
+// Magic: 56877be2
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Sep 22 11:39:56 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+tabmenumask.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    tabmenumask.label = PARM_LABEL("Tab Menu Mask", "tabmenumask") WIDTH(1.5);
+    PARM_FIELD(string, "tabmenumask") VALUE(tabmenumask.val) 
+	LABELREF(tabmenumask.label) HSTRETCH;
+
+    tabmenumask.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(tabmenumask.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    tabmenumask.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

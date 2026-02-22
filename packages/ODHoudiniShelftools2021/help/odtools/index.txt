@@ -1,0 +1,79 @@
+= OD Tools for Houdini =
+#display: inverted notoc
+
+"""A Collection of tools to make your everyday tasks in Houdini more efficient. Copyright (c) 2019-2021, Oliver Hotz / Origami Digital"""
+
+ODTools is a collection of tools for SideFX's Houdini.
+It is a collection of tools designed to work in accordance with Houdini's native toolset.
+It improves the production process by allowing you to spend more time on what you want to achieve
+instead of how to achieve it.
+
+NOTE:
+    This document is a work in progress.
+
+    Existing documentation might not be up to date (especially in User Interface),
+    please report any ideas or inconsistencies. Thank you!
+
+@subtopics
+#display: notitle
+
+:col:
+    == Introduction ==
+    ~~~
+
+    :: [Icon:DIALOG/question] [Introduction to ODTools|intro]
+    :: [Icon:DIALOG/question] [ODTools Videos on Vimeo|https://vimeo.com/showcase/5860456]
+    :: [Icon:DIALOG/question] [Version Changelog|ChangeLog]
+    :: [Icon:DIALOG/question] [Use ODTools in your own plugins|usePythonAPI]
+    :: [Icon:DIALOG/question] [Submit Bugs & Features|https://origamidigital.com/bugs]    
+
+    == User Interface Additions ==
+    ~~~
+    :: [Icon:DESKTOP/application] [Main Menu|mainmenu/]
+    :: [Icon:BUTTONS/network_box] [Network View Menu|networkviewmenu/]
+    :: [Icon:PANETYPES/parameters] [Parameter RMB Menu|parmmenu/]
+    :: [Icon:MISC/shelf] [ODTools Shelf|cshelf/]
+    :: [Icon:NETWORKS/vop] [VEXpressions|cvexpressions/]
+    :: [Icon:BUTTONS/gear] [Gallery Items (Node Presets)|cgalleries/]
+    :: [Icon:BUTTONS/gear] [Drag & Drop (External))|dragdrop/]
+
+    == Python Panels ==
+    ~~~
+    :: [Icon:DESKTOP/application] [Asset Library|assetlib/]
+    :: [Icon:BUTTONS/network_box] [Reference Manager|refmanager/]
+    :: [Icon:PANETYPES/parameters] [Project Switcher|projswitcher/]
+    :: [Icon:MISC/shelf] [Snippet Manager|snippetmanager/]
+    :: [Icon:NETWORKS/vop] [Light Placer|lightplacer/]
+
+:col:
+
+    == Nodes ==
+    ~~~
+
+    :: [Substance Painter Bridge|hda/]
+    :: [Rizom Bridge|hda/]
+    :: [Octane QuickSetup|hda/]
+    :: [Octane Quick Material|hda/]
+    :: [Quick Material|hda/]
+    :: [Vector Import|hda/]
+    :: [OGL Preview|hda/]
+    :: [Move To UDIM Tile|hda/]
+    :: [Quadriflow|hda/]
+    :: [UV Cluster By Points|hda/]
+    :: [Motion Path|hda/]
+    :: [Material Per Renderer|hda/]
+    :: [LWO Reader|hda/]
+    :: [Julienne|hda/]
+    :: [Instance Attrib to Obj Merge|hda/]
+    :: [Instance By Attribute|hda/]
+    :: [Import XYZ|hda/]
+    :: [FFmpeg|hda/]
+    :: [Copy Paste External|hda/]
+    :: [Copy Paste External OBJ|hda/]
+    :: [Bake Height To Image|hda/]
+    :: [Automirror|hda/]
+
+    == Docs shortcuts ==
+    ~~~
+    ::[/help/nodes]
+    ::[/help/format]

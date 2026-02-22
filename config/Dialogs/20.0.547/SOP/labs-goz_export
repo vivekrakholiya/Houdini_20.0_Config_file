@@ -1,0 +1,44 @@
+// Magic: 19bdfee4
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Aug 22 07:31:52 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+send_to_zbrush.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("send_to_zbrush", "Send To Zbrush")
+	push VALUE(send_to_zbrush.val);
+
+    { WIDTH(0.1) }
+}
+tool_name.gad = NULL { }
+__name_expression.gad = NULL { }
+__export_file.gad = NULL { }
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    send_to_zbrush.gad; 
+    tool_name.gad; 
+    __name_expression.gad; 
+    __export_file.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

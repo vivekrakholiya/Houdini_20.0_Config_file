@@ -1,0 +1,835 @@
+// Magic: 31c2cb52
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sun Jul 27 12:56:08 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+sepparm4.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+Source_Directory.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ Source_Directory.label = PARM_LABEL("Source Directory", "Source_Directory") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "Source_Directory") LABELREF(Source_Directory.label)
+	VALUE(Source_Directory.val) HSTRETCH;
+
+    Source_Directory.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(Source_Directory.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+Target_Directory.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ Target_Directory.label = PARM_LABEL("Target Directory", "Target_Directory") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "Target_Directory") LABELREF(Target_Directory.label)
+	VALUE(Target_Directory.val) HSTRETCH;
+
+    Target_Directory.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(Target_Directory.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+sepparm3.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+sepparm2.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+FileFormat.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    FileFormat.label = PARM_LABEL_SIMPLE("FileFormat", "FileFormat") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    FileFormat.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm7.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+CopyAllImagesEnable.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("CopyAllImagesEnable", "Enable Texture & Preview Copy to USD") toggle VALUE(CopyAllImagesEnable.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm10.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale.label = PARM_LABEL("Scale Object", "scale") WIDTH(1.5);
+ PARM(float, 1, "scale", none, none) RANGE(0,10)
+	 LABELREF(scale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+DisplacementScale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ DisplacementScale.label = PARM_LABEL("Displacement Scale", "DisplacementScale") WIDTH(1.5);
+ PARM(float, 1, "DisplacementScale", none, none) RANGE(0,10)
+	 LABELREF(DisplacementScale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm11.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+sepparm13.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+ImageResolution.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    ImageResolution.label = PARM_LABEL_SIMPLE("Image Resolution", "ImageResolution") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    ImageResolution.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm12.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+AO_Extention.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+AO_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    AO_Extention.label = PARM_LABEL_SIMPLE("AO", "AO_Extention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    AO_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Roughness_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Roughness_Extention.label = PARM_LABEL_SIMPLE("  Roughness      ", "Roughness_Extention") ;
+    { WIDTH(0.09) }
+
+    Roughness_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Translucency_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Translucency_Extention.label = PARM_LABEL_SIMPLE("  Translucency", "Translucency_Extention") ;
+    { WIDTH(0.09) }
+
+    Translucency_Extention.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+Albedo_Extention.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+Albedo_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Albedo_Extention.label = PARM_LABEL_SIMPLE("Albedo", "Albedo_Extention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    Albedo_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Bump_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Bump_Extention.label = PARM_LABEL_SIMPLE("  Bump                ", "Bump_Extention") ;
+    { WIDTH(0.09) }
+
+    Bump_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Transmission_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Transmission_Extention.label = PARM_LABEL_SIMPLE(" Transmission  ", "Transmission_Extention") ;
+    { WIDTH(0.09) }
+
+    Transmission_Extention.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+Gloss_Extention.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+Gloss_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Gloss_Extention.label = PARM_LABEL_SIMPLE("Gloss", "Gloss_Extention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    Gloss_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Opacity_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Opacity_Extention.label = PARM_LABEL_SIMPLE("  Opacity            ", "Opacity_Extention") ;
+    { WIDTH(0.09) }
+
+    Opacity_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Fuzz_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Fuzz_Extention.label = PARM_LABEL_SIMPLE("  Fuzz                    ", "Fuzz_Extention") ;
+    { WIDTH(0.09) }
+
+    Fuzz_Extention.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+Specular_Extention.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+Specular_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Specular_Extention.label = PARM_LABEL_SIMPLE("Specular", "Specular_Extention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    Specular_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Normal_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Normal_Extention.label = PARM_LABEL_SIMPLE("  Normal             ", "Normal_Extention") ;
+    { WIDTH(0.09) }
+
+    Normal_Extention.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+Metalness_Extention.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+Metalness_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Metalness_Extention.label = PARM_LABEL_SIMPLE("Metalness", "Metalness_Extention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    Metalness_Extention.menu;
+
+    {  }
+
+    {  }
+}
+
+Displacement_Extention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    Displacement_Extention.label = PARM_LABEL_SIMPLE("  Displacement", "Displacement_Extention") ;
+    { WIDTH(0.09) }
+
+    Displacement_Extention.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm6.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+newparameter10.gad = NULL { }
+
+sepparm5.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+FileNameExtention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    FileNameExtention.label = PARM_LABEL_SIMPLE("MainFile", "FileNameExtention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    FileNameExtention.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+PayloadExtention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    PayloadExtention.label = PARM_LABEL_SIMPLE("PayLoad", "PayloadExtention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    PayloadExtention.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+GeometryExtention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    GeometryExtention.label = PARM_LABEL_SIMPLE("Geo", "GeometryExtention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    GeometryExtention.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+MaterialLayer.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    MaterialLayer.label = PARM_LABEL_SIMPLE("Mtl", "MaterialLayer") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    MaterialLayer.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+ExtraLayerExtention.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    ExtraLayerExtention.label = PARM_LABEL_SIMPLE("Extra", "ExtraLayerExtention") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    ExtraLayerExtention.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm9.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+Update_All_USD_Settings.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("Update_All_USD_Settings", "Update All USD Settings")
+	push VALUE(Update_All_USD_Settings.val);
+
+    { WIDTH(0.1) }
+}
+
+sepparm15.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+Save_Debug_File.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("Save_Debug_File", "Save Debug File")
+	push VALUE(Save_Debug_File.val);
+
+    { WIDTH(0.1) }
+}
+
+sepparm16.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+sepparm.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.282360) }
+}
+batch_convert.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+batch_convert.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("batch_convert", "       BATCH CONVERT       ")
+	push VALUE(batch_convert.val);
+
+    {  }
+}
+
+preview_images.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("preview_images", "       PREVIEW IMAGES       ")
+	push VALUE(preview_images.val);
+
+    {  }
+}
+
+save_all_usd_files.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("save_all_usd_files", "      Save All USD Files       ")
+	push VALUE(save_all_usd_files.val);
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm8.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+Check_Every_Component_Geometry_Node.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("Check_Every_Component_Geometry_Node", "Check Every Component Geometry Node")
+	push VALUE(Check_Every_Component_Geometry_Node.val);
+
+    { WIDTH(0.1) }
+}
+
+Check_Every_Material_Library_Node.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("Check_Every_Material_Library_Node", "Check Every Material Library Node             ")
+	push VALUE(Check_Every_Material_Library_Node.val);
+
+    { WIDTH(0.1) }
+}
+
+heading.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(heading.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+sepparm14.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.141180) }
+}
+
+tutorial.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("tutorial", "Open tutorial on YouTube")
+	push VALUE(tutorial.val);
+
+    { WIDTH(0.1) }
+}
+batch_convert_finished.gad = NULL { }
+
+import.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "import.gad"
+    { 
+	VALUE(import.gad.val) STRETCH(1,0)
+
+	TAB "OBJECT SETTINGS"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm2.gad;		
+	    FileFormat.gad;		
+	    sepparm7.gad;		
+	    CopyAllImagesEnable.gad;		
+	    sepparm10.gad;		
+	    scale.gad;		
+	    DisplacementScale.gad;		
+	    sepparm11.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "IMAGE SETTINGS"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm13.gad;		
+	    ImageResolution.gad;		
+	    sepparm12.gad;		
+	    AO_Extention.row.join;		
+	    Albedo_Extention.row.join;		
+	    Gloss_Extention.row.join;		
+	    Specular_Extention.row.join;		
+	    Metalness_Extention.row.join;		
+	    sepparm6.gad;		
+	    newparameter10.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "EXPORT SETTINGS"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm5.gad;		
+	    FileNameExtention.gad;		
+	    PayloadExtention.gad;		
+	    GeometryExtention.gad;		
+	    MaterialLayer.gad;		
+	    ExtraLayerExtention.gad;		
+	    sepparm9.gad;		
+	    Update_All_USD_Settings.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+folder0.gad = 
+GROUP collapsible "Optional Settings" flat   
+{
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH
+	    import.gad;		
+	    sepparm15.gad;		
+	    Save_Debug_File.gad;		
+	    sepparm16.gad;		
+} 
+
+builder.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "builder.gad"
+    { 
+	VALUE(builder.gad.val) STRETCH(1,0)
+
+	TAB "BUILDER"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm4.gad;		
+	    Source_Directory.gad;		
+	    Target_Directory.gad;		
+	    sepparm3.gad;		
+	    folder0.gad;		
+	    sepparm.gad;		
+	    batch_convert.row.join;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "TOOLS"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    sepparm8.gad;		
+	    Check_Every_Component_Geometry_Node.gad;		
+	    Check_Every_Material_Library_Node.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Info"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    heading.gad;		
+	    sepparm14.gad;		
+	    tutorial.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    builder.gad; 
+    batch_convert_finished.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

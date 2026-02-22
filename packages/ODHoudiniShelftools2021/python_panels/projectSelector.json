@@ -1,0 +1,28 @@
+{
+    "Projects": {
+        "end": [],
+        "fps": [],
+        "hipPathToken": [],
+        "makeDirectories": [],
+        "names": [],
+        "paths": [],
+        "scenePathToken": [],
+        "shotPathToken": [],
+        "start": [],
+        "starterFile": []
+    },
+    "autoLoadHDA": false,
+    "autosave": true,
+    "curHip": "Choose Hip",
+    "curProjectPath": "/mnt/MyBook/Freelance/arnab",
+    "curScene": "Sc70_cave_monster",
+    "curShot": "Shot_69_03",
+    "enableBaseFile": false,
+    "enableHipPrefix": true,
+    "extraShotDirectories": "",
+    "licenseWarning": false,
+    "metadata": false,
+    "reverseSort": false,
+    "showLatestOnly": true,
+    "sortByDate": true
+}

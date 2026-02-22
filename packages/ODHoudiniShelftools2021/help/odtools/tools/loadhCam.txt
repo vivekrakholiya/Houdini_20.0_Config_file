@@ -1,0 +1,5 @@
+= Load hCam file =
+
+"""Simply loads a stored .hCam (saved with the Save hCam plugin)"""
+
+To facilitate the easy of swapping in and out cameras, This tool creates a new camera from the parameters and keyframes provided with a saved .hCam file.

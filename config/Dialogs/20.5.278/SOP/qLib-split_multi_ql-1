@@ -1,0 +1,174 @@
+// Magic: e24d2bdc
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Apr  8 12:10:31 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+depth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ depth.label = PARM_LABEL("Divisions Depth", "depth") WIDTH(1.5);
+ PARM(integer, 1, "depth", none, none) RANGE(0,10)
+	 LABELREF(depth.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Random Seed", "seed") WIDTH(1.5);
+ PARM(float, 1, "seed", none, none) RANGE(0,999)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+u_min.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ u_min.label = PARM_LABEL("U Min", "u_min") WIDTH(1.5);
+ PARM(float, 1, "u_min", none, none) RANGE(0.1,0.9)
+	 LABELREF(u_min.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+u_max.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ u_max.label = PARM_LABEL("U Max", "u_max") WIDTH(1.5);
+ PARM(float, 1, "u_max", none, none) RANGE(0.1,0.9)
+	 LABELREF(u_max.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+visualizepieces.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualizepieces", "Visualize Pieces") toggle VALUE(visualizepieces.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale_pieces.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scale_pieces", "Scale Pieces") toggle VALUE(scale_pieces.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale.label = PARM_LABEL("Scale", "scale") WIDTH(1.5);
+ PARM(float, 1, "scale", none, none) RANGE(0.1,1)
+	 LABELREF(scale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+folder1.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder1.gad"
+    { 
+	VALUE(folder1.gad.val) STRETCH(1,0)
+
+	TAB "Split Range"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    u_min.gad;		
+	    u_max.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+folder0.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder0.gad"
+    { 
+	VALUE(folder0.gad.val) STRETCH(1,0)
+
+	TAB "Subdivision"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    depth.gad;		
+	    seed.gad;		
+	    folder1.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Output"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    visualizepieces.gad;		
+	    scale_pieces.gad;		
+	    scale.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

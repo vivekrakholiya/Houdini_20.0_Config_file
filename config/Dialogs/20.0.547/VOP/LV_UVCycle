@@ -1,0 +1,42 @@
+// Magic: cc48c110
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sun Jun 29 19:34:43 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+cycle.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cycle.label = PARM_LABEL("Cycle", "cycle") WIDTH(1.5);
+ PARM(float, 1, "cycle", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(cycle.label) HSTRETCH;
+
+    cycle.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(cycle.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    cycle.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,117 @@
+// Magic: e0d6892a
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Aug  9 15:34:31 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+Trail_geo.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Trail_geo", "Trail_geo") toggle VALUE(Trail_geo.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+boundtype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    boundtype.label = PARM_LABEL_SIMPLE("Bounding Type", "boundtype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    boundtype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+minsize.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   minsize.label = PARM_LABEL("Minimum Size", "minsize") WIDTH(1.5);
+   PARM(float, 3, "minsize", none, none, "X,Y,Z")
+	RANGE(0,1) LOCK_RANGE_MIN LABELREF(minsize.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+minpad.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   minpad.label = PARM_LABEL("Lower Padding", "minpad") WIDTH(1.5);
+   PARM(float, 3, "minpad", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(minpad.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+maxpad.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   maxpad.label = PARM_LABEL("Upper Padding", "maxpad") WIDTH(1.5);
+   PARM(float, 3, "maxpad", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(maxpad.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+bbox.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "bbox.gad"
+    { 
+	VALUE(bbox.gad.val) STRETCH(1,0)
+
+	TAB "bbox"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    boundtype.gad;		
+	    minsize.gad;		
+	    minpad.gad;		
+	    maxpad.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    Trail_geo.gad; 
+    bbox.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

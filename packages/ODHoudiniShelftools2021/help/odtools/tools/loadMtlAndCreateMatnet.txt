@@ -1,0 +1,5 @@
+= Load .MTL & Create Matnet =
+
+"""Attempts to load a .mtl file and create a material network from it"""
+
+.obj files usually come with a .mtl file which are its material definitions.  This tool attempts to read the .mtl and construct a material network from it.

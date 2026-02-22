@@ -1,0 +1,1434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+	<menu>
+
+<!-- <subMenu id="ODMaster"> -->
+<!-- <label>ODTools</label> -->
+
+        <separatorItem />
+
+      <scriptItem id="OD_isoobj">
+        <label>Isolate [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) == hou.ObjNode:
+    return True
+return False
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.isolate(mode="startIsolation", nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_endisoobj">
+        <label>End Isolation [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) == hou.ObjNode:
+    return True
+return False
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.isolate(mode="endIsolation")
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_rennode">
+        <label>Rename Node (To Filename) [OD]</label>
+        <context>
+          <expression><![CDATA[
+fileParms = ["fbxfile", "file", "A_FILENAME", "map", "tex0", "env_map", "texture", "NT_TEX_IMAGE1_A_FILENAME", "filename", "textureFile", "BitmapBuffer_file", "TextureSampler1_tex0", "ar_light_color_texture", "ar_filename", "rect_tex", "lightColorMap", "xn__inputstexturefile_r3ah"]
+node = kwargs["node"]
+for parm in node.parms():
+    if parm.name() in fileParms:
+        return True
+return False
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.renameNode(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+
+
+  <separatorItem />
+
+      <subMenu id="ODM1">
+      <label>ODTools Import/Export/Bridge</label>
+
+        <scriptItem id="OD_rizbridge">
+       	    <label>Rizom Bridge [OD]</label>
+       	    <context>
+       		<expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+       	    </context>
+
+        <scriptCode><![CDATA[
+
+import tempfile, os, hou
+from OD import rizomBridge
+###########################################################################
+#  Change the RizomUV path to your location                               #
+###########################################################################
+rizomPath = os.getenv('rizomuvpath')
+################## DONT TOUCH ANYTHING BELOW THIS LINE ####################
+
+exportFile = tempfile.gettempdir() + os.sep + "odrizombridge.obj"
+
+res = hou.ui.displayMessage("OD Rizom Bridge\nby Oliver Hotz @ oliver@heimlich.net", buttons=('Send To Rizom','Send To Rizom (Clear UVs)','Get from Rizom', 'Automatic Roundtrip', 'Cancel'))
+if res == 0:
+    rizomBridge.sendToRizom(rizomPath = rizomPath, exportFile = exportFile, nodes=kwargs["items"])
+if res == 1:
+    rizomBridge.sendToRizomClearUvs(rizomPath = rizomPath, exportFile = exportFile, nodes=kwargs["items"])
+if res == 2:
+    rizomBridge.getFromRizom(nodes=kwargs["items"], rizomPath = rizomPath, exportFile = exportFile)
+if res == 3:
+    rizomBridge.automaticRoundtrip(rizomPath = rizomPath, exportFile = exportFile, nodes=kwargs["items"])
+
+        ]]></scriptCode>
+       	</scriptItem>
+
+      <scriptItem id="OD_stop">
+        <label>Send to Substance Painter [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.sendToSubstance(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_in2">
+        <label>Import Node Network [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.importNetwork()
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_en">
+        <label>Export Node Network [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportNetwork(mode=1, nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_exorbx">
+        <label>Export Orbx [OD]</label>
+          <context>
+            <expression><![CDATA[
+if "Octane_ROP" not in str(hou.ropNodeTypeCategory().nodeTypes()): return False
+node = kwargs["node"]
+if type(node) != hou.ObjNode and type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportOctaneOrbx(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_exrsproxy">
+        <label>Export Redshift Proxy [OD]</label>
+          <context>
+            <expression><![CDATA[
+if "Redshift_ROP" not in str(hou.ropNodeTypeCategory().nodeTypes()): return False
+node = kwargs["node"]
+if type(node) != hou.ObjNode and type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportRedshiftProxy(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_exvrayproxy">
+        <label>Export VRay Proxy [OD]</label>
+          <context>
+            <expression><![CDATA[
+if "rop_vray" not in str(hou.ropNodeTypeCategory().nodeTypes()): return False
+node = kwargs["node"]
+if type(node) != hou.ObjNode and type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportVRayProxy(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_shcam">
+        <label>Export .hcam Camera [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if node.type().name() != "cam":
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.saveCamera(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_lhcam">
+        <label>Import .hcam Camera [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if node.type().name() != "cam":
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.loadCamera(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_sslh">
+        <label>Save Selection To Separate Hip [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.saveNodesToNewFile(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_gsatcsv">
+        <label>Geo Spreadsheet Attribs to CSV [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportSpreadsheet(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <scriptItem id="OD_toptocsv">
+  <label>Export PDG WorkItem Attribs to CSV [OD]</label>
+  <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.TopNode:
+    return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pdgWorkItemsToCSV(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+
+  </subMenu>
+
+      <subMenu id="ODM2">
+      <label>ODTools Parameters</label>
+
+      <scriptItem id="OD_searchReplace">
+        <label>Search And Replace In Node Parms [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.searchReplaceParms(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_inparm">
+        <label>Copy Parms [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.copyNodeParms(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_outparm">
+        <label>Paste Parms [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pasteNodeParms(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_createNewParmsFromClipboard">
+        <label>Create Parms from Clipboard [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createNewParmFromClipboard(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_createNewSpareParms">
+        <label>Create Spare Parameters [OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createNewSpareParms(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_createSpareInput">
+        <label>Create Spare Input from Clipboard[OD]</label>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createSpareInput(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_createfbxblendshapes">
+        <label>Create FBX Blendshape Parms[OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createBlendShapeParms(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  </subMenu>
+
+      <subMenu id="ODMMats">
+      <label>ODTools Material Tools</label>
+
+ <scriptItem id="OD_rsToRsUSDMat">
+        <label>Redshift Mat to USD Material [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+  return False
+if node.type().name() == "redshift_vopnet":
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.redshiftToRedshiftUSD(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+ <scriptItem id="OD_rsToRsUSDMatCollect">
+        <label>Redshift Mat to USD Mat + Collect [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+  return False
+if node.type().name() == "redshift_vopnet":
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.redshiftToRedshiftUSDAndCollect(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+ <scriptItem id="OD_rsOldToStdMat">
+        <label>Redshift Mat to Standard Material [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+  return False
+if node.type().name() == "redshift_vopnet":
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.redshiftOldToStandardMaterial(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_insert_triplanar">
+        <label>Add Triplanar [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+  return False
+if "tex" in node.type().name().lower() or "image" in node.type().name().lower():
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.insertTriplanar(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_linktrans">
+        <label>Link Transforms [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+  return False
+if "tex" in node.type().name().lower() or "image" in node.type().name().lower():
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.insertTransScaleRotationControls(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_io">
+        <label>Image to OpenGL [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+    return False
+if "tex" in node.type().name().lower() or "image" in node.type().name().lower():
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.imageToOpenGLChannel([kwargs["node"]])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_cpn">
+        <label>Image to CopNet [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+    return False
+if "tex" in node.type().name().lower() or "image" in node.type().name().lower():
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createCopNode(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_cpna">
+        <label>Image to CopNet - Aces Conversion [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+    return False
+if "tex" in node.type().name().lower() or "image" in node.type().name().lower():
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createCopNodeAces(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_msm">
+        <label>shop_materialpath to Matnet [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.matsFromShopMaterialPath(nodes=kwargs["items"], askContext="ask")
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_msmnodes">
+        <label>shop_materialpath to Matnet (material node) [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.materialNodeFromShopMaterialPath(nodes=kwargs["items"], askContext="ask")
+        ]]></scriptCode>
+      </scriptItem>
+
+
+ <scriptItem id="OD_motomat">
+        <label>Material Overrides to Mat Conversion [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.materialOverridesConversionToMaterials(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+ <scriptItem id="OD_krmo">
+        <label>KineFX CharacterImport Mat Conversion [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.fbxCharImportMatConversion(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_msmoct">
+        <label>shop_materialpath to OCT QuickMaterial [OD]</label>
+          <context>
+            <expression><![CDATA[
+if "Octane_ROP" not in str(hou.ropNodeTypeCategory().nodeTypes()): return False
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.octQuickMaterialFromShopMaterialPath(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+
+      <scriptItem id="OD_quickmatToMat">
+        <label>OCT QuickMaterial -> /mat [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+if node.type().name() != "ODFX_OCTQuickMaterial":
+  return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.octQuickMatToMatContext(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <scriptItem id="OD_loadmtl">
+        <label>Load .mtl and Create Matnet [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode and type(node) != hou.ObjNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.LoadMTL(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+
+      <scriptItem id="OD_cmat">
+        <label>Convert Material [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.VopNode:
+    return False
+else:
+  if "principledshader" in node.type().name() or "usdpreviewsurface" in node.type().name():
+    return True
+  return False
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.convertMaterial(nodes=kwargs["items"],noRename=True)
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_convMat">
+        <label>Material Node to MatPerRenderer Node [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) == hou.SopNode:
+  if not "material" in str(node.type()):
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.convertMatToRendererMat([kwargs["items"]])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+  </subMenu>
+
+
+
+
+      <scriptItem id="OD_varInstances">
+        <label>Variant Objects Instance Distribution [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.ObjNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.variantInstanceDistribution(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_mtnc">
+        <label>Merge to new Container[OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.ObjNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objMergeToNewContainer(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+      <scriptItem id="OD_alembicToggle">
+        <label>Toggle Alembic Load Mode[OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.ObjNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.toggleAlembicLoadMode(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_ptcfcs">
+        <label>Points to Clip for CurveSop [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pointsToCurveClipboard(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+
+
+      <scriptItem id="OD_cptor">
+        <label>Colored Points to Ramp [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pointsToColorRamp(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+      <scriptItem id="OD_coltoattrib">
+        <label>Color Nodes to Attrib Color Adjust [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+if node.type().name() != "color":
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.colorNodesToAttribAdjustColor(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+
+
+
+
+      <scriptItem id="OD_insertNodes">
+        <label>Insert Copied Nodes to each Selection [OD]</label>
+        <context>
+          <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+res = hou.ui.displayMessage(text="Nodes will be inserted for every selected Node\n\nAs Loop: Processes all selected nodes with a single for loop\nFlat: Takes the copied nodes and inserts them to each selected Node (reference optional)\n",title="Insert Nodes",buttons=["As Loop", "Flat", "Cancel"])
+if res == 2:
+  pass
+if res == 0:
+  shelftools.insertCopiedNodes(nodes=kwargs["items"], noLoop=None)
+elif res == 1:
+  shelftools.insertCopiedNodes(nodes=kwargs["items"], noLoop=1)
+
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_setview">
+        <label>Set As Viewport Cam [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if node.type().name() != "cam":
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setViewportCamera(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_setviewstate">
+        <label>Set As Viewport Cam w/State [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if node.type().name() != "cam":
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setViewportCameraWithState(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_setviewoverlay">
+        <label>Add Cam Overlay [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if node.type().name() != "cam":
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.addCamOverlay(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+      <scriptItem id="OD_fspy">
+        <label>Import .fspy Camera [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if node.type().name() != "cam":
+    return False
+return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.fspyJsonImport(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_pasterefnode">
+        <label>Reference Copy from Clipboard [OD]</label>
+        <context>
+          <expression><![CDATA[
+if hou.ui.getTextFromClipboard():
+  return True
+return False
+       ]]></expression>
+        </context>
+
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pasteNodeAsAbsoluteReference(hou.ui.getTextFromClipboard())
+        ]]></scriptCode>
+      </scriptItem>
+
+	<separatorItem />
+
+  <scriptItem id="OD_icom">
+  <label>Input Connection to Object Merge [OD]</label>
+  <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.reconnectInputAsMerge(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+	<scriptItem id="OD_cs">
+	<label>Copy Selection to New Geo [OD]</label>
+  <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+  </context>
+	<scriptCode><![CDATA[
+from OD import shelftools
+shelftools.copySelToNewGeo()
+	]]></scriptCode>
+	</scriptItem>
+
+	<scriptItem id="OD_ms">
+	<label>Move Selection to New Geo [OD]</label>
+  <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+  </context>
+	<scriptCode><![CDATA[
+from OD import shelftools
+shelftools.moveSelToNewGeo()
+	]]></scriptCode>
+	</scriptItem>
+
+  <scriptItem id="OD_mome">
+  <label>Move Selection to Geo and Object Merge [OD]</label>
+  <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.separateAndObjectMerge2(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_cosop">
+  <label>Combine in Sop Merge [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.combineOBJInSOPMerge(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_pnptoi">
+    <label>Pick N Place to Instances [OD]</label>
+    <context>
+      <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+return True
+       ]]></expression>
+        </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pickNPlacePackedGeoToInstances(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_diveIntoNetwork">
+  <label>Dive Into Floating Network [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.diveToFloatingNetwork(node=kwargs["items"][0])
+  ]]></scriptCode>
+  </scriptItem>
+
+
+
+  <scriptItem id="OD_addtarget">
+  <label>Add Look At Target [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.lookAtNull(nodes=kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+
+
+
+
+
+  <scriptItem id="OD_stl">
+  <label>Send to LOPS [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objToLopsUI(nodes=kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_placer">
+  <label>Place as Instances [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objectPlacer(nodes=kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_c2pobjcon">
+  <label>Copy 2 Points -> Obj Containers [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if "copytopoints" in nodes[0].type().name():
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.packedCopyToPointsToOBJ(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_objttopts">
+  <label>OBJ Node Transforms to Sop Pts [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objTransformsToSopPoints(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_objttopts2">
+  <label>OBJ Node Transforms to Sop (static) [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objStaticToSopTransform(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_pgspl">
+  <label>Prim Group Split [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.primGrpSplitUI(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_pgsplsop">
+  <label>Prim Split to Blast[OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.SopNode:
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.sopPrimGroupSplit(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <separatorItem />
+
+  <scriptItem id="OD_cvqx">
+  <label>Convert Quixel to OD OCT QuickMaterial [OD]</label>
+  <context>
+    <expression><![CDATA[
+if "Octane_ROP" not in str(hou.ropNodeTypeCategory().nodeTypes()): return False
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  if nodes[0].type().name() == "subnet":
+    return True
+  else:
+    return False
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.quixelHDAPrep(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <scriptItem id="OD_cvqx2">
+  <label>Convert Quixel to HDA (Prep) [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  if nodes[0].type().name() == "subnet":
+    return True
+  else:
+    return False
+  if len(nodes) < 2:
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.quixelHDAPrepRenderIndependent(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+	<separatorItem />
+
+  <scriptItem id="OD_statsop">
+  <label>Static (temporary) Geo Container [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) != hou.ObjNode:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.staticSops(kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+      <scriptItem id="OD_co">
+        <label>Create OUT Null [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createSopOut(kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_cfc">
+        <label>Create File Cache [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createFileCache(kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_stn">
+        <label>Save Node State as Thumbnail [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.nodesToImageSnapshots(kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_svtc">
+        <label>Set View to Camera [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) == hou.ObjNode:
+  if not "cam" in str(node.type()):
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setCamToView([kwargs["node"]])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_iscc">
+        <label>Import Syntheyes .Clip [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) == hou.ObjNode:
+  if not "cam" in str(node.type()):
+    return False
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.loadSynteyesClipToCamera([kwargs["node"]])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <scriptItem id="OD_rotn">
+  <label>Add Rotation Noise Constraint [OD]</label>
+  <context>
+    <expression><![CDATA[
+nodes = kwargs["items"]
+if type(nodes[0]) == hou.ObjNode:
+  return True
+else:
+  return False
+return True
+       ]]></expression>
+  </context>
+  <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.addNoiseConstraint(nodes=kwargs["items"])
+  ]]></scriptCode>
+  </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_usdzip">
+        <label>Export USDZ [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.LopNode:
+    return False
+else:
+  return True
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createUSDZip(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+      <scriptItem id="OD_agentfbx">
+        <label>Load Agent FBX/USD Clips [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+else:
+  if "agentclip" in node.type().name():
+    return True
+  return False
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.fbxToAgentClips(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+
+      <scriptItem id="OD_animfbxsequencer">
+        <label>Sequence KineFX Anim Imports [OD]</label>
+          <context>
+            <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+    return False
+else:
+  if "fbxanimimport" in node.type().name():
+    return True
+  return False
+       ]]></expression>
+        </context>
+        <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.animFBXToSequencer(nodes=kwargs["items"])
+        ]]></scriptCode>
+      </scriptItem>
+
+  <separatorItem />
+
+      <scriptItem id="OD_cook">
+        <label>Re-Cook Node [OD]</label>
+    <context>
+    <expression><![CDATA[
+node = kwargs["node"]
+if type(node) != hou.SopNode:
+  return False
+return True
+       ]]></expression>
+  </context>
+        <scriptCode><![CDATA[
+for node in kwargs["items"]:
+  try:
+    node.cook(force=True)
+  except Exception as e:
+    print (e)
+        ]]></scriptCode>
+      </scriptItem>
+
+<!-- </subMenu> -->
+
+	</menu>
+</menuDocument>

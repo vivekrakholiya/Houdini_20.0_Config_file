@@ -1,0 +1,8 @@
+= Move Selection to New Geo & Object Merge =
+
+"""Move Sop Selection to New Geometry Container & object merge connected, but unselected Nodes."""
+
+This tool takes the currently selected sop nodes and moves them into a new geo container.  For any connected nodes that are not part of the original selection, Object Merges are created.  This greatly helps with the organizational nature of your network flow.
+
+:vimeo: Example Use of the Tool
+    #id: 484116643

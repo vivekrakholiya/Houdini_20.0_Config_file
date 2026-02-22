@@ -1,0 +1,169 @@
+// Magic: 2a1ac916
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Tue Sep 16 22:13:06 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+maxsubs.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxsubs.label = PARM_LABEL("Max Subdivisions", "maxsubs") WIDTH(1.5);
+ PARM(integer, 1, "maxsubs", none, none) RANGE(0,10)
+	 LABELREF(maxsubs.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+extrudeamt.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ extrudeamt.label = PARM_LABEL("Extrude Strength", "extrudeamt") WIDTH(1.5);
+ PARM(float, 1, "extrudeamt", none, none) RANGE(-1,1)
+	 LABELREF(extrudeamt.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+scaleexp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scaleexp.label = PARM_LABEL("Extrusion Falloff Exponent", "scaleexp") WIDTH(1.5);
+ PARM(float, 1, "scaleexp", none, none) RANGE(1,8)
+	 LABELREF(scaleexp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+minarea.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ minarea.label = PARM_LABEL("Min. Area", "minarea") WIDTH(1.5);
+ PARM(float, 1, "minarea", none, none) RANGE(0,10)
+	 LABELREF(minarea.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+recompN.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("recompN", "Recompute Normals") toggle VALUE(recompN.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+falloff_attr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    falloff_attr.label = PARM_LABEL("Falloff Attribute", "falloff_attr") WIDTH(1.5);
+    PARM_FIELD(string, "falloff_attr") VALUE(falloff_attr.val) 
+	LABELREF(falloff_attr.label) HSTRETCH;
+
+    falloff_attr.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+doprimgroups.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("doprimgroups", "Output Groups") toggle VALUE(doprimgroups.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+frontgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    frontgroup.label = PARM_LABEL("Front Group", "frontgroup") WIDTH(1.5);
+    PARM_FIELD(string, "frontgroup") VALUE(frontgroup.val) 
+	LABELREF(frontgroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+insidegroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    insidegroup.label = PARM_LABEL("Inside Group", "insidegroup") WIDTH(1.5);
+    PARM_FIELD(string, "insidegroup") VALUE(insidegroup.val) 
+	LABELREF(insidegroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+outsidegroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    outsidegroup.label = PARM_LABEL("Outside Group", "outsidegroup") WIDTH(1.5);
+    PARM_FIELD(string, "outsidegroup") VALUE(outsidegroup.val) 
+	LABELREF(outsidegroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    maxsubs.gad; 
+    extrudeamt.gad; 
+    scaleexp.gad; 
+    minarea.gad; 
+    recompN.gad; 
+    falloff_attr.gad; 
+    doprimgroups.gad; 
+    frontgroup.gad; 
+    insidegroup.gad; 
+    outsidegroup.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

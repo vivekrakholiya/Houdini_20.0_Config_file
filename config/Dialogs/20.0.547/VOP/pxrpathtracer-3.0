@@ -1,0 +1,548 @@
+// Magic: b47077
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Apr 26 23:52:04 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+signature.gad = NULL { }
+
+maxIndirectBounces.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxIndirectBounces.label = PARM_LABEL("Max Indirect Bounces", "maxIndirectBounces") WIDTH(1.5);
+ PARM(integer, 1, "maxIndirectBounces", none, none) RANGE(0,15)
+	LOCK_RANGE_MIN LABELREF(maxIndirectBounces.label) HSTRETCH;
+
+    maxIndirectBounces.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(maxIndirectBounces.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+maxContinuationLength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxContinuationLength.label = PARM_LABEL("Continuation Depth", "maxContinuationLength") WIDTH(1.5);
+ PARM(integer, 1, "maxContinuationLength", none, none) RANGE(-1,15)
+	LOCK_RANGE_MIN LABELREF(maxContinuationLength.label) HSTRETCH;
+
+    maxContinuationLength.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(maxContinuationLength.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+maxNonStochasticOpacityEvents.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ maxNonStochasticOpacityEvents.label = PARM_LABEL("Stochastic Opacity Depth", "maxNonStochasticOpacityEvents") WIDTH(1.5);
+ PARM(integer, 1, "maxNonStochasticOpacityEvents", none, none) RANGE(0,15)
+	LOCK_RANGE_MIN LABELREF(maxNonStochasticOpacityEvents.label) HSTRETCH;
+
+    maxNonStochasticOpacityEvents.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(maxNonStochasticOpacityEvents.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+sampleMode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    sampleMode.label = PARM_LABEL_SIMPLE("Sample Mode", "sampleMode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    sampleMode.menu;
+
+    { HSTRETCH }
+
+    sampleMode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(sampleMode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+numLightSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numLightSamples.label = PARM_LABEL("Light Samples", "numLightSamples") WIDTH(1.5);
+ PARM(integer, 1, "numLightSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numLightSamples.label) HSTRETCH;
+
+    numLightSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numLightSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numBxdfSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numBxdfSamples.label = PARM_LABEL("BXDF Samples", "numBxdfSamples") WIDTH(1.5);
+ PARM(integer, 1, "numBxdfSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numBxdfSamples.label) HSTRETCH;
+
+    numBxdfSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numBxdfSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numVolumeAggregateSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numVolumeAggregateSamples.label = PARM_LABEL("Volume Aggregate Samples", "numVolumeAggregateSamples") WIDTH(1.5);
+ PARM(integer, 1, "numVolumeAggregateSamples", none, none) RANGE(0,16)
+	LOCK_RANGE_MIN LABELREF(numVolumeAggregateSamples.label) HSTRETCH;
+
+    numVolumeAggregateSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numVolumeAggregateSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numIndirectSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numIndirectSamples.label = PARM_LABEL("Indirect Samples", "numIndirectSamples") WIDTH(1.5);
+ PARM(integer, 1, "numIndirectSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numIndirectSamples.label) HSTRETCH;
+
+    numIndirectSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numIndirectSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numDiffuseSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numDiffuseSamples.label = PARM_LABEL("Diffuse Samples", "numDiffuseSamples") WIDTH(1.5);
+ PARM(integer, 1, "numDiffuseSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numDiffuseSamples.label) HSTRETCH;
+
+    numDiffuseSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numDiffuseSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numSpecularSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numSpecularSamples.label = PARM_LABEL("Specular Samples", "numSpecularSamples") WIDTH(1.5);
+ PARM(integer, 1, "numSpecularSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numSpecularSamples.label) HSTRETCH;
+
+    numSpecularSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numSpecularSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numSubsurfaceSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numSubsurfaceSamples.label = PARM_LABEL("Subsurface Samples", "numSubsurfaceSamples") WIDTH(1.5);
+ PARM(integer, 1, "numSubsurfaceSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numSubsurfaceSamples.label) HSTRETCH;
+
+    numSubsurfaceSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numSubsurfaceSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+numRefractionSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numRefractionSamples.label = PARM_LABEL("Refraction Samples", "numRefractionSamples") WIDTH(1.5);
+ PARM(integer, 1, "numRefractionSamples", none, none) RANGE(0,8)
+	LOCK_RANGE_MIN LABELREF(numRefractionSamples.label) HSTRETCH;
+
+    numRefractionSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(numRefractionSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+allowCaustics.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("allowCaustics", "Allow Caustics") toggle VALUE(allowCaustics.val);
+
+    { HSTRETCH }
+
+    allowCaustics.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(allowCaustics.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+accumOpacity.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("accumOpacity", "Accumulate Opacity") toggle VALUE(accumOpacity.val);
+
+    { HSTRETCH }
+
+    accumOpacity.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(accumOpacity.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+risPathGuiding.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("risPathGuiding", "RIS path guiding") toggle VALUE(risPathGuiding.val);
+
+    { HSTRETCH }
+
+    risPathGuiding.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(risPathGuiding.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+rouletteDepth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rouletteDepth.label = PARM_LABEL("Depth", "rouletteDepth") WIDTH(1.5);
+ PARM(integer, 1, "rouletteDepth", none, none) RANGE(1,8)
+	LOCK_RANGE_MIN LABELREF(rouletteDepth.label) HSTRETCH;
+
+    rouletteDepth.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rouletteDepth.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+rouletteThreshold.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rouletteThreshold.label = PARM_LABEL("Threshold", "rouletteThreshold") WIDTH(1.5);
+ PARM(float, 1, "rouletteThreshold", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(rouletteThreshold.label) HSTRETCH;
+
+    rouletteThreshold.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rouletteThreshold.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+clampDepth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ clampDepth.label = PARM_LABEL("Depth", "clampDepth") WIDTH(1.5);
+ PARM(integer, 1, "clampDepth", none, none) RANGE(1,4)
+	LOCK_RANGE_MIN LABELREF(clampDepth.label) HSTRETCH;
+
+    clampDepth.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(clampDepth.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+clampLuminance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ clampLuminance.label = PARM_LABEL("Luminance", "clampLuminance") WIDTH(1.5);
+ PARM(float, 1, "clampLuminance", none, none) RANGE(0,30)
+	LOCK_RANGE_MIN LABELREF(clampLuminance.label) HSTRETCH;
+
+    clampLuminance.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(clampLuminance.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+volumeAggregate.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    volumeAggregate.label = PARM_LABEL("Volume Aggregate Name", "volumeAggregate") WIDTH(1.5);
+    PARM_FIELD(string, "volumeAggregate") VALUE(volumeAggregate.val) 
+	LABELREF(volumeAggregate.label) HSTRETCH;
+
+    volumeAggregate.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(volumeAggregate.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+volumeAggregateCamera.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    volumeAggregateCamera.label = PARM_LABEL("Camera Aggregate Override", "volumeAggregateCamera") WIDTH(1.5);
+    PARM_FIELD(string, "volumeAggregateCamera") VALUE(volumeAggregateCamera.val) 
+	LABELREF(volumeAggregateCamera.label) HSTRETCH;
+
+    volumeAggregateCamera.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(volumeAggregateCamera.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+volumeAggregateIndirect.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    volumeAggregateIndirect.label = PARM_LABEL("Indirect Aggregate Override", "volumeAggregateIndirect") WIDTH(1.5);
+    PARM_FIELD(string, "volumeAggregateIndirect") VALUE(volumeAggregateIndirect.val) 
+	LABELREF(volumeAggregateIndirect.label) HSTRETCH;
+
+    volumeAggregateIndirect.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(volumeAggregateIndirect.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+volumeAggregateTransmission.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    volumeAggregateTransmission.label = PARM_LABEL("Transmission Aggregate Override", "volumeAggregateTransmission") WIDTH(1.5);
+    PARM_FIELD(string, "volumeAggregateTransmission") VALUE(volumeAggregateTransmission.val) 
+	LABELREF(volumeAggregateTransmission.label) HSTRETCH;
+
+    volumeAggregateTransmission.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(volumeAggregateTransmission.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+jointSampling.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("jointSampling", "Joint Sampling") toggle VALUE(jointSampling.val);
+
+    { HSTRETCH }
+
+    jointSampling.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(jointSampling.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+jointScatteringBias.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ jointScatteringBias.label = PARM_LABEL("Joint Scattering Bias", "jointScatteringBias") WIDTH(1.5);
+ PARM(float, 1, "jointScatteringBias", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(jointScatteringBias.label) HSTRETCH;
+
+    jointScatteringBias.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(jointScatteringBias.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+Russian_Roulette.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Russian_Roulette.gad"
+    { 
+	VALUE(Russian_Roulette.gad.val) STRETCH(1,0)
+
+	TAB "Russian Roulette"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    rouletteDepth.gad;		
+	    rouletteThreshold.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Indirect Clamping"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    clampDepth.gad;		
+	    clampLuminance.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Aggregate Volumes"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    volumeAggregate.gad;		
+	    volumeAggregateCamera.gad;		
+	    volumeAggregateIndirect.gad;		
+	    volumeAggregateTransmission.gad;		
+	    jointSampling.gad;		
+	    jointScatteringBias.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    signature.gad; 
+    maxIndirectBounces.gad; 
+    maxContinuationLength.gad; 
+    maxNonStochasticOpacityEvents.gad; 
+    sampleMode.gad; 
+    numLightSamples.gad; 
+    numBxdfSamples.gad; 
+    numVolumeAggregateSamples.gad; 
+    numIndirectSamples.gad; 
+    numDiffuseSamples.gad; 
+    numSpecularSamples.gad; 
+    numSubsurfaceSamples.gad; 
+    numRefractionSamples.gad; 
+    allowCaustics.gad; 
+    accumOpacity.gad; 
+    risPathGuiding.gad; 
+    Russian_Roulette.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

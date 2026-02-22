@@ -1,0 +1,338 @@
+// Magic: f5fc8f9
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Sep 22 11:41:06 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+signature.gad = NULL { }
+
+filename.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ filename.label = PARM_LABEL("Filename", "filename") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "filename") LABELREF(filename.label)
+	VALUE(filename.val) HSTRETCH;
+
+    filename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(filename.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    filename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+filename_colorspace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    filename_colorspace.label = PARM_LABEL_SIMPLE("Color Space", "filename_colorspace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filename_colorspace.menu;
+
+    { HSTRETCH }
+
+    filename_colorspace.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filename_colorspace.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+colorGain.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    colorGain.label = PARM_LABEL("Color Gain", "colorGain") WIDTH(1.5);
+    PARM(float, 3, "colorGain", none, COLOR, "R,G,B") 
+	LABELREF(colorGain.label) HSTRETCH;
+
+    colorGain.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(colorGain.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+colorOffset.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    colorOffset.label = PARM_LABEL("Color Offset", "colorOffset") WIDTH(1.5);
+    PARM(float, 3, "colorOffset", none, COLOR, "R,G,B") 
+	LABELREF(colorOffset.label) HSTRETCH;
+
+    colorOffset.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(colorOffset.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+linearize.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("linearize", "Linearize") toggle VALUE(linearize.val);
+
+    { HSTRETCH }
+
+    linearize.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(linearize.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+fit.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    fit.label = PARM_LABEL_SIMPLE("Fit", "fit") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    fit.menu;
+
+    { HSTRETCH }
+
+    fit.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fit.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+filmMinX.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ filmMinX.label = PARM_LABEL("Film Window Left", "filmMinX") WIDTH(1.5);
+ PARM(float, 1, "filmMinX", none, none) RANGE(0,1)
+	 LABELREF(filmMinX.label) HSTRETCH;
+
+    filmMinX.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filmMinX.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+filmMaxX.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ filmMaxX.label = PARM_LABEL("Film Window Right", "filmMaxX") WIDTH(1.5);
+ PARM(float, 1, "filmMaxX", none, none) RANGE(0,1)
+	 LABELREF(filmMaxX.label) HSTRETCH;
+
+    filmMaxX.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filmMaxX.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+filmMinY.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ filmMinY.label = PARM_LABEL("Film Window Bottom", "filmMinY") WIDTH(1.5);
+ PARM(float, 1, "filmMinY", none, none) RANGE(0,1)
+	 LABELREF(filmMinY.label) HSTRETCH;
+
+    filmMinY.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filmMinY.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+filmMaxY.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ filmMaxY.label = PARM_LABEL("Film Window Top", "filmMaxY") WIDTH(1.5);
+ PARM(float, 1, "filmMaxY", none, none) RANGE(0,1)
+	 LABELREF(filmMaxY.label) HSTRETCH;
+
+    filmMaxY.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filmMaxY.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+offsetX.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ offsetX.label = PARM_LABEL("Offset X", "offsetX") WIDTH(1.5);
+ PARM(float, 1, "offsetX", none, none) RANGE(0,1)
+	 LABELREF(offsetX.label) HSTRETCH;
+
+    offsetX.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(offsetX.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+offsetY.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ offsetY.label = PARM_LABEL("Offset Y", "offsetY") WIDTH(1.5);
+ PARM(float, 1, "offsetY", none, none) RANGE(0,1)
+	 LABELREF(offsetY.label) HSTRETCH;
+
+    offsetY.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(offsetY.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scaleX.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scaleX.label = PARM_LABEL("Scale X", "scaleX") WIDTH(1.5);
+ PARM(float, 1, "scaleX", none, none) RANGE(0,1)
+	 LABELREF(scaleX.label) HSTRETCH;
+
+    scaleX.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scaleX.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scaleY.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scaleY.label = PARM_LABEL("Scale Y", "scaleY") WIDTH(1.5);
+ PARM(float, 1, "scaleY", none, none) RANGE(0,1)
+	 LABELREF(scaleY.label) HSTRETCH;
+
+    scaleY.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scaleY.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+rotate.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rotate.label = PARM_LABEL("Rotate", "rotate") WIDTH(1.5);
+ PARM(float, 1, "rotate", none, none) RANGE(0,1)
+	 LABELREF(rotate.label) HSTRETCH;
+
+    rotate.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rotate.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+holdoutShadowAov.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    holdoutShadowAov.label = PARM_LABEL("Holdout Shadow AOV", "holdoutShadowAov") WIDTH(1.5);
+    PARM_FIELD(string, "holdoutShadowAov") VALUE(holdoutShadowAov.val) 
+	LABELREF(holdoutShadowAov.label) HSTRETCH;
+
+    holdoutShadowAov.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(holdoutShadowAov.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    signature.gad; 
+    filename.gad; 
+    filename_colorspace.gad; 
+    colorGain.gad; 
+    colorOffset.gad; 
+    linearize.gad; 
+    fit.gad; 
+    filmMinX.gad; 
+    filmMaxX.gad; 
+    filmMinY.gad; 
+    filmMaxY.gad; 
+    offsetX.gad; 
+    offsetY.gad; 
+    scaleX.gad; 
+    scaleY.gad; 
+    rotate.gad; 
+    holdoutShadowAov.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

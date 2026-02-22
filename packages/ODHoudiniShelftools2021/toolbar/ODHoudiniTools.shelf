@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="ODTOOLS" label="ODTOOLS">
+    <memberTool name="Copy To External"/>
+    <memberTool name="Paste From External"/>
+    <memberTool name="Separator"/>
+    <memberTool name="exportNetwork"/>
+    <memberTool name="importNetwork"/>
+    <memberTool name="seperator5"/>
+    <memberTool name="tool_11"/>
+    <memberTool name="OBJ Export"/>
+    <memberTool name="MDD Export"/>
+    <memberTool name="Export PFX"/>
+    <memberTool name="LW Import"/>
+    <memberTool name="lwImportMotion"/>
+    <memberTool name="ConvertGrove"/>
+    <memberTool name="Show Node Tree Names"/>
+    <memberTool name="tool_13"/>
+    <memberTool name="createSnapshot"/>
+    <memberTool name="createBBoxFromPoints"/>
+    <memberTool name="Separator2"/>
+    <memberTool name="tool_12"/>
+    <memberTool name="ImageCycle+"/>
+    <memberTool name="imageCycle-"/>
+    <memberTool name="clipToOctaneImages"/>
+    <memberTool name="pbrmulti"/>
+    <memberTool name="Separator4"/>
+    <memberTool name="CopySelToNewGeo"/>
+    <memberTool name="moveSelNodesToNewGeo"/>
+    <memberTool name="tool_14"/>
+    <memberTool name="tool_16"/>
+    <memberTool name="tool_23"/>
+    <memberTool name="RenderBatchFile"/>
+    <memberTool name="primGroupSplit"/>
+    <memberTool name="initMatPicker"/>
+    <memberTool name="pickMat"/>
+    <memberTool name="matNetFromShopAttrib"/>
+    <memberTool name="tool_22"/>
+    <memberTool name="matchMaterials"/>
+    <memberTool name="tool_21"/>
+    <memberTool name="goToFrame"/>
+    <memberTool name="setInPoint"/>
+    <memberTool name="setOutPoint"/>
+    <memberTool name="tool_18"/>
+    <memberTool name="tool_19"/>
+    <memberTool name="ObjAnimToSopTransform"/>
+    <memberTool name="tool_6"/>
+    <memberTool name="tool_10"/>
+    <memberTool name="tests"/>
+    <memberTool name="newtool"/>
+  </toolshelf>
+
+  <tool name="Copy To External" label="Copy To Ext" icon="PLASMA_App">
+    <helpText><![CDATA["""Copies the currently selected object to the clipboard to be used with OD Copy/Paste External.\nYou can read more about it here:  https://github.com/heimlich1024/OD_CopyPasteExternal"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.copyToExternal()]]></script>
+  </tool>
+
+  <tool name="Paste From External" label="Paste From Ext." icon="PLASMA_App">
+    <helpText><![CDATA["""Creates an object from the clipboard data created with OD Copy/Paste External.\nYou can read more about it here:  https://github.com/heimlich1024/OD_CopyPasteExternal"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.pasteFromExternal()]]></script>
+  </tool>
+
+  <tool name="OD Help" label="OD Help" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.help()]]></script>
+  </tool>
+
+  <tool name="Separator" label=" " icon="hicon:/SVGIcons.index?MISC_tree_vline.svg">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="Separator0" label=" " icon="hicon:/SVGIcons.index?MISC_tree_vline.svg">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="LW Import" label="LW Import (Scene)" icon="PLASMA_App">
+    <helpText><![CDATA["""Imports a Lightwave Scene thats been exported with OD Scene To Houdini from Lightwave.  Moved Layout Pivot Points are not supported."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.importLWS()]]></script>
+  </tool>
+
+  <tool name="OBJ Export" label="OBJ Export" icon="PLASMA_App">
+    <helpText><![CDATA["""Exports a single obj or sequence for the  selected object and sets up a Lightwave Scene file with OD ObjectReplacement - Single SOP only.\nAttributes can be exported as well by specifying the name of the attribute.\nYou can use velocity (v) to save the motion vectors which can then be used in Lightwave with Michael Wolfs VMapMotionblur displacement plugin to generate Linear Motion Vectors in LW."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.objExport()]]></script>
+  </tool>
+
+  <tool name="MDD Export" label="MDD Export" icon="PLASMA_App">
+    <helpText><![CDATA["""Exports current selection as MDD. - Single SOP only."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.exportMDD()]]></script>
+  </tool>
+
+  <tool name="Export PFX" label="Export PFX" icon="PLASMA_App">
+    <helpText><![CDATA["""Exports Particles or flip fluids to .pfx Lightwave particle files.  The to be exported 'object' needs to have particle ID attributes.  For Flip Fluids, those can be enabled via the 'add id attribute' in thesolvers properties. - Single SOP only."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.exportPFX()]]></script>
+  </tool>
+
+  <tool name="Show Node Tree Names" label="Show Node Tree Names" icon="PLASMA_App">
+    <helpText><![CDATA["""A simple tool that outputs all the nodes and their names in the console."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.print_tree(hou.node('/'))]]></script>
+  </tool>
+
+  <tool name="PBRImport" label="PBR Octane Import" icon="PLASMA_App">
+    <helpText><![CDATA["""Sets up a selection of PBR Images as octane material.  A Quick and easy way using tokens to assign the images to specific channels.  Currently the following tokens exist:\nColor (_albedo, _color, _clr, _basecolor)\nRoughness (_rough, _rgh)\nNormal (_norm, _normal, _n.)\nDisplacement (_disp, _hght, _height)\nEmission (_emission, _luminosity)\nOpacity (_opacity, _trans)\nSpecular (_spec)\nMetal (_met, _ref)"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.octanePBRImport()]]></script>
+  </tool>
+
+  <tool name="clipToOctaneImages" label="LW Clipboard to Octane Img" icon="PLASMA_App">
+    <helpText><![CDATA["""This requires ODTools for Lightwave where you have a plugin called Surface to Clipboard.\nOnce run in Lightwave, you can use this plugin here, to setup the images as an octane material.  Only the Images itself are setup."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.octaneClipboardToPBR()]]></script>
+  </tool>
+
+  <tool name="Separator2" label=" " icon="hicon:/SVGIcons.index?MISC_tree_vline.svg">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="RenderBatchFile" label="Render Batch File" icon="PLASMA_App">
+    <helpText><![CDATA["""Creates a batch file on the users Desktop (you can change the file in the script itself) and adds the currently selected Hip File to it.  At any point in time, you can just double click on the file on your desktop, and it will execute the render for all addedFiles.\nThe Batch script requires python to be installed, and assumes all output paths and frameranges were setup in the original hip file."""]]></helpText>
+    <script scriptType="python"><![CDATA[import os
+from OD import shelftools
+
+  ###############################################################################
+  # CHANGE LOCATION WHERE YOU WANT TO WRITE THE FILE (INCL. NAME) FOR THE BATCH #
+  # THIS SCRIPT DOES REQUIRE PYTHON TO BE INSTALLED IN IN YOUR PATH             #
+  # IF YOU OPEN A COMMAND PROMPT, AND CAN TYPE python.exe, or py AND A PYTHON   #
+  # CONSOLE STARTS, THEN YOU ARE SET UP CORRECTLY, OTHERWISE, PLEASE INSTALL    #
+  # PYTHON.                                                                     #
+  #                                                                             #
+  #This will save the batchfiles on the users desktop in windows.               #
+  #modify this to a locatin of your choice, ie.                                 #
+  #location = "c:\\temp"                                                        #
+  #note on windows, a \ needs to be a \\                                        #
+  ###############################################################################
+
+location = os.sep.join(os.path.expanduser('~').split("/")[:-1]) + "\Desktop"
+outContext = "/out"
+
+shelftools.createRenderBatchFile(location, outContext)]]></script>
+  </tool>
+
+  <tool name="CopySelToNewGeo" label="Copy Sel to New Geo" icon="PLASMA_App">
+    <helpText><![CDATA["""Copies currently selected SOP nodes into a new Geo Node."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.copySelToNewGeo()]]></script>
+  </tool>
+
+  <tool name="moveSelNodesToNewGeo" label="Move Sel To New Geo" icon="PLASMA_App">
+    <helpText><![CDATA["""Moves currently selected SOP nodes to a new Geo Node."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.moveSelToNewGeo()]]></script>
+  </tool>
+
+  <tool name="primGroupSplit" label="Prim Group Split" icon="PLASMA_App">
+    <helpText><![CDATA["""Splits Primitive Groups into Sub Geo Objects."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.primGroupSplit()]]></script>
+  </tool>
+
+  <tool name="pbrmulti" label="Multi PBR" icon="PLASMA_App">
+    <helpText><![CDATA["""Takes selected images and builds material networks, based on their filename selection set.\nCurrently the following tokens exist:\nColor (_albedo, _color, _clr, _basecolor)\nRoughness (_rough, _rgh)\nNormal (_norm, _normal, _n.)\nDisplacement (_disp, _hght, _height)\nEmission (_emission, _luminosity)\nOpacity (_opacity, _trans)\nSpecular (_spec)\nMetal (_met, _ref)"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.multiPBR()]]></script>
+  </tool>
+
+  <tool name="matchMaterials" label="Match Materials" icon="PLASMA_App">
+    <helpText><![CDATA["""Assigns materials based on object/material name matching."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+#This tool looks at selected nodes, and finds same named materials
+#(in /mat/, and assigns them.
+
+shelftools.matchMaterials()]]></script>
+  </tool>
+
+  <tool name="seperator5" label=" " icon="hicon:/SVGIcons.index?MISC_tree_vline.svg">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="exportNetwork" label="Export Network" icon="PLASMA_App">
+    <helpText><![CDATA["""Allows you to save a network setup (single node - but recursive, so you can wrap your entire setup in a subnet) to a file.\nThis makes it easy to save specific setups and exchange them between sessions of houdini, also easy copying between different houdini license versions."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.exportNetwork()]]></script>
+  </tool>
+
+  <tool name="importNetwork" label="Import Network" icon="PLASMA_App">
+    <helpText><![CDATA["""Allows you to load a network setup into the houdini session (when exported via export network.\nThis makes it easy to save specific setups and exchange them between sessions of houdini, also easy copying between different houdini license versions."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.importNetwork()
+
+]]></script>
+  </tool>
+
+  <tool name="goToFrame" label="Go To Frame" icon="PLASMA_App">
+    <helpText><![CDATA["""Quickly allows you to jump to a specific frame.  Calculations are supported, such as 25+5, etc"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.goToFrame()]]></script>
+  </tool>
+
+  <tool name="setInPoint" label="Set IN Frame" icon="PLASMA_App">
+    <helpText><![CDATA["""Allows you to set the IN frame of the playback range"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.setInFrame()]]></script>
+  </tool>
+
+  <tool name="setOutPoint" label="Set OUT Frame" icon="PLASMA_App">
+    <helpText><![CDATA["""Allows you to set the OUT frame of the playback range"""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.setOutFrame()]]></script>
+  </tool>
+
+  <tool name="Separator4" label=" " icon="hicon:/SVGIcons.index?MISC_tree_vline.svg">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="ObjAnimToSopTransform" label="Obj Anim To Sop Xform" icon="PLASMA_App">
+    <helpText><![CDATA["""Takes the object translation/rotation/scale and puts it into a Transform sop inside the object.  It removes the Obj Level Transform after."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.objAnimToSopTransform()]]></script>
+  </tool>
+
+  <tool name="lwImportMotion" label="LW Import (Motion)" icon="PLASMA_App">
+    <helpText><![CDATA["""Imports a Lightwave Item Motion thats been exported with OD  Mot To Houdini from Lightwave.  Moved Layout Pivot Points are not supported."""]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.importLWMotion()]]></script>
+  </tool>
+
+  <tool name="tool_6" label="Rizom Bridge" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import tempfile, os, hou
+from OD import rizomBridge
+###########################################################################
+#  Change the RizomUV path to your location                               #
+###########################################################################
+rizomPath = os.getenv('rizomuvpath')
+################## DONT TOUCH ANYTHING BELOW THIS LINE ####################
+
+exportFile = tempfile.gettempdir() + os.sep + "odrizombridge.obj"
+
+res = hou.ui.displayMessage("OD Rizom Bridge\nby Oliver Hotz @ oliver@heimlich.net", buttons=('Send To Rizom','Send To Rizom (Clear UVs)','Get from Rizom', 'Automatic Roundtrip', 'Cancel'))
+if res == 0:
+    rizomBridge.sendToRizom(rizomPath = rizomPath, exportFile = exportFile)
+if res == 1:
+    rizomBridge.sendToRizomClearUvs(rizomPath = rizomPath, exportFile = exportFile)
+if res == 2:
+    rizomBridge.getFromRizom(None, rizomPath = rizomPath, exportFile = exportFile)
+if res == 3:
+    rizomBridge.automaticRoundtrip(rizomPath = rizomPath, exportFile = exportFile)
+   ]]></script>
+  </tool>
+
+  <tool name="tool_10" label="Light Placer" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+from OD import lightPlacer
+lightPlacer.callInterface()
+]]></script>
+  </tool>
+
+  <tool name="tool_13" label="Parms to Attribs" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+#you can change the prefix of the attribute below
+shelftools.parmsToAttributes(prefix="OD")]]></script>
+  </tool>
+
+  <tool name="tool_11" label="LWO Import" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.addLWOReader()]]></script>
+  </tool>
+
+  <tool name="ConvertGrove" label="Convert Grove3D" icon="PLASMA_App">
+    <helpText><![CDATA[= OD Grove 3D Converter =
+
+"""Lets you convert alembic files exported from the Blender Grove3D plugin (https://www.thegrove3d.com) to Houdini.  Any Questions, recommendations or bugs, email Oliver Hotz @ oliver@heimlich.net."""
+
+== Overview ==
+
+Once you have the Grove 3D tree exported from blender as alembic, import the alembic file into houdini via file/import/alembic scene (default options).
+You want to go into the sub network and select the main tree named node, and run the tool.  It will automatically setup an instancer that instances the twigs (or a standin proxy if no twigs are available).
+Any animation thats exported from Grove3D is supported as its just saved within the alembic file.  No additional work necessary, just scrub the timeline.
+]]></helpText>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.grove3dToHoudini()
+]]></script>
+  </tool>
+
+  <tool name="tool_12" label="Image 2 OpenGL" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.imageToOpenGLChannel()
+]]></script>
+  </tool>
+
+  <tool name="matNetFromShopAttrib" label="Matnet from ShopAttrib" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.matsFromShopMaterialPath()]]></script>
+  </tool>
+
+  <tool name="ImageCycle+" label="Image Cycle (+)" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.fileCycle(increment=1, parmName = None)
+#change parmName from None to the name of your parameter in quotes, i.e. "filename"
+   ]]></script>
+  </tool>
+
+  <tool name="imageCycle-" label="Image Cycle (-)" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.fileCycle(increment=-1, parmName = None)
+#change parmName from None to the name of your parameter in quotes, i.e. "filename"
+   ]]></script>
+  </tool>
+
+  <tool name="tool_14" label="Prims to Bones" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.convertPrimsToBones()]]></script>
+  </tool>
+
+  <tool name="tool_16" label="OBJ Hierarchy to Bones IK" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.objectHierarchyToBonesIK()
+]]></script>
+  </tool>
+
+  <tool name="tool_18" label="Set Key" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.createKeyframeAt()
+]]></script>
+  </tool>
+
+  <tool name="tool_19" label="Del Key" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.deleteKeyframeAt()
+]]></script>
+  </tool>
+
+  <tool name="tool_21" label="Set Cam To View" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.setCamToView()]]></script>
+  </tool>
+
+  <tool name="tool_23" label="Render Mat Switch" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.setMaterialPerRenderer()
+]]></script>
+  </tool>
+
+  <tool name="tool_22" label="Render Mat Switch" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+
+shelftools.setMaterialPerRenderer()
+
+]]></script>
+  </tool>
+
+  <tool name="tests" label="Agent To World" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.agentTransformToWorld()]]></script>
+  </tool>
+
+  <tool name="pickMat" label="Pick Material" icon="PLASMA_App">
+    <toolMenuContext name="viewer">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.jumpToMaterial()
+]]></script>
+  </tool>
+
+  <tool name="initMatPicker" label="Init Mat Picker" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.initjumpToMaterial()]]></script>
+  </tool>
+
+  <tool name="createSnapshot" label="Create Snapshot" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.saveSnapshotForManager()]]></script>
+  </tool>
+
+  <tool name="createBBoxFromPoints" label="Create BBox" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[from OD import shelftools
+shelftools.selectedPointBBox()]]></script>
+  </tool>
+
+</shelfDocument>

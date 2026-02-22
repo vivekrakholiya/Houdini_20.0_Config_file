@@ -1,0 +1,204 @@
+// Magic: 9c922524
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Dec  1 15:25:39 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+tilemode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    tilemode.label = PARM_LABEL_SIMPLE("Mode", "tilemode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    tilemode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+xside.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+xside.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    xside.label = PARM_LABEL_SIMPLE("X-Axis", "xside") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xside.menu;
+
+    {  }
+
+    {  }
+}
+
+zside.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    zside.label = PARM_LABEL_SIMPLE("Z-Axis", "zside") ;
+    { WIDTH(0.09) }
+
+    zside.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+exportplane.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("exportplane", "Export Ground Plane") toggle VALUE(exportplane.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+edgedensity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ edgedensity.label = PARM_LABEL("Overlap Density", "edgedensity") WIDTH(1.5);
+ PARM(float, 1, "edgedensity", none, none) RANGE(0,100)
+	LOCK_RANGE LABELREF(edgedensity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+debug.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("debug", "Visualize Tiling") toggle VALUE(debug.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+color.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("color", "Visualize Overlapping Elements") toggle VALUE(color.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+gridsamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ gridsamples.label = PARM_LABEL("Debug Resolution", "gridsamples") WIDTH(1.5);
+ PARM(integer, 1, "gridsamples", none, none) RANGE(1,2048)
+	LOCK_RANGE_MIN LABELREF(gridsamples.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+attribname.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attribname.label = PARM_LABEL("Piece Attribute", "attribname") WIDTH(1.5);
+    PARM_FIELD(string, "attribname") VALUE(attribname.val) 
+	LABELREF(attribname.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+newname1.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    newname1.label = PARM_LABEL("Overlap Group Name", "newname1") WIDTH(1.5);
+    PARM_FIELD(string, "newname1") VALUE(newname1.val) 
+	LABELREF(newname1.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+fd_advanced.gad = 
+GROUP collapsible "Advanced" flat   
+{
+    VALUE(fd_advanced.gad.val) LAYOUT(vertical) HSTRETCH
+	    attribname.gad;		
+	    newname1.gad;		
+} 
+
+fd_debug.gad = 
+
+GROUP simple "Debug" flat 
+{ 
+    VALUE(fd_debug.gad.val) LAYOUT(vertical) HSTRETCH 
+	    debug.gad;		
+	    color.gad;		
+	    gridsamples.gad;		
+} 
+
+fd_tiling.gad = 
+
+GROUP simple "Tiling" flat 
+{ 
+    VALUE(fd_tiling.gad.val) LAYOUT(vertical) HSTRETCH 
+	    tilemode.gad;		
+	    xside.row.join;		
+	    exportplane.gad;		
+	    edgedensity.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fd_tiling.gad; 
+    fd_debug.gad; 
+    fd_advanced.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

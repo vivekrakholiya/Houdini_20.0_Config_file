@@ -1,0 +1,69 @@
+// Magic: 74e6a201
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:04:38 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ texture.label = PARM_LABEL("Texture", "texture") ;
+
+ PARM_FIELD (pathstring, "texture") LABELREF(texture.label)
+	VALUE(texture.val) HSTRETCH;
+
+    texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+diff_clr.row.join =		
+{
+
+  LAYOUT(horizontal) JUSTIFY(left, center) UNSCALABLE
+
+diff_clr.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    diff_clr.label = PARM_LABEL("Diffuse", "diff_clr") ;
+    PARM(float, 3, "diff_clr", none, COLOR, "R,G,B") 
+	LABELREF(diff_clr.label) HSTRETCH;
+
+    {  }
+}
+
+lighting.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("lighting", "Use Lighting") toggle VALUE(lighting.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    texture.gad; 
+    diff_clr.row.join; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

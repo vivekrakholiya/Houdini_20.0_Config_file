@@ -1,0 +1,129 @@
+HIP
+{
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/houdini/sc_79_athena_draging_v14.hip
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/houdini/sc_79_athena_draging_v15.hip
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/houdini/sc_79_athena_draging_v16.hip
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/houdini/sc_79_athena_draging_v17.hip
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/houdini/sc_79_athena_draging_v18.hip
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/houdini/sc_79_athena_draging_v19.hip
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/top_angel_ending_shot_v1169.hip
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/top_angel_ending_shot_v1170.hip
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/top_angel_ending_shot_v1171.hip
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/top_angel_ending_shot_v1172.hip
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/top_angel_ending_shot_v1173.hip
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/top_angel_ending_shot_v1174.hip
+}
+PIC
+{
+$JOB/titel_texture/textures/rock_wall_10_disp_4k.exr
+$JOB/titel_texture/textures/rock_wall_10_rough_4k.exr
+$JOB/hdri/qwantani_dusk_2_puresky_2k.exr
+$JOB/hdri/citrus_orchard_road_puresky_2k.exr
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/nuke/export/houdini/projection_v01.exr
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/exr_plate/sc_79_athena_dragging_plate_proxy.$F.jpg
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/exr_plate/sc_79_athena_dragging_plate_proxy.v3.$F.jpg
+$JOB/3d_model/athena/athena_with_texture.fbm/athena_3d_model_cleanup_basecolor.PNG
+$JOB/3d_model/with_texture/tripo_convert_98634ff6-932f-48d2-b445-28bfdd43f762.fbm/desmin_3d_model_cleanup_basecolor.PNG
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/cloud_image/pngimg.com - cloud_PNG112266.png
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/cloud_image/pngimg.com - cloud_PNG112145.png
+$JOB/assets/earth/night_time_texture/8K/8k_earth_daymap.jpg.rat
+}
+GEO
+{
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_04_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_05_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_06_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_07_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_08_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_09_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_11_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/vdb_cloud/CloudPackVDB/CloudPack/CloudPackVDB/cloud_10_variant_0000.vdb
+/mnt/MyBook/Freelance/arnab/sc_84_athena_parthenon_temple/assets/Kitbash3D_ROMAN_EMPIRE/Kitbash3d_RomanEmpire.FBX
+/mnt/MyBook/Freelance/arnab/sc_84_athena_parthenon_temple/assets/Kitbash3D_ROMAN_EMPIRE/Kitbash3d_RomanEmpire.obj
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/3d_model/desmin_3d_model_cleanup.obj
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/3d_model/athena_3d_model_cleanup.obj
+}
+CLIP
+{
+/mnt/MyBook/Freelance/arnab/water_01/fbx/mixamo/new_2/New folder/Climbing Up Wall.fbx
+/mnt/MyBook/Freelance/arnab/water_01/fbx/mixamo/new_2/New folder/Climbing.fbx
+/mnt/MyBook/Freelance/arnab/water_01/fbx/mixamo/new_2/Situp To Idle.fbx
+/mnt/MyBook/Freelance/arnab/water_01/fbx/mixamo/new_2/New folder/Sprint To Wall Climb.fbx
+/mnt/MyBook/Freelance/arnab/water_01/fbx/mixamo/new_2/Vault Over Box.fbx
+/mnt/MyBook/personl/crowd_explosion/charactors/animation_clips/Run Forward.fbx
+/mnt/MyBook/personl/crowd_explosion/charactors/animation_clips/Walking To Dying.fbx
+/mnt/MyBook/personl/crowd_explosion/charactors/animation_clips/Crouched Run.fbx
+$JOB/animation_clips/desmin/Laying Severe Cough.fbx
+}
+FONT
+{
+Lato Bold
+Courier Bold Oblique
+Courier Oblique
+Courier
+Courier Bold
+}
+OTL
+{
+/home/vivek-nr/houdini20.0/otls/ae__VectorVolumeVisualisation.hda
+/home/vivek-nr/houdini20.0/otls/sop_vivek.vr_infaction_ripple_solver.2.hda
+/home/vivek-nr/houdini20.0/otls/mlops.camera_to_points.2.0.hda
+/home/vivek-nr/houdini20.0/otls/LV.StickyNoteController.1.0.hdalc
+/home/vivek-nr/houdini20.0/otls/MOPS_Randomize.hda
+/home/vivek-nr/houdini20.0/packages/axiom3.3.073/houdini_fallback/otls/axiom3.3.hda
+/opt/hfs20.0.547/packages/apex/otls/OPlibAPEX.hda
+/opt/hfs20.0.547/packages/kinefx/otls/OPlibKineFX.hda
+/opt/sidefx_packages/SideFXLabs20.0/otls/SideFX_Labs.hda
+/home/vivek-nr/Desktop/vr_trail_bound_v01.hda
+/opt/hfs21.0.440/houdini/otls/OPlibVop.hda
+/home/vivek-nr/Downloads/JK_PyroShader_AR.hda
+}
+MISC
+{
+$JOB/animation_clips/desmin/Writhing In Pain.fbx
+$JOB/animation_clips/athena/Moving Object.fbx
+$JOB/animation_clips/athena/Running Backward.fbx
+$JOB/animation_clips/athena/Walk Backward Arc.fbx
+$HIP/fbx/athena_animation_tweack_v01.fbx
+$HIP/fbx/athena_animation_tweack_v02.fbx
+$HIP/fbx/athena_animation_tweack_v03.fbx
+$JOB/houdini/alembic/earth_cloud_projection.v01.abc
+$HIP/alembic/earth_cloud_projection.v01.abc
+$JOB/cam/camera_extended_earth_cam_v14.abc
+$JOB/cam/camera_extended_earth_cloud_cam_v15.abc
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/camera_extended_earth_cloud_cam_v15.abc
+}
+FBX
+{
+/mnt/MyBook/Freelance/arnab/Sc70_cave_monster/Shot_69_09/houdini/fbx/cam_v02.fbx
+/mnt/MyBook/Freelance/arnab/sc_09_sword/houdini/abc/cards/cam_projection_v2.fbx
+/mnt/MyBook/Freelance/arnab/sc_09_sword/houdini/abc/cards/cam_projection_v3.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/fbx/cam/cam_v2.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/cam_origanl_v1.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/cam_origanl_v2.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/cam_origanl_v3.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/cam_origanl_v4.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/cam_origanl_v5.fbx
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/houdini/fbx/cam/cam_v1.fbx
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/3d_model/with_texture/tripo_convert_98634ff6-932f-48d2-b445-28bfdd43f762.fbx
+/mnt/MyBook/Freelance/arnab/sc_79_athena_dragging/3d_model/athena/athena_with_texture.fbx
+}
+ALEMBIC
+{
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot/cam/camera_extended_v6.abc
+/mnt/MyBook/Freelance/arnab/opening_shot_earth_rotation/houdini/alembic/cam/render_cam_v03.abc
+}
+PRJ
+{
+/mnt/MyBook/personl/fluid_rnd
+/mnt/MyBook/Freelance/arnab/Sc70_cave_monster
+/mnt/MyBook/personl/vex/polyfolding
+/mnt/MyBook/Freelance/arnab/top_angel_ending_shot
+/mnt/MyBook/personl/proceduel_flip_sim_rippels
+}
+DIRECTORY
+{
+$cache/$HIPNAME/geo/
+$cache/$HIPFILE/geo/
+$cache/geo/
+}

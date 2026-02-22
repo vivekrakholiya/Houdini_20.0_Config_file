@@ -1,0 +1,65 @@
+// Magic: 66dd2532
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Sep 17 15:20:26 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+t.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   t.label = PARM_LABEL("Adjust: Center", "t") ;
+   PARM(float, 3, "t", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(t.label)
+	HSTRETCH;
+
+    {  }
+}
+
+size.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   size.label = PARM_LABEL("Adjust: Size", "size") ;
+   PARM(float, 3, "size", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(size.label)
+	HSTRETCH;
+
+    {  }
+}
+
+button_bbmanip_done.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    {  }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("button_bbmanip_done", "Done Editing  *")
+	push VALUE(button_bbmanip_done.val);
+
+    {  }
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":11 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":12 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":13 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    t.gad; 
+    size.gad; 
+    button_bbmanip_done.gad; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

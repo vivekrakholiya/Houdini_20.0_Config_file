@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "node", "context": "vop", "tags": "usd", "internal": "kma_curvature", "version": "", "namespace": null}, "body": [{"level": 0, "type": "title", "indent": 0, "text": ["USD Transform 2D"], "extent": [38, 59]}, {"type": "para", "indent": 0, "text": ["Represents a USD Transform 2D shader."], "extent": [59, 99]}], "title": ["USD Transform 2D"]}

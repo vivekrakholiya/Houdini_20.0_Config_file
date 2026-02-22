@@ -1,0 +1,102 @@
+// Magic: f6309579
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Thu May 29 15:07:21 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+attrib.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    attrib.label = PARM_LABEL("Capture Attribute", "attrib") WIDTH(1.5);
+    PARM_FIELD(string, "attrib") VALUE(attrib.val) 
+	LABELREF(attrib.label) HSTRETCH;
+
+    attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+
+precision.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    precision.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+samples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ samples.label = PARM_LABEL("Samples", "samples") WIDTH(1.5);
+ PARM(float, 1, "samples", none, none) RANGE(2,20)
+	 LABELREF(samples.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+tolerance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ tolerance.label = PARM_LABEL("Tolerance", "tolerance") WIDTH(1.5);
+ PARM(float, 1, "tolerance", none, none) RANGE(0,0.1)
+	 LABELREF(tolerance.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+guide.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("guide", "Show Capture Guide") toggle VALUE(guide.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    attrib.row.join; 
+    samples.gad; 
+    tolerance.gad; 
+    guide.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

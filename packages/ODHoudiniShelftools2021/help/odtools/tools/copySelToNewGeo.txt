@@ -1,0 +1,22 @@
+= Copy Selection to New Geo =
+
+"""Copy Sop Selection to New Geometry Container."""
+
+This tool takes the currently selected sop nodes and copies them into a new geo container.  When multiple nodes are selected you can optionally create one new geo node per sop node.  
+
+@parameters
+
+::Copy Nodes:
+    Copies the nodes and duplicates them in a new geo container
+
+::Object Merge:
+    Instead of copying, object merges the nodes into a new geo container.
+
+::Single Geo Node:
+    When Object Merge is selected and you have multiple selected nodes, all merges will be copied into a Single Geo Node.
+
+::Multiple Geo Nodes:
+    When Object Merge is selected and you have multiple selected nodes, each object merge will get its own Geo Node.
+
+:vimeo: Example Use of the Tool
+    #id: 484116644    

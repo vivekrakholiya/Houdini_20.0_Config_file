@@ -1,0 +1,252 @@
+// Magic: 97672503
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Jul 28 13:19:23 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+type.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    type.label = PARM_LABEL_SIMPLE("Noise Type", "type") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    type.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+freq.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   freq.label = PARM_LABEL("Frequency", "freq") WIDTH(1.5);
+   PARM(float, 3, "freq", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(freq.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+amp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ amp.label = PARM_LABEL("Amplitude", "amp") WIDTH(1.5);
+ PARM(float, 1, "amp", none, none) RANGE(-1,1)
+	 LABELREF(amp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+rough.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rough.label = PARM_LABEL("Roughness", "rough") WIDTH(1.5);
+ PARM(float, 1, "rough", none, none) RANGE(0,1)
+	 LABELREF(rough.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+generateby.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    generateby.label = PARM_LABEL_SIMPLE("Generate", "generateby") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    generateby.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+forcetotal.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("forcetotal", "Force Total Count") toggle VALUE(forcetotal.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+npts.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ npts.label = PARM_LABEL("Force Total Count", "npts") WIDTH(1.5);
+ PARM(integer, 1, "npts", none, LOGSCALE) RANGE(1,100000)
+	 LABELREF(npts.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+densityscale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ densityscale.label = PARM_LABEL("Density Scale", "densityscale") WIDTH(1.5);
+ PARM(float, 1, "densityscale", none, LOGSCALE) RANGE(0.1,10000)
+	 LABELREF(densityscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+emergencylimit.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ emergencylimit.label = PARM_LABEL("Max Point Limit", "emergencylimit") WIDTH(1.5);
+ PARM(integer, 1, "emergencylimit", none, LOGSCALE) RANGE(1000,10000000)
+	 LABELREF(emergencylimit.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Global Seed", "seed") WIDTH(1.5);
+ PARM(float, 1, "seed", none, SNAP) RANGE(0,100)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+randomizeorder.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("randomizeorder", "Randomize Point Order") toggle VALUE(randomizeorder.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+namemethod.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    namemethod.label = PARM_LABEL_SIMPLE("Name Attribute", "namemethod") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    namemethod.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+nameprefix.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    nameprefix.label = PARM_LABEL("Piece Prefix", "nameprefix") WIDTH(1.5);
+    PARM_FIELD(string, "nameprefix") VALUE(nameprefix.val) 
+	LABELREF(nameprefix.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "VIEW_visualization" VALUE(nameprefix.script_action)
+	HELP("Toggle visualization\nCtrl-LMB: Open the visualization editor")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+Voronoi_Fracture.gad = 
+
+GROUP simple "Voronoi_Fracture" flat 
+{ 
+    VALUE(Voronoi_Fracture.gad.val) LAYOUT(vertical) HSTRETCH 
+	    namemethod.gad;		
+	    nameprefix.gad;		
+} 
+
+Scatter_points.gad = 
+
+GROUP simple "Scatter_points" flat 
+{ 
+    VALUE(Scatter_points.gad.val) LAYOUT(vertical) HSTRETCH 
+	    generateby.gad;		
+	    forcetotal.gad;		
+	    npts.gad;		
+	    densityscale.gad;		
+	    emergencylimit.gad;		
+	    seed.gad;		
+	    randomizeorder.gad;		
+} 
+
+Noise.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Noise.gad"
+    { 
+	VALUE(Noise.gad.val) STRETCH(1,0)
+
+	TAB "Noise"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    type.gad;		
+	    freq.gad;		
+	    amp.gad;		
+	    rough.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    Noise.gad; 
+    Scatter_points.gad; 
+    Voronoi_Fracture.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

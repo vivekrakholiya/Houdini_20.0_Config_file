@@ -1,0 +1,121 @@
+// Magic: 807d1935
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:05:54 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+uv.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   uv.label = PARM_LABEL("uv", "uv") WIDTH(1.5);
+   PARM(float, 3, "uv", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(uv.label)
+	HSTRETCH;
+
+    uv.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(uv.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+exp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ exp.label = PARM_LABEL("Shape Exponent", "exp") WIDTH(1.5);
+ PARM(float, 1, "exp", none, none) RANGE(0,10)
+	 LABELREF(exp.label) HSTRETCH;
+
+    exp.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(exp.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+black_point.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ black_point.label = PARM_LABEL("Black Point", "black_point") WIDTH(1.5);
+ PARM(float, 1, "black_point", none, none) RANGE(0,10)
+	 LABELREF(black_point.label) HSTRETCH;
+
+    black_point.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(black_point.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+white_point.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ white_point.label = PARM_LABEL("White Point", "white_point") WIDTH(1.5);
+ PARM(float, 1, "white_point", none, none) RANGE(0,10)
+	 LABELREF(white_point.label) HSTRETCH;
+
+    white_point.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(white_point.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+grad_exp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ grad_exp.label = PARM_LABEL("Gradient Exponent", "grad_exp") WIDTH(1.5);
+ PARM(float, 1, "grad_exp", none, none) RANGE(0,10)
+	 LABELREF(grad_exp.label) HSTRETCH;
+
+    grad_exp.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(grad_exp.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    uv.gad; 
+    exp.gad; 
+    black_point.gad; 
+    white_point.gad; 
+    grad_exp.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

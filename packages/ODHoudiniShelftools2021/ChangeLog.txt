@@ -1,0 +1,2247 @@
+Documentation link: https://odtools.notion.site/OD-Tools-2021-for-Houdini-e9f3b8ce266d4cad8d9fed7281958c18
+
+ChangeLog:
+
+02/28/2023: (4.78):
+- when an octane texture with triplanar is used (from megascans for example), a vertex displacement node will now be used as the normal displacement node wont work.
+- drag/drop: now supports bvh files
+- Asset Library:
+	- now supports bvh files with special BVH Thumbs (same as already with FBX)
+	- you can set an "expertMode": 1 in the assetLibraryPrefs.json which will disable the Preferences and Folder management tabs in the UI
+	- assetLibraryDirectories.json can now have a custom color. The color itself has to be custom coded currently, and needs to be in the form of int colors, ie. "255,0,0" (for the color key of the entry - a string).  Eventually there will be a gui for this, but thats further down the line.
+- right click on any parm you can now replace a value in selected/multiple of the selected node.  It does a simple search/replace or post/prefix
+- Project Selector:
+	- When a project/hip is loaded or set, you now have an environment variable $ODPRJ that represents the project name (as specified in the preferences of the project selector)
+- Bugfix: right click on locked parm issue that was throwing up and error.
+
+02/12/2023: (4.77):
+- Octane Quicksetup 2022 had an issue on linux with the "Render in Background"
+- Octane Quicksetup 2022 was printing "test" at times.. fixed.
+- Render to Batch File now removes the unsupported REM line for MacOS and Linux
+- drag/dropping an fbx onto houdini and choosing to use the file node now no longer re-arranges the network editor
+- Octane Network Editor Menu was broken
+
+01/21/2023: (4.76):
+- Material Overrides to Mat conversion now asks if you want to convert the override rgb to a prim Cd attribute.
+- more Snippets added to the snippet manager.
+- the main odtools menu has a preference setting now that lets you put the odtools network/parm editor right click menu into a submenu.
+- Substance painter HDA has been updated to support geometry bridges.  Typically, you just set the path or name attribute (has to exist of course) and the names will show up in painter as geometry masks
+
+01/14/2023: (4.75):
+- Octane version detector on linux, now uses : for the split in paths instead of ; (which is what is uses for windows/osx)
+- Distribute Ramp Knots evenly now distributes the last key as C4D ramps when the last key is set to constant interpolation.
+- NEW TOOLS:
+	- You can right click on a parm and hide it.  (note, there currently is a houdini bug that does not let you hide dropdown lists)
+  	To restore a hidden parm, simply click on any parameter and choose Unhide.  This will give you a list of hidden parms that you can then opt to unhide.
+	- Create BBox from Points shelf tool (available in viewport tab) that creates an axis aligned box in the size fo the bounding box of the selected points.  If no points are selected, it will prompt you to select points.
+	- Added a Modeling HDA that creates/fits a circle by giving it 3 points to go through.  If no geometry is input, you can give the coordinates of the points in the UI.
+
+12/24/2022: (4.74):
+- Project Selector
+	- rightclick on hip pulldown allows you to move a hip to an _old folder.  You then also have an option to restore any hip thats in the _old folder
+	- Preference checkbox for a license warning.  This will simply issue a warning, when you are in a houdini indie license, but loading a hip file, so that you dont accidently save the as hiplc.
+- Put Octane Network editor entries into their own sub-category
+- Move Udim Tile HDA now working in H19.5 py 3.9
+
+12/03/2022: (4.73):
+- Reference Manager
+  	- Find file elsewhere now searches case insensitive
+- Main Menu/Utility/CheckHDALatestVersions has been updated to not just list, but also selectively allow you to update to the latest version
+- Project Selector:
+	- update Hip Combobox color correctly when changing scenes/shots
+	- new Feature: Meta checkbox in preferences:
+		- When the meta checkbox is set, and a hip is selected, if it was previously saved, the user/machine/houdini version data is created as a tooltip.
+		- When the meta checkbox is set, and a file is saved, an .infotxt file is written in the same location containing the user/machine name.
+	- new Feature: Right click on Hipfile Combobox. (sometimes, you have to activate the popup box with a right-click click.  Its a focus issue i am trying to work out.)
+		- You can now rename & duplicate a file
+- Ctrl-shift-v (paste as object merge) additions:
+	- in a cop net, a paste will create a fetch if the copied node was a cop node
+	- in a cop net, a paste will create a sopimport if the copied node was a sop node
+	- in a top net, a paste will create a fetch if the copied node was a top node
+	- in a top net, a paste will create a sopimport if the copied node was a sop node
+	- if you are in a Redshift or Octane vopnet, a copied shader, will be pasted as a shadermerge
+- NEW TOOL: HDA Manager (Available from the Main Menu/Panels)
+	- This tool lets you get an overview of all the HDA's in your scene.  It only will show versioned HDA's.
+	- Ability to create a note for an hda (version independent, so you can always see all the notes for any of the versions).  The note will be a separated file in the same location as the hda.
+	- Ability to write protect (on disk) the hda.  When working in a multi user environment, it will show who/when the hda was locked.
+	- Shows you when an hda is embedded in the hip.
+	- Lets you update the hda to the latest version, or any other available version.
+- Set Relative to $JOB now supports multiple selections.
+- Link Transforms now works in the RS USD Material Builder
+- Automatic image connections now work with the RS USD Material builder
+- NEW TOOL: RenameWeights (sop)
+	- lets you easily rename weights/joints.
+- OCTANE Quicksetup for Octane 2022
+- Asset Library:
+	- A "colorswatchvalue" preferences setting has been added to the package json.  When set to "asis" the color value being stored in the asset library for colors, is not converted, but stored as is.  You can also set that variable within the houdini session: os.environ["colorswatchvalue"] = "asis"
+	- When right clicking on a colorswatch in the library, you can have an option to "Copy Colorswatch Value".  After selecting that option, you can then use the "paste Values" option on a color parm to paste the exact float values.
+- Convert Units had a bug with f(eet) and cm
+
+10/07/2022: (4.72):
+
+- Project Selector:
+	- Now has the ability to LOCK hip files.  This makes the hip read only to eliminate accidental overwrites.  A File cannot be locked while it is checked out.
+	- Now has the ability to checkout files.  This mechanism can be used, to let other people know, that you are working on a file.  The checkout mechanism sets the file as read only for anyone but the person checking out the file.  The person that checks out the file can of course save the file.
+	Hovering over the respective lock/checkout buttons, will let you know who/where/when the file was checked out or locked.  Clicking the button will always allow you to override the state, so keep that in mind.
+- Fixed some spelling errors.
+- Explorer drag drop image has a new menu, as well as UVQuickshade added.
+- New Tool (Right Click on a Parm option): Load/Save Parm.
+	Allows you to load/save the parm value as json. This makes it easy to just store a specific parm and reload it when needed.  Only parms, not parm tuples are being saved.  You'll have to save each parm in a parm tuple separately for now.
+- Asset Library:
+	- Megascan tooltips have an additional tag now showing packs that an item might belong to.  Unfortunately Megascans isnt that great being consistent, but it helps a bit with building modules
+	- you can search for specific packs with "!tag +neoclassical modular building vol. 2" for example when you have those items downloaded.
+
+09/15/2022: (4.71):
+- Asset Library:
+	- MaterialX Thumbnails work again
+
+09/11/2022: (4.70):
+- Project Selector
+	- Fixed the initialization of the custom paths when the right click choose project option was used
+- prim split was creating extra underscores
+- Asset Library:
+	- externals were not being packaged when environment variables were used in their path (still not recommended)
+	- The OUT Null was sometimes placed far away from the action when dropping an megascan atlas.
+- New Tool: Check Latest HDA Versions.  Checks whether there are any hda's in your hip file that have newer versions on disk.  Optionally, you can filter based on name, so "labs" would check any labs nodes.
+- New Tool: Re-index workitems Top Node.  Lets you simply reindex with an optional offset.  Useful when you are merging multiple streams of pdg items.
+
+08/12/2022: (4.69):
+New Tool (SOP Context): Custom Collision Shapes HDA.  This makes it easy to create custom collision shapes for use with either crowd agents, or kinefx ragdoll.  Check out this tutorial by Thomas K Christensen's @snakeboxmedia for an overview: https://bit.ly/3JNIgnb  (Thanks for this ! I hope it inspires more people to do these kind of tuts)
+New Tool: Paste Referenced Node.  When a node is in the clipboard, its now possible to paste an absolute reference of it elsewhere.
+- ctrl-shift-v now pastes a reference node in vop networks
+- added fbxfile to the parms supported for the "rename node to filename" right-click option
+- Asset Library:
+	- Megascan Thumbnails are now centered
+	- PSD files are now supported for thumbnailing (19.5+)
+	- redshift osl nodes are now also compiled when in a usd rs material builder
+	- when dragging a material into the library, octane and redshift now also store the version of the respective renderer
+	- Lops Reference in H19.5 change the filepath to a filepattern.  If a filepattern is required, spaces will be encapsulated in quotes.
+	- Asset Library was erroring when selecting multiple obj context nodes and saving them as odzip.
+- Create Out Null (ctrl-enter) now works with multiple selections
+- Redshift material conversions no longer add an extra standard material node
+- Material X Conversions now create a Karma Material X subnet allowing the use of karma nodes within the subnet
+- Copy/Paste External (easy interchange with other apps) now functions in H19.5
+- Project Selector:
+	- now allows per project customization of paths.  You can set a Scene/Shot/Hip Parent.  Example.  Setting the scene parent to "cgi/" (slash at end required), will generate shots based on the project folder/cgi parent.
+	- You can now show all hip/shot/scene notes.  This is only a start, but you can probably guess where its going.
+	- changed the resizing method on the preferences table
+
+07/22/2022: (4.68):
+- Asset Library:
+	- fixed asset library "add to layout asset gallery" for Houdini 19.5
+	- since some versions of Houdini currently have a PIL bug, I wrapped the error to still start the Library, but font thumbnails wont be working
+- NEW Tool: You can right click on a node, and if it has a file reference, you can rename the node to that of the basename of the file.  Handy for texture or geometry nodes.
+- Snippet Manager: fixed a deprecation warning for H19.5
+
+07/18/2022: (4.67):
+- Octane quick Setup 2021 bug Fixes:
+	- daylight environment, when using "same as environment on BG environment" was not showing the daylight env as background
+	- bake lights to HDR file was throwing an error
+- RS Quickmaterial got some fixes, versioned up to 2.1... color space/texture links mainly.
+
+07/08/2022: (4.66):
+- Create Out Sop now can create a null when nothing is selected.
+- Dropping a Hip file and selecting merge could result in an error in rare cases
+- create batch file was having an issue with variables when appending
+- material conversion: when a emission map is specified, redshift materials will set the emission weight to 1
+- The right click menu got cleaned up a bit (with submenus) as the menu is getting very large
+- new tools, along the same lines of shop_materialpath to matnet, you now also have a shop_materialpath to matnet via "material" node.  The difference here, that instead of a wrangle, it uses a material node, which keeps the link dynamic so that you can afterwards adjust the material name and everything remains valid.
+- added .tx files as image formats on the explorer drag/drop
+- ctrl-shift-v will now paste multiple obj context copied nodes, into a single container with them as object merges
+
+06/04/2022: (4.65):
+- Asset Library:
+	- fixed a rare hashing error
+
+06/01/2022: (4.64):
+- Asset Library:
+	- When creating thumbnails for multiple redshift proxies, the previous object was left behind in the thumbnail
+- Create OUT sop now has the option to label the OUT as "IN"
+- redshift to usd/collect right click option now sets the preview surface properly to rgb.  It also creates a better layout for the selected nodes.
+- Adjusted some pathing in Flipbook and Save to only use / slashes
+
+05/20/2022: (4.63):
+- Asset Library:
+	- Now allows dragging texture into the new usd material builder
+	- image import popup was offset by one choice
+	- Matcaps can now be dragged into the viewport to change the viewport shading to use matcaps, or, right click on image and import image as matcap.
+- fspyJsonImport was ignoring variables in filenames
+- shop_materialpath to matnet was erroring out on non name assignments.
+
+05/14/2022: (4.62)
+- Add Parameters was only creating parms under the Additional Parameters on first parm.  Now will do so always
+- Asset Library / Snapshots:
+	- Viewport snapshots were not square when the use resolution checkbox was not ticked.
+	- Redshift usd material builders are now supported for thumbnailing
+	- unique temp folder (set in asset lib prefs) now also are based on time as well as the hash of the file.  This gets around the pesky file lock that houdini has on .abc/.usd files
+- Move Selection to Geo and Object Merge now creates and OUT null in the newly created container that the object merge links to
+- shop_materialpath to matnet was ignoring . in filenames incorrectly
+- Snippet Manager:
+	- when vex includes are copied the clipboard, semicolons are now replaced with commas, which makes the copied text faster to use.
+- NEW TOOL: Add Lookat Null. Obj Level right click.  You can now add a target null.  This will create the null, and setup the lookat in one go.  It selects the null on completion, so its easy to immediately move it around.
+
+05/05/2022: (4.61)
+- External Window python panel QWindow Issue
+
+05/05/2022: (4.60)
+- right clicking on a redshift material and converting it to usd (redshift mat to usd material option), now will also convert the vopnet into a usd vopnet
+	- There is an additional option to also create a usdpreview and collect subnet, so that diffuse textures are visible within karma/hydra
+- Asset Library:
+	- megascan single image and clipboard import where not always using / as path delimiter
+- Atlas Splitter has been updated to version 2. It now has additional options.  By default it was giving you a detailed mesh, you now have the option to get a grid, convex hull, or offset boundary.
+- NEW TOOL (Sop HDA): Little Bits
+	- creates small pieces that you can scatter on particles.  I've created this setup so many times, that i finally made an HDA out of it.  They already have a variant attribute on them for easy scattering.  3 sources shapes (torus/box/sphere) are available, or you can input your own.
+
+04/30/2022: (4.59)
+- flipbooks via flipbook & save are now created correctly on linux and OSX
+- ODZip Enhancement.  When saving nodes collections as odzips, previously, the exact name of the included nodes was stored and that exact name needed to exist previously to restore the odzip.  This limits assets that have version strings in them to only be able to restore to the same version.  Now, with this enhancement, it will take the latest version available of that node.  This allows a stored node "somenode::1.0" to be restored when a "somenode::2.0" and the 1.0 node is no longer existing.  Parms are assumed to be existing obviously.
+This shouldn't impact users that have not run into an issue before and is just enhanced functionality.
+- Snapshot Manager:
+	- When a parameter is restored, and its defaults were an expression, the parameter from the snapshot was not properly restored.
+
+04/27/2022: (4.58)
+- Asset library: fixed button squashing when making panel smaller
+- New variable added to the package .json file.  This works in conjunction with the new flipbook tool, see below.  You will have to add this line to your .json package, unless you use the new included .json package file (note the # instead of the $ for a variable):
+	{"flipBookDestination":"#HIP/flipbook"}
+	You can obviously define the path to be anything, if you use the project selector you can use any of its variables as well.
+- new Flipbook tool.  Creates an mp4 flipbook of the current view (with your current flipbook settings).  It puts the mp4 in the destination directory, as well as a copy of the hip file of the time of the mp4 creation.  Both files, (mp4 and hip) have the hipname plus a time and date in the filename.
+	This assumes that ffmpeg is in your system path.
+	If the destination does not exist, or none is given it will automatically be created in $HIP/flipbook
+	Access to the tool, is via the Main ODTools Menu, the playbar right click options or the ODTools Network Menu
+	Non Commercial Houdini Version flipbooks are limited to 1280x720 resolution
+
+04/22/2022: (4.57)
+- material conversion (when used via right click Convert Material), would append a suffix that would break the original material connection.
+
+04/21/2022: (4.56):
+- some redshift conversion bugs fixed relating to redshift 3.5+
+
+04/21/2022: (4.55):
+- Set Viewport with Camera state now allows a negative start framerange: such as -90-50 which will go from frame -90 to 50.
+- export node Network would error if the file selected was cancelled
+- Reference Manager: Fixed a file not found due to environment variables being used in the string on archiving.
+- Asset Library:
+	- Asset Library can now handle sequences.  It does not matter whether they are image/object/vdb/etc sequences.  When the "seq" button (top right) is selected, it will show one item per sequence.  The middle "frame" of that sequence is currently used when you build a thumbnail while in sequence mode.  When dragged in, the appropriate $F placeholder is used.
+- Right-click option added for a Redshift vopnet to convert it from redshift material to redshift_usd_material
+- General Redshift 3.5 related updates
+	- When converting materials, you now also have the option to convert to redshift standard material (redshift 3.5+)
+	- Right-click option added for a redshift vopnet to convert a normal redshift material to the new redshift standard material (redshift 3.5+)
+	- The ODRendererPreference in the package JSON file now also understands "Redshift Standard Material"
+
+04/06/2022: (4.54):
+- pasting nodes as object merges (ctrl+shift+v), when a nodes is pasted within the same sop context, will create a relative path reference
+- Snippet manager:
+	- widened cursor in the text input field so that it is visible on 4k screens
+	- few snippets & masterclasses added.
+- Project Selector:
+	- When object was loaded via load geo, a status message error would appear.
+	- if you are in a sop context, load geo will load the geometry into that sop context
+- external drag/drop:
+	- added .psd to the image formats.
+- Asset Library:
+	- sopObjNet hda's were not thumbnailed correctly
+
+03/29/2022: (4.53)
+- Asset Library:
+	- Megascan Fix for some inconsistent naming in the Megascan library when using certain assets with Variations
+
+03/29/2022: (4.52)
+- OpenGL preview HDA can now Render & Create a movie all in once with the new Render & Create Movie button.
+- Asset Library:
+	- Ramps can now be dropped on any cop node that has a ramp parameter.  When nothing is selected in cops, a ramp node will be created.
+- Project Selector
+	- widened cursor in the Note Edit Field as it was invisible before on larger res screens
+- Snippet Manager
+	- When a snippet is saved, it gets noted in the Houdini Status Bar
+- speedtree import:
+	- when the image thats being referenced in the stmat does not exist on disk, it is ignored
+	- Houdini Variables can be used.
+
+03/26/2022: (4.51)
+- external drag/drop:
+	- will now create sop creates for items dropped into lops
+	- had an issue with a set environment variable for character and anim import
+- Show Hip Memory footprint was only working on Windows.  Now should work in linux/osx as well.  (Side Note, this only currently works with a FX/Core License of Houdini)
+- Asset Library:
+	- creates thumbnails for orbx formats
+- Substance Painter HDA referencing correctly named materials now.  This broke a few builds ago when the material conversion was updated, but the substance painter HDA wasn't.
+- Add Normal map to Image To OpenGL tool
+- Snippet Manager:
+	- fixed an error that would occur if nothing was selected.
+- Export Spreadsheet as csv was sorting the header, now always puts header in first row
+- SpeedTree Importer Update
+
+03/22/2022: (4.50)
+- export attributes to csv now supports $variables in the filename
+- Asset Library:
+	- Dropping an atlas or 3d geo into an existing sop context would do a layout of all children and rename the container.  Thats no longer the case
+	- Megascans, when imported, now have an OUT null at the end of the import chain.
+- Project Selector:
+	- Can now have a base hip file specified per project (in the preference tab).  When enabled, this new base file is loaded when the New/Init button is clicked to create a new file.  Double clicking on the field and emptying out the string lets you remove the base file.
+- shop_materialpath to matnet was dropping the renderer extension on materials.
+- ctrl-shift-v in sop level (when materials where copied), puts down a material node with the pointer to the material.  You can then simply select the group the material belongs to.
+- Octane Quicksetup 2021 has been updated to version 2.0 (mainly Universal Camera fixes with the Distortion Texture and Custom Aperture maps)
+- New Tool: Obj Context right click "Isolate" and "End Isolation" option.  Allows you to quickly isolate selected object(s)
+- ODTools Radial Menu is born (both available in viewport and Network editor).  You can enable them by assigning a hotkey to them via the Radial Menu Editor in Houdini.  (as for more tools to be available in the radial menu, lobby your suggestion on the discord channel)
+- OGL Preview HDA didnt have the Enable Motionblur toggle exposed.
+- New Tool in the ODTools Main Menu under Utilities: Show Hip Footprint On Disk.  This tool shows you where the majority of your hip file size comes from.  This way, its easy to figure out where some of the ballooning of filesize comes front and you can use it to figure out where it might be beneficial to cache instead
+
+03/17/2022: (4.49)
+- Asset Library:
+	- Individual Images from a megascan asset (such as displacement/roughness/etc maps) can now be imported when right clicked on the asset.
+- Project selector:
+	- the hip search was taking the full path into account instead of just using the actual filename
+- Rizom Bridge was throwing an error on roundtrips.
+- New Tool (Because i really needed it): Right clicking on a sop node now has an option (export submenu) to export attributes and their values to a csv file.  It allows you to separately export Point, Vertex, Primitive and Detail attributes on any given frame.
+
+03/14/2022: (4.48)
+- Asset Library
+	- error was thrown when Mantra was chosen for megascan materials
+	- adjusted displacement scale for megascans on mantra materials
+
+03/13/2022: (4.47)
+- Image to openGL is now working properly when an assignment was made previously
+- Asset Library:
+	- Truetype fonts can now be added to the library and will create a font node in sops/cops/lops/obj level.  Having a font node selected in cops/sops will update the font upon double clicking a different font in the library
+	- The thumbnail folder can now have Variables in them.
+	- Megascan drops into the network editor will now place the node at the mouse pointer
+	- Megascan Assets would sometimes load the LOD image instead of the main albedo image.  It should also now load the exr version (if present) of the displacement image, instead of the png/jpg
+	- set all parms of the enumerate sop, incase the node defaults were changed by the user
+	- fixed an issue where in rare cases, it was not showing multi-sets.
+	- multi-Sets (pbr sets) can now be dragged directly into a lops context (it will create a material library lop).  Its still preferred to create a material library first, and drop them into that
+- Project Selector:
+	- has an option to disable the creation of additional directories (per project).  Typically, you would not want to set this to FALSE, so this wont affect 99% of people, but in the rare instance, where you don't want to create geo, tex, etc folders, you can set it to false.  Note that by doing so, to use some of the functionality (like saving usd/geo) requires that those folders would be there manually created.
+	- A right click on the path in the preference panel lets you toggle True/False of the MakeDirs option.
+	- Right clicking on the a row of project paths in the preferences and setting the project path will now always set the project path correctly, regardless of the column you clicked on.
+	- Status field is read only now
+- Material Conversion:
+	- usd preview material now sets the scale for displacement to 0.01 instead of 1
+	- made a lot of adjustments (specifically naming) that was necessary to work better with Lops.
+- Drag/Drop:
+    - it is now possible to drop a fbx ( by choosing fbx character import) into lops.  The same process for the material conversion as before is still valid, after dropping it, you do the kinefx to material conversion (right click on character import fbx node) and the on the create lop, go to the material tab and press the autofill button
+	- Reference Image respects the obj context (if its a subnet/objnet) that its being dragged into
+
+- Image to Quad Geo hda got a proper material inside, which you can get to by double clicking.  That makes it easy to convert the material to other renders and makes it accessible within Solaris
+- some general code cleanup
+- New Tool (LOP Context): Export USDZ.  You can now right click on a lop node and export a usdz.
+- New Tool (SOP Context): Material Overrides to Mat Conversion.  Creates a new material for each required material overrides.  This can be used also on the Character FBX Import (instead of the character fbx to material conversion) and does not open the HDA.  Materials can be converted within the local context (if no matnet exists, a new matnet will be created), or the /mat context
+- New Tool (Menu/Shelf): Set IN frame: sets whichever frame you are on, as the inpoint of the playback range.  When the currently frame is the same as the inpoint, the inpoint goes back to the global startframe.  Since it is a shelftool, you can set a keyboard shortcut to it.  Its also available in the playbar menu.
+- New Tool (Menu/Shelf): Set OUT frame: sets whichever frame you are on, as the outpoint of the playback range.  When the currently frame is the same as the outpoint, the outpoint goes back to the global endframe.  Since it is a shelftool, you can set a keyboard shortcut to it.  Its also available in the playbar menu.
+- Move UDIM Tile HDA now supports expressions within the UDIMTile parm.
+
+03/04/2022: (4.46)
+- Insert Triplanar was throwing an error
+
+03/03/2022: (4.45)
+- Adjusted FAQ.txt/ReadmeFirst.txt text documents to point at the documentation which will always be the most up to date document.
+- New Tool (SOP): Write Cook hda.  Will simply write an object for each node cook.  See documentation for more info
+- New Tool (OBJ): right click on a node selection on obj context (where each node has a variant attribute - notably megascan plants, but really any object), and it will create an instance distribution thats either random, or you can paint.
+- Textures in vopnets for the various material types (redshift, arnold, vray, 3delight, materialx) now have the right click option to insert triplanar projections.
+- Project Selector:
+	- When a hip is loaded with the appropriate version string (vxxx), an $ODVERSION variable is available containing that version
+	- was erroring on new hip, when project settings were not set in the preferences
+
+02/26/2022: (4.44)
+- depending on the ODRendererPreference variable set in the .json file, either an octane quick material/octane quicksetup, or a redshift quickmaterial/ipr window is created with the respective ctrl+shift+o/shift+tab keys.  Only octane/redshift are currently supported
+- create Out null now only uses one undo slot.
+- New Tools:  Right click on a parameters and you can save/load the animated values as either clips (baked) or keys (not baked).  These can then be reloaded or loaded onto other parms.
+- Redshift Quickmaterial Sop got an update:
+	- now uses the preferred bump/normal workflow.
+	- You can switch between the rs material, volume, incandescent or hair materials
+	- Updated to version 2.0  (prior scenes will load as original v1)
+	- UI Improvements
+	- vertex attrib nodes got replaced by rs color user data
+- Asset Library:
+	- you can now drop gradients on vopnodes
+	- Megascans will now fall back to the alternate format (abc/fbx), should the primary format (set in the preferences) is not found for a file
+	- Megascans Plants now have a variant attribute on their points for easy use in copy to points instancing
+	- Megascans Atlases automatically come in as uv as triplanar makes no sense.
+	- Megascans Atlases will have their material relative to their geo
+	- When dragging multiple fbx's from the library into the network, and the import mode is prompt, after the first prompt, the choice is remembered for the remainder of the items
+- Redshift Material now will put the opacity map into the opacity opengl slot
+- Paste as object merges now occupies a single undo slot
+
+02/21/2022: (4.43)
+- create out null no longer changed pinned editors
+- Asset Library
+	- .mtlx thumbnails now no longer require you to make the viewport smaller for quicker thumbnails.
+	- Megascan assets can now live in a $variable path (such as $MEGASCANS/downloaded/3dplant, etc) and will see all the file references according to the variable name
+	- When create points from color is executed while at sop level, the node is created within the current network instead of /obj level
+- New Tool: Color Nodes to Attrib Color Adjust.  This can take the selection of multiple color nodes, and create a random color list in the attrib adjust color node.
+- Snippet Manager:
+	- added more snippets
+	- added more hscript references for lookup, such as comparison symbols
+- Drag&Drop:
+	- dragging multiple fbx files into houdini will now only ask once for the import method
+- The recent material X change in the asset library (subnets) would break the material assignment.  That has been fixed.
+- New Tool: Right click menu on multiple kinefx Animation Import nodes now allows you to hook them all up as a motionclip sequence.
+
+02/17/2022: (4.42)
+- New Tool:
+	Insert Copied Nodes for each Selection: takes any copied nodes (ctrl-c) and applies the each of the currently selected nodes (optionally as reference).
+	This is also combined with the previous Insert Nodes as Loop process (which has been removed as it is now an option)
+- When converting a material to material X, it is now created in a materialx subnet
+- Asset Library:
+	- on right click of an item, has a "3rd Party" tab now.  Currently, only Color ramps are supported and the first tool can create a Background Gradient node
+	from a ramp asset.  After selecting the option, simply Ctrl-v into your Blackmagic Design Fusion/Resolve session.
+	- material x .mtlx files are now supported in the asset library.  Tip: when creating thumbnails, make the viewport very small (as the thumbnail required only needs to be 512x512 pixels).  .mtlx files can be dragged onto the network view for import.  You can get some free .mtlx from the AMD MaterialX Library at https://matlib.gpuopen.com/main/materials/all
+	Thumbnailing a materialX subnet (dragging the subnet into the library) is NOT YET SUPPORTED
+	- added a new postscript in the documents section dealing with copying entire megascans asset folders.
+	- There is a new option in the preferences "Attempt to read FBX/OBJ Textures on Thumbnailing", that when enabled, attempts to thumbnail fbx/obj files with textures.  This makes uses of the fbx character import and labs obj importer.  There is a slight speed decrease in thumbnailing when this option is used.  (fbx anim thumbnails are unaffected)
+	- When in multi-set mode, you can now drag a set directly into a network editor (matnet, or material library (lops)) to create the material, instead of having to right click and build material
+- Reference Manager:
+	- In addition to the right click "localize" there is now also a localize expanded option.  Previously, localize would not resolve linked parms, as you would really only want to change the original parm, however, should you want to overwrite the behavior, localize expanded will now do that.
+	- a node with multiple parms, like the principledshader, was only recognizing one parm and skipping the others
+- Network editor Hotkeys networkEditorKeys.json is no longer included in the zip file and therefore no longer overwrites a user adjusted file.  A sample is now included in the zip file as networkEditorKeys-Sample.json.
+
+02/14/2022: (4.41)
+- Create FBX Blendshape Parm tool is now only visible in sop level.
+- create Out null right click (also ctrl-enter) will now also create nulls in other contexts, cop/vop, etc
+- create Out null with merge also now available in hotkeys (ctrl+shift+enter) - sop context only.. PLEASE UPDATE YOUR NETWORKEDITORKEYS.json if you made customizations
+- in the previous version, create Out Null checked if the null was default color, and only then would recolor it.  this has be reverted, and is now controlled by an environment variable (please update your odHoudiniShelfTools.json file).  The variable is {"DisableRandomNullColors":"1"}
+
+02/10/2022: (4.40)
+- The network keys have been adjusted to work, when the hou.session variable accidentally gets overwritten. It will then automatically reload the config.  This has the added benefit to reload the keys on the fly.  All you have to do, is do a hou.session.ODNetworkKeys = None in the python console and the keys will automatically be reloaded (for when you want to try different key configs)
+- When using the Create Out Null tool, normally, your nulls are random colored.  To disable this, all you need to do, is set your default color for nulls to be different than the default houdini null color (0.6, 0.7, 0.77).  If the color is different, then all nulls will simply be created with that color.
+
+- New Tool:
+	- Create FBX Blendshape Parms:  This takes the detail channels of an fbx animation import or fbx character import (3rd stream) and creates parameters for each of teh blendshapes.  These will have the animation baked in, and can be modified/adjusted/reanimated.
+	- Insert Nodes as Loop Process (H19 only): takes any copied nodes (ctrl-c) and applies the same nodes through a loop to any currently selected Nodes.
+
+02/07/2022: (4.39)
+- Asset Library
+	- now has the right click item option of adding a thumbnail from the clipboard.
+	- external files packaging was erroring out when a file reference was not on a parm
+
+02/05/2022: (4.38)
+- Reference Manager:
+	- Basically a rewrite.  The look and feel, and most of the functionality remains the same.
+	- Search and replace when nothing is selected, will only highlight and change when the searchstring is found (remember searchstring is case sensitive)
+	- filter function works properly (case insensitive)
+	- sorting tables now works correctly, where as previously, it would mess up the table display
+	- parms with a "pasted parameter" are no longer shown, as only their source should be modified, so that the relative path remains
+	- In the File and Node columns you can hover over the item and get the tooltip showing the complete filename/node.  This is helpful with extremely long filenames/node paths.
+	- some more user notifications, such as when you do "find elsewhere on disk", if its not found, it actually tells you, versus silently finishing.
+- Project Selector:
+	- now has the option to also sort the hipfiles by date
+
+02/04/2022: (4.37)
+- Asset Library:
+	- When clicking on a usd file in the library, and being in lops, you can now select multiple items, and create a variant out of them.  This creates a usda file that can then be loaded as a sublayer, bringing in the primitive with variants
+	- changed how external references are collected.
+- Network editor convenience keys: ctrl+shift + arrow keys moves selected nodes/networkboxes/stickys, dots either left, right, up or down.
+
+02/02/2022: (4.36)
+- Asset Library:
+	- if you copied a color parameter (copy parameter on a color parm), you now have a color lookup in the asset library on right click.  This will take the current folder, and find the closest colors to the one that was copied.  The ten closest matches are displayed.  This assumes that the icons for the color nodes have been created.  It will ignore all non .odzip files in the check, but its best to ONLY have color presets within the folder you are searching.
+	- When Ramps from the asset library are dragged into the network editor and no node is selected or dropped upon, you get the choice of creating a wrangle or color nodes.  When choosing wrangle, a point for each key in the ramp is created.  When choosing nodes, a color node for each of the colors is generated.
+	- Selected Color(s) within the Asset Library can now be converted to a point cloud (right click on the colors)
+
+- Package .json file has been updated to include the rizom path (ODHoudiniShelfTools.json for your packages folder)
+- shift-ctrl-d in the network editor additionally also sets the renderflag (previously only the displayflag) of the node that it hovers over.
+- copy points for curve sop has been retired in H19 as the new curve Node doesnt allow that anymore.  Its still available for versions < H19
+- I had removed the PDG Wedge Shelftool because I thought noone was using it anymore.  As requested, I've added it back to the main menu under utilities for people that are used to using it.
+- New Right Click functionalities added:
+	- Right click on a Color ramp parm, and you can create points from the ramp.  One point per ramp key will be created with attributes for name, path, interpolation and rampPosition.
+	- Right click on a color ramp parm, you can now palletize the ramp.  That means it creates constant keys, including the last key and redistributes them evenly.
+	- Right click on a sop node, has a create ramp from points.  This requires a point only geo, with at minimum Cd attributes and will create a color node with the correlating color ramp.
+
+01/29/2022: (4.35)
+- Asset Library:
+	- Pre Import script added.  This lets you execute a script just before an asset is imported FROM the library.  This is to complement the Post Import script that already existed.  The hou.session.ODAssetLibFile variable holds the file that is about to be imported.
+	- Pre Library Add Script.  This is executed at at the time just before an item is added INTO the library.  A few use cases:  Add the item automatically do a database entry, or, copy the files somewhere else, before adding them to the library. the hou.session.ODAssetLibNodesToAdd variable is an array that contains the nodes that are about to be added.
+	- color ramps can now be dropped into a cop2net and will create a ramp cop there.  This is in addition to dropping them on a node with a ramp parameter(s)
+- Added 3 downloadable ODZip ramp libraries.  You can get them via the discord, or the documentation for the Asset Library)
+- Added the Benjamin Moore color library.  You can get them via the discord, or the documentation for the Asset Library)
+- Added more Hotkeys to the node editor:
+	These particular hotkeys don't require a selection of a node, but simply work on the node you are hovering over.
+	- Ctrl+Shift+D toggles the display flag of a node you are hovering over.
+	- Ctrl+Shift+T toggles the template flag of a node you are hovering over.
+	All keys, can now also be set to a custom keyboard shortcut.  Just edit the networkEditorKeys.json file in the ODTools root folder if required.  Any change within that file, will require a restart of Houdini to accept the keys.  Upon Initial load, the hotkeys are stored in the hou.session.ODNetworkKeys variable.
+
+01/26/2022: (4.34)
+- Asset library:
+	- adds a file cop when an image is dropped into a cop2net.
+	- when a ramp is double clicked, it adjusts the ramp on a selected node (as an alternate of dragging it on the node)
+- Create Render Batchfile now includes the frame increment
+- Added usd Preview surface and Material X to the substance Painter hda
+- ODtools main menu under help, now has an entry to access the download location
+- Substance Painter HDA now uses .obj when an apprentice version is detected, since apprentice does not supporting writing .fbx files
+- Quadriflow HDA was merging in original mesh.
+- New Tool (sop hda): Agents to FBX.  Allows you to quickly split out agents into individual FBX files.
+- Using the fbx character import drag drop now creates the node in the drop position
+- drag drop external import of an ase file, with nameless colors would result in an error on node import.  Now a base name is assigned.
+
+01/20/2022: (4.32)
+- Asset Library "see all tags" now only shows the tags of the selected folder.
+
+01/19/2022: (4.31)
+- OGL Preview HDA was giving a long unreadable error message when the frames could not be found.  Now gives the appropriate message with filename reference
+- .ai, .svg, .pdf added to the external drag drop to put down the od vector importer hda.
+- Grove3D importer has an additional twigindex attribute on the leaf pointcloud.  Essentially just an ID for each twigtype
+- Added a few more pbr tokens.
+- Speedtree import with fbx files is now working properly.  There was an issue with material assignments when using fbx.  Abc was fine.
+- changed PySide2 to the Houdini Qt Libs
+- 4 New Tools.
+	1. Delete Spare Parameter: Right click Parm Menu. Lets you remove a spare parameter.
+	2. Create Spare Parameter: Right click Node Menu. Allows you to quickly create Spare parameters. Names and parameters can be a comma separated entry for multiple parameters to be created at once.
+	3. Create Spare parm from Clipboard. Right click Node Menu.  Allows you to quickly add a previously "copy parameter" parm to the selected node.
+	4. Create Spare Inputs: Right click Node Menu.  Allows you to quickly create spare inputs for each of the copied (ctrl-c) nodes in the buffer.
+- Image to OpenGL now has an option to convert the paths to an absolute path, in addition to the always previous raw value.
+- Added an environment variable to the .json package file: DisableODNetworkHotkeys can be set to "1" to disable the extra hotkeys in the network editor in case they interfere with something you already have set up.  This setting can be changed interactively while in a houdini session via the ODTools Main Menu/Preferences/Enable-Disable Network Hotkeys
+- Hotkeys have been added to the network editor:
+  - ctrl-shift-p: lets you create a new parameter on the selected node(s)
+  - ctrl-enter: creates an out null
+- external drag/drop now create a file cop when an image is dragged to into a copnet.
+- get/set parm hda are now in the ODFX tab menu
+- Asset Library Additions:
+	- now has an option in the right click menu of an item: See All Tags.  This allows you to view all tags in the library, and filter by those (multiple tags can be selected)
+	- now has an option in the right click menu of an item: Parse Text File with asset;thumb line for jpg Thumbnails.  This allows you to take a text file, where each line has a full asset path as per library) and then ; and the full path to the thumbnail you'd like to use. The Thumbnails have to be in jpg format.
+	Example:
+	$TMP/test.bgeo;c:/temp/thumb.jpg
+	c:/temp/animation.fbx;d:/somethumb.jpg
+	...
+	- .ass extension import added. Brings the .ass file in as an arnold procedural in /obj context
+- external drag and drop now supports .ass files. (both dragging into /obj and /sop context are supported)
+
+01/11/2022: (4.30)
+- material x conversions now make sure that displacement, roughness, opacity and metallic/specular are float images
+- fixed a matnet issue in the Asset Library when saving as ODZip where it could error.
+- Megascan objects that are imported into lops will automatically have the redshift material changed to the redshift usd material
+
+01/07/2022: (4.29)
+- Project Selector has a new preference setting "enable hip prefix".  As default behavior its enabled, and as before, the HIP filename that is saved is constructed out of the shot name + name you enter.  When disabled, only the name you enter is used for the save.
+- Oct Quickmaterial 2.0 was missing the presets.
+- Vray materials color space for normal maps is set to none to avoid Conversion
+- Vray materials displacement amount is changed from the default 1.0 to 0.01
+
+01/02/2022: (4.28)
+- Project Selector now has the option to enable autosave.  This will adjust the autosave mode AFTER a hip is loaded.
+- Added VRays .vrscene to the supported extensions for the asset library and explorer drag/drop.
+
+12/31/2021: (4.27)
+- Some changes were required to support Octane 2021.1.1.0 alongside the older versions, mainly a check if the universal material node already exists, since its now being generated by default
+- ctrl-shift-v in network editor (paste as object merge) has been extended:
+  - When pasting in the obj context, it will now create a geo node with object merge inside
+  - When pasting in the lop context, it will now create a sopimport node inside
+  - When pasting in the dop context, it will now create a sopgeo or static object node inside
+- Animbox (main Menu), very very very very very early development version of something I am tinkering with.  Only colored buttons are currently functioning.  This is only for the very experimental people.  The UI, and pretty much everything is going to change a lot over the next few days/weeks while I study the usefulness of such a tool.  It might even turn out useless and go away entirely.  You have been warned :)
+- .rstexbin added to the supported extension format in the reference manager
+- fixed python3 issue with the open in native file requester on parm function
+- Add new Sop context HDA's for procedurally changing keyframes of parameters.  parmKeyGet and parmKeySet. See the following twitter vid for a quick rundown: https://twitter.com/i/status/1476048743426265088
+- Asset Library Megascan Import had an issue with vray displacement connection when using triplanar.
+- Material conversions.  When the emission intensity is 0 on the principled shader, the emissive color will be black instead of white.
+
+12/22/2021: (4.26)
+- ctrl-shift-v in the network editor, will paste previously copied (with ctrl-c) nodes as object merges.
+- First iteration of speedtree (.stmat) import (via the main menu under bridges/conversions).  This is not yet complete (sss maps arent being transfered yet), and gloss maps are not inverted yet for roughness)...
+
+12/21/2021: (4.25)
+- Asset library was sometimes to importing with $variables in file parms
+- Dragging a node from the Network Editor List (shift-w) into the network editor, will now create an object merge of that selected node in the current sop context.
+- you can now right click on a camera, and import an fspy (https://fspy.io/) json export.  Make sure your fspy solve is in a y = up coordinate system.
+
+12/21/2021: (4.24)
+- added a clicked state icon for the abc icon in the asset library.  While it should be obvious when you are and aren't in text mode, the icon now matches.
+- When the asset library's preferences were saved with text mode enabled, the text mode wasn't restored on loading.
+- Main ODtools Menu got a new tool in the import submenu "Execute Clipboard as Python" which makes it really simple to evaluate any python code that you might have copied from discord or elsewhere within houdini.  As Always, be careful when you copy/paste from unknown sources, and the tool will show you the code it will execute before it does, for you to confirm its execution.
+- Interactive Anim HDA now is interactive as soon as you enable record.
+
+12/18/2021: (4.23)
+- The package json now has entries for specifying the path to djv, photoshop and affinity photo.  this is for when you want to use the right click on a string parm with the open in... option.  By default, the paths are windows defaults, so feel free to change them as required.
+- Asset Library can now create IES thumbnails.  This is not going to be fast, as there's a mantra renderer launched, and unfortunately, its just not fast (tested with Karma as well, and there was no difference in speed).  To speed up the workflow a bit, if only up to 8 items are selected, it will launch 8 mantras concurrently, but anything over that, will do one at a time.
+  Dragging an ies file into the network editor allows you to create either a mantra, octane, redshift, vray or arnold light.
+- Asset Library, while in text mode, didn't allow the dragging of items into the network editor
+- Added a new experimental tool to allow interactive keyframing while the playbar is running in realtime.  See the twitter post for more info until I can add the docs.  https://twitter.com/i/status/1471258023687376898
+
+12/12/2021: (4.22)
+- Substance Painter HDA.  When remote scripting is enabled, you now also have the ability to quickly bake the mesh maps within painter automatically.
+
+12/12/2021: (4.21)
+- Substance Painter Bridge now has another optional WIP operational mode.  Via Remote Scripting (I believe at minimum Substance Painter 7.2+ is required).  When using that mode, you can also use the New Udim Tile method.  Other than that, everything continues as previous workflow.  Should this mode be stable, I will probably depreciate the old mode.
+For this mode, a new painter will be launched in remote scripting mode.  Sending from Houdini to painter with remote scripting, will close the currently open file, and create a new file, so be careful regarding having lost work.  This will be fine tuned for future versions.
+For the steam version of Painter, you have to use the remote Scripting mode.  For some odd reason, it does not work with the old mode (I've reported this to the Painter guys, but so far no action yet)
+The steam version of painter will open up a dialog box asking you whether you want to run it with the command parameters.  You essentially have 11 seconds to launch painter, so this dialog needs to be pressed as soon as possible.
+- Snapshot manager, as well as a few other small tools could crash on creating thumbnails, due to using an old thumb method.  The Thumb method now has been updated on all and should remove any crashes happening when thumbnails are created.
+
+12/07/2021: (4.20)
+- Octane Quicksetup help added when hovering over the image parm to remind people how to use the passes and layers
+- Asset Library megascans: added a check before reading json file, to alert when it doesn't exist but continue
+
+12/07/2021: (4.19)
+- Redshift proxy's are now imported with mesh as default display instead of bounding box
+- Asset Library: saving a node setting was stripping expressions
+
+12/05/2021: (4.18)
+- Reference Manager will now also recognize the following extensions: .ai, .vrmesh, .eps, .pdf
+- mats from shop_materialpath now converts to relative path mapping when choosing the relative matnet option
+- mats from shop_materialpath now will create an Unassigned material to fit the assignment, when the attribute is empty/not defined
+- Asset Library was scanning .ds_Store files on a mac... which would lead to issues with folders that have them (megascan folders on osx)
+
+12/04/2021: (4.17)
+- ability to drag obj/sop nodes into the asset library to create .rs (redshift proxies) or .orbx (octane proxies)
+- OSX Fix for the grove source to blender export
+- ability to right click on any obj/sop level node and export it as .rs (redshift proxy)
+- ability to right click on any obj/sop level node and export it as .orbx (octane proxy) has been changed.
+both above cases, will now export a sequence if the node is time dependent, and a single file if not.
+- ability to right click on any obj/sop level node and export it as .vrmesh (VRay proxy)
+- Added drag/drop support from explorer to houdini for .vrmesh files
+- new right click node functionality: Search and Replace in Node parameters.  Does exactly that as in that it takes a search string, and replaces it with a string in all the parameters of selected nodes (and optionally their children)
+- Asset Library now has support for .vrmesh (VRay proxy)
+- Asset Library now allows you to drag any node in and save its node settings.  To activate a node setting, you simply can drag it onto the node, or select the node, and double click on the node setting.
+- Reference Manager was having an issue with Find elsewhere on disk with Variables
+
+11/30/2021: (4.16)
+- quick fix for convert material/obj 2 hda combo regarding string parms
+
+11/30/2021: (4.15)
+
+- Snippet manager now corresponds to up/down arrow keys when browsing through snippets.
+- Removed some no longer needed entries from the package .json, removed the comments to keep the file clean as they are in the help documentation
+- rizompath in opmenu.xml  has been updated to the default RizomLab Rizom 2022 (line 30).
+- Dive into Floating Network and Jump to Material has been adjusted to use a full floating pane versus a tab pane.  This allows properties to be docked.
+- Fbx Drag/Drop from Explorer Character Import now hooks up the rig pose correctly
+- Octane Quicksetup 2021 got a "render in background" which will render the sequence in a separate task in the background, so that you can continue working in your current scene.
+- Octane Quickmaterial is now at version 2.0 which has the adjustments (aov, colorspaces) for octane 2021.  Old scenes will load 1.0, any newly created node is 2.0.  If you don't have Octane 2021, remove the 2.0 hda in the /otls folder.
+- Octane Quicksetup 2021 was missing volume aov's
+- When material thumbnails are rebuild, moving the cursor off of the houdini window could result in an abort
+
+11/24/2021: (4.14)
+- Added Physics Painter as an option for the "Place as Instances" tool.  When choosing the Physics painter approach, you can also optionally create a convex hull for each geo, to make the simulation much much faster, while using the original as render object.  While the convex hull is not a replacement for a properly created collision object (which you can do, and then replace it in the physics painter node), its often sufficient.
+- asset library:
+	- multi-sets had an issue when a directory had 4 digits. fixed.
+	- multiple odzips can now be dragged into the network editor together
+- combine obj in sop merge has a fix for when spaces are entered.  They'll be replaced with an underscore
+- general file name interpretation of udims, like 1001, 1002, etc tiles will now also be recognized as udims as long as they are part of building a material or multipbr set.  single files being dragged into houdini can still be a sequence.
+- Added a Development submenu in the main menu of odtools.  As start, it has an Start RPC menu entry to make it easier for you to create rpc connections.
+- Snippets Manager now has a expand and collapse all on right click
+
+11/23/2021: (4.13)
+- Quick fix for odzip storing caches
+
+11/22/2021: (4.12)
+- Asset Library: Right click functionality has been enhanced with an "Import as" for Images.  This effort will continue in the next build or two to consolidate the menu a bit and make it more readable.
+- Asset Library: ODZip now stores stashes, editnodes, paintstrokes, etc, basically all geometry deltas and parm geo data
+- Asset Library: megascan plants for some reason stored vertex colors in their fbx.  Added an attribute delete to not conflict with the color in openGL
+- Snippets have all H19 vex includes added for function search
+- Snippets have the latest Houdini Hive H19 and Solaris workshop links added
+- Redshift materials received the following changes:
+  a) displacement out mapping from -0.5 to 0.5 (instead of 0-1 previously)
+  b) normal AND bump maps color space set to raw (per redshift docs)
+  c) for megascan assets (megascan directory), for redshift, opacity maps are set as rs sprite (instead of opacity texture previously)
+  	 this only will be done for non triplanar mapping. This should result in faster renders
+  d) only when a metalness texture is present, is the redshift material set to metalness for the fresneltype.
+  e) refl_weight is only changed from default when a metalness texture is present
+  f) translucency is hooked up to transl_color
+- Load .mtl and create Matnet bugfix for when lines started with tabs
+- updated install instructions for new users
+- New Right click on Geo Node: Place as Instances.  This takes the selected item(s), and lets you place copies of it as instances.  Its mainly for quickly placing hero versions.  It has two modes, one, using pick and place, and the other one abuses the skeleton node for easy manual placement.  Both methods can be combined with regular scattering methods for broader placement.
+
+11/18/2021: (4.11)
+- Asset Library.  Making sure that paths with $variables in them, now hash their thumbnail to the variable.  For most people that arent using $variables in their paths, the thumbnails should appear as usual, but for people using $variables, the thumbnails for those folders will have to be re-created.
+- Project Selector got a checkbox in its preferences that allows it to autoload HDA's.  It will load project/shot/scene specific HDAs that are present in the corresponding folders so that they are available within Houdini.
+- as of build houdini-19.0.442, the asset library will now also save networkboxes and sticky notes when they are children of a node dragged into the library.  They were previously ignored.
+- a Resample Ramp has been added to the right click on parms menu
+
+11/17/2021: (4.10)
+- adjusted some menu classifiers - should not matter to users
+- added a backup and restore odtools configs to the main menu
+- fixed a spelling error in the search bar placeholder text in the asset library
+- Right Click parameter scripts added when clicking on a ramp:  (These were contributed by DMNK - big thanks to him.)
+  - Distribute Ramp Knots: Evenly distribute keys along the ramp
+  - Double Ramp Knots: Doubles the ramp knots
+  - Keep Unique Ramp Knots: Keeps only unique values
+- Reference Manager got an update.  It used to only work with either $JOB/$HIP in terms of "local dir".  You can now specify the "local directory".  By default, its still set to $JOB.
+- vray material thumbnail creation in the asset library was not working due to vray non blocking during render
+
+11/16/2021: (4.09)
+- Reference Manager.  More formats added such as gltf and glb amongst others.
+- objToHDA got some fixes to make it more robust.
+
+11/11/2021: (4.08)
+- Asset Library:
+	- megascan import type preference wasnt restored on load
+-fixed some vray conversions.  roughness into glossiness, translucency no longer going into opacity, bump, when a normal, setting the normal tangent, linear for datamaps
+-copy to points -> obj level now will name the geo containers according to their variant is a piece attribute is present
+- redshift material conversions depreciate the old normal map method now
+- renderman material conversion has been improved
+- mtlx normal maps updated
+
+11/10/2021: (4.07)
+- occlusion texture was causing an issue on conversions.
+
+11/09/2021: (4.06)
+- Asset Library:
+	- Another right click option has been added to the folder management tab "Remove Unused Thumbnails" will remove any thumbnails from the library that are no longer used by items in the library.
+	- It is now possible to convert assets to USD right within the library, right-click option, ie. take a character, as fbx import option, use kinefx character import and choose materialx or usd previewSurface for the conversion, and you are good to go.
+	- search function was slightly changed.
+	- if an asset is in a library with variables, the variable is maintained.
+- Vector importer got a fix for a bug when loading a scene with it
+- obj node transforms to sop points had the first index in the array wrong.
+- new tools (available via right click on copy to points node): Copy 2 Points -> Obj Containers [OD] will create object containers for each of the packed objects on object level and object merge the appropriate source into them.
+- Right-click parm enable/disable NoiseFX have been renamed to Enable/Disable MotionFX to fit better what they do
+- Project Selector was not always setting the in/out of the timeline correctly, based on what it was set for the project
+
+11/07/2021: (4.05)
+- MultiPBR/convert material.  Any images not recognized by tokens will now be imported as unconnected images
+- convert materials/multipbr more robust udim detection
+- Asset Library:
+	- when lod's or variations are imported, the name will now be the screen name, not the ondisk obtuse name
+	- changed the way how multi groups are found - should be more robust
+
+11/05/2021: (4.04)
+- convert material will now work with the usdpreviewsurface -> to other renderers (such as material x).  Keep in mind, that to convert usdz you would still need to do manual work as the texture files referenced within a usdz are not "on disk"
+- panels docked can now me made much smaller in H19 (the were somehow larger in H19 as they were in H18.5)  This has the sidefx that it will squash the buttons when you go lower than the minimum size, but allows the pane's to be very small.
+- find Unused Materials now ignores material networks in locked HDA's
+- removed about tab in the snippet manager, as well as the depreciated online database
+- fixed the selection to clipboard in the contact sheet hda.  You can also now specify which file you want to write.
+- Arnold materials now will be generated with <UDIM> instead of %(UDIM)d
+- fixed a python3 issue with the vector importer hda
+- OBJ Level right Click tool added: Change Alembic Load mode.  This allows you to quickly change the load mode of an alembic node within an obj level (provided it has the display flag) from packed to unpacked and back.  Very useful when trying to use the orientation align.
+- shopmaterial path to matnet, now asks if you want to create the materials in /mat or local
+- convert units wasn't working in py3 when clicking on a parm
+- fixed the network editor right click "Add Rotation Noise Constraint" in Python3 builds
+
+	- Asset Library Changes:
+		- solaris domelight/other lights with a file parameter can now receive the double click from the asset library
+		- Thumbnail loading is now threaded by default in the asset Library.  You should see a significant speedup with large folders as well as megascans and multi sets.
+		- Spelling error in the UI
+		- Color/Float ramps can now be saved and restored from the library.  To save, simply drag the parm into the asset library.  To restore, drag the parm onto a node (not the parameter pane, but a node in the network editor) that you want to set a parm on.  Should multiple ramps exist, it will ask which one to apply the ramp to.  If only one exists, it will apply the ramp to that parm.
+		- Arnold Asset Builder Thumbnail was adjusted.
+		- fixed the accidental drag/drop over another item in the thumbnail view that would duplicate items..
+		- asset library now has an option in the preferences where you can define whether you want to import .abc or .fbx files for the megascan assets.  They have to match your downloaded format.
+		- alembic files are now selected in the network editor when dropped into the viewport while on /obj level
+		- delete files on disk shows you how many files will be deleted
+		- general UI: object level nodes now have the ability to change the load mode of an alembic node for when the alembic node is the actual display node.  This is useful for align picking on a packed geo, as you can quickly unpack it, align, and change the mode back again.
+		- Megascans can be added to quicksets.. however you do have to be in megascan mode to be able to see them
+		- Asset Library: You can now have a post import script.  This script can be called every time an asset is imported.  It writes a hou.session.ODAssetLibImports dictionary that you can query and work with from the script.  This dictionary will contain all the nodes that were imported.
+		Sample script (postscript.py):
+
+#####################################################################################
+import hou
+print ("We are now within the post script")
+#we really only have one key, so lets grab it
+key = list(hou.session.ODAssetLibImports)[0]
+#get all the nodes that were created by the import
+for node in hou.session.ODAssetLibImports[key]["nodes"]:
+  #do whatever you want with them, create connections, etc..This is up to the user.
+  print ("The last import created Node:", node, "at path", node.path())
+####################################################################################
+
+10/29/2021: (4.03)
+- added some improvements to the thumbnail threading.
+- fixed a bug in list unused materials
+
+10/27/2021: (4.02)
+- megascan materials can now be dragged into lops material library
+- megascan assets will now also activate their materials in lops
+- redshift conversion will now use redshift usd material in lops
+
+10/27/2021: (4.01)
+- setting megascans mode in the folder management tab of the library was throwing an error.
+
+10/27/2021: (v4.0):
+
+	Brand new documentation: https://bit.ly/3EgCXbO  (shortened link)
+	[ Full Link: https://odtools.notion.site/OD-Tools-2021-for-Houdini-e9f3b8ce266d4cad8d9fed7281958c18 ]
+
+	- Asset Library:
+	  - Drag and drop from asset library into the network Editor / scene Viewer
+	  	- when you drag a material into the scene viewer, drag and drop onto the object, and then click to confirm
+	  - Drag and drop from a material odzip onto objects in the scene viewer will assign the material on obj level
+	  - when you enable the show handle tool before you drag anything into the scene viewer, you can quickly move around objects
+		- Assets can be renamed (this will of course also rename the assets on disk)
+		- Thumbnail from disk has been removed.  Cache Thumbnails does the same thing so it was a bit confusing.
+		- If thumbs are selected, Cache Thumbnails will only work on the selection.  If nothing selected, it will work on all items in that library.
+		- Only items that dont have a thumbnail will be thumbnailed.  If you want to regenerate a thumbnail first, select the item(s) and choose clear thumbnails first
+		- Adjusted some colors in the folder management tab that can be used to identify folders
+		- Asset Libraries can be removed from the folder management tab
+		- hidden column was added to the folder management.  When a library is hidden, it wont show up in the pulldown list
+		- "create new" option was added to the subdir pulldown.  This lets you quickly create subfolders in a library.  Among other things, this could be useful for material libraries for example, where you'd want to make a "brick" or "metals" folder to keep them more organized.  You can of course tag them as well, but options is good.
+		- dragging node into the library, the HDA option works again
+		- You can right click in the thumbnail area, and set the filters per library (show hda, images, etc).  If no specific per library setting is stored, it will default back to what the preferences have.
+		- You can now re-arrange the "directories" in the folder management tab.  You can grab one ore move and move them up/down, and then when finished, right click and click save directories layout.
+		- Asset Library when you drag an item in the network editor/viewport, counts as single undo
+		- import to $JOB has been renamed to Import to Environment, and now lets you specify the folders.  By default, (for non beta people switching to it, it'll be $JOB/tex and geo, so make sure if you are on beta, that you change it to a full path/environment if you are using it)
+		- When import to Environment is checked, megascan assets now will also be copied.
+		- the $JOB custom tex/geo folders can also have other variables, such as tex/$SHOT (assuming you have a SHOT varible defined
+		- in the folder management tab, you can right click and add an empty separator.. it adds it to the bottom which you can then move around
+		- added a "set default library" to the right click options in the thumbnail view.
+		- an option to export thumbnails to another folder with human readables names
+		- enable multi sets now only work on the directory they are in in.  previously, changing to this mode, would always show ALL subdirectories.  That should make this mode much faster to use
+		- The option to choose between triplanar / uv mapping has been added when bringing in materials from megascan, or when you are building materials, the option can be set in the preferences, otherwise will be asked for every material
+		- There are now 4 different ways you can build materials:
+
+			When In MultiSet mode, there are two:
+			a) build material, takes the texture set(s) and makes materials out of them in the network editor
+			b) build material and thumbnail as asset, converts the image set into an asset in the library and renders a thumbnail.
+			c) build material from single diffuse, takes the selected image, and uses it as the diffuse channel in a new material
+
+			The third option is being able to click on any image, and create a material from it, where the image is being used as diffuse map.  It stores the material as an asset and makes a thumbnail.
+
+			When choosing the "build material from set" and a geo/sop node is selected, the material will automatically be assigned.  If a material node is selected on sop level, the path is set to the newly build material
+		- Added show favorites / show tagged toggles on the UI.
+		- enlarged the thumbnail size slider for easier dragging
+		- asset library has new icons on the main gui for image sets, favorites and tags.
+		- asset library has an orange border around the list view when in image sets mode to be more visual about the mode
+		- asset library drag-drop into material network, when the material node is selected, will attempt to hook up token recognized images.
+		- icon size changed for high dpi screens
+		- dragging an item from the asset lib into a file farm for example.. will put the filename into the parm.
+		- you can drag color parms into the library and they'll be saved as a color swatch.	these color swatches, can be dropped onto a sop level network as color nodes, or a material builder network as color constant nodes.
+		- made sure the swatches can be thumbnailed with build thumbnails
+		- Color swatches have a text overlay indicating that they are a color swatch
+		- added the ability to have unique temp folders on import.  (see tooltip overlay)
+		- library, now when you choose a "save as startup library" will also save the subdir you are in
+		- (H19+) added support for taking a USD item from the asset library, and importing it into the lops asset gallery
+		- Material Thumbnails when dragged into the asset library.  All major renderers supported (Karma/MaterialX coming soon)
+		- Start of ODZip 2.0:  (original saved ODZip behavior is unchanged.  To convert, simply load them in, and drag them on the asset library with the same name again, and they will be 2.0 format, and enjoy the features below:
+			- hda's are not selected by default when dragged in.
+			- Quick Materials (rs and octane) now also create thumbnails
+			- Your current ODZips can still be read, and there's no difference to what happend before.
+			- All newly saved ODZips will automatically have the new format.
+			- When a material(s) are dragged in, Thumbnails will be generated for those.
+			  Supported Renderers: Octane, Redshift, 3Delight, Arnold, Vray and Mantra, Renderman.  (more to follow)
+			- To Overwrite an asset, simply save it with the same name.
+			- Solvers, or networks that include solvers, or other nodes that have hidden networks can now be saved.
+			- A little more debug info is added when you try to import an odzip into a context that it doesnt belong in.  (like a material into the /obj context)
+			- When multiple nodes are selected, you are being asked whether you want to import them as "one", or as individuals.  This way, when you multi select materials, select individual, and it'll create thumbnails for each.
+		  - Sop level odzips or material level odzip's can be imported by selecting for example a matnet or a geo container, and it will put the assets inside of that node.  This is in addition to being inside a matnet, /mat or geo container node where it will function as normal
+			-ability to drop on a node in the network editor, ie. drop a material onto a node, it will assign the material to that node.  Drop an image or hdr onto a light, it will put the image in the file parm in the file parm, drop a pbr texture onto a material node (not the vopnet, but the actual material node inside the vopnet, and it will connect the texture.)  - this is the same functionality that we had before when you selected, and then double clicked, now also available as drop from the asset lib.
+			- When a material is getting assigned on obj level, it would put a attrib delete and remove the material assignment on sop level.  When you dragged another one, it would add the same attrib delete again.. thats fixed and there'll only be one.
+
+	- Octane materials (when created via drag/drop or asset library / multipbr), now work with glossiness and reflection.  The glossyness map is brought into the roughness channel inverted, and the reflection is brought into the specular channel.
+	- save nodes to new file will now add the file extension if its not entered.
+	- Lightplacer has been updated to support RedShift Lights of version .46 and later.
+	- check for if environment variables are missing in the json package, if so, always prompt for choices (for fbx drag/drop for example)
+	- added the Image to Quad Poly as an option for when an image is dragged into houdini
+	- objToHDA update to completement some changes made in hda's.  It is now also exposed in odtools main menu, under conversion/bridges
+	- added progress indicator to the obj2HDA
+	- objTransforms2Sop Points now asks you whether you want a regular geo node, or instancer
+	- Convert material, now will maintain variables in paths (before it was evaluating them)
+	- Convert materials sets the ogl color now to the diffuse color of the material, if the material builder supports it (some dont)
+	- shop_materialpath -> matnet has been rewritten and is much faster
+	- prim blast by attribute has been fixed to work with "SPACES" (shudder)
+	- outside drag/drop into a redshift material (with material node selected) will now also drop an rs bump node and connect the texture if a bump token is identified
+	- WWW Site Color Palette drag/drop.  Supported are:
+		https://colorhunt.co (simply drag a palette into the network editor) and http://coolors.co (you have to open the palette as generator on teh web site, and then drag the entire link into the network editor.
+		the drag and drop has two options, either a collection of color nodes, or a wrangle with a point for each color
+	- (H19+) materialx support (mat conversion/library/drag/drop)
+	- on fbx character import added a rigpose to easily check the resulting import
+	- The Network Editor Menu got a "Find unused materials" that will locate any materials that dont have a shop_materialpath assignment in geometry.  It lets you select those for deletion.
+
+
+09/28/2021: (v3.998):
+- updated Install instructions (removed .env method)
+- New Tools:
+	- Viewport Follow Selection HDA (obj level).  Its an object level hda, that when the display flag is on, focuses the viewport on the selection.  This selection could be anything, ie. sop level polys, obj level nodes/multiple, essentially whatever is selected, which is why its important that the HDA itself, is NOT selected.
+	- Image to Quad geo (sop level).  Simply creates a quad in the size and aspect ratio of an image with uvs.
+		(requires H18.5.696+, as there was a bug prior)
+	- Added a "file" option when dragging an image into houdini
+		(requires H18.5.696+, as there was a bug prior)
+- Added Tooltips to the project selector.  These are helpful when the gui is so much compressed that its hard to read buttons.
+- Right click Parm option (open in explorer) will now also select the file in the explorer window instead of just opening the folder.  This change affects windows users only).
+- Asset Library:
+	- When importing a megascan material/asset, the material/asset now has the same name as in the library (not the one it uses on disk, which is different)
+	- When importing a megascan material, if any sop node is selected, a material node will be added pointing to the material.  If a material node is selected, it will update the material node.  If an obj level node is selected, it will apply the material on obj level.
+
+09/25/2021: (v3.997):
+- Snippet Manager:  Nodes werent created when the view was switched after the snippet manager was opened.
+- Overall: Change in how the network Editors are located
+- Asset Library: Megascans Mode and "set to all subdirs" in the right click options, will temporarily override the folder management setting (until a new library is selected)
+
+09/24/2021: (v3.996):
+- In the main Menu, you now have a preferences tab, in which you can set a renderer default, eliminating some of the popups (where it made sense) asking you to choose/change a renderer for a material conversion for example).
+- The environment variable "ODRendererPreference" has also been added to the package .json file.  It currently can hold the following values: "Prompt", "Octane", "Redshift", "3Delight", "Renderman", "VRay", "Arnold", "USD PreviewSurface"
+- The environment variable "ODFBXPreference" has also been added to the package .json file.  It currently can hold the following values: "Agent", "File", "FBX as Scene", "Labs Import", "KineFX Character Import", "KineFX Anim Import"
+- The above environment variables are mainly used on drag/drop as well as various right click network editor functions.  The Asset Library has its own preset in its preferences tab.
+- For convenience, I have updated the ODHoudiniShelfTools.json package file with above variables
+- Asset Library:
+	- Quick Sets!
+		You can select items and add them to a named Quick Set.  These Items can be from multiple libraries.  You can create a new quickset, or add to an existing quickset, as well as remove items from a quickset, or remove the entire quickset.  So if you want to make a collection of favorite items, or.. specific items preselected for a job/shot/etc, this is a way to do it.
+	- You can now enable megascan mode individually for each library in the Folder Management
+- Snippet Manager:
+	- When you double click/apply, the context is also copied into the clipboard buffer.  It still creates the nodes as well when in a sop context as well.
+
+09/23/2021: (v3.995):
+- Big AssetLibrary Update.
+  - There is now a folder management tab, where you would add your folders for the library.
+  - Folders can be colored for visual reference
+  - Inclusions/exclusions are now per folder.
+  - You can set whether you want the subdirs pulldown on  the library tab to be set to ALL or not for each specific library.
+	- Any change in the folder management tab will automatically be saved.
+	- On first start, the old directories.txt is converted to the new assetDirectories.json format
+	- Lots of tooltips have been added to make things easier to understand for the new users
+	- Some Icon line-up adjustments
+	- More python 3 updates
+- Project Selector:
+  - Some small UI changes, and added a label to prompt the user of the right click options in the preferences tab
+
+09/17/2021: (v3.994):
+- Create Out Null now creates a null for each output of a node when multiple outputs are found on a node.
+
+09/10/2021: (v3.993):
+- Asset Library Python 3 Fixes
+
+09/06/2021: (v3.992):
+- Octane Quicksetup 2021 was having issues with HDR's being used for the environment, where you had to toggle the color space for them to not render black.  That has been resolved.
+- Asset Library now has an include dirs/files in the preferences tab.  Be careful with this, as this is global, and not per library (yet), but it allows you to for example only show assets that are in a /published/ folder for example inside the selected library.
+- added _diff_ to the diffuse/base color tokens
+- fixed some udim issues as part of convert materials when using octane
+
+09/04/2021: (v3.991):
+- FBX Anim Thumbnails was sometimes missing geometries in the asset library.  It simply needed an extra cook.
+
+09/02/2021: (v3.99):
+- Octane Quick Setup Selector now allows you to change the camera, go to the first set frame of the setup as well as setting the playbar to the framerange.
+- Python 3 fix for the megascan mode in the asset library
+
+08/27/2021: (v3.98):
+- The Octane Quick Setup Selector, now lets you define a default quicksetup.  Select it, and hit Set as Default.  After that, shift-tab will open that particular ipr as well as the octane camera selector will set the camera for that particular quick setup.
+
+08/17/2021: (v3.97):
+- Drag and Drop with multiPBR choice wasnt creating the material in the position of the mouse pointer in the network material.
+- OD Create Filecache no longer automatically cooks.
+- OGL Preview HDA now also allows to you add the render to the Batch File, and got another few updates, mainly relating to UI.
+- two new entries in the right click menu in the network editor: copy parms and paste parms.  sometimes, you just want to copy all the parameters of one node, to another.  Simply select the source node, and hit copy parms.  Then select the node to paste to, and hit paste parms.  Only parameters that exist in both nodes will be copied.
+- The Network Editor ODTools menu got a new entry "Octane Quicksetup Selector".  When having multiples of those, its an easy way to switch the IPR between them .
+
+08/12/2021: (v3.96):
+- Fixed some Mat Naming issues from illegal material names within Multi PBR Import
+- Static sop tool added to the right click menu when you click on geo containers.  It creates a timeshift node that timeshifts to the current frame, and can be enabled/disabled from the display node.  This is useful when dealing with scenes with a lot of cooking, when you temporarily want to disable all that for example to move cameras.
+- Some optimizations to the Substance Painter Bridge on Material import.
+
+08/10/2021: (v3.95):
+- Snippet Manager was not opening links when double clicking on them
+- Drag and drop changed on FBX Import.  When selecting FBX Character Import, it also automatically drops down a bonedeform.
+- Asset Library on FBX Import.  When selecting FBX Character Import, it also automatically drops down a bonedeform.
+
+08/03/2021: (v3.94):
+Everything should now work across the board with Linked and Pinned Network panes.
+
+08/02/2021: (v3.93):
+- Octane QuickSetup 2021:
+		- Env/BG Env options exposed for backplate/reflection/refraction.  The defaults stay the same, and you shouldnt have to touch them, but in the rare instances where you might have to, the options are now exposed.
+- Asset Library: could have an issue reloading an .odzip file.  I changed the import method, so it should be better now, but most likely, I will redo this in the future to be more robust.  As usual, when restoring, be sure to be in the appropriate context that the odzip was for.
+
+07/31/2021: (v3.92):
+- Octane Quicksetup 2021:
+		- now populates the OCIO options (when OCIO is enabled) without having to activate all pulldowns.
+		- now had a Render PreCheck button that checks if you might have geometry/vdb's without content in the initial frame, which, could result in them being not rendered in subsequent frames.  It really only has a purpose when the Render Mode is NOT set to full scene reload.
+- Python Panels have a label (just a cosmetic change)
+- Snippet Manager got more snippets added, also some notes
+- Asset Library:
+	- Changes to the preference page.  The add and browse folder buttons got removed.  Those features have been added to the right click options.
+	- An Exclusion field has been added.  Within that, you can enter directories and filenames to be ignored.  Directories are specified by putting a / in front and behind and filenames just by their names.  For example /thumbs/ would ignore any thumbs folder and preview.png would ignore any preview.png file, or even .jpg which will ignore any jpg file.  You can add as many as you want, separating them by comma.  They are saved with the preferences.
+
+07/26/2021: (v3.91):
+- Asset Library: Find asset on disk now selects the asset within the explorer window (windows)
+- Project Selector:
+		- Reverse sort was added.  Its now a checkbox you can toggle on/off.
+		- Preferences have changed to .json format and will automatically be converted.  Once a .json file is present in the python_panels folder, its safe to delete the projectSelector.cfg file.
+		- Start/End frame & FPS per project - settable in the preferences tab of the Project Selector
+		- "New" Button added.  This functions as a replacement to the "file/New" Houdini menu.  When used, it will set the new start/end frame and FPS for the project.
+		- When the Save or save Version button is used, the filename is automatically updated in the HIP combobox
+		- Removed the browse button in the preferences.  It was confusing.  Projects are added by right clicking in the empty area below (the table) and choosing "Add Project Path".
+		  Once added, it can be set as the current project by right clicking on the path and choosing "set current project"
+- Snippet Manager:
+		- Auto parm creation was detecting ch() as ints instead of floats.
+		- A Vexpressions category has been added, ie for the vexpressions fields such as the ones in pop wind.
+- fbxCharacterimport material conversion had an issue when it encountered spaces in material names.  That has been fixed.
+
+07/23/2021: (v3.90):
+- A bug snuck in the Asset library that could result in not loading images.
+
+07/22/2021: (v3.89):
+- Asset Library was not restoring the checkbox for "copy to $JOB on import" correctly.
+- Asset Library got a new option for FBX files.  You can select a single/multiple fbx in the library and create an "anim-style Thumbnail" see the following post for more info: https://vimeo.com/577811325
+- Asset Library update the fbx file parm if an fbx node (such as fbx character/animation import) is selected on double click.
+- Octane Quicksetup 2021:
+		 - fixes sequence rendering (it was previously overwriting frame 1)
+		 - fixes the camera resolution popup warning
+		 - fixes the black frame on ipr when you had to reinit the ocio settings
+- Drag & Drop: browser links - dragging and dropping directory from your browser - (as long as the actual link will have a proper identifying extension), can now be dragged onto the network view and are treated just like local images.
+
+07/20/2021: (v3.88):
+- many more snippets added to the snippet manager
+- snippets python 3 fixes
+- many more python3 bugfixes and more depreciated function warnings updated.
+- Pick material got an implicit context awareness to make sure the hotkey works more consistent.
+
+07/18/2021: (v3.87):
+- depreciated createFloatingPane call instances got replaced
+- Snippet manager used to require a wrangle to be selected.  Now, if your network view is in sop context and no wrangle is selected, the appropriate wrangle gets created.
+- First beta of octane QuickSetup 2021 (XB3) (very beta, there are still tons of bugs in the octane version from OTOY, such as the PMC Kernel not working at all)
+  If you are using the 2020 current version, the old quicksetup will automatically be loaded (via shift-tab for example) and if you are using the 2021 version, the Octane Quicksetup 2021 will be used instead.  They are different nodes and can function side by side.
+  The OCT Quickmaterial will still work, although miss 2021 features.  the Quickmaterial HDA will be updated after
+  the release becomes more stable.  If you are venturing on the edge, please report any bugs you find.
+  Again, keep in mind, this is a beta for a beta...
+- Asset Library could error when a favorite was set.
+
+07/15/2021: (v3.86):
+- depreciated hou.expandString and replaced with hou.text.expandString()
+- Redshift QuickMaterial now has the reflection roughness hooked up to openGL as well
+
+07/14/2021: (v3.85):
+- Material Convert got an option to convert to a usd preview material.  Why ? Because if you want to get stuff quickly into unreal, you will want to convert any principled material to the usd preview material and it should transfer just fine.
+
+07/13/2021: (v3.84):
+- Snippet Manager when creating wrangles, will now also add all referenced Parms in the wrangle
+- Added an FAQ.txt for solving common issues.
+
+07/12/2021: (v3.83):
+- accidentally introduced an error in image to opengl in the last build
+
+07/12/2021: (v3.82):
+- Lights are no longer renamed to the name of the texture when using the Asset Library import
+
+07/11/2021: (v3.81):
+- Copy to External/Paste from External has been modified to allow for multiple exports/imports.  To Do so, you'll have to call the python script yourself with arguments.  By default, it behaves as previous versions.
+- Audio formats have been added to drag/drop.
+- Drag/Drop would sometimes error on non recognized formats and present a dialog to save/discard the file.  That's been fixed.
+- Instance by Attribute is now using compiled loops
+
+07/09/2021: (v3.80):
+- Asset Library.  When in a material builder, and double clicking on an image, the image will be opened with the appropriate texture node for the renderer.
+- Asset Library.  Renderman and 3Delight material networks were previously ignored on image import
+- Drag/Drop supports dropping in a Renderman material Builder (remember if you have a material (such as disney bsdf) selected, it will automatically also hook up the textures) - This works for the other renderers as well - just a reminder.
+
+07/09/2021: (v3.79):
+- On MultiPBR, when dragging into an invalid context an error could occur.  Catching that error now with a warning.
+
+07/08/2021: (v3.78):
+- Convert Material uses the new Pixar Disney bsdf for its conversion to Renderman.
+
+07/08/2021: (v3.77):
+- Added Incandescent to the RS QuickMaterial Color option.
+- Redshift quickmaterial as a checkbox under its displacement options to toggle the Obj Level displacement on/off
+- MultiPBR typically creates the materials in /mat context.  If you are within a different material network within the network view, it will create it within that network instead.
+
+07/06/2021: (v3.76):
+- Asset Library Megascans mode fixes an error when it encounters a random .json file in the root of the surfaces folder.
+
+07/06/2021: (v3.75):
+- reverted the substance painter bridge change of enabling displacement on the obj level.
+
+07/06/2021: (v3.74):
+- Redshift QuickMaterial added.  Like the Octane Quickmaterial, it gives you a very quick way to create Sop Level Materials.  Try it out, see what you think, since Redshift is not my primary renderer, its likely that there might be adjustments needed, but it should be a good first version.  Using this node requires Redshift 3.46+.
+- Material Conversion Updates.
+	- Redshift metalness pipes in refl_metalness instead of refl_color
+	- Redshift (when using 3.46+) sets the Colorspace to Raw for dataformats (roughness, metalness, bump, displacement, opacity)
+	- Texture map nodes are named based on channel (color, roughness, etc)
+- Substance Painter Bridge:  For redshift, when a displacement map is found, the obj level parm is set to enable displacement.	I don't really like making obj level adjustments, so if people find this counter to what they want, I will remove it again.  Let me know.
+- Asset Library: Added .dae file format to the geo formats
+- Drag/Drop: Added .dae to the recognized geo formats
+
+07/05/2021: (v3.73):
+- Redshift 3.46+ support added
+- Some Substance Painter HDA Udim Fixes
+
+07/04/2021: (v3.72):
+- New tool for Octane users.  Its more of a "cleanup" or "performance" tool.  If you are using OCT Quick Materials, you are using them because they are so easy and great.  Sometimes, you might want to just have the material decoupled from the sop node and reference it in /mat.  This converts the quickmaterial into a standard /mat material and reassigns it.  You can find it in the right click menu when you select an/multiple OCT Quickmaterial node(s).  This operation is not undo-able.  You really only want to do this when you are finished with a material, as the quickmaterial is just so much quicker to make adjustments.  The copnet feature within the quickmaterial is also ignored in this conversion.
+- Substance Painter Bridge now works on OSX.
+
+07/02/2021: (v3.71):
+- The add to renderbatch file automatically looks in the /out context for rops.  While you can specify your own context to look in, I now made it, that IF no rop is found in /out, it will let you choose from all ropnets found within the hip and add them.  Redshift IPR/AOV and VRAY IPR nodes are ignored as they aren't producing output.
+
+06/30/2021: (v3.70):
+- added "_diff." as color token for the different tools that make use of the tokens
+
+06/30/2021: (v3.69):
+- Some references of mat/ have been changed to /mat/
+- More snippets have been added
+- Asset Library was renaming the octane rendertarget node when an image was double clicked.  Added the rendertarget to the exclusion for naming.
+- Added the EnableAssetLibThreading to the .json package.  still disabled by default.  set it to "1" to enable and try. (keep in mind not to switch libraries while the thumb loading is in process, or it could lead to instabilities)
+- MultiPBR/BuildMaterial.  When a material already exists, it will ask you if you want to create a new one.  Before that, it would always just stop.
+
+06/25/2021: (v3.68):
+- Asset Library Changes.
+	- The ListMode and Sets Mode checkboxes have been removed and added to the rightclick menu.
+	- Relabeled Sets to "Image Sets", which is more descriptive to what it actually is
+	- The Backup & Restore Thumbnails buttons have been removed and added to the rightclick menu.
+	- added _nrm_ to the normal map extension token
+	- There is now a megascans mode. You can enable it by going to a megascans folder and right clicking
+	  in the asset library and enable megascan mode.  To view non megascan libraries, you will have to
+	  disable it again.
+
+		This will essentially work on your megascans "downloaded" folder.  I recommend adding multiple folders such as 3D, Surfaces, etc as separate directories, ie. I made a directory entry for 3d, 3dplant and surface.  Those are the ones I've tested with so far.
+		This is currently in beta and I'd be curious to get feedback.
+		3D Assets: when double clicked, will get imported (mesh that gets imported is the first fbx in the assets folder, textures are the first set within the folder)
+		Surfaces (materials): when double clicked, a material gets created in the /mat context.  Again, textures used are the first set within the folder.
+		Plants: when double clicked the different variations get loaded in.
+		Right clicking on any of the megascan assets in the library, allow you to bring in specific variations/LODs.
+		Any of the Megascan tags can be searched (via !tag).  However, they can currently not be edited.
+
+- Material Conversions:
+	- converting to Octane has been changed a bit (displacement with better defaults) and some of the gamma parms were off, that should all be fixed now.  Also changed some data images from rgb to greyscale.
+	- converting to Redshift will convert %(UDIM)d to <udim> tags
+
+06/21/2021: (v3.67):
+- file Drag/drop makes sure all the paths use forward slashes.
+- images with .1001. in the filename will automatically be recognized as UDIM sequences
+
+06/21/2021: (v3.66):
+- reverted the case non sensitive sort.  Just too many problems with py2/py3
+
+06/21/2021: (v3.65):
+- Contact Sheet HDA now exposes the attribute used for splitting.  With that, it is possible to use other attributes that might be setup, such as path/cluster/class, etc.  Keep in mind, that for the file splitting to disk, that the full attribute will be added as filename, so be careful if the attribute value includes slashes.
+- Project Selector allows you to right click on the notes field (largest field in the panel - that's why i picked it), and change the project right there - which is a bit faster than going to the preferences tab and doing it there.  There seems to be a slight UI bug currently in Houdini, where when the project Selection appears upon right click, you have to right click into that popup to be able to select anything.  Hopefully that can be fixed soon.
+- copy/paste external has received a small update.  Since Houdini's temp folder is not consistent across platforms, it now looks into the correct folder on Linux.
+
+06/19/2021: (v3.64):
+- Asset Library sorting introduced in 3.61 caused issues.. reverted.
+
+06/19/2021: (v3.63):
+- Asset Library Update.  I removed a few of the redundant requesters that could pop up when multiple files were selected, where for example it would ask you many times for which renderer.  It should now only be asked once per selection.  As usual, you can also set the type in preferences directly, but if you had the choice at "prompt", its now smarter and only ask once.
+
+06/18/2021: (v3.62):
+- The Check version (from the main menu dropdown) will now hint to check the Changelog.txt to see what was changed.
+- Project Selector on Windows, when clicking the explorer button, will now navigate and select the file in the explorer window.
+- NEW TOOL: Contact Sheet (sop level hda): This will take any geo input with name attributes, and create a contact sheet of every named piece.  You can also write each named piece to disk.  By default, it autosizes and centers the object.  This is great for any of those kitbash collections, or some of the quixel assets like the debris packs.  When you are viewing the contact sheet, you can also quickly select pieces (parts of a piece(s) are sufficient), and it will write a name string to the clipboard that can be used in blast nodes, or object merges, etc.  In addition to the clipboard, it is also written as a detail attributes to that it can be referenced wherever you need it, ie:  details('path to node', 'selection')
+- Asset Library's Build material (right click) now works with Sets.  As a courtesy reminder.  Naming conventions are important. Any of these need to be present for it to be considered a material:  "_albedo", "_color", "_clr", "_basecolor", "_col", "_diffuse".  that means NOT base_color.
+
+06/15/2021: (v3.61):
+- Lightplacer/Asset Library sort ignoring case sensitivity
+- Asset Library: The entire preferences have changed.
+	This means that you will have to save the preferences again (path to thumbnail folder, etc).  Simply go to the save prefs button in preferences after making your adjustments.
+
+  It is now a json file and the prefs.cfg in the python panels folder can be deleted.  Additions that are stored are the hip/geo/etc filters, as well as the thumbnail size, Sets and List mode checkboxes.
+	If you open the assetLibraryPrefs.json file, you will find a variable "subdirOverrideToAll".  If you set that to 1, the subdir folder will automatically be set to "ALL", meaning it will show all the sub-directories.
+
+- Substance Painter now has a button to open an existing spp project file.  This is useful if you want to come back to a paint that you had done prior, and saves you from searching for the file in Substance Painter.
+
+06/14/2021: (v3.60):
+- Asset Library was missing bgeo.sc (the .sc extension specifically) for geometry formats
+- Substance painter Bridge now also lets you pick the material type for the different renderers.  By default, it prompts you on import to choose the render engine, but you can write your own defaults for the renderer of your choice.
+
+06/13/2021: (v3.59):
+- Substance Painter Bridge (HDA):
+	- Quite a few things have changed here.  First, there's a new button "Send updated model to painter", that lets you easily update a model change to the model in painter.  Don't forget to rebake your textures after you do so.
+	- until now (and still the default) when you changed the name in the UI, the Texture Path and Substance Project path would update.  You can now disable that automatic update and are then left on your own to make sure everything stays in sync.
+	- a checkbox has been added so that instead of creating a material network on sop level (still the default), you can now create the material in /mat context
+
+06/13/2021: (v3.58):
+- Light Placer:
+		- When pressing the Light Properties button, the Light tab instead of the default tab is automatically selected.  This is to reduce clicks.
+		- When a light is enabled/disabled, or solo'ed/unsolo'ed the light_enable switch is also toggled.  Previously only the display flag was set on/off.  They are now in sync.
+
+06/12/2021: (v3.57):
+- Light Placer: Added a green colored line indicator when in placement state
+- Asset Library: added usda, usdc, and usdz to the recognized files
+
+06/12/2021: (v3.56):
+- Project selector has the Load hip button split into load hip and merge hip.  The single button, and question whether you want to load or merge got too annoying, so its now two distinct buttons.
+- the shortcuts in the network editor (like shift tab to start octane ipr) were not working in python 3 (nodegraphhooks)
+- the assetbrowser was renaming the octane node on double click of an image.
+
+06/09/2021: (v3.55):
+- Project Selector will now ask whether you want to load the file, or merge it into existing scene.
+- Substance Painter has an update Textures (which simply refreshes the glcache of the viewport when its out of sync.  The textures itself were always updated anyways, so this is just viewport specific.
+- oct quickmaterial was throwing a warning sometimes of selections not being present...
+
+06/07/2021: (v3.54):
+- Drag & Drop: the .usda and usdz formats have been added to drag/drop.
+- python 3 fix for the Asset library (had issues with the tag system)
+- Project Select restores the Desktop after loading a file to whatever it was before the load.
+
+06/01/2021: (v3.53):
+- Asset library got Favorites and Tags.  When you rightclick on an asset (or multiple) you can set/edit tags for the item(s) (they are simply text strings separate by a space) and/or set them as a favorite.
+	In order to search by tags or favorites you can type the following in the search string field:
+	!fav will list all favorites and then anything after that will be used as search within the favorites (full file path and tags)
+	!tag will list all the items with tags and anything afterwards will be used as search in the tag.
+- Asset Library now has the ability to scale images.  When you right-click on an image(s) you can choose Image Resize and will create a new Image of the selected Size.  For your convenience, the thumbnail indicates the new resolution.
+- Asset library now updates the texture of the VRay rectangular light.
+
+05/25/2021: (v3.52):
+- Asset Library now brings up a dialog to specify save styles when USD nodes are dropped in the asset Library
+- Project Selector got the first USD additions allowing you to quickly save/load usd while in lops context.
+- move selection to new geo is now asking for the name of the to be created container
+- copy selection to new geo is now asking for the name of the to be created container
+
+05/24/2021: (v3.51):
+- obj to lops was adding additional xforms when using shop material path based path attributes.
+
+05/23/2021: (v3.50):
+- Asset library is now dealing with USD better and has new features.  You can now drag/drop from a lop context a node (or multiple) into the asset library and it will create a usd flattened stage file.
+- Some other various USD enhancements and bugfixes.
+
+05/22/2021: (v3.49):
+- obj to lops now allows you to keep existing material networks instead of converting them.
+- obj to lops also will work with obj level hda's now.
+- obj to lops allows you to create a "final usd" which will also include the materials.
+
+05/21/2021: (v3.48):
+- Assetbrowser would sometimes error on import of multiple files.
+
+05/21/2021: (v3.47):
+- Substance Painter bridge got an additional option to create vertex colors per connected element on export.  This can be used for easy ID map creation within painter when you bake the mesh maps (set ID to vertex color)
+
+05/16/2021: (v3.46):
+- Project Selector got an update.
+	- Save Geo/Load Geo buttons are not no more shot only specific.  What that means, is that you can now load/save objects from either Job, Scene or shot specific locations, so if a .bgeo you create is used across multiple shots in a scene... then save it scene specific... if its throughout the whole project, save it project specific.
+	- Scene and Shot names that start with an "_" as their name are ignored.  This was changed (and really shouldnt have an impact) to facilitate above.
+	  So just like with _geo now, you could add _tex folders for scene/project specific textures and they wont be falsely identified as scenes/shots
+	- When saving a .bgeo, the shotname is no longer added as prefix.
+- Snippet manager: Hive snippets weren't properly encoded.
+
+05/09/2021: (v3.45):
+- FMX/HIVE 2021 links added to the snippets.
+
+05/09/2021: (v3.44):
+- Project selector, when using save new version, will now check what the latest version is, and increment from that.  So, if you have v001, v002, v003, and go back to version 002... if you click save new version, it will save as version v004 instead of overwriting v003.
+
+05/09/2021: (v3.43):
+- as octane user, you can now right click on an (or multiple) object containers, and save them as .orbx.  This requires Octane_2020.2.3.1.  Anything before that will result in a crash.
+- Sop Primgroup Split will now also work with float and integer attributes
+
+05/08/2021: (v3.42):
+- added kinefx includes to the snippet manager
+- added a few other snippets/tutorials to the snippet manager
+- drag/drop now asks whether to load or merge a hip file when you drag a hipfile in.
+- Prims to blast was added to the right click on sop nodes.  Its the cousin of the obj level prim group split, and also allows you to split by an attribute.  It will create a blast node for each of the splits.
+
+05/07/2021: (v3.41):
+- drag and drop was ignoring OSL files.
+- I've also added redshift support when dropping an OSL file into the RS Material Builder.
+- Rizom bridge got an annoyance fixed that required a node to be actually selected (instead of just right clicking) - It works now as expected.
+
+05/05/2021: (v3.40):
+- FFmpeg Preview HDA & OGL Preview HDA got some python 3 fixes.
+
+05/04/2021: (v3.39):
+- Reference Manager was missing a cancel button when localizing files.
+- Export Networks / Set Viewport Camera with State / Load State should now all work with Python 3
+
+05/02/2021: (v3.38):
+- Snapshot manager wasn't restoring node connections the an indirect connection within a subnet.
+- Snapshot manager was only storing resolved strings and not the original variables.
+- Octane Quicksetup now can show the flat BG image (camera) in combination with the Daylight Environment
+
+04/30/2021: (v3.37):
+- Snapshot manager got the ability to save each of the snapshots into their own scenes.  Simply select the snapshots you want, and right click to save them into their own scenes.
+
+04/29/2021: (v3.36):
+- Octane shortcuts (such as alt-tab) would create a new quicksetup everytime.
+
+04/28/2021: (v3.35):
+- Snapshot manager was giving an error on SOME nodes (mops deintersect(plus)), which is now fixed.
+
+04/28/2021: (v3.34):
+- Snapshot Manager python update.
+	- saveSnapshotForManager() can now take a string argument that defines the name for the snapshot.  If none is specified, an input will pop up allowing you to enter one..
+	- listSnapshotsFromManager() returns a list of all the snapshots available
+	- loadSnapshotFromManager() takes a string name for the snapshot to load.  If none is specified a list of all available snapshots is presented.  Other settings can be changed giving more arguments (see docstring)
+
+04/27/2021: (v3.33):
+- Asset Library:  When clearing thumbnails it will now respect the selection and only clear the thumbnails for the selected assets.
+- Snapshot manager:  After you create a snapshot, which by default gets the openGL viewport as thumbnail, you now have options for a) thumbnail from clipboard - takes an image that you might have in your clipboard buffer, b) from disk - lets you choose an image to use, or c) overwrite with the viewport again.
+
+04/26/2021: (v3.32):
+- the Reference Manager and Find Replace File Refernce paths had issues with the pathing on linux... thats fixed !
+
+04/26/2021: (v3.31):
+- Snapshot manager has the ability to export differences of a selected node(s) to a .csv file.  This can be accessed in the show Differences panel via the button at the bottom of the panel.
+
+04/25/2021: (v3.30):
+- Octane Quicksetup now allows the $OCTANE_PASS and $OCTANE_LAYER variables in the filename
+
+04/25/2021: (v3.29):
+- Snapshot manager got a big update.  It is now possible, to restore specific parameters of a node.  The way it works, is that you select a node in your current network.  Right clicking on an empty area of the thumbnail view in the snapshot manager, will bring up an option to highlight any snapshot in which that node is present.  You can then right click on a highlighted snapshot, and "show the differences".  A window will pop up allowing you to choose which parameters you want to restore into the current network.
+- Snapshot manager got a shelftool icon that lets you store snapshots without having the manager open.  This can also be added to other menus or hotkeys.  You can also use it in your own python scripts via:
+
+from OD import shelftools
+shelftools.saveSnapshotForManager()
+
+04/23/2021: (v3.28):
+- Snapshot manager got a python3 fix when working with stash sops.
+
+04/21/2021: (v3.27):
+- The Quadriflow HDA has changed.  It used to have the binaries included and they were unpacked at runtime, however, the osx and linux builds were not working properly.  I have now changed the hda so that you can point to your own compile (or use the compiled ones where they work) and added links to such.  So to use the hda, you'll have to download the binary of your choice and set it (you can then save as default).
+
+04/19/2021: (v3.26):
+- The Snapshot manager can now be resized (made smaller in height)
+- The Snapshot manager got the ability to show the thumbnails smaller
+- If you had used the snapshot manager before, you need to delete the prefs file in the pythonpanels folder:
+  ...\ODHoudiniShelfTools\python_panels\snapshotManagerPrefs.json
+
+04/19/2021: (v3.25):
+- The Snapshot manager had a bug where it wasnt restoring geo parm and string attributes in some cases where it didnt detect a change correctly
+
+04/19/2021: (v3.24):
+- Octane Quick Setup got updated to 3.0.  It has the new mplay gamma options as well as the IPR OCIO/Aces hooked up.  Those settings you can find under the Advanced Settings in the Octane Render Tab of the Node.
+- New Node: Grove3D Source Export.  This allows you to create a setup for TheGrove3D in Houdini.  Points are transfered as sources for the trees to grow from.  If the points have normals, they will be taken into consideration within Blender.  If there is a variant attribute, each variant is setup as its own "Grove".  Blockers are geometry that make the tree growth stop, attractors make the trees grow towards that geometry, deflectors deflect from that geo, and shade sets up a shade area.  For more information, consult theGrove3D manual.  The Export button will launch blender and setup everything for you so that you only have to click the grow button and adjust as needed.  When finished in blender, is to export each "grove" as a separate alembic.
+
+04/17/2021: (v3.23)
+- Snapshot Manager now stores the snapshots in the hip file by default.  If you dont want them to be stored within the hip file, simply clear them before saving the hip.  You can of course still save them externally and load them from an external json file.
+
+04/16/2021: (v3.22)
+- Snapshot Manager (BETA).  A new category has been added to the ODTools Menu called "BETA".  Inside of that, you'll see the first tool called Snapshot Manager.  It does exactly that, stores snapshots of your scene.  Some of its functions probably will require a video, but it should also be fairly self explanatory.  You will absolutely run into areas where it fails, and I hope that you'll find the time to report those so that I can fix as many of them as possible.  Its an incredible tool and has the potential to REALLY change how you work within Houdini.  You can save the snapshots by exporting them via save external and loading them back in via load external.  A quick overview is here: https://twitter.com/i/status/1381476543424176131
+- Snippet Manager was erroring out in Python3 due to one of the links not being converted properly.
+
+04/09/2021: (v3.21)
+- Grove 3D importer has been updated to version 2.  I had made the silly assumption that the groups would be standardized in blender for twigs, but they are not, which failed to load some trees then.  Now, you have to specify the twig (as you did in blender) via the path attribute.  A convenient pulldown has been added so it should be very simple to create the.  Version 1 is still available and will be loaded if you had a setup already with v1.  Otherwise, version 2 will automatically be loaded.
+- Asset Library now had a larger Selection list (40 rows instead of 10) when you select a folder.
+
+04/09/2021: (v3.20)
+- The asset library had problems making thumbnails for some object types.  That was a result of a recent update where I had shifted some things around and should be fixed now.
+
+04/08/2021: (v3.19)
+- The Grove Importer got another supplementary hda called Grove3D Vellum Prep which prepares the tree for vellum interaction.  It is meant to take the output of the Importers 2nd output (The Skeleton) and can setup a whole vellum/point deform mechanism for you.  Currently, the node will crash on very large trees due to a bug in Houdini's fuse node.  So its best to save before connecting the node.  When SideFX fixes the bug, I will note so in these release notes.
+- The Grove Importer got some more cleanup done, the skeleton is now created by default.
+
+04/07/2021: (v3.18)
+- The Grove3D Importer was added back into the main menu (conversion/bridges) as a convenience.  It will prompt you to select an alembic file and with that, drop down the grove sop.  The Grove3D import button on the shelf will do the same.  Of course you can also just choose to drop down the Grove3D sop.
+
+04/07/2021: (v3.17)
+- Octane Quicksetup Changes:
+	- the fog medium radius wasnt hooked up with the environment radius.  This makes it much faster now to adjust the fog since there's only one area to adjust.
+	- in the fog panel, the invert absorption checkbox is now exposed
+	- in the fog panel the volume step/shadow ray step is now exposed
+
+04/06/2021: (v3.16)
+- New TheGrove3D Importer.  Sop level HDA to make it really easy to get alembic files imported from the popular Blender Plugin.
+- The old importer has been removed
+
+04/06/2021: (v3.15)
+- Snippet Manager now got a Vex Includes Tab.  That lets you easily browse/search the various include files that ship with houdini, and the functions that are available within them.
+
+04/05/2021: (v3.14)
+- added placeholder text to all python panels which makes search/replace fields more clear in their usage.
+
+04/05/2021: (v3.13)
+- Snippets manager no longer expands all categories when refresh is clicked.
+
+04/04/2021: (v3.12)
+- Snippet manager got many more snippets added (tutorials mainly)
+- Project Manager replaces spaces with _ when a shot/scene/hip is created.
+- Project Manger fixes a nonetype split error that occurs sometimes.
+
+04/02/2021: (v3.11)
+- Snippet manager export to local / connect to online db have been removed.  They are really no longer relevant.
+- Snippet manager has lots of new snippets/links
+
+03/31/2021: (v3.10)
+- Project Selector does an additional check to see if a directory exists before attempting to create it
+
+03/31/2021: (v3.09)
+- Substance Painter bridge would error out when redshift was used and the UDIM tiles option was checked
+
+03/30/2021: (v3.08)
+- Asset Library fixed an error when importing a file introduced in 3.07
+
+03/30/2021: (v3.07)
+- Project switcher will now add a v001 to the filename if no version number is detected on "Save Version Up"
+- Asset Library and Drag drop now classify .diffuse tokens as color tokens.
+- Asset Library, when selecting multiple images of a texture set, now has a right click "Build Material" option.
+- Asset Library, when a file node for geo is selected, will update the filestring when double clicking on a new geo in the library instead of creating a new node
+
+03/29/2021: (v3.06)
+- Octane Quick Material will automatically set the vertex/point attribute on Obj level if a Vertex/Point attribute is used in any of the texturing channels.
+- The project selector now has an entry for additional shot directories in the preferences.  These additional directories will be created when a shot is defined.  The directories can be comma separated such as foo,bar,gamma will create 3 additional folders in addition to the defaults (such as tex, cache, geo)
+
+03/26/2021: (v3.05)
+- Lightplacer Lightbank was erroring out if an Redshift Sunlight was present.
+
+03/26/2021: (v3.04)
+- Project selector was not setting the file path correctly on object loading.
+
+03/25/2021: (v3.03)
+- Project Selector and Asset Library were ignoring the educational extension of Houdini.
+- Network Import got a safe mode which will check nodes/parameters before they are created.  Sometimes, Houdini or 3rd parties rename or remove nodes and this should catch this and not error out and create what it can.
+- Asset Library's ODZip format now uses the above method.  You can still use the old method (via the prompt), but the new method is only marginally slower so I might make that the default soon.
+
+03/23/2021: (v3.02)
+- Reference Manager was ignoring .rs (redshift proxies) and .rat (image format) files.
+- Reference Manager commit button was not working correctly (right click was fine though)
+
+03/22/2021: (v3.01)
+- The asset Library panel has been renamed.  If you run into an issue of it not showing up, you just have to add it in the python panel editor again.  This was necessary because the panel sometimes got confused where it would open a different panel.  If you saved a desktop with the panel open, you will most likely have to resave it.
+- Same bug was fixed with some of the other panels.
+- Snippet manager now also supports rig wrangles.
+- Snippet manager descriptions can now be seen by just hovering over an entry.
+- Snippet manager got more kinefx tutorial links added.)
+- Obj level nodes got a new right click option "Add Rotation Noise Constraint".  This is an awesome way to add a steady cam kinda feel to your camera work as an example.  It sets up a chopnet for the rotation channels, and the noise can be adjusted in the vopchop.  All your animation keys will remain intact and it will just be added on top of the current animation.  To enable/disable quickly, simply disable the "enable constraint" checkbox.  In General, the scope can be changed on the vopchop to also add it to the tx/ty/tz /etc channels.
+
+03/20/2021: (v3.00)
+- Asset Library now handles .rs proxies correctly.  Previously, it was looking for .proxy files, not also works with .rs files
+- Drag drop into Houdini now handles .rs proxies correctly.
+
+03/15/2021: (v2.99)
+- Asset library was renaming the octane quicksetup node when an image was clicked
+- drag and drop of an image in the network view now has the option to apply it as a network image as well.
+- Snippet Manager's Entries are now sorted alphabetically.  For people that just want to browse them (I usually use the search function), this might be handy.
+- Snippet Manager got a "Links" entry.  The idea behind this, is to curate a list of useful weblinks, might be tutorials, blogs, whatever might be useful to us Houdini Artists.  Please.. I will need your help on this.  If you would like to contribute here, please send me an email, and I will tell you how.
+Double clicking on the entry will open the link in a browser window.  I started adding the master classes to give you an idea and some of the SideFX curated links.
+You can filter "types as well", ie. if you want to only show wrangles and no links just include the word wrangle in your search string...
+
+03/08/2021: (v2.98)
+- create filecache now no longer executes the baking on creation.  You will have to manually press the button.
+- Pick Material from viewport was returning an error when a click was unsuccessful.
+- Rizom Bridge/Menu/Rightclick/HDA and shelf buttons were updated to default to rizom 2020.1 by default.
+- Snippet Manager got a Python3 fix for when its saving snippets
+
+03/06/2021: (v2.97)
+- MultiPBR got an update.  It can now handle multiple Texture sets and creates materials for them in /mat.
+- MultiPBR option also got added to the drag/drop.  That means, when multiple image sets are dropped into Houdini, you can now tell it to handle the "drop" as a multi pbr drop.  At minimum, you need to have an albedo/color texture for multi pbr to work.
+- Drag and Drop: as a reminder.  IF you are in a vopnet (material) and select the material node and then drop the images, the images will be connected to the material.  If you do not select the material node inside the vopnet, they will just be added as Image Nodes
+- LightPlacer now handles the sizing correctly of Redshift Area lights as well as Arnold Area Lights, which by default do not scale via sx,sy,sz parms.
+- Drag and drop got the ability to now add the image as a reference image.
+
+03/05/2021: (v2.96)
+- Project Selector & Asset Library search update.  When you put words separated by a space, it only returns the results that include ALL words.
+- hda's were accidentally saved as indie versions. that should be resolved.
+
+03/03/2021: (v2.95)
+- create materials from shop_materialpaths was erroring out when a material started with a digit.  Since the material is named from that, that would be an illegal name and houdini does not allow that.  In those instances an underscore is now added as prefix.
+- Quixel HDA Prep was assuming there was a scatter node present, it is now checking first.
+
+03/02/2021: (v2.94)
+- Image to Copnet Aces now uses environment variables for you to decide specific color transforms.  You can set them in the packages file (see included one as an example.)  The to/from space profiles you specify, have to be present of course.  By default, if no additional environment variables are specified, the conversion is as previous.  Here are the variables:
+
+ODAcesSRGBSource -> "srgb_texture"
+ODAcesLinearSource = "linear"
+"ODAcesTarget" = "ACES - ACEScg"
+
+Remember that OCIO has to be of course setup in Houdini.
+
+03/02/2021: (v2.93)
+- Asset Library will now alert you when doing any thumbnail related tasks if the thumbnail directory doesnt actually exist.
+- more snippets added to the snippet manager
+- documentation updates (ongoing work in progress)
+- load/save .hcam got a check to make sure the parameters exist
+- Obj Node Transforms to Sop Points: got a new mode that keeps a live connection, and with that, also brings in the animation.
+- Image to Copnet "Aces" now also exists and will convert the texture(s) to aces and link the copnet.  .jpg, .tga, .png, .tif get treated as srgb_texture -> aces cg, everything else as linear->acescg.  OCIO has to be enabled of course in Houdini.
+
+02/21/2021: (v2.92)
+- Snippet Change: When you now add your own snippets, they will no longer be overwritten.  I have created a shippedSnippets.json that is now loaded automatically, and the snippets.json from earlier, only your entries/modifications are stored.  This should greatly reduce the confusion, and fix all the overwriting issues.  This change was necessary to facility the Notes category below.  This also means, that shipped Snippets can no longer be removed, but you can always lobby for a reason to with me.
+- Snippets manager got a Notes Category.  Since a lot of people seem to have a lot of documents layout around where they enter their own "notes", i figured why not add a new category so that they can keep them all in the snippets manager and search them right within Houdini.  For example, you could add a note that when you use vellum and want more rigid curves, increase your substeps.
+- Asset Library got a List Mode.  Its a checkbox on the top right, which in the rare, but useful circumstance that you have items where you need to read all the filenames and dont care about the icons, it will do just that.
+
+02/15/2021: (v2.91)
+- Julienne HDA now also outputs a group of the cut primitives.
+- Project Switcher. I increased the max items visible in the comboboxes.
+- Viewport Camera overlay sometimes would bring up a random $SYNC variable
+
+02/15/2021: (v2.90)
+- Snippet Manager: Lots more Point/Primitive/Detail snippets added.  Please keep in mind, that if you do want to submit your own to be included in the library, to let me know and I'll add them.
+- New HDA: Extrude Profile.  This lets you take a profile curve (oriented in +x), or use a ramp to create multiple bevels.
+
+02/10/2021: (v2.89)
+- Project Selector got a Load Geo as well, which brings up a filerequester to select a geo file(s) and quickly create a new geo container/file node.  It automatically points to the shot specific geo folder.
+- Octane QuickSetup got an update that lets you bake your Lights into an HDR (Can be found in the environments tab)
+- Lightplacer got a Light-Bank, which allows you to quickly change often used values in one nice overview.  Simply click Refresh in the lightbank and the rest should make a lot of sense.  Hovering over the different fields gives you a short description of what they do in case there are questions.
+
+02/07/2021: (v2.88)
+- LightPlacer:  Now has a refresh button.  That populates the scenelights/scene objects list, which normally only get refreshed when lightplacer is started.
+- Asset Library: IES lights were classified as images AND ies lights.  they are now only seen as IES lights.
+
+02/06/2021:
+- Simple PDG Wedges tool has been removed.  There is really no need for it anymore with the top wedges being as simple as they are, and they are much more convenient.
+
+02/05/2021:
+- Lightplacer has got a redesign and should be much easier and less confusing to use.  Word of caution, it still does not work with obj level transforms - I am still working on that.
+Several fields have been removed to make it more clear how the tool works.
+- Assetlibrary python3 bug fix for when "sets" were clicked to get multi texture sets.
+
+
+02/04/2021:
+- Create Out Null will now name the null "OUT" and "IN" if no name is given.
+- Lightplacer now allows you to select a light(s) in the network editor, and add it into the preferences of Lightplacer.  You simply go into the configuration panel and click "Grab Selected Light from Network View".  You can change the name in the table afterwards should you want to.  Dont forget to click "Save Config."
+In order to re-arrange the order of the list, simply open the config in a text editor (by clicking the Edit Config File Button) and re-arrange it there.
+A note about this new feature.  Currently no animated parms are being stored but the values are being evaluate at the frame at which you add it.
+- asset library python3 fixes for creating thumbnail from disk/viewport
+
+02/02/2021:  ****** FIRST INTEGRATED PYTHON 3 BUILD *******
+- the python 3 build is now included.  I am sure there's bound to be bugs in there, so please, if you use the python 3 build of houdini 18.5 (i still advise to use py2, just because a lot of 3rd party stuff isnt compiled for py3 yet), but, IF you do use it, any errors you find, please report them so that I can fix them.
+Please bear with me and be patient as its a little bit of a nightmare for the py3 stuff.
+- fixed a bug in "copy to external"
+- some reload module code cleanup
+- Asset Library: Lots and lots of code cleanup
+- Asset Library: Threaded Gui. This is disabled by default and can be enabled by setting an environment variable: EnableAssetLibThreading to 1
+This can bring up some warnings in the console (minimize, dont close the console to prevent consequtive popups), but, its there for anyone that wants to try.  Its quite cool, but not sure if its really worth it.  Let me know what you guys thing.
+
+02/01/2021:
+- Asset Library: Kinefx Character/Animation options have been added to the preset in the preferences.  When a Kinefx Character/Animation/Agent node(s) is selected, instead of creating a new node, the current node is updated with the new fbx now.  This allows for quickly changing clips in a node.
+- Asset Library: Substance SBSAR files are now recognized (note, you need to have sidefx Labs installed).  Sbsar files with dependencies are not supported and will crash Houdini (this is as of a result in an issue in the Sidefx Labs Tool, that hopefully can get resolved).  You can typically recognize if a substance sbsar file has dependencies when they come with a "resources/dependencies" folder.  Importing the sbsar file is currently creating a Substance Material Node (copnet is coming in the future).  When you make that node editable, you can then of course convert to any renderer via the OD convert materials.
+The Thumbnail generation from the sbsar file is currently single threaded (no PDG), but we'll see what I can do about that.
+
+01/31/2021:
+- Quixel to HDA prep is now available for all renderers, it is accessable by right clicking on a quixel created subnet.  Even if renderers arent supported by Quixel itself (such as arnold/vray), you can just use mantra, and after the conversion, select the materials and convert them with odtools. See the new video that also explains the options I have set in the bridge: https://vimeo.com/506780965
+- Asset Library: Filtering Thumbnails (whether by searchstring or classifiers should be a heck of a lot faster and the searchstring is now interactively filtering as you type
+- Asset Library: Selecting Exit on a multiple selectin import will now stop the import loop versus asking to exit multiple times
+
+01/30/2021:
+- asset library: the button for browse and add in the preferences were too small.
+- asset library: fixed some text labes that could get too small in height due to ui scaling
+- asset library: fixed thumbnail creation for images when less than 5 items were in a directory
+- asset library: .psd files currently dont get thumbnail, due to a "bug" in houdini that hopefully can get fixed soon by sidefx
+- asset library: added some error feedback when importing/thumbnailing assets
+- Lightplacer: fixed some typo
+- Lightplacer: if a custom entry is added to the list, after saving prefs, the item automatically appears in the light pulldown list.
+- Project manager:  the save to geo was not working when selecting an obj level node.  Now, if an obj level node is selected, the node set with the display flag within the obj container will be saved.  when a sop node is selected, it remains as before and saves that node's geometry.
+This option is now also multi selection aware.
+- Project Manager: when saving as an hda, if the selection was an hda, it was saving the hda with the name of the definition.  It now uses the name of the node as it was causing issues with sidefx internal HDA's. It also now works correction for obj and sop nodes.
+
+01/26/2021:
+- renamed OPMenu.xml to OPmenu.xml as it was causing issues on linux machines.
+- Octane Quicksetup V2... needed if you have Octane >= 2020.2.0.2 RC7.  For anyone using an octane version before that, keep using v1.  Setups with octane setup already in the hip, will continue to use the original version, new ones, should automatically use v2.  Should you want to switch to the prior version, you can do that in the houdini asset manager.
+
+01/25/2021:
+- fbx import/drag-drop had an issue where the take name wasnt properly specified in the clipname.
+
+12/31/2020:
+- Copy/Paste Parms has been added to the right click node menu.  This simply copies/pastes the parameter values from one node onto another, providing the parameters exist on the node that they are going to be pasted to.
+- Added a new python panel (OD External Window), allowing you to dock any external window (google chrome, maya, a text editor, or really, any window).  Its a little hack and not really supported, but could become useful in certain cases.  With Ctrl-B, you can maximize the panel, and so on, just as you are used to with any panel inside houdini.  To uncouple a window, click on the Embed External Window, and just choose CANCEL.  If you close the panel before doing that, your window will be lost.
+I dont think this will work anywhere but Windows.
+
+12/30/2020:
+- Octane Quick Material now has Color_Gaussian added as an option under Emission
+
+12/29/2020: Vector Import hda would throw an error when a scene with it was loaded.  Now behaves as expected.
+
+12/28/2020:
+- fixed some $ Variable expansions that were missing and could throw errors upon the execution of a tool.
+
+12/27/2020:
+- snippet manager was erroring out on search
+
+12/22/2020:
+- .gltf format added to the Asset Manager and Drag & Drop
+
+12/20/2020:
+- Drag'n'Drop & Asset Manager now has a split option for kinefx Character import AND kinefx Animation import.
+
+12/18/2020:
+- Snippet manager, while editing, was not refreshing the tree after, making it seem as the edit did not take place
+- Asset library got a cancel option in the hip import
+
+12/14/2020:
+- Project Selector got a new feature where you can define multiple projects and switch easily in between them.  Simply go to the Preferences tab in the Project Switcher UI, and right click on the table and add different projects.
+- The Reference Manager table header got adjusted for HIDPI Monitors to work with display scaling.
+- removed xrange references for eventual py3 version
+
+12/10/2020:
+- In the Main Menu, under ODTools/Help you will now find a discord server.  This will automatically connect
+you to my discord chat server.  I've had it for a while but never made it public, but in general, its the fastest way to get help/support regarding ODTools.  In there, you'll find a od-houdini-tools channel.  Typically, this is also where I post the note for updates/etc.
+- added some more snippets to the snippet manager
+- snippet manager had an issue with editing snippets.  That has been fixed.
+
+11/26/2020:
+- docs have started.  Very very early, but the landing page works, as well as some of the sop level right click additions.  This will be a work in progress.
+- move sel to new geo and object merge: has been completely rewritten
+- Create OUT Null has the node coloring added and multi select added
+- lots of python functions have their proper header added - work in progress, much more coming
+- primgroupSplit got a completely new UI.
+
+11/24/2020:
+- AssetLibrary Updates:
+  - Thumbnails for images are now done via PDG and should be many magnitudes faster, as it creates a thread per processor - 1.
+  - added kinefx character import to the fbx import list
+  - added renderman to the material conversions
+- shop_materialpath to material now creates a base material as well as the container.  previously, it only created the container.
+
+11/23/2020:
+- added the RS Light to the asset library update notification.
+
+11/20/2020:
+- Octane Quicksetup got an option to add Octane obj Parms to any objects that dont have them already.  When you are working with other renderers, sometimes, the octane tab doesnt get generated by default, so instead of manually adjusting them, this will do them all in one batch.
+- drag and drop of an image got a "trace" option which will add a trace sop.
+- fixed an initial error that might occur when project switcher is used for the first time.
+
+11/11/2020:
+- added kinefx character import to the choice for drag/drop fbx import.  (remember, its not just for characters)
+- kinefx material converter got an adjustment for packed geo (which is what non character fbx's come in as)
+
+11/07/2020:
+- Octane Quicksetup got the new "pause after frame option" integrated that was added in 2020.1.5.3
+- Octane PBR Import has been removed.
+- Multi PBR import got a complete overhall and now supports all renderers.
+- OCT QuickMaterial got an update.  At the bottom of the parms, you'll now see an optimization collapsible.  In that, you can easily remove network boxes that you dont need.  Keep in mind, that removing the network boxes, will invalidate those areas within the HDA.  Once gone, they can not be brought back but this can bring down the amount of nodes dramatically.
+
+11/06/2020:
+- Substance Painter HDA has been updated to support other Renderers as well.  Mantra, Octane, Redshift, VRay, Arnold, Renderman and 3Delight are now supported.
+
+11/05/2020:
+- obj to lops (works on subnets or jsut obj nodes) got a big udpate and nice UI that should make it a lot clearer and easier to use.
+- string parms (usually thats what file parameters are) now have a right click open to use the system native filerequester.
+
+11/02/2020:
+- Asset Library no longer clears the scene when building thumbnails.  It now builds a self contained object network behind the scenes.
+- Arnold fix for Image to OpenGL (Color)
+
+11/01/2020:
+- the resolve material overrides has been renamed to KineFX Character Import Mat Conversion [OD].  Important to note, that its not just for characters.
+- 3Delight material support fixed in "convert materials [OD]"
+- Arnold support added to "convert materials [OD]"
+
+10/31/2020:
+- more improvements to the objToLops.
+	- Now supports pretransforms on obj level.
+	- added the choice of Frame Range or single current frame export
+	- added the choice of using a collect/principled material node workflow, as not all Hydra Delegates support collect.
+	- also, keep in mind, that geometry subsets are not supported by all Hydra Delegates, therefore, your milage may vary when you have multiple materials per object depending on which render delegate you use.  As USD/LOPS matures, hopefully there will be parity.
+	- added support for obj level assigned materials
+- drag and drop was erroring out on HDA's that had colons (:) in their filename.
+- new tool added for right click on sops: resolve material overrides.  Will copy the override into the material.  This works very well with the new kinefx character imports, since their texture reference is done via material overrides.  After that, you can use the normal convert material [OD] to convert materials as usual.
+
+10/29/2020:
+- Drag and Drop got improvements and adjustments for 18.5 specific.
+- Fixed an error in PrimGroupSplit which was referencing the wrong node.
+- Project Selector got the ability to filter HIP files by a string, as well as listing hipfiles by only strings found in the notes.
+- Octane Quicksetup now also passses the Image output path to the render batch file
+- Octane Quick Material now has the option to set the material as obj level override (particles require obj level, so you can still use this)
+- OBCopyPaste HDAs now also handles .usd files and support solvers
+- the add Camera overlay got improvements.  You can now specify the frame range for a camera, which, when used with "Set As Viewport Cam (OD)"" will set that framerange in the playbar.  Additionally, I am introducing the concept of states.  While not ONLY camera specific, you can use them here, to save the visiblity state of /obj items.  When used with "Set as Viewport Cam w/state (OD)" the display flag state of /obj is restored to the state file.  You can specify two files, a base state (ie. in which all /obj items are disabled), and then a state which only has the adjustments required for that particular camera (i.e. only has the display flag on for objects that are necessary.)  As a Bonus for octane users, when the Octane quicksetup is present, it will set the in/out of the render range as well as the ipr/render cameras.
+- The ODTools network menu also got new entries for loading/saving an /obj state.  Any time either loading/saving a state is used, the filename gets automatically copied into the clipboard buffer so that it can be easily copy/pasted.
+- objToLops: got a huge update now creating the materials when caching as USD file.  Currently only geometry and materials are supported.  Currently supported /obj materials are principledshader, ODFX OCT Quickmaterial, and octane vopnets.  More to come in the future as needed.
+- Preparations are being made to make ODTools work with the 18.5 python 3 release and should be coming shortly.  It works flawless in the python 2 build.
+
+09/26/2020:
+- removed the previous added noises for parms.. as this method unfortunately did not work.  I'll be reviewing this in the future to make a better solution.
+- fixed an error when shift-tabbing to get to octane quicksetup when sticky notes/network boxes were present
+- added am implicit way to set the fps for the network box flipbooks (beta)
+- save and load state commands added that save/load the display flag of object level nodes.  This way, its very easy to quickly hide/unhide groups.  Its a bit like managing the display flags with node bundles, but easier.
+
+09/17/2020:
+- added a quick and easy way to add/update/enable/disable noises for parms (currently supported are translation/rotation/scale) but it will be extended in the future.
+
+09/13/2020:
+- added cam overlay, which adds an overlay tab to the camera where you can specify custom text.  Frame # and hipfile are automatically added.
+- added an update Motion FX right click in the parm menu.  For some reason, Houdini does not allow for this natively.  Once you have a motionfx added, you have to disable it (right click / disable effect), you can then upate your original keyframes and click update motionfx (OD).  It will udpate the channels into the chops network and enable the effect again.
+
+09/10/2020:
+- attempt to fix $JOB/$HIP pathing issue in the reference manager when used with a Custom folder.
+- attempt to fix Rizom Bridge (not hda) not working under linux
+
+09/09/2020:
+- added a new right click option on cameras that lets you set that camera as the viewport camera
+- bugfix for the asset library making thumbnails on linux
+
+09/05/2020:
+- the network editor got the ability to isolate the context for rendering with the octane quicksetup.  That way, its easy to swap looking at individual objects.
+- import/export networks as well as hcam import/export will now work correctly with variables.
+- Substance Painter Bridge got some fixes
+- Octane Quicksetup support added for the Material/object update override in octane 2020.1.5.0
+
+08/31/2020:
+- added a new tool that converts obj level transform to points.  With this, its very easy to just drag and geo containers and move them around, and at the end, select them all, and convert them to points for instancing.  The points will have their translation/rotation/scale attributes.
+
+08/26/2020:
+- Refmanager when using custom directories, was doubling up the directory string.
+
+08/24/2020:
+- Substance HDA had a left over path issue on linux
+- drag and drop would error out when no network pane is found... it will now tell you that no network editor pane is found.  ONE is required for drag and drop to work, so that it can put the dropped file into the current context
+
+08/19/2020:
+- load MTL file.  This is beta and tries to load an mtl file and construct a material network from it
+- added a skipHDA parameter to the objToHDA function
+
+08/15/2020:
+- OCT Quick material was not taking into account a viewport selection when invoked via the scene view tab menu.
+
+08/13/2020:
+- OCT Quick material got channel split options for roughness, specular, metallic, bump, opacity and emission.  That allows for easy usage of packed textures.
+- shift-tab for octane was erroring when there were sticky notes in the /obj context
+- export camera had a bug when no input was found.
+
+08/10/2020:
+- added a load/save camera to the network editor ODTools menu, as well as the right click on camera option
+- added a texture split (vector to float) OSL preset for the octane osl texture note
+
+08/08/2020:
+- the Parm right cick menu got a new option that allows you to create keyframes from a BlackMagicDesign Fusion exported spline (.spl).
+
+08/07/2020:
+- network editor right click menu should not show any octane specific tools if octane is not installed
+- added a new hda "moveToUdimTile", lets you specify a udim tile to which you move the UV to. (assumes that your current uv's are within 0-1)
+
+08/06/2020:
+- asset manager had a unicode issue fixed
+- asset manager now saves the thumbnail size slider when preferences are saved.
+
+08/05/2020:
+- OCT QuickMaterial now handles UDIM tiles.
+- added a send to substance painter to the right click menu.  It simply creates the substance painter hda.  Checks if a uv map is present, if not, selected autouv, checks if the max u on the uv's are larger than 1, in which case it selects udim tiles.  It asks you for a name, and stores the relevant data in $HIP/tex etc..
+
+08/04/2020:
+- added Prim Group split to the right click menu of the network editor
+
+08/03/2020:
+- Octane QuickSetup changes:
+	- added Aces EXR Format Export option
+	- added orbx export options
+- added a new network editor right click "Input Connection to Object Merge: Takes a node, and and creates an object merge of the original input for it.  This is great for cleaning up networks quickly.
+
+08/01/2020:
+- Asset Library was not sorting items alphabetically.
+- Took some of the geometry checks out of the network editor right click menu, which speeds up the menu tremendously
+
+07/31/2020:
+- Network Editor Right click got a new entry: Copy points to clipboard for curve.  This takes the current selected Nodes points positions, and formats a string that you can use in the curve sop to create a curve.  Often handy after you've done a few edit/transform nodes on a curve, and just want to remove those and have a single curve sop to adjust.
+
+07/27/2020:
+- create out Null now checks the name that is being entered for illegal characters and replaces them with an underscore if necessary.
+- reversed the order of the hip files in the project selector
+
+07/26/2020:
+- Project Selector now keeps the Shot/Scene/Hip selection from the previous session.
+- added a ctrl-shift-U hotkey to add a uvquickshade node.
+
+07/21/2020:
+- inverted z on .pfx file export
+- added an hda (instance points to object merge) that allows you to not only make instances visible in openGL, but also use them for rbd sims/etc.
+
+07/20/2020:
+- combine in sop got a small bugfix that could occasionally error out due to a reported None Node.
+
+07/18/2020:
+- Create Out Null now asks you for a basename when you select the object merge option on a single item.  This then will add an "OUT_" and "IN_" to the null and object merge.
+- Added automirror hda.  Very simply but useful sop that clips and mirrors in one go.
+
+07/17/2020:
+- OCT Quick material got some adjustments
+    - bsdf properties are now collapsed by default.
+    - when Texture is selected, you can change the compression settings.  This can greatly reduce the amount of vram being used.
+    - under color/texture, you have the option to set all other image compression settings to that of the color texture (even if its not used, its just a quick way to set all the compression settings to be the same)
+    - wrapping setting is exposed for the texture
+
+07/12/2020:
+- ctrl-shift-q in the network view will now select the octane quicksetup if the node exists
+- project switcher will also create a render folder on shot creation
+
+07/11/2020:
+- the substance painter bridge can now use $JOB and $HIP variables in the Texture/Substance Project path.
+
+07/10/2020:
+- fixed an issue with shop nodes in the Reference Manager
+- added a new tool to select a path, and install all the hdas within that path recursively.  (you can find it the odtools menu under utility tools / Install HDAs from Path)
+
+07/08/2020:
+- Switch octane camera threw an error when a sticky note was present.
+- some more snippets added
+
+07/04/2020:
+- asset library now ignores /backup/ folders
+- asset library now allows you to drag an obj level node into the asset library to create an HDA
+- asset library did not store the path correctly when a subdirectory was selected
+- project selected now also creates an abc and backup folder within a shot.
+- image to ogl also will set the rgb color values to 1, so that the true colors of the image are visible in ogl.  Previously, they were mixed with the color.
+- vexexpressions got a nice snippet for primitive wrangles that allows you to keep the shop_materialpath always local.  This is useful for prepping things to work within HDAs, or other paths that differ from the original location.
+
+07/01/2020:
+- Made adjustments to the some of the panels, to work properly on a 4k monitor set with DPI scaling (and houdini ui scaling).  Affected panels: Asset Library, Snippet Manager, Lightplacer, Reference Manager, and Project Switcher
+- ODFX MotionPath hda now shows the path for the entire range of keyframes
+
+06/30/2020:
+- Cleaned up log for "Find References in other location"
+
+06/29/2020:
+- Octane Quick setup hda has a distortion filename added, as well as some parameter visibility cleanup on the universal camera.
+- New Tool for Cameras: Right click on a camera, and you can choose import Syntheyes .bclip format.
+- Octane Quicksetup HDA has the network rendering controls added
+
+06/28/2020:
+- asset library would issue a warning when an image was double clicked when a image node was selected, and the filename started with a digit.  Now, the warning is removed, and an _ is added at the start of the node name, eliminating the warning.
+
+06/27/2020:
+- new tool added Find References in other location.  This tool can be found in the main menu odtools/utilities and is a simpler version for people that dont want to use the OD Reference manager.  It simply asks you for a location, in which it will recursively search for files used in parms in the current session.
+- drag and drop got a fix when importing an fbx via the sidefx labs fbx import that could sometimes happen on material creation.
+- check version also shows you which version you are currently running
+
+06/25/2020:
+- Asset Library got a fix for an error that could occurr when the network view was hidden, or non existant
+- Added a Save Selected nodes to new Hipfile for the Main Menu.
+- Octane Quicksetup has now the ability to do material overrides, obj level visibility overrides.  It also has an option to disable DOF for disk rendering.
+
+06/24/2020:
+- Asset Library right click "Copy Path" was broken due to a spelling mistake.  Fixed.
+
+06/23/2020:
+- Asset Library Addition.  When selecting a hip file in the library, you now have the option of importing as new scene, or merging into the current scene
+
+06/22/2020:
+- LWO Reader was erroring out on clicking the reload button. Fixed.
+
+06/21/2020:
+- Project Switcher got some bug fixes and new additions.  You can now load project/scene/shot specific hda's, as well as copy/save hda's in addition to creating them.  Project switcher also had its UI udpated to no longer compress buttons and pulldown lists.
+- Added a right click node editor option for converting packed geometry from the pick and place labs tool into proper instances.  This requires that the items being fed into pick and place are object merged, packed items.
+
+06/18/2020:
+- Updated Octane Quicksetup for the new Octane release with adds Universal and OSL Camera
+
+06/17/2020:
+- for the asset library and drag/drop into houdini, where the fbx labs importer was used, the scene framerate is now maintained when it differs from the fbx framerate.
+
+06/16/2020:
+- added an obj/mtl exporter sop.  This uses the internal rop geometry sop with some additional script to export a .mtl along the .obj.  Texture paths for the materials are also exported, but it assumes the materials are pointing towards the native principledshader material.
+- objToHDA was setting spare params instead of params on the HDA
+
+06/15/2020:
+- adding an fbx to the palette respects the import settings setup in preferences
+- objToHDA function got an optional scaling parameter
+- assetlibrary had an issue at times with uninstalling hda's when they were removed from disk.. added an extra check
+
+06/14/2020:
+- ADDED A CHECK VERSION IN THE ODTOOLS MENU. - FINALLY :)
+- Substance Painter hda got some more love.  Redshift materials now set the brdf and color space correctly.  Also fixed an issue with overwriting materials.
+- added redshift changes to the other tools in the set
+- asset library was not expanding the directory when using a custom image for filenames
+- renamed the clipboard in the asset library to "palette"
+
+06/13/2020:
+- Substance Painter hda was creating an empty material when NO materials were present before sending it to substance.
+
+06/12/2020:
+- Substance painter node now works correctly with multiple materials.
+- Added a few presets to the Octane Quick Material that can be accessed via the cogwheel pulldown.
+
+06/10/2020:
+- The Substance Painter HDA now uses fbx instead of obj.
+
+06/09/2020:
+- Octane quicksetup hda, now checks if the render camera is different than the ipr camera and warns you if that is the case.
+- the octane camera switcher now allows you to choose ipr/render camera
+- ctrl-shift-m now starts the viewport material picker.  If this interferes with your hotkey configuration, just change or delete the Houdini.keymap.overrides file
+
+06/08/2020:
+- added shop_materialpath to OCT QuickMaterial right click option in the network editor.  When a sop node is selected an Octane QuickMaterial Sop is added for each shop_materialpath attribute.  This allows for quick conversion of an asset staying all within sops for the materials.
+- LWO Reader got a small change on how to handle materials.  Now, before switching material types (mantra/redshift/octane), press the clean materials button first.  You can also repath the material by changing the path to the network.
+- fixed an issue with labs fbx import default options.
+
+06/07/2020:
+- added hair and shadowcatcher to the OCT QuickMaterial HDA
+- The Standard Setup in the OCT Quickmaterial now has copnet support.  This is beneficial when you want to just quickly blur a texture, create some gradient/etc.  Upon enabling, you can go directly to the copnet by clicking the "Open Copnet" button.  inside you will find an inside/outside node, in between which you can do all your work.
+
+06/06/2020:
+- Asset Library Fixes: When choosing labs fbx import, the materials are automatically converted to the selected renderer.
+- moved the Save Prefs button in the asset Library up in the user interface
+- drag and drop also got labs import support when dragging in an fbx.
+- Just as a note.. to use the labs fbx import, you need to have the sidefx labs tools installed version 485+
+
+06/05/2020:
+- Rizom Bridge references were updated to Rizom Version 2020... (OPMenu.xml and MainMenuCommon.xml).  These are now the defaults but can of course be adjusted to your liking.
+- opengl and ffmpeg hda now work with frame steps
+- opengl and ffmpeg hda got a debug output toggle... that can be used if issues occur.. it will print the command line thats being run, so if an issue occurs, copy and paste that resulting line into a command prompt and run it to see what the error is.
+
+06/04/2020:
+- openGL Preview HDA got a lot of bug fixes
+- ffmpeg hda got the ability to override the frame range
+
+06/02/2020:
+- asset library got a new fbx import option: SideFX Labs fbx import... this requires sidefx labs build 485+.
+- asset library got more LOPS treatment.  If you are in the stage context, imports will now be handled correctly into the stage (fbx/obj/etc)
+- asset manager got the ability to open images in mplay (for preview), or geometry in gplay (for preview) in their right click menu
+
+06/01/2020:
+- added channel group right click menu for the channel group from selected nodes tool
+
+05/30/2020:
+-added enter key to create a double click
+-fixed the dive into nodes when adding to the clipboard nodes
+
+05/27/2020:
+- dragging a subnet into the asset library also will now give the option to save as an hda (whereas before, you had to select and right click on the asset lib.)
+- when deleting an hda from disk in the asset library, it makes sure it uninstalls it first
+
+05/26/2020:
+- Quixel to OCT QuickMaterial Conversion got an update.  When you right click on a quixel subnet, it will setup LODs as well as the motion options.  Import settings in the Quixel plugin should have LOD's DISABLED.  It makes it now incredibly simple to create an HDA out of the resulting piece.
+
+05/25/2020:
+- more asset library fixes.
+  -Currently, there's a bug that when dragging an asset to the clipboard, you have to drag OUTSIDE of the icon thumbnail view... like the combobox, or the side.  Only then will the asset be added to the clipboard.
+  - thumbnail creation has been fixed, which was broken due to the rewrite
+  - creating an hda was not taking the subfolders into account
+
+05/24/2020:
+- Localize Externals also now will copy .cube files
+- Set path to relative $JOB got a bugfix that would resolve job wrong sometimes.
+- material picker will now look if an object level material exists, if the sop level shop_materialpath is an invalid path.
+- Added a new shortcut key to the network Editor: CTRL+SHIFT+C switches the ipr camera for octane
+- Added a new Tool that converts a quixel setup to use the OCT Quick Material.  Simply select the Asset Geometry node, and right click and select Quixel conversion to OCT Quick Material.
+- Added an ODTools Toolbar to the network editor, which also has a reminder about hotkeys.
+
+05/23/2020:
+- more major work on the Asset Library.
+  - it is now possible to have multiple libraries open.  This is beneficial, when one of them is set to clipboard, and you can drag and drop from one library into the "clipboard library".  The drag and drop is limited "INTO" the clipboard library by design.  Currently, only ONE item at a time.  As you drag them in, they will be created in the network view as houdini.  Its the same functionality as right click "add to clipboard"
+  - Drag and drop is also enabled from the network view INTO a library.  Dragging a node into the library will create an ODZip Preset.
+  - Specifically on large libraries (1000 items in a path), there's about a 500x speed increase
+- new Tool: group all animated channels. (odtools menu/utility) will create a channel group for all parameters of the selected nodes and their children.  You can find that channel group in the animation editor called "AllChannels"
+
+05/22/2020:
+- MAJOR work done on the Asset Library.
+  - Beautification with icons.  That also allowed for more items to be on screen.  You can hover over the items to get a quick tooltip of what they do.
+  - Wasted space has been removed from the menu, to get the maximum screenspace for the thumbnails.
+  - Clipboard.  This is crazy good, when you add an item to the clipboard, they'll automatically get added into a subnet in your network view.  Each time, until cleared an object is just added to it.  You can see all your items in the clipboard by clicking the clipboard button.
+  - Items can also be added to the clipboard by selecting them and right clicking "add to clipboard".  Of course multiple selections are supported.
+  - The clipboard can be emptied by right clicking on an empty space while the Clipboard folder is selected.
+  - By Default, adding an item to the clipboard will automatically generate it in the subnet in the network view.
+  You can recreate all items if ever needed by choosing "Re-Add clipboard into network".
+  - Clicking the Clipboard Button will toggle between the clipboard, and the last selected library.
+  - The clipboard nodes are stored in a variable called hou.session.assetLibClipboardNodes
+  You can use that variable in your own tools.
+  - added a ctrl-shift-l key combo to the network view, that will populate object merge's with the items in the asset libraries clipboard (as an example using the variable above)
+  - Clip Mode: by default, double click adds an item in the network context, the normal operation.  Enabling clipboard mode will add them to the clipboard instead.  Images are currently not part of the clipboard, as that doesnt make much sense, but things such as geo, fbx, vdb, hda's are part of it.
+  - Import settings allow you to choose what happens when you import an asset.. those are set in the preferences and exist for fbx, images/lights and usd files.  by default, you get prompted every time.  For Images, you can for example choose octane, in which case it will always just create an octane image node.
+  - In addition to images, SETS now also work with geometry.  So if you have item_LOD1.fbx, item_LOD2.fbx, clicking the SETS button will show them as a single set in the library.  All items of a set will be loaded when double clicked.
+- Removed the Viewport Picker Initialization, since its no longer required as of Production Build 460.
+
+05/19/2020:
+- the octane quick material did not work correctly with triplanar projection.  That is now fixed.
+- The octane quick material got the roughness category moved up right under specular for easier use
+- added a Create Model Light under the ODTools/image tools category.  This allows you to pick an hdr which then gets put into a hidden environment light.  If you add enable the high quality lighting, it makes for a beautiful viewport when modeling.
+
+05/17/2020:
+- fixed the JOB Variable typo in the project selector
+- added a right click option on a string parm (file path for example), that will change the path to be relative to your job variable.
+- Added a julienne node.. it simply slices the object (group) into subdivisions.
+- fixed a bug in the lwo reader relating to image maps and xrefname
+
+05/15/2020:
+- new major addition: Project Selector {BETA}.  This is more of a pipeline tool, that allows you to work efficient and organized on your project.  It creates the necessary folders and keeps your naming/structure in line while working on a project.  This isnt meant to be a complete pipeline tool when you are in a studio, but more for the freelancer/any person that doeant have access to a pipeline.  Try it out, there's good stuff there.
+- new tool: save selected SOP nodes into their own HIP file.  Sometimes, you find yourself working away on something and wish you could just easily separate it.
+
+05/13/2020:
+- octane quickmaterial got some changes.  General interface cleanup and also the ability to have a 2D transform for any texture being used.
+- the viewport picker now makes an attempt to resolve relative paths to a matnet, ie. if the shop material path points to something like ../matnet and the like
+- added new tool: List Material Networks. Prompts you with a list of all material networks and lets you easily select them
+
+05/11/2020:
+- workflow improvement for octane users.  When in the node editor.. you can hit shift-tab, and it will create an octane quicksetup and launch IPR.  If the quicksetup already exists in the scene, it will just launch IPR.
+Further more, you can hit Control+Shift+O and that will add an octane quickmaterial node and connected to the sopnode that has the display flag.
+Should you at anytime encounter issues with those keys, you just have to remove the nodegraphhooks.pyc in the odtoolshelf/python2.7libs folder.
+
+05/10/2020:
+- new tool added: Octane Quick Material.  This is a sop level node that allows for extremely fast assignment and generation of an octane material.
+
+05/09/2020:
+- asset library and drag/drop got fixes for errors that might occur when using files with "illegal characters"
+- asset library now has the option to copy or move a selected preset(s) to another library
+
+05/07/2020:
+- added a feature to the create out null sop where you can now also add an object merge right below that merges it back in.
+
+05/06/2020:
+- added new tool: Obj2Lops.  When you right click on obj level nodes you now have the ability to transfer them to lops.
+- Some additional functionality added to the tool above.  Already existing stage nodes do not get recreated, but as long as they are of the same type, get updated.  It also now has an option to use existing usd files instead of always recreating the usd file.
+
+05/05/2020:
+- bugfix in drag and drop that could occur when dragging an object/image thats part of a sequence.
+
+05/04/2020:
+- added a new tool (shelf and main menu): pick material from viewport.  Lets you do just that... simply run the tool, and click anywhere in the viewport to move to the material automatically.  Currently theres a bug in houdini with the viewport initialization, so you have to run the Init material picker tool ONCE in your session before you can use it.  Again, thats only required ONCE per session.
+
+05/03/2020:
+- some internal work completed for future additions
+- added a combine obj nodes to sop merge.  This simply takes obj level nodes, and creates a new geo node where each of them is merged via an object object merge.  Super useful for FBX Files.
+
+05/01/2020:
+- fixed an issue with convert materials if the op: context was being used
+- reverted the opparms menu back to normal and removed the submenu as it was slowing workflows down.
+
+04/29/2020:
+- image to copnet was evaluating the filename instead of using the raw value
+
+04/28/2020:
+- moved the right click network view tools into an ODTools folder as the menu was becoming too large.
+
+04/27/2020:
+- Added VRay support for all material/drag and drop related actions that supported multiple renderers in prior versions
+- New plugin: added a right click action when clicking on an image that creates a copnet in the next possible location (geo or obj) and links the original to that copnet.  This allows for rapid adjustments of textures in the cop context.
+
+04/24/2020:
+- Octane Quicksetup now has the ability to have a flat 2d image for the background (usually used as a back plate)
+
+04/21/2020:
+- added more vexpressions for wrangles/group expressions/attribute expressions.
+
+04/20/2020:
+- updated Octane Quicksetup to 2020 1.0.5 (lockstep in medium node removed)
+- updated vexpressions.txt file with LOTS of new snippets.. pop wrangles, attribute expressions, etc
+- snippet manager has new snippets... - lots more coming here as well in the next builds.
+
+04/17/2020:
+- added a recook node to the right click menu when you click on any sop node.
+
+04/15/2020:
+- New Tool: material conversion from principled shader to octane/redshift/renderman/3Delight.  Just select the principled shader materials, right click, and convert.
+
+04/14/2020:
+- prims to bones now has an option to reverse the bone chain, effectively pointing the bones into the opposite direction.
+- Octane Quicksetup had an issue where the BG environment was visible in refraction and reflection.
+
+04/12/2020:
+- New Timeline Tool: Copy Keys to Other Item.  Quickly lets you copy the keyframes from one item, to one or multiple other objects.
+
+04/07/2020:
+- material setup from shop_materialpath got a bugfix.  It would error out if a shop materialpath was empty
+- new tool: ODFX_QuickMaterial hda(node) lets you quickly make material assignments
+
+04/05/2020:
+- The Octane Quicksetup HDA got updated for Octane_2020.1.0.4 which now has an extra option for sun intensity for the daylight environment
+
+04/02/2020:
+- odcopypaste hda's now support attribute paint and stashes.
+
+04/01/2020:
+- new tool: the network right click got a "create file cache" which simply adds a file cache node, bakes it, and sets it to load from disk, which will make it very easy to cache out nodes.
+- Octane Quicksetup HDR was missing the Importance Sampling flag on the environment texture
+
+03/30/2020:
+- new tool: Obj Level MotionPath - simply displays the motion path of any item, with a variety of options.
+- added functionality: drag/drop for images go the ability to set the background image of the current viewport.  Simply select Viewport from the Popup when dragging in an image.
+
+03/29/2020:
+- Octane Quicksetup HDA Change:  Environment Tab - White has been renamed to color and now allows you to setup a custom color. Black been removed (since you can change the color to black) and replaced with an A-Color Blend.  The BG Environment also got rid of Black/white and made room for just COLOR.  The Light Position Reference used to render in IPR, which it has now been disabled in the ipr window and only shows in openGL.
+
+03/28/2020:
+- new tool: Move Selection to Geo and Object Merge.  This tool lets you select sop level nodes, and merge them into a new geo node, keeping the original connections alive via object merges.  Very useful for cleaning up/separating messy node flows.
+
+03/27/2020
+-reversed pathing change on the OD Copypaste hdas.
+
+03/25/2020
+- drag and drop for fbx as agent, also got optional material network creation.
+- added a unit conversion for numeric parameters.  Simply right click on the parameter, and choose the unit measure entry.  In the entry, you can do things such as 5ft3" or 3ft+5m and it will compute the result and enter it.
+
+03/24/2020
+- changed the wording on from Copy/Paste to Send & Receive
+
+03/22/2020
+- added OD CopyPaste Object Level HDA.  This HDA works with nodes only, and is NOT compatible with the CopyPasteExternal Sop Level HDA.
+
+03/21/2020
+- lots of snippets added to the snippet manager
+- OD CopyPaste External HDA got some improvements in directory handling.
+
+03/18/2020
+- Big Update.
+- The Asset Library has got a big overhaul.  Instead of a subdirs button, you are now able to access the direct subdirectories of the root folder.
+This greatly speeds up the display of the thumbnails and should make more sense in terms of browsing big libraries.  Setting the SubDir pulldown to ALL will give you all files in the subdirectory, as it was before.
+There is now a SETS checkbox.  If checked, it will only display texture sets (for example if there is a normal, color/albedo, roughness, etc), they will show up as one file.  Double clicking on those, will bring in ALL files belonging to the set.  This should greatly enhance how quickly you can use those textures.
+SideFX has fixed the bug described in the 3/11/2020 notes, and as of Houdini 18.0.409, it is now safe to use all features.  Big thanks to them, for their insanely fast bug fixing.
+- All functions from the Reference manager are now safe to use.
+- Some more Snippets were added to the Snippet manager.
+- Octane Quicksetup now exposes the Object Layer functionality that was missing before
+- As usual, please report anything and everything that might seem odd or weird, or, something you think could simply be improved.
+
+03/11/2020
+- fixed a bug in the Localize External Files Tool which would not properly copy/set cache files.
+- New tool Reference Manager (BETA BETA BETA Pypanel) allows you to check all your caches/external files and localize them, replace them, etc.
+  This is available in the ODTools Main Menu
+  ********* BIG WARNING - READ THIS OR YOU WILL CRASH **********
+  Please report anything that behaves oddly
+  You can right click on a file reference, and get a menu. Currently "Replace with File", "Archive File" and "Find elsewhere on disk" can
+  only be used with a docked panel, NOT the default floating tab.  While it works in the floating tab as well, you can only use it the
+  first time you open the panel... IF YOU CLOSE THE PANEL, AND OPEN it again, and USE THOSE FEATURES you will absolutely crash/hang your
+  houdini session. Other than that, its completely functional.
+  Right click on an entry in the reference column to see the options which should all be self explanatory.
+  Right click on an entry in the node column, and you can choose GOTO that node.  This feature will only worked with non linked network views.
+  You can also double click on an entry in the reference column and change the text manually (the column will turn orange, because the change
+  is not committed.  To commit the change, either right click on the entry, or hit commit all.
+  Everything else should be self explanatory.
+
+03/08/2020
+- fixed an issue with the lightwave importer that could occurr on certain image mappings and was due to a spelling error
+- added new tool: localize external Files.  Simply copies any externals to the $HIP/$JOB or a custom folder and localizes everything within the hip.
+
+03/04/2020
+- bugfix for network nodes export: when selecting all, sometimes, you'd recieve a no children error.  that has been fixed
+- more snippets were added to the snippet manager.
+- Free Vector importer HDA (the one I added in orbolt a year ago, i also put into the archive for convenience.)
+- fixed a bug when users have spaces in material names on the shop_materialpath to materials tool
+- materials from shop_material path now randomizes color when octane material is chosen
+- materials from shop_materialpath added to the fbx drag and drop import
+
+02/24/2020
+- new tool for fbx agents.  This is meant for fbx clips used on agents, that dont have any forward motion, meaning animated in place.  Typically, a transform is added after to add additional forward motion.  This tool will take the selected transform and the agent, and set it up for proper locomotion/inplace animation.  By default, it will insert the "Hips" name in the inplace fields at the bottom of the agent.  Should your hips be called something else, you'll need to replace the string there.
+
+02/22/2020
+- a new tool was added for when you right click on a sop node it can save the corresponding viewport as an image (optionally including all the nodes' children). This makes it easy to later combine them to a video as a "process of building to the final" show and tell.
+- added a new node facilitating the import of xyz point files.  (see help on node for more detail)
+
+02/18/2020
+- import network can now also be called via a command passing on the filename as option
+- export network can now also be called via a commands with the options of (<Nodefile>, <mode - 0=all, 1, selected nodes>, <nodes>)
+- file cycle now also supports the 3Delight texture node
+- added many more vex snippets to the snippet manager - dont be afraid to look, even if you dont find exactly what you are looking for, its a great collection to learn from.
+
+02/17/2020
+- a native option was added to the mdd export. This will make the mdd export a lot faster since is using native houdini code instead of writing my own format for mdd. (the custom still remains there, it might come in useful at some time)
+
+02/14/2020
+- added lwo object support to the asset library via the ODFX LWOReader hda.
+- drag and drop for fbx, when choosing scene import was creating an additional geometry object.
+- create out null was fixed to work with multiple nodes
+
+02/12/2020
+- changed the 3Delight texture references to now use dlTexture (as of 3Delight build 1.7.32)
+- added an Octane QuickSetup HDA (a collaboration between Oliver Hotz and Carlo Jongen) - Your one stop node for entire octane setups.
+- added a material per renderer hda... this essentially can replace the material sop of houdini, and with the pulldown/shelftool option, allows you to switch between different materials when you change renderers so you dont have to reassign them.
+
+02/10/2020
+- cleaned up the right click on node menu to only show relevant items
+- added the set cam to view to the right click menu for ease of use
+- more snippets added to the snippet manager
+- added the USD Format to the Asset Manager
+- improved USD Drag/Drop options.
+
+02/07/2020
+- fixed 3Delight compatibility for Image to OpenGL
+- added 3Delight/Arnold as Image Setups when you double click an image from the asset library.
+
+02/06/2020
+- added 3Delight image connections when dragging and dropping
+- added a vertex uv distortion snippet to the snippet manager that will show uv distortion
+
+02/04/2020
+- added new tool: view to camera... takes the current view.. and positions the camera to its position/rotation.
+
+01/30/2020
+- added black magic fusion .settings file.  Drag that setting file into fusion, and you will have a camera metadataread node.  When used with renddered EXR images (via octane), a 3d camera will be built with the same transforms as in houdini.
+
+01/27/2020
+- Lightplacer fix for H18.  It was working fine but producing an error in H18.  Changed the mechansim to support the new H18 Methods.
+
+01/25/2020
+- two new tools: create/delete key at frame - allows you to quickly create a key (or multiple) at a specific time.  Multiples can be defined (for create), i.e 10,20,30  will create a keyframe at each of those frames.  (for delete), ie 10-20,30 will remove the keyframes from 10 to 20, and also frame 30
+
+01/24/2020
+- accidently had some extensions removed from drag/drop detection.. Everything should be back to normal.
+
+01/16/2020
+- new tool added: prims to bones.  Converts primitives (lines) to bones with optional IK setup.
+- Copy Geo to New Object got an option to either object merge or copy the actual node (multiple nodes supported)
+- Shortened the Pulldown menu into subcategories as it was getting too long
+- drag and drop: if you drag an image into a material vop, with the material selected (i.e. select the universal material and drop an image onto the network editor, it will automatically attempt to hook up the image in the proper slot [albedo/bump/etc]) - there is currently a bug in houdini 18, that only lets you drag one image at a time, no multiple images yet.  I assume it'll be fixed soon as it was working in 17.5
+
+01/14/2020
+- added drag and drop support for hda's
+- added the LW Motion import to the dropdown menu
+
+01/12/2020
+- added externals to odcopypaste HDA
+- lworeader got the option to split layers by either points or prim groups.  this is beneficial as curves wont come in as primitives, but you can restore the curves via the point groups.
+
+01/10/2020
+- drag and drop fix for alembic files that would duplicate on import
+- added the odcopypaste HDA
+
+01/02/2020
+ -drag & drop got osl import
+ -new tool file cycle - chooses next/previous file in the directory of its current file (of the node(s) selected) - was added to the shelf as well as pulldown menu
+
+12/21/2019
+- added a shop_materialpath to material network creator
+
+12/17/2019
+- some changes to the lwo importer (reload button, and also the choice for absolute/relative material paths)
+- added volume material to the octane gallery
+- completely rewritten drag/drop support (also for usd files)
+
+11/21/2019
+- All HDA's have been upgraded to the full FX license, meaning for FX customers, they no longer put your version into Indie mode.
+    * Rizom Bridge (Links RizomUV Software to Houdini)
+    * Substance Painter Bridge (Links substance Painter to Houdini)
+    * Quadriflow (a Quad remesher along the lines of Instant Meshes)
+    * UV ClusterByPoints (Creates UVs/UDIMs based on clusters of points, really useful for breaking up large scan meshes into multiple UV Tiles)
+    * LWO Reader (imports lwo2/lwo3 objects directly)
+- Grove3D Converter
+    Grove 3D is an amazing Tree Generator plugin for blender (https://www.thegrove3d.com)
+    Simply export your tree from blender via alembic, then load the alembic into houdini, and click the Convert Grove3D button and the tool will convert the tree with twig instances.
+    All the animation is maintained.
+- Lightwave Object Importer
+    This is a big one for Lightwave Artists using the tools.  It supports both LWO2 (pre 2018) and LWO3 (2018+) object versions of Lightwave 3D.
+- Asset Library Feature addition
+    It now remembers the last path it was in.
+- OD Copy/Paste External:
+    Now properly works with UVs
+- Snippets got a few more entries
+- LightPlacer got some code updates (on first launch, it still requires you to go to preferences and click save)
+- All reported bugs were fixed
+   They mainly had to do with Redshift/Octane material setups. please continue to report anything you find with these, they are easily fixed on my end when I know about them)
+
+10/11/2019
+- added a parameters to attributes plugin.  You can find it in the shelf, and the menu pulldown.  This allows you to select a node
+and add all of the user parameters as attributes through a wrangle.
+
+10/2/2019
+- fixed lightplacer panel height
+- fixed an issue with the assetlibrary that was failing with hda's that had spaces.
+
+9/27/2019
+- Rizom Bridge got more presets (accessible via the cogwheel in the bridge hda)
+- Substance Painter HDA got tokens, so that you can add to them yourself (although defaults should work fine)
+- Some of the PBR Shelf tools got updates to deal with 2019's revised Input order.
+
+9/24/2019
+- added Substance Painter HDA.
+
+9/20/2019
+- LightPlacer fixes for property panel not opening up, Light selection adding to selection instead of exclusively selecting, not taking into account the prior scale of a light.
+
+9/19/2019
+-Added LightPlacer Plugin that allows you to interactively position lights by clicking on the Geometry
+-Added ability in the lightPlacer plugin to define your own light commands to be added (custom hdas)
+-added lightplacer mousewheel scale (ctrl key), rotation (shift key), or surface offset (no key) modes
+
+9/13/2019
+- Refactored Rizom Bridge HDA - no longer requires Gamedev tools and supports point/prim/edge groups(s)
+- Render Batch File got the option to provide an output context to search rops for.
+
+9/12/2019
+- Added Rizom Bridge HDA
+- Added Octane Ocean Setup to Gallery
+
+
+9/11/2019
+- Added a simple Rizom UV Bridge
+	3 ways to access it..
+		a) ODTools Menu bar  (to edit rizom path, edit it in MainMenuCommon.xml)
+		b) right click on node in node editor (to edit rizom path, edit it in OPMenu.xml)
+		c) Shelf tool in ODtools shelf (to edit rizom path, right click on shelf and edit)
+		You only need to edit the rizom path if your rizom install is not:
+		C:\Program Files\Rizom Lab\RizomUV 2019\rizomuv.exe
+
+8/31/2019
+- made some changes to the export network, to make it be able to export multiple nodes at once.
+- added the rest of the tools to the OD Menubar.
+
+8/30/2019
+- bug fixes for asset library: hip files weren't shown, odzip files werent shown, external files are now properly detected
+- backup/restore thumbnails now functional
+
+8/29/2019
+- Huge Code refactor
+- Added ODTools Menu branch (also links to odools videos about the shelftools)
+- asset library panel had issues with spaces in fbx filenames - fixed
+- Added a lot of vexpressions that you'll now find in wrangles under the triangle pulldown.
+- Added a submit bugs and features link.  If you would like to report a bug with odtools, or have a feature request, this is the best place to get it logged.
+- Further more, if anyone has any vexexpressions to contribute, or Octane/Redshift/Material Setups they'd like to include, let me know.
+- Added HDA support, meaning, you can add HDA's to the preset as well as select nodes and automatically make an hda out of it.
+
+8/28/2019
+- Asset Library Panel:  Added double click to import an asset
+						Added redshift dome light parameter to update the image on selection
+						Added FBX Treatment (either as agent or scene import)
+						Image references are now updated on all selected nodes (previously only the first one)
+- Drag & Drop:			Fixed an interference with the Asset Library Panel
+
+8/27/2019
+
+- The files are all now self contained, no longer do you need to copy the files into different folders.
+  So you should remove the externaldragdrop.py from the documents/houdini17.5/scripts/python folder and
+  the odshelf toolbar from the documents/houdini17.5/toolbar folder.
+  Just keep one folder and point to it.
+
+  You just have to add the path to your houdini.env file.  For example:
+
+  ODSHELF = "C:\Users\Oliver\Documents\houdini17.5\ODHoudiniShelfTools"
+  HOUDINI_PATH = $ODSHELF;$HOUDINI_PATH;&
+
+- Asset Library PyPanel. (just click on the plus, then New Pane Tab Type and at the bottom you should find OD Asset Library)
+- Octane Gallery with basic materials.  The goal is to expand that in the future to also other renderers, but since I currently have only access to Octane, I might rely on users contributing for the other packages.
+- Tool Tips added for the shelf Icons (essentially giving you some quick help by just hovering over the Icon)
+
+Fixes/Changes:
+
+- Drag & Drop now gives you the option to bring in files of a geo sequence as individual objects

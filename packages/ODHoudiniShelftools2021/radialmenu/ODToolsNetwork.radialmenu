@@ -1,0 +1,22 @@
+{
+	"fileversion":"19.0.562",
+	"name":"ODToolsNetwork",
+	"categories":"Standard",
+	"pane":"network",
+	"label":"ODToolsNetwork",
+	"type":"submenu",
+	"items":{
+		"2":{
+			"label":"Isolate",
+			"type":"script_action",
+			"icon":"MISC_python",
+			"script":"from OD import shelftools\nshelftools.isolate(mode=\"startIsolation\", nodes=hou.selectedNodes())"
+		},
+		"6":{
+			"label":"End Isolation",
+			"type":"script_action",
+			"icon":"MISC_python",
+			"script":"from OD import shelftools\nshelftools.isolate(mode=\"endIsolation\")"
+		}
+	}
+}

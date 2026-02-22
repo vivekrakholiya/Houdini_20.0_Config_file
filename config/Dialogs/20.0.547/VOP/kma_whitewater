@@ -1,0 +1,117 @@
+// Magic: 77ae9c40
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sun Oct 12 15:00:40 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+absorption.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    absorption.label = PARM_LABEL("Absorption", "absorption") WIDTH(1.5);
+    PARM(float, 3, "absorption", none, COLOR, "R,G,B") 
+	LABELREF(absorption.label) HSTRETCH;
+
+    absorption.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(absorption.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scattering.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    scattering.label = PARM_LABEL("Scattering", "scattering") WIDTH(1.5);
+    PARM(float, 3, "scattering", none, COLOR, "R,G,B") 
+	LABELREF(scattering.label) HSTRETCH;
+
+    scattering.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattering.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+anisotropy.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ anisotropy.label = PARM_LABEL("Anisotropy", "anisotropy") WIDTH(1.5);
+ PARM(float, 1, "anisotropy", none, none) RANGE(-1,1)
+	 LABELREF(anisotropy.label) HSTRETCH;
+
+    anisotropy.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(anisotropy.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+reflectcolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    reflectcolor.label = PARM_LABEL("Reflect Color", "reflectcolor") WIDTH(1.5);
+    PARM(float, 3, "reflectcolor", none, COLOR, "R,G,B") 
+	LABELREF(reflectcolor.label) HSTRETCH;
+
+    reflectcolor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(reflectcolor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+reflectroughness.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ reflectroughness.label = PARM_LABEL("Reflect Roughness", "reflectroughness") WIDTH(1.5);
+ PARM(float, 1, "reflectroughness", none, none) RANGE(0,10)
+	 LABELREF(reflectroughness.label) HSTRETCH;
+
+    reflectroughness.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(reflectroughness.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+gradient.gad = NULL { }
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    absorption.gad; 
+    scattering.gad; 
+    anisotropy.gad; 
+    reflectcolor.gad; 
+    reflectroughness.gad; 
+    gradient.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

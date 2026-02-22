@@ -1,0 +1,436 @@
+// Magic: d299aed
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Nov 22 15:01:27 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+showguide.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showguide", "Show Guide") toggle VALUE(showguide.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+source.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    source.label = PARM_LABEL_SIMPLE("Source Type", "source") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    source.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+pointmethod.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    pointmethod.label = PARM_LABEL_SIMPLE("Construction Method", "pointmethod") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    pointmethod.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+invert.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invert", "Invert Volume") toggle VALUE(invert.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+inittype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    inittype.label = PARM_LABEL_SIMPLE("Point Configuration", "inittype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    inittype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+particlesep.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ particlesep.label = PARM_LABEL("Point Separation", "particlesep") WIDTH(1.5);
+ PARM(float, 1, "particlesep", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(particlesep.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+particlesep_axis.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   particlesep_axis.label = PARM_LABEL("Point Sep Scale", "particlesep_axis") WIDTH(1.5);
+   PARM(float, 3, "particlesep_axis", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(particlesep_axis.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+iso.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ iso.label = PARM_LABEL("Isovalue", "iso") WIDTH(1.5);
+ PARM(float, 1, "iso", none, none) RANGE(-10,10)
+	 LABELREF(iso.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+dominiso.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dominiso.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dominiso.gad = PARM_BUTTON("dominiso", "") toggle VALUE(dominiso.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+miniso.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ miniso.label = PARM_LABEL("Min Isovalue", "miniso") WIDTH(1.32);
+ PARM(float, 1, "miniso", none, none) RANGE(-10,10)
+	 LABELREF(miniso.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+jitterseed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ jitterseed.label = PARM_LABEL("Jitter Seed", "jitterseed") WIDTH(1.5);
+ PARM(float, 1, "jitterseed", none, none) RANGE(0,10)
+	 LABELREF(jitterseed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+jitterscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ jitterscale.label = PARM_LABEL("Jitter Scale", "jitterscale") WIDTH(1.5);
+ PARM(float, 1, "jitterscale", none, none) RANGE(0,10)
+	 LABELREF(jitterscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+converttofog.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("converttofog", "Convert to Fog") toggle VALUE(converttofog.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+offset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   offset.label = PARM_LABEL("Grid Offset", "offset") WIDTH(1.5);
+   PARM(float, 3, "offset", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(offset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+addscale.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("addscale", "Add Scale Attribute") toggle VALUE(addscale.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+radiusscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ radiusscale.label = PARM_LABEL("Particle Radius Scale", "radiusscale") WIDTH(1.5);
+ PARM(float, 1, "radiusscale", none, none) RANGE(0,10)
+	 LABELREF(radiusscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+dodither.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dodither", "Dither Surface") toggle VALUE(dodither.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dithernormal.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   dithernormal.label = PARM_LABEL("Dither Normal", "dithernormal") WIDTH(1.5);
+   PARM(float, 3, "dithernormal", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(dithernormal.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+ditherangle.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   ditherangle.label = PARM_LABEL( "Dither Angle", "ditherangle" ) WIDTH(1.5);
+   PARM(float, 1, "ditherangle", none, none) RANGE(0, 180)
+	LABELREF( ditherangle.label ) HSTRETCH;
+
+   { WIDTH(0.1) }
+}
+doscatter.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+doscatter.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+doscatter.gad = PARM_BUTTON("doscatter", "") toggle VALUE(doscatter.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+scatter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ scatter.label = PARM_LABEL("Scatter Density", "scatter") WIDTH(1.32);
+ PARM(float, 1, "scatter", none, none) RANGE(0,10)
+	 LABELREF(scatter.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+relaxpoints.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+relaxpoints.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+relaxpoints.gad = PARM_BUTTON("relaxpoints", "") toggle VALUE(relaxpoints.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+relaxiterations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ relaxiterations.label = PARM_LABEL("Relax Iterations", "relaxiterations") WIDTH(1.32);
+ PARM(integer, 1, "relaxiterations", none, none) RANGE(0,100)
+	LOCK_RANGE_MIN LABELREF(relaxiterations.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+dooversampling.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dooversampling.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dooversampling.gad = PARM_BUTTON("dooversampling", "") toggle VALUE(dooversampling.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+oversampling.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ oversampling.label = PARM_LABEL("Oversampling", "oversampling") WIDTH(1.32);
+ PARM(float, 1, "oversampling", none, none) RANGE(1,10)
+	 LABELREF(oversampling.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+oversamplingbandwidth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ oversamplingbandwidth.label = PARM_LABEL("Oversampling Bandwidth", "oversamplingbandwidth") WIDTH(1.5);
+ PARM(float, 1, "oversamplingbandwidth", none, none) RANGE(0,10)
+	 LABELREF(oversamplingbandwidth.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+newg.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("newg", "Create Output Group") toggle VALUE(newg.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outputgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    outputgroup.label = PARM_LABEL("Output Group", "outputgroup") WIDTH(1.5);
+    PARM_FIELD(string, "outputgroup") VALUE(outputgroup.val) 
+	LABELREF(outputgroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    showguide.gad; 
+    source.gad; 
+    pointmethod.gad; 
+    invert.gad; 
+    inittype.gad; 
+    particlesep.gad; 
+    particlesep_axis.gad; 
+    iso.gad; 
+    dominiso.row.join; 
+    jitterseed.gad; 
+    jitterscale.gad; 
+    converttofog.gad; 
+    offset.gad; 
+    addscale.gad; 
+    radiusscale.gad; 
+    dodither.gad; 
+    dithernormal.gad; 
+    ditherangle.gad; 
+    doscatter.row.join; 
+    relaxpoints.row.join; 
+    dooversampling.row.join; 
+    oversamplingbandwidth.gad; 
+    newg.gad; 
+    outputgroup.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

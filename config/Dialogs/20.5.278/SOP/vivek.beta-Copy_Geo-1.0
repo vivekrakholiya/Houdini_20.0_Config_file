@@ -1,0 +1,606 @@
+// Magic: 85a643a0
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Nov 30 18:45:12 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+scatter_points2.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(scatter_points2.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm8.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+scatter_points.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scatter_points", "scatter_points") toggle VALUE(scatter_points.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+sepparm.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+npts.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ npts.label = PARM_LABEL("Force Total Count", "npts") WIDTH(1.5);
+ PARM(integer, 1, "npts", none, none) RANGE(1,100000)
+	 LABELREF(npts.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Global Seed", "seed") WIDTH(1.5);
+ PARM(float, 1, "seed", none, SNAP) RANGE(0,100)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+random_attrib2.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(random_attrib2.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+labelparm2.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(labelparm2.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm3.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+random_attrib.gad = NULL { }
+
+create_rand.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("create_rand", "create_rand") toggle VALUE(create_rand.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm13.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+name.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    name.label = PARM_LABEL("Attribute Name", "name") WIDTH(1.5);
+    PARM_FIELD(string, "name") VALUE(name.val) 
+	LABELREF(name.label) HSTRETCH;
+
+    name.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+rand_Num.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   rand_Num.label = PARM_LABEL("rand_Num", "rand_Num") WIDTH(1.5);
+   PARM(integer, 2, "rand_Num", none, none, "Min,Max")
+	RANGE(0,10)  LABELREF(rand_Num.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+seed4.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed4.label = PARM_LABEL("Global Seed", "seed4") WIDTH(1.5);
+ PARM(float, 1, "seed4", none, none) RANGE(0,10)
+	 LABELREF(seed4.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm7.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+scale4.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(scale4.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm4.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+scale5.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scale5", "scale") toggle VALUE(scale5.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+operation.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    operation.label = PARM_LABEL_SIMPLE("Operation", "operation") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    operation.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   scale.label = PARM_LABEL("scale", "scale") WIDTH(1.5);
+   PARM(float, 2, "scale", none, none, "Min,Max")
+	RANGE(0.01,1)  LABELREF(scale.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+scale2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale2.label = PARM_LABEL("Global Scale", "scale2") WIDTH(1.5);
+ PARM(float, 1, "scale2", none, none) RANGE(0,10)
+	 LABELREF(scale2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed3.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed3.label = PARM_LABEL("Global Seed", "seed3") WIDTH(1.5);
+ PARM(float, 1, "seed3", none, none) RANGE(0,10)
+	 LABELREF(seed3.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm5.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+labelparm.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(labelparm.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm9.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+sepparm6.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+direction_randomizer.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("direction_randomizer", "direction_randomizer") toggle VALUE(direction_randomizer.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+name2.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    name2.label = PARM_LABEL("Attribute Name", "name2") WIDTH(1.5);
+    PARM_FIELD(string, "name2") VALUE(name2.val) 
+	LABELREF(name2.label) HSTRETCH;
+
+    name2.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+operation2.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    operation2.label = PARM_LABEL_SIMPLE("Operation", "operation2") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    operation2.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale3.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale3.label = PARM_LABEL("Global Scale", "scale3") WIDTH(1.5);
+ PARM(float, 1, "scale3", none, none) RANGE(0,10)
+	 LABELREF(scale3.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed2.label = PARM_LABEL("Global Seed", "seed2") WIDTH(1.5);
+ PARM(float, 1, "seed2", none, none) RANGE(0,10)
+	 LABELREF(seed2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm10.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+sepparm11.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+labelparm3.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(labelparm3.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+sepparm12.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+applyto3.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    applyto3.label = PARM_LABEL_SIMPLE("Apply to", "applyto3") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    applyto3.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+applymethod3.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    applymethod3.label = PARM_LABEL_SIMPLE("by", "applymethod3") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    applymethod3.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+applyattribs3.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    applyattribs3.label = PARM_LABEL("Attributes", "applyattribs3") WIDTH(1.5);
+    PARM_FIELD(string, "applyattribs3") VALUE(applyattribs3.val) 
+	LABELREF(applyattribs3.label) HSTRETCH;
+
+    applyattribs3.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+pake_and_orig.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("pake_and_orig", "pake_and_orig") toggle VALUE(pake_and_orig.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+folder0.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder0.gad"
+    { 
+	VALUE(folder0.gad.val) STRETCH(1,0)
+
+	TAB "Points"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    scatter_points2.gad;		
+	    sepparm8.gad;		
+	    scatter_points.gad;		
+	    sepparm2.gad;		
+	    sepparm.gad;		
+	    npts.gad;		
+	    seed.gad;		
+	    random_attrib2.gad;		
+	    labelparm2.gad;		
+	    sepparm3.gad;		
+	    random_attrib.gad;		
+	    create_rand.gad;		
+	    sepparm13.gad;		
+	    name.gad;		
+	    rand_Num.gad;		
+	    seed4.gad;		
+	    sepparm7.gad;		
+	    scale4.gad;		
+	    sepparm4.gad;		
+	    scale5.gad;		
+	    operation.gad;		
+	    scale.gad;		
+	    scale2.gad;		
+	    seed3.gad;		
+	    sepparm5.gad;		
+	    labelparm.gad;		
+	    sepparm9.gad;		
+	    sepparm6.gad;		
+	    direction_randomizer.gad;		
+	    name2.gad;		
+	    operation2.gad;		
+	    scale3.gad;		
+	    seed2.gad;		
+	    sepparm10.gad;		
+	    sepparm11.gad;		
+	    labelparm3.gad;		
+	    sepparm12.gad;		
+	    applyto3.gad;		
+	    applymethod3.gad;		
+	    applyattribs3.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "geo"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    pake_and_orig.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

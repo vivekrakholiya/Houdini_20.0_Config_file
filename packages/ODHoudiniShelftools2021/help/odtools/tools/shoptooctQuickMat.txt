@@ -1,0 +1,22 @@
+= Shop MaterialPath to Octane Quick Material =
+
+"""Creates an Octane Sop-Level Quick Material for each shop_materialpath."""
+
+For each unique shop_materialpath primitive attribute an Octane Quick Material gets created.  This allows for many
+conveniences such as defining image maps,etc without having to go into a material network.
+
+
+:vimeo: Example Use of the Tool
+    #id: 483613506
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+	#!python
+	from OD import shelftools
+	shelftools.octQuickMaterialFromShopMaterialPath(nodes = None)
+
+	# nodes is an array of nodes
+
+	}}}

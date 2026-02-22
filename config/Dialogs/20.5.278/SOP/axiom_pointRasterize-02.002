@@ -1,0 +1,312 @@
+// Magic: 38373a4e
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Aug  6 20:33:40 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+volumeType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    volumeType.label = PARM_LABEL_SIMPLE("Volume Type", "volumeType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    volumeType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+useDensityAttribute.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useDensityAttribute", "Use Density Attribute") toggle VALUE(useDensityAttribute.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+camera.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ camera.label = PARM_LABEL("Camera", "camera") WIDTH(1.5);
+ PARM_FIELD(pathstring, "camera") VALUE(camera.val) 
+	LABELREF(camera.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(camera.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(camera.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+voxelSize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ voxelSize.label = PARM_LABEL("Voxel Size", "voxelSize") WIDTH(1.5);
+ PARM(float, 1, "voxelSize", none, none) RANGE(0.001,1)
+	LOCK_RANGE_MIN LABELREF(voxelSize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+nearClipPlane.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ nearClipPlane.label = PARM_LABEL("Near Clip Plane", "nearClipPlane") WIDTH(1.5);
+ PARM(float, 1, "nearClipPlane", none, none) RANGE(0.001,1)
+	LOCK_RANGE_MIN LABELREF(nearClipPlane.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+padding.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ padding.label = PARM_LABEL("Padding", "padding") WIDTH(1.5);
+ PARM(float, 1, "padding", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(padding.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+pixelPerVoxel.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pixelPerVoxel.label = PARM_LABEL("Pixel Per Voxel", "pixelPerVoxel") WIDTH(1.5);
+ PARM(integer, 1, "pixelPerVoxel", none, none) RANGE(1,4)
+	LOCK_RANGE_MIN LABELREF(pixelPerVoxel.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+zScale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ zScale.label = PARM_LABEL("Z Scale", "zScale") WIDTH(1.5);
+ PARM(float, 1, "zScale", none, none) RANGE(0.001,1)
+	 LABELREF(zScale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+motionBlur.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("motionBlur", "Motion Blur") toggle VALUE(motionBlur.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+cameraMotionBlur.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cameraMotionBlur", "Camera Motion Blur") toggle VALUE(cameraMotionBlur.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+shutterOffset.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    shutterOffset.label = PARM_LABEL_SIMPLE("Shutter Offset", "shutterOffset") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    shutterOffset.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+shutter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shutter.label = PARM_LABEL("Shutter", "shutter") WIDTH(1.5);
+ PARM(float, 1, "shutter", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(shutter.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sampleType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    sampleType.label = PARM_LABEL_SIMPLE("Sample Type", "sampleType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    sampleType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+samples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ samples.label = PARM_LABEL("Samples", "samples") WIDTH(1.5);
+ PARM(integer, 1, "samples", none, none) RANGE(1,16)
+	LOCK_RANGE_MIN LABELREF(samples.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cfl.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cfl.label = PARM_LABEL("CFL", "cfl") WIDTH(1.5);
+ PARM(float, 1, "cfl", none, none) RANGE(0.001,1)
+	LOCK_RANGE_MIN LABELREF(cfl.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+MotionBlur.gad = 
+
+GROUP simple "Motion Blur" flat 
+{ 
+    VALUE(MotionBlur.gad.val) LAYOUT(vertical) HSTRETCH 
+	    motionBlur.gad;		
+	    cameraMotionBlur.gad;		
+	    shutterOffset.gad;		
+	    shutter.gad;		
+	    sampleType.gad;		
+	    samples.gad;		
+	    cfl.gad;		
+} 
+
+frustum.gad = 
+
+GROUP simple "Frustum" flat 
+{ 
+    VALUE(frustum.gad.val) LAYOUT(vertical) HSTRETCH 
+	    nearClipPlane.gad;		
+	    padding.gad;		
+	    sepparm2.gad;		
+	    pixelPerVoxel.gad;		
+	    zScale.gad;		
+} 
+
+cartesian.gad = 
+
+GROUP simple "Cartesian" flat 
+{ 
+    VALUE(cartesian.gad.val) LAYOUT(vertical) HSTRETCH 
+	    voxelSize.gad;		
+} 
+
+camera2.gad = 
+
+GROUP simple "Camera" flat 
+{ 
+    VALUE(camera2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    camera.gad;		
+} 
+
+values.gad = 
+
+GROUP simple "Values" flat 
+{ 
+    VALUE(values.gad.val) LAYOUT(vertical) HSTRETCH 
+	    useDensityAttribute.gad;		
+} 
+
+pointRasterize.gad = 
+
+GROUP simple "Point Rasterize" flat 
+{ 
+    VALUE(pointRasterize.gad.val) LAYOUT(vertical) HSTRETCH 
+	    volumeType.gad;		
+	    values.gad;		
+	    camera2.gad;		
+	    cartesian.gad;		
+	    frustum.gad;		
+	    MotionBlur.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    pointRasterize.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

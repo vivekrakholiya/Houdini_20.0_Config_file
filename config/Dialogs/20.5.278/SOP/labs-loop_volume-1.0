@@ -1,0 +1,801 @@
+// Magic: 27be2df
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Fri Nov 22 21:57:22 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+f.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   f.label = PARM_LABEL("Frame Range", "f") WIDTH(1.5);
+   PARM(float, 2, "f", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(f.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+overlaysource.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    overlaysource.label = PARM_LABEL_SIMPLE("Overlay Sequence", "overlaysource") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    overlaysource.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+blendmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    blendmode.label = PARM_LABEL_SIMPLE("Blend Mode", "blendmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    blendmode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+nonuniformfade.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("nonuniformfade", "Density Affects Cross-Fade Curves") toggle VALUE(nonuniformfade.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+densityrange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   densityrange.label = PARM_LABEL("Density Range", "densityrange") WIDTH(1.5);
+   PARM(float, 2, "densityrange", none, none, "#1,#2")
+	RANGE(0,1)  LABELREF(densityrange.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+lb_lowdensity.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(lb_lowdensity.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+blendrampa.si_rampedit = FLOAT_RAMP VALUE(blendrampa.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+blendrampa.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	blendrampa.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(blendrampa.pointno.val) HSTRETCH;
+    }
+}
+
+blendrampa.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(blendrampa.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(blendrampa.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    blendrampa.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(blendrampa.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    blendrampa.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(blendrampa.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+blendrampa.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    blendrampa.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	blendrampa.buttons.gad VSTRETCH;
+
+	blendrampa.si_rampedit HSTRETCH;
+    }
+}
+
+blendrampa.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Base Sequence Cross-Fade", "blendrampa");
+
+	{ HSTRETCH }
+	blendrampa.interp
+	    = ACTION_MENU_ICONBUTTON blendrampa.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(blendrampa.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(blendrampa.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	blendrampa.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(blendrampa.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	blendrampa.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(blendrampa.hideparms.val) HSTRETCH
+	    blendrampa.multiramp;
+	    {}
+	}
+    }
+}
+
+blendrampb.si_rampedit = FLOAT_RAMP VALUE(blendrampb.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+blendrampb.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	blendrampb.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(blendrampb.pointno.val) HSTRETCH;
+    }
+}
+
+blendrampb.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(blendrampb.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(blendrampb.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    blendrampb.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(blendrampb.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    blendrampb.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(blendrampb.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+blendrampb.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    blendrampb.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	blendrampb.buttons.gad VSTRETCH;
+
+	blendrampb.si_rampedit HSTRETCH;
+    }
+}
+
+blendrampb.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Overlay Sequence Cross-Fade", "blendrampb");
+
+	{ HSTRETCH }
+	blendrampb.interp
+	    = ACTION_MENU_ICONBUTTON blendrampb.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(blendrampb.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(blendrampb.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	blendrampb.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(blendrampb.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	blendrampb.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(blendrampb.hideparms.val) HSTRETCH
+	    blendrampb.multiramp;
+	    {}
+	}
+    }
+}
+
+sepparm3.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+lb_highdensity.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+         LAYOUT(horizontal) HSTRETCH
+         { WIDTH(0.05) }
+         LABEL VALUE(lb_highdensity.val[0]) HSTRETCH;
+    }
+    SEPARATOR HEIGHT(0.02) BGCOLOR("GroupHeaderOpen0") LOOKFLAT;
+    { HEIGHT(0.05) }
+}
+
+blendrampa_high.si_rampedit = FLOAT_RAMP VALUE(blendrampa_high.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+blendrampa_high.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	blendrampa_high.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(blendrampa_high.pointno.val) HSTRETCH;
+    }
+}
+
+blendrampa_high.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(blendrampa_high.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(blendrampa_high.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    blendrampa_high.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(blendrampa_high.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    blendrampa_high.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(blendrampa_high.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+blendrampa_high.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    blendrampa_high.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	blendrampa_high.buttons.gad VSTRETCH;
+
+	blendrampa_high.si_rampedit HSTRETCH;
+    }
+}
+
+blendrampa_high.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Base Sequence Cross-Fade", "blendrampa_high");
+
+	{ HSTRETCH }
+	blendrampa_high.interp
+	    = ACTION_MENU_ICONBUTTON blendrampa_high.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(blendrampa_high.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(blendrampa_high.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	blendrampa_high.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(blendrampa_high.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	blendrampa_high.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(blendrampa_high.hideparms.val) HSTRETCH
+	    blendrampa_high.multiramp;
+	    {}
+	}
+    }
+}
+
+blendrampb_high.si_rampedit = FLOAT_RAMP VALUE(blendrampb_high.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+blendrampb_high.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	blendrampb_high.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(blendrampb_high.pointno.val) HSTRETCH;
+    }
+}
+
+blendrampb_high.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(blendrampb_high.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(blendrampb_high.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    blendrampb_high.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(blendrampb_high.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    blendrampb_high.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(blendrampb_high.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+blendrampb_high.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    blendrampb_high.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	blendrampb_high.buttons.gad VSTRETCH;
+
+	blendrampb_high.si_rampedit HSTRETCH;
+    }
+}
+
+blendrampb_high.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Overlay Sequence Cross-Fade", "blendrampb_high");
+
+	{ HSTRETCH }
+	blendrampb_high.interp
+	    = ACTION_MENU_ICONBUTTON blendrampb_high.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(blendrampb_high.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(blendrampb_high.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	blendrampb_high.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(blendrampb_high.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	blendrampb_high.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(blendrampb_high.hideparms.val) HSTRETCH
+	    blendrampb_high.multiramp;
+	    {}
+	}
+    }
+}
+
+visw_density.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ visw_density.label = PARM_LABEL("Density Weight", "visw_density") WIDTH(1.5);
+ PARM(float, 1, "visw_density", none, none) RANGE(0,5)
+	LOCK_RANGE_MIN LABELREF(visw_density.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+visw_temp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ visw_temp.label = PARM_LABEL("Temperature Weight", "visw_temp") WIDTH(1.5);
+ PARM(float, 1, "visw_temp", none, none) RANGE(0,5)
+	LOCK_RANGE_MIN LABELREF(visw_temp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+visw_flame.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ visw_flame.label = PARM_LABEL("Flame Weight", "visw_flame") WIDTH(1.5);
+ PARM(float, 1, "visw_flame", none, none) RANGE(0,5)
+	LOCK_RANGE_MIN LABELREF(visw_flame.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+visw_scatter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ visw_scatter.label = PARM_LABEL("Scatter Weight", "visw_scatter") WIDTH(1.5);
+ PARM(float, 1, "visw_scatter", none, none) RANGE(0,5)
+	LOCK_RANGE_MIN LABELREF(visw_scatter.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+previewmv.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("previewmv", "Preview Motion Vectors") toggle VALUE(previewmv.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+vol_density.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_density.label = PARM_LABEL("Density Volume", "vol_density") WIDTH(1.5);
+    PARM_FIELD(string, "vol_density") VALUE(vol_density.val) 
+	LABELREF(vol_density.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+vol_cd.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_cd.label = PARM_LABEL("Diffuse Color Volume", "vol_cd") WIDTH(1.5);
+    PARM_FIELD(string, "vol_cd") VALUE(vol_cd.val) 
+	LABELREF(vol_cd.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+vol_temp.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_temp.label = PARM_LABEL("Temperature Volume", "vol_temp") WIDTH(1.5);
+    PARM_FIELD(string, "vol_temp") VALUE(vol_temp.val) 
+	LABELREF(vol_temp.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+vol_flame.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_flame.label = PARM_LABEL("Flame Volume", "vol_flame") WIDTH(1.5);
+    PARM_FIELD(string, "vol_flame") VALUE(vol_flame.val) 
+	LABELREF(vol_flame.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+vol_scatter.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_scatter.label = PARM_LABEL("Scatter Volume", "vol_scatter") WIDTH(1.5);
+    PARM_FIELD(string, "vol_scatter") VALUE(vol_scatter.val) 
+	LABELREF(vol_scatter.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+vol_ce.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_ce.label = PARM_LABEL("Emission Color Volume", "vol_ce") WIDTH(1.5);
+    PARM_FIELD(string, "vol_ce") VALUE(vol_ce.val) 
+	LABELREF(vol_ce.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+vol_vel.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vol_vel.label = PARM_LABEL("Velocity Volume", "vol_vel") WIDTH(1.5);
+    PARM_FIELD(string, "vol_vel") VALUE(vol_vel.val) 
+	LABELREF(vol_vel.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+fd_vols.gad = 
+GROUP collapsible "Volume Bindings" flat   
+{
+    VALUE(fd_vols.gad.val) LAYOUT(vertical) HSTRETCH
+	    vol_density.gad;		
+	    vol_cd.gad;		
+	    vol_temp.gad;		
+	    vol_flame.gad;		
+	    vol_scatter.gad;		
+	    vol_ce.gad;		
+	    vol_vel.gad;		
+} 
+
+fd_visibility.gad = 
+
+GROUP simple "Visibility Estimation" flat 
+{ 
+    VALUE(fd_visibility.gad.val) LAYOUT(vertical) HSTRETCH 
+	    visw_density.gad;		
+	    visw_temp.gad;		
+	    visw_flame.gad;		
+	    visw_scatter.gad;		
+	    previewmv.gad;		
+} 
+
+fd_general.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_general.gad"
+    { 
+	VALUE(fd_general.gad.val) STRETCH(1,0)
+
+	TAB "Sequence Cross-Fade"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    lb_lowdensity.gad;		
+	    blendrampa.gad;		
+	    blendrampb.gad;		
+	    sepparm3.gad;		
+	    lb_highdensity.gad;		
+	    blendrampa_high.gad;		
+	    blendrampb_high.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Advanced"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    fd_visibility.gad;		
+	    fd_vols.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    f.gad; 
+    overlaysource.gad; 
+    blendmode.gad; 
+    nonuniformfade.gad; 
+    densityrange.gad; 
+    sepparm2.gad; 
+    fd_general.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

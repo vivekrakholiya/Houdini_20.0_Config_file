@@ -1,0 +1,1034 @@
+// Magic: 5c6e0a7e
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Wed Mar 26 11:05:40 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+active.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("active", "Active") toggle VALUE(active.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+type.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    type.label = PARM_LABEL_SIMPLE("Type", "type") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    type.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+shape.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    shape.label = PARM_LABEL_SIMPLE("Shape", "shape") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    shape.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+invertShape.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invertShape", "Invert Shape") toggle VALUE(invertShape.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+camera.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ camera.label = PARM_LABEL("Camera", "camera") WIDTH(1.5);
+ PARM_FIELD(pathstring, "camera") VALUE(camera.val) 
+	LABELREF(camera.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(camera.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(camera.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+
+farDistance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ farDistance.label = PARM_LABEL("Far Distance", "farDistance") WIDTH(1.5);
+ PARM(float, 1, "farDistance", none, none) RANGE(0,1000)
+	LOCK_RANGE_MIN LABELREF(farDistance.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+overscan.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ overscan.label = PARM_LABEL("Overscan", "overscan") WIDTH(1.5);
+ PARM(float, 1, "overscan", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(overscan.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+density.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ density.label = PARM_LABEL("Density", "density") WIDTH(1.5);
+ PARM(float, 1, "density", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(density.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+temperature.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ temperature.label = PARM_LABEL("Temperature", "temperature") WIDTH(1.5);
+ PARM(float, 1, "temperature", none, none) RANGE(0,10)
+	 LABELREF(temperature.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+influence_temperature.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ influence_temperature.label = PARM_LABEL("Temperature", "influence_temperature") WIDTH(1.5);
+ PARM(float, 1, "influence_temperature", none, none) RANGE(0,10)
+	 LABELREF(influence_temperature.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+collision_temperature.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ collision_temperature.label = PARM_LABEL("Temperature", "collision_temperature") WIDTH(1.5);
+ PARM(float, 1, "collision_temperature", none, none) RANGE(0,10)
+	 LABELREF(collision_temperature.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+fuel.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ fuel.label = PARM_LABEL("Fuel", "fuel") WIDTH(1.5);
+ PARM(float, 1, "fuel", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(fuel.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+influence_fuel.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ influence_fuel.label = PARM_LABEL("Fuel", "influence_fuel") WIDTH(1.5);
+ PARM(float, 1, "influence_fuel", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(influence_fuel.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+pressure.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pressure.label = PARM_LABEL("Pressure", "pressure") WIDTH(1.5);
+ PARM(float, 1, "pressure", none, none) RANGE(-48,48)
+	 LABELREF(pressure.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+color.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    color.label = PARM_LABEL("Color", "color") WIDTH(1.5);
+    PARM(float, 3, "color", none, COLOR, "R,G,B") 
+	LABELREF(color.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+influence_color.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    influence_color.label = PARM_LABEL("Color", "influence_color") WIDTH(1.5);
+    PARM(float, 3, "influence_color", none, COLOR, "R,G,B") 
+	LABELREF(influence_color.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+useInheritedVelocity.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+useInheritedVelocity.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+useInheritedVelocity.gad = PARM_BUTTON("useInheritedVelocity", "") toggle VALUE(useInheritedVelocity.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+inheritedVelocity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ inheritedVelocity.label = PARM_LABEL("Inherited Velocity", "inheritedVelocity") WIDTH(1.32);
+ PARM(float, 1, "inheritedVelocity", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(inheritedVelocity.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+matchInputOrientation.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("matchInputOrientation", "Match Input Orientation") toggle VALUE(matchInputOrientation.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+xOrd.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+xOrd.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    xOrd.label = PARM_LABEL_SIMPLE("Transform Order", "xOrd") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xOrd.menu;
+
+    {  }
+
+    {  }
+}
+
+rOrd.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    rOrd.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+t.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   t.label = PARM_LABEL("Translate", "t") WIDTH(1.5);
+   PARM(float, 3, "t", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(t.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+r.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   r.label = PARM_LABEL("Rotate", "r") WIDTH(1.5);
+   PARM(float, 3, "r", none, none, "X,Y,Z")
+	RANGE(0,360)  LABELREF(r.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+s.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   s.label = PARM_LABEL("Scale", "s") WIDTH(1.5);
+   PARM(float, 3, "s", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(s.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+shear.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   shear.label = PARM_LABEL("Shear", "shear") WIDTH(1.5);
+   PARM(float, 3, "shear", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(shear.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale.label = PARM_LABEL("Uniform Scale", "scale") WIDTH(1.5);
+ PARM(float, 1, "scale", none, none) RANGE(0,10)
+	 LABELREF(scale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+useNoise.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useNoise", "Use Noise") toggle VALUE(useNoise.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+noiseType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    noiseType.label = PARM_LABEL_SIMPLE("Type", "noiseType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    noiseType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+noiseSpace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    noiseSpace.label = PARM_LABEL_SIMPLE("Space", "noiseSpace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    noiseSpace.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+noiseStrength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ noiseStrength.label = PARM_LABEL("Strength", "noiseStrength") WIDTH(1.5);
+ PARM(float, 1, "noiseStrength", none, none) RANGE(0,10)
+	LOCK_RANGE LABELREF(noiseStrength.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noiseFeatureSize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ noiseFeatureSize.label = PARM_LABEL("Feature Size", "noiseFeatureSize") WIDTH(1.5);
+ PARM(float, 1, "noiseFeatureSize", none, none) RANGE(0.0001,10)
+	LOCK_RANGE_MIN LABELREF(noiseFeatureSize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noiseFeatureSizeVector.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   noiseFeatureSizeVector.label = PARM_LABEL("Feature Size", "noiseFeatureSizeVector") WIDTH(1.5);
+   PARM(float, 3, "noiseFeatureSizeVector", none, none, "X,Y,Z")
+	RANGE(0.0001,10) LOCK_RANGE_MIN LABELREF(noiseFeatureSizeVector.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+noiseRange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   noiseRange.label = PARM_LABEL("Range", "noiseRange") WIDTH(1.5);
+   PARM(float, 2, "noiseRange", none, none, "X,Y")
+	RANGE(0,1)  LABELREF(noiseRange.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+noiseOffset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   noiseOffset.label = PARM_LABEL("Offset", "noiseOffset") WIDTH(1.5);
+   PARM(float, 3, "noiseOffset", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(noiseOffset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+noiseSpeed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ noiseSpeed.label = PARM_LABEL("Speed", "noiseSpeed") WIDTH(1.5);
+ PARM(float, 1, "noiseSpeed", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(noiseSpeed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noiseLacunarity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ noiseLacunarity.label = PARM_LABEL("Lacunarity", "noiseLacunarity") WIDTH(1.5);
+ PARM(float, 1, "noiseLacunarity", none, none) RANGE(0,4)
+	LOCK_RANGE_MIN LABELREF(noiseLacunarity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noiseGain.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ noiseGain.label = PARM_LABEL("Gain", "noiseGain") WIDTH(1.5);
+ PARM(float, 1, "noiseGain", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(noiseGain.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noiseOctaves.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ noiseOctaves.label = PARM_LABEL("Octaves", "noiseOctaves") WIDTH(1.5);
+ PARM(integer, 1, "noiseOctaves", none, none) RANGE(1,8)
+	LOCK_RANGE_MIN LABELREF(noiseOctaves.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+useDeformationNoise.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useDeformationNoise", "Use Noise") toggle VALUE(useDeformationNoise.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+deformationNoiseType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    deformationNoiseType.label = PARM_LABEL_SIMPLE("Type", "deformationNoiseType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    deformationNoiseType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+deformationNoiseSpace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    deformationNoiseSpace.label = PARM_LABEL_SIMPLE("Space", "deformationNoiseSpace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    deformationNoiseSpace.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+deformationNoiseStrength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ deformationNoiseStrength.label = PARM_LABEL("Strength", "deformationNoiseStrength") WIDTH(1.5);
+ PARM(float, 1, "deformationNoiseStrength", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(deformationNoiseStrength.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+deformationNoiseFeatureSize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ deformationNoiseFeatureSize.label = PARM_LABEL("Feature Size", "deformationNoiseFeatureSize") WIDTH(1.5);
+ PARM(float, 1, "deformationNoiseFeatureSize", none, none) RANGE(0.0001,10)
+	LOCK_RANGE_MIN LABELREF(deformationNoiseFeatureSize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+deformationNoiseFeatureSizeVector.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   deformationNoiseFeatureSizeVector.label = PARM_LABEL("Feature Size", "deformationNoiseFeatureSizeVector") WIDTH(1.5);
+   PARM(float, 3, "deformationNoiseFeatureSizeVector", none, none, "X,Y,Z")
+	RANGE(0.0001,10) LOCK_RANGE_MIN LABELREF(deformationNoiseFeatureSizeVector.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+deformationNoiseOffset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   deformationNoiseOffset.label = PARM_LABEL("Offset", "deformationNoiseOffset") WIDTH(1.5);
+   PARM(float, 3, "deformationNoiseOffset", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(deformationNoiseOffset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+deformationNoiseSpeed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ deformationNoiseSpeed.label = PARM_LABEL("Speed", "deformationNoiseSpeed") WIDTH(1.5);
+ PARM(float, 1, "deformationNoiseSpeed", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(deformationNoiseSpeed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+deformationNoiseLacunarity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ deformationNoiseLacunarity.label = PARM_LABEL("Lacunarity", "deformationNoiseLacunarity") WIDTH(1.5);
+ PARM(float, 1, "deformationNoiseLacunarity", none, none) RANGE(0,4)
+	LOCK_RANGE_MIN LABELREF(deformationNoiseLacunarity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+deformationNoiseGain.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ deformationNoiseGain.label = PARM_LABEL("Gain", "deformationNoiseGain") WIDTH(1.5);
+ PARM(float, 1, "deformationNoiseGain", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(deformationNoiseGain.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+deformationNoiseOctaves.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ deformationNoiseOctaves.label = PARM_LABEL("Octaves", "deformationNoiseOctaves") WIDTH(1.5);
+ PARM(integer, 1, "deformationNoiseOctaves", none, none) RANGE(1,8)
+	LOCK_RANGE_MIN LABELREF(deformationNoiseOctaves.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+useVelocityNoise.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useVelocityNoise", "Use Noise") toggle VALUE(useVelocityNoise.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+velocityNoiseType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    velocityNoiseType.label = PARM_LABEL_SIMPLE("Type", "velocityNoiseType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    velocityNoiseType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+velocityNoiseSpace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    velocityNoiseSpace.label = PARM_LABEL_SIMPLE("Space", "velocityNoiseSpace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    velocityNoiseSpace.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+velocityNoiseStrength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ velocityNoiseStrength.label = PARM_LABEL("Strength", "velocityNoiseStrength") WIDTH(1.5);
+ PARM(float, 1, "velocityNoiseStrength", none, none) RANGE(0,10)
+	 LABELREF(velocityNoiseStrength.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+velocityNoiseFeatureSize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ velocityNoiseFeatureSize.label = PARM_LABEL("Feature Size", "velocityNoiseFeatureSize") WIDTH(1.5);
+ PARM(float, 1, "velocityNoiseFeatureSize", none, none) RANGE(0.0001,10)
+	LOCK_RANGE_MIN LABELREF(velocityNoiseFeatureSize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+velocityNoiseFeatureSizeVector.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   velocityNoiseFeatureSizeVector.label = PARM_LABEL("Feature Size", "velocityNoiseFeatureSizeVector") WIDTH(1.5);
+   PARM(float, 3, "velocityNoiseFeatureSizeVector", none, none, "X,Y,Z")
+	RANGE(0.0001,10) LOCK_RANGE_MIN LABELREF(velocityNoiseFeatureSizeVector.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+velocityNoiseOffset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   velocityNoiseOffset.label = PARM_LABEL("Offset", "velocityNoiseOffset") WIDTH(1.5);
+   PARM(float, 3, "velocityNoiseOffset", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(velocityNoiseOffset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+velocityNoiseSpeed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ velocityNoiseSpeed.label = PARM_LABEL("Speed", "velocityNoiseSpeed") WIDTH(1.5);
+ PARM(float, 1, "velocityNoiseSpeed", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(velocityNoiseSpeed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+velocityNoiseLacunarity.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ velocityNoiseLacunarity.label = PARM_LABEL("Lacunarity", "velocityNoiseLacunarity") WIDTH(1.5);
+ PARM(float, 1, "velocityNoiseLacunarity", none, none) RANGE(0,4)
+	LOCK_RANGE_MIN LABELREF(velocityNoiseLacunarity.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+velocityNoiseGain.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ velocityNoiseGain.label = PARM_LABEL("Gain", "velocityNoiseGain") WIDTH(1.5);
+ PARM(float, 1, "velocityNoiseGain", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(velocityNoiseGain.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+velocityNoiseOctaves.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ velocityNoiseOctaves.label = PARM_LABEL("Octaves", "velocityNoiseOctaves") WIDTH(1.5);
+ PARM(integer, 1, "velocityNoiseOctaves", none, none) RANGE(1,8)
+	LOCK_RANGE_MIN LABELREF(velocityNoiseOctaves.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+forceType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    forceType.label = PARM_LABEL_SIMPLE("Type", "forceType") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    forceType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+forceDirection.gad = ROW 
+{
+    HSTRETCH
+   { WIDTH(0.18) }
+
+    forceDirection.label = PARM_LABEL("Direction", "forceDirection") WIDTH(1.5);
+    PARM(float, 3, "forceDirection", none, none) LABELREF(forceDirection.label)
+	HSTRETCH;
+
+   { WIDTH(0.1) }
+}
+
+forceMagnitude.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ forceMagnitude.label = PARM_LABEL("Magnitude", "forceMagnitude") WIDTH(1.5);
+ PARM(float, 1, "forceMagnitude", none, none) RANGE(0,10)
+	 LABELREF(forceMagnitude.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noise.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "noise.gad"
+    { 
+	VALUE(noise.gad.val) STRETCH(1,0)
+
+	TAB "Noise"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    useNoise.gad;		
+	    noiseType.gad;		
+	    noiseSpace.gad;		
+	    noiseStrength.gad;		
+	    noiseFeatureSize.gad;		
+	    noiseFeatureSizeVector.gad;		
+	    noiseRange.gad;		
+	    noiseOffset.gad;		
+	    noiseSpeed.gad;		
+	    noiseLacunarity.gad;		
+	    noiseGain.gad;		
+	    noiseOctaves.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Deformation Noise"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    useDeformationNoise.gad;		
+	    deformationNoiseType.gad;		
+	    deformationNoiseSpace.gad;		
+	    deformationNoiseStrength.gad;		
+	    deformationNoiseFeatureSize.gad;		
+	    deformationNoiseFeatureSizeVector.gad;		
+	    deformationNoiseOffset.gad;		
+	    deformationNoiseSpeed.gad;		
+	    deformationNoiseLacunarity.gad;		
+	    deformationNoiseGain.gad;		
+	    deformationNoiseOctaves.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Velocity Noise"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    useVelocityNoise.gad;		
+	    velocityNoiseType.gad;		
+	    velocityNoiseSpace.gad;		
+	    velocityNoiseStrength.gad;		
+	    velocityNoiseFeatureSize.gad;		
+	    velocityNoiseFeatureSizeVector.gad;		
+	    velocityNoiseOffset.gad;		
+	    velocityNoiseSpeed.gad;		
+	    velocityNoiseLacunarity.gad;		
+	    velocityNoiseGain.gad;		
+	    velocityNoiseOctaves.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Force"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    forceType.gad;		
+	    forceDirection.gad;		
+	    forceMagnitude.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+folder0.gad = 
+GROUP collapsible "Transform" flat   
+{
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH
+	    matchInputOrientation.gad;		
+	    sepparm.gad;		
+	    xOrd.row.join;		
+	    t.gad;		
+	    r.gad;		
+	    s.gad;		
+	    shear.gad;		
+	    scale.gad;		
+} 
+
+sourcing.gad = 
+GROUP collapsible "Sourcing" flat   
+{
+    VALUE(sourcing.gad.val) LAYOUT(vertical) HSTRETCH
+	    density.gad;		
+	    temperature.gad;		
+	    influence_temperature.gad;		
+	    collision_temperature.gad;		
+	    fuel.gad;		
+	    influence_fuel.gad;		
+	    pressure.gad;		
+	    color.gad;		
+	    influence_color.gad;		
+	    useInheritedVelocity.row.join;		
+} 
+
+cameraFolder.gad = 
+GROUP collapsible "Camera" flat   
+{
+    VALUE(cameraFolder.gad.val) LAYOUT(vertical) HSTRETCH
+	    camera.gad;		
+	    farDistance.gad;		
+	    overscan.gad;		
+} 
+
+main.gad = 
+GROUP collapsible "Main" flat   
+{
+    VALUE(main.gad.val) LAYOUT(vertical) HSTRETCH
+	    active.gad;		
+	    type.gad;		
+	    shape.gad;		
+	    invertShape.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    main.gad; 
+    cameraFolder.gad; 
+    sourcing.gad; 
+    folder0.gad; 
+    noise.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

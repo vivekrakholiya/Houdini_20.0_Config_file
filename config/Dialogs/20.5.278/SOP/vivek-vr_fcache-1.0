@@ -1,0 +1,251 @@
+// Magic: dc03d2f1
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Sep 10 10:54:54 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+v.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ v.label = PARM_LABEL("v", "v") WIDTH(1.5);
+ PARM(integer, 1, "v", none, none) RANGE(0,10)
+	 LABELREF(v.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+reload.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("reload", "Reload Geometry")
+	push VALUE(reload.val);
+
+    { WIDTH(0.1) }
+}
+
+f.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   f.label = PARM_LABEL("Start/End/Inc", "f") WIDTH(1.5);
+   PARM(float, 3, "f", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(f.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+packedviewedit.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    packedviewedit.label = PARM_LABEL_SIMPLE("Display Packed As", "packedviewedit") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    packedviewedit.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+create_fatch.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("create_fatch", "create_fatch")
+	push VALUE(create_fatch.val);
+
+    { WIDTH(0.1) }
+}
+
+file_name.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    file_name.label = PARM_LABEL("file_name", "file_name") WIDTH(1.5);
+    PARM_FIELD(string, "file_name") VALUE(file_name.val) 
+	LABELREF(file_name.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+execute.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("execute", "Save to Disk")
+	push VALUE(execute.val);
+
+    { WIDTH(0.1) }
+}
+
+executebackground.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("executebackground", "Save to Disk in Background")
+	push VALUE(executebackground.val);
+
+    { WIDTH(0.1) }
+}
+
+renderdialog.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("renderdialog", "Controls...")
+	push VALUE(renderdialog.val);
+
+    { WIDTH(0.1) }
+}
+
+trange.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    trange.label = PARM_LABEL_SIMPLE("Valid Frame Range", "trange") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    trange.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+take.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    take.label = PARM_LABEL_SIMPLE("Render with Take", "take") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    take.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sopoutput.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ sopoutput.label = PARM_LABEL("Output File", "sopoutput") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "sopoutput") LABELREF(sopoutput.label)
+	VALUE(sopoutput.val) HSTRETCH;
+
+    sopoutput.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(sopoutput.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+initsim.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("initsim", "Initialize Simulation OPs") toggle VALUE(initsim.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fcache.gad = 
+
+GROUP simple "fcache" flat 
+{ 
+    VALUE(fcache.gad.val) LAYOUT(vertical) HSTRETCH 
+	    execute.gad;		
+	    executebackground.gad;		
+	    renderdialog.gad;		
+	    trange.gad;		
+	    take.gad;		
+	    sopoutput.gad;		
+	    initsim.gad;		
+} 
+
+File_lod.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "File_lod.gad"
+    { 
+	VALUE(File_lod.gad.val) STRETCH(1,0)
+
+	TAB "File_lod"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    v.gad;		
+	    reload.gad;		
+	    f.gad;		
+	    packedviewedit.gad;		
+	    create_fatch.gad;		
+	    file_name.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    File_lod.gad; 
+    fcache.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

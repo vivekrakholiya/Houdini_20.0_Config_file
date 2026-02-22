@@ -1,0 +1,27 @@
+= Convert Material =
+
+"""Lets you convert a principledshader material into various other renderers"""
+
+When principled materials are present, this is a one click solution to convert them quickly into your favorite renderer.  Currently supported are Octane, Redshift, 3Delight, Renderman, VRay & Arnold.
+
+:vimeo: Example Use of the Tool with Redshift, but its the same for all Renderers.
+    #id: 504471849
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+    #!python
+    from OD import shelftools
+    shelftools.convertMaterial(nodes = None, res = None)
+
+    # nodes is an array of nodes
+    # res is the id for the renderer
+    # 0: Octane
+    # 1: Redshift
+    # 2: 3Delight
+    # 3: Renderman
+    # 4: VRay
+    # 5: Arnold
+
+    }}}

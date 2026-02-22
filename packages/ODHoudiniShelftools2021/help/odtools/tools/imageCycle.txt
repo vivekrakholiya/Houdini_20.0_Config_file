@@ -1,0 +1,5 @@
+= Image Cycle +/- =
+
+"""Changes a File Parm to the previous/next item in a directory."""
+
+Select a node with a fileparm that has a filename set.  As an example, a lot of times, you might have multiple images in a folder and want to quickly cycle through them instead of having to select them in the file browser every time.  Image Cycle + goes to the next image in the folder, and Image Cycle - goes to the previous image.

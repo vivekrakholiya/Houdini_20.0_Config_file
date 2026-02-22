@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>373</width>
+    <height>686</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="7" column="2">
+       <widget class="QPushButton" name="pushButton_17">
+        <property name="toolTip">
+         <string>Create Marker</string>
+        </property>
+        <property name="text">
+         <string>Create Mark</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="5">
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="toolTip">
+         <string>Jump forward by offset value</string>
+        </property>
+        <property name="text">
+         <string>&gt;&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="4">
+       <widget class="QPushButton" name="pushButton_18">
+        <property name="toolTip">
+         <string>Go To specific Marker</string>
+        </property>
+        <property name="text">
+         <string>Goto Mark</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="2">
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="toolTip">
+         <string>Move selected keys by a specific amount of frames</string>
+        </property>
+        <property name="text">
+         <string>Move To</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="5">
+       <widget class="QPushButton" name="pushButton_21">
+        <property name="toolTip">
+         <string>Removes keyframes outside of the selection</string>
+        </property>
+        <property name="text">
+         <string>Crop Keys</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="5">
+       <widget class="QSlider" name="horizontalSlider">
+        <property name="toolTip">
+         <string>This slider interpolates between the two adjacent key values.
+Click Create Inbetween again to exit the adjustment mode.</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="5">
+       <widget class="QPushButton" name="pushButton_37">
+        <property name="text">
+         <string>Adjust</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="5">
+       <widget class="QPushButton" name="pushButton_34">
+        <property name="text">
+         <string>Stagger</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="pushButton">
+        <property name="toolTip">
+         <string>Jump backward by offset</string>
+        </property>
+        <property name="text">
+         <string>&lt;&lt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="2" colspan="4">
+       <widget class="Line" name="line_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="27" column="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="17" column="4">
+       <widget class="QPushButton" name="pushButton_16">
+        <property name="text">
+         <string>Mirror to Frame</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="5">
+       <widget class="QPushButton" name="pushButton_13">
+        <property name="toolTip">
+         <string>Jump to next marker</string>
+        </property>
+        <property name="text">
+         <string>Next Mark</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="5">
+       <widget class="QPushButton" name="pushButton_14">
+        <property name="toolTip">
+         <string>Reduces the amount of keyframes</string>
+        </property>
+        <property name="text">
+         <string>Reduce</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="2">
+       <widget class="QPushButton" name="pushButton_15">
+        <property name="text">
+         <string>Mirror</string>
+        </property>
+       </widget>
+      </item>
+      <item row="19" column="2" colspan="4">
+       <widget class="Line" name="line_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Offset</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="5">
+       <widget class="QPushButton" name="pushButton_8">
+        <property name="toolTip">
+         <string>Create Inbetween Keyframe:
+
+Mode 1: If two keys are selected, a key is inserted in between
+Mode 2: If a single key is selected, the key value can be adjusted to the adjacent keys</string>
+        </property>
+        <property name="text">
+         <string>Create InBetween</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="5">
+       <widget class="QPushButton" name="pushButton_30">
+        <property name="toolTip">
+         <string>Delete Timeline Range</string>
+        </property>
+        <property name="text">
+         <string>Delete Range</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="pushButton_23">
+        <property name="text">
+         <string>Open Graph</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="2">
+       <widget class="QPushButton" name="pushButton_9">
+        <property name="toolTip">
+         <string>Moves the selected key one frame to the left</string>
+        </property>
+        <property name="text">
+         <string>Nudge Left</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="4">
+       <widget class="QPushButton" name="pushButton_10">
+        <property name="toolTip">
+         <string>Moves the selected key one frame to the right</string>
+        </property>
+        <property name="text">
+         <string>Nudge Right</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5">
+       <widget class="QPushButton" name="pushButton_32">
+        <property name="toolTip">
+         <string>Jump forward by a second</string>
+        </property>
+        <property name="text">
+         <string>&gt;s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="4">
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="toolTip">
+         <string>Copy (Offset) selected keys by a specified number of frames</string>
+        </property>
+        <property name="text">
+         <string>Copy To</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="2">
+       <widget class="QPushButton" name="pushButton_11">
+        <property name="toolTip">
+         <string>Lets you bake down keys at different intervals</string>
+        </property>
+        <property name="text">
+         <string>Bake Keys</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="4">
+       <widget class="QPushButton" name="pushButton_7">
+        <property name="toolTip">
+         <string>Removes key at specific frame</string>
+        </property>
+        <property name="text">
+         <string>Remove At</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="4">
+       <widget class="QPushButton" name="pushButton_12">
+        <property name="toolTip">
+         <string>Jump to previous marker</string>
+        </property>
+        <property name="text">
+         <string>Prev Mark</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QCheckBox" name="checkBox">
+        <property name="toolTip">
+         <string>Evaluates the graph instead of playbar</string>
+        </property>
+        <property name="text">
+         <string>Use Graph</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="2" colspan="4">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="toolTip">
+         <string>Offset value in frames to jump backward/forward</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="4">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="toolTip">
+         <string>Go to specific frame</string>
+        </property>
+        <property name="text">
+         <string>GoTo</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QPushButton" name="pushButton_20">
+        <property name="toolTip">
+         <string>Play Timeline (Right click for options)</string>
+        </property>
+        <property name="text">
+         <string>Play*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Handles</string>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="2">
+       <widget class="QPushButton" name="pushButton_35">
+        <property name="text">
+         <string>Copy</string>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="4">
+       <widget class="QPushButton" name="pushButton_36">
+        <property name="text">
+         <string>Paste*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="pushButton_31">
+        <property name="toolTip">
+         <string>Jump backward by a second</string>
+        </property>
+        <property name="text">
+         <string>s&lt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2" colspan="4">
+       <widget class="Line" name="line_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="2">
+       <widget class="QPushButton" name="pushButton_28">
+        <property name="toolTip">
+         <string>Create Timeline Range</string>
+        </property>
+        <property name="text">
+         <string>Create Range</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Timeline</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="4">
+       <widget class="QPushButton" name="pushButton_29">
+        <property name="toolTip">
+         <string>Set Timeline Range</string>
+        </property>
+        <property name="text">
+         <string>Goto Range</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="5">
+       <widget class="QPushButton" name="pushButton_19">
+        <property name="toolTip">
+         <string>Delete Marker</string>
+        </property>
+        <property name="text">
+         <string>Delete Mark</string>
+        </property>
+       </widget>
+      </item>
+      <item row="25" column="2">
+       <widget class="QPushButton" name="pushButton_26">
+        <property name="text">
+         <string>Store</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" colspan="4">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="25" column="4">
+       <widget class="QPushButton" name="pushButton_27">
+        <property name="text">
+         <string>Recall</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="2">
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="toolTip">
+         <string>Create key at specified frame at current value</string>
+        </property>
+        <property name="text">
+         <string>Create At</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="2">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Keyframes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="4">
+       <widget class="QPushButton" name="pushButton_22">
+        <property name="toolTip">
+         <string>Removes Keys for static channel values</string>
+        </property>
+        <property name="text">
+         <string>Remove Static</string>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="4">
+       <widget class="QPushButton" name="pushButton_24">
+        <property name="text">
+         <string>Grow Keys</string>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="2">
+       <widget class="QPushButton" name="pushButton_25">
+        <property name="text">
+         <string>Shrink Keys</string>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="5">
+       <widget class="QPushButton" name="pushButton_33">
+        <property name="toolTip">
+         <string>Distributes keys evenly between 1st and last selected Key.</string>
+        </property>
+        <property name="text">
+         <string>Even Distribution</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

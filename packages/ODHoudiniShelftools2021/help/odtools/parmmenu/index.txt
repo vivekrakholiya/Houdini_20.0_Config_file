@@ -1,0 +1,27 @@
+= Parameter RMB Menu =
+
+"""Additions to the Parameter Right Click Menu."""
+
+This page describes the ODTools Right Click Parameters tools.
+
+NOTE:
+    This document is a work in progress.
+
+    Existing documentation might not be up to date (especially in User Interface),
+    please report any ideas or inconsistencies. Thank you!
+
+@subtopics
+#display: notitle
+
+:col:
+
+    == Right Click Parameter Additions ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Enter Unit Measure Values & Convert|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Create Keyframes From Fusion .spl Splines|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Open Native File Requester|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Open In...|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Set Relative to $JOB|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Enable NoiseFX|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Disable NoiseFX|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Update MotionFX|comingsoon/]

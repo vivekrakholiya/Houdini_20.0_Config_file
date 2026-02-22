@@ -1,0 +1,408 @@
+// Magic: ac982de7
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Jan 11 22:15:49 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+generatestatic.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+generatestatic.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("generatestatic", "Generate Static Work Items")
+	push VALUE(generatestatic.val);
+
+    {  }
+}
+
+cookbutton.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("cookbutton", "Cook Output Node")
+	push VALUE(cookbutton.val);
+
+    {  }
+}
+
+dirtybutton.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("dirtybutton", "Dirty All")
+	push VALUE(dirtybutton.val);
+
+    {  }
+}
+
+cancelbutton.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("cancelbutton", "Cancel Cook")
+	push VALUE(cancelbutton.val);
+
+    {  }
+}
+}	// Template join.bot
+
+
+checkpointformat.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    checkpointformat.label = PARM_LABEL_SIMPLE("Checkpoint Format", "checkpointformat") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    checkpointformat.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+taskgraphfile.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+taskgraphfile.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ taskgraphfile.label = PARM_LABEL("Checkpoint File", "taskgraphfile") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "taskgraphfile") LABELREF(taskgraphfile.label)
+	VALUE(taskgraphfile.val) HSTRETCH;
+
+    taskgraphfile.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(taskgraphfile.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+
+savetaskgraph.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("savetaskgraph", "Save Checkpoint")
+	push VALUE(savetaskgraph.val);
+
+    {  }
+}
+
+loadtaskgraph.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("loadtaskgraph", "Load Checkpoint")
+	push VALUE(loadtaskgraph.val);
+
+    {  }
+}
+}	// Template join.bot
+
+taskgraphautosave.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+taskgraphautosave.gad = PARM_BUTTON("taskgraphautosave", "") toggle VALUE(taskgraphautosave.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+taskgraphsaverate.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ taskgraphsaverate.label = PARM_LABEL("Checkpoint Rate", "taskgraphsaverate") WIDTH(1.32);
+ PARM(integer, 1, "taskgraphsaverate", none, none) RANGE(1,100)
+	LOCK_RANGE_MIN LABELREF(taskgraphsaverate.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+checkpointfile.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+checkpointfile.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ checkpointfile.label = PARM_LABEL("Checkpoint File", "checkpointfile") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "checkpointfile") LABELREF(checkpointfile.label)
+	VALUE(checkpointfile.val) HSTRETCH;
+
+    checkpointfile.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(checkpointfile.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+
+loadcheckpoint.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("loadcheckpoint", "Load Checkpoint")
+	push VALUE(loadcheckpoint.val);
+
+    {  }
+}
+}	// Template join.bot
+
+
+checkpointload.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    checkpointload.label = PARM_LABEL_SIMPLE("Load Checkpoint", "checkpointload") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    checkpointload.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+checkpointenabled.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+checkpointenabled.gad = PARM_BUTTON("checkpointenabled", "") toggle VALUE(checkpointenabled.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+checkpointrate.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ checkpointrate.label = PARM_LABEL("Checkpoint Rate", "checkpointrate") WIDTH(1.32);
+ PARM(integer, 1, "checkpointrate", none, none) RANGE(1,100)
+	LOCK_RANGE_MIN LABELREF(checkpointrate.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+
+sep2.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+savegraphattribs.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("savegraphattribs", "Save Graph Attributes to .hip") toggle VALUE(savegraphattribs.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+topscheduler.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+ { WIDTH(0.18) }
+
+ topscheduler.label = PARM_LABEL("Default Scheduler", "topscheduler") WIDTH(1.5);
+ PARM_FIELD(pathstring, "topscheduler") VALUE(topscheduler.val) 
+	LABELREF(topscheduler.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(topscheduler.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(topscheduler.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+
+ { WIDTH(0.1) }
+}
+usedefaultlabel.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+usedefaultlabel.gad = PARM_BUTTON("usedefaultlabel", "") toggle VALUE(usedefaultlabel.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+defaultlabel.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    defaultlabel.label = PARM_LABEL("Default Item Label", "defaultlabel") WIDTH(1.32);
+    PARM_FIELD(string, "defaultlabel") VALUE(defaultlabel.val) 
+	LABELREF(defaultlabel.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+
+sep1.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+regenerationtype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    regenerationtype.label = PARM_LABEL_SIMPLE("On Node Recook", "regenerationtype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    regenerationtype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+evaluationtime.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    evaluationtime.label = PARM_LABEL_SIMPLE("Evaluation Time", "evaluationtime") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    evaluationtime.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+customtime.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ customtime.label = PARM_LABEL("Custom Time", "customtime") WIDTH(1.5);
+ PARM(integer, 1, "customtime", none, none) RANGE(0,10)
+	 LABELREF(customtime.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+savescenefile.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("savescenefile", "Save Scene File if Required") toggle VALUE(savescenefile.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+schedulersection.gad = 
+
+GROUP simple "Work Items and Scheduling" flat 
+{ 
+    VALUE(schedulersection.gad.val) LAYOUT(vertical) HSTRETCH 
+	    topscheduler.gad;		
+	    usedefaultlabel.join;		
+	    sep1.gad;		
+	    regenerationtype.gad;		
+	    evaluationtime.gad;		
+	    customtime.gad;		
+	    savescenefile.gad;		
+} 
+
+taskgraphsection.gad = 
+
+GROUP simple "Attributes and Checkpointing" flat 
+{ 
+    VALUE(taskgraphsection.gad.val) LAYOUT(vertical) HSTRETCH 
+	    checkpointformat.gad;		
+	    taskgraphfile.row.join;		
+	    taskgraphautosave.join;		
+	    checkpointfile.row.join;		
+	    checkpointload.gad;		
+	    checkpointenabled.join;		
+	    sep2.gad;		
+	    savegraphattribs.gad;		
+} 
+
+cookcontrolssection.gad = 
+
+GROUP simple "Cook Controls" flat 
+{ 
+    VALUE(cookcontrolssection.gad.val) LAYOUT(vertical) HSTRETCH 
+	    generatestatic.row.join;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    cookcontrolssection.gad; 
+    taskgraphsection.gad; 
+    schedulersection.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

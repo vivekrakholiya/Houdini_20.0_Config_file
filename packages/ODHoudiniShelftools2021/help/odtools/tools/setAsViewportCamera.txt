@@ -1,0 +1,8 @@
+= Set As Viewport Camera =
+
+"""Set Selected Camera as Viewport Camera"""
+
+This simply sets the current camera as the viewport camera with the added benefit, if you are using an OD Camera Overlay, it will adjust the frame range to the one specified in the Overlay.
+
+:vimeo: Example Use of the Tool
+    #id: 473592819

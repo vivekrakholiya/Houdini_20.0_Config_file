@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Play" transform="matrix(0.191941,2.60244e-32,-2.36585e-33,0.191941,-43.66,-48.2619)">
+        <path d="M236,284.2C236,283.265 237.064,282.69 237.894,283.177L255.404,293.479C256.198,293.945 256.198,295.055 255.404,295.522C252.694,297.117 250.661,298.312 249.306,299.11C246.77,300.601 242.966,302.839 237.894,305.823C237.064,306.31 236,305.736 236,304.801L236,284.2Z" style="fill:rgb(255,178,0);"/>
+    </g>
+    <g id="Play1" serif:id="Play" transform="matrix(-0.191941,-2.3506e-17,2.3506e-17,-0.191941,59.8341,64.7503)">
+        <path d="M236,284.2C236,283.265 237.064,282.69 237.894,283.177L255.404,293.479C256.198,293.945 256.198,295.055 255.404,295.522C252.694,297.117 250.661,298.312 249.306,299.11C246.77,300.601 242.966,302.839 237.894,305.823C237.064,306.31 236,305.736 236,304.801L236,284.2Z" style="fill:rgb(255,178,0);"/>
+    </g>
+    <rect x="0.861" y="0.62" width="14.418" height="3.85" style="fill:rgb(255,178,0);"/>
+    <g transform="matrix(1,0,0,1,0,10.8544)">
+        <rect x="0.861" y="0.62" width="14.418" height="3.85" style="fill:rgb(255,178,0);"/>
+    </g>
+</svg>

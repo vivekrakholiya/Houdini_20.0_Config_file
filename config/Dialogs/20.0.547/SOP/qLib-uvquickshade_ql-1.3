@@ -1,0 +1,72 @@
+// Magic: 60d62836
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Tue Sep 16 22:41:36 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ texture.label = PARM_LABEL("Texture", "texture") ;
+
+ PARM_FIELD (pathstring, "texture") LABELREF(texture.label)
+	VALUE(texture.val) HSTRETCH;
+
+    texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+diff_clr.row.join =		
+{
+
+  LAYOUT(horizontal) JUSTIFY(left, center) UNSCALABLE
+
+diff_clr.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    diff_clr.label = PARM_LABEL("Diffuse", "diff_clr") ;
+    PARM(float, 3, "diff_clr", none, COLOR, "R,G,B") 
+	LABELREF(diff_clr.label) HSTRETCH;
+
+    {  }
+}
+
+lighting.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("lighting", "Use Lighting") toggle VALUE(lighting.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+# warning cpp warning: "GenV3/subdialog.top.ui":11 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":12 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":13 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    texture.gad; 
+    diff_clr.row.join; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

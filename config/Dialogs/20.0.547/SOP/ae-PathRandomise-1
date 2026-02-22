@@ -1,0 +1,187 @@
+// Magic: 471c7d39
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Mon Nov 17 08:01:27 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+vis.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("vis", "Visualise") toggle VALUE(vis.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+input.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    input.label = PARM_LABEL_SIMPLE("Point/Prim", "input") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    input.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+paths.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ paths.label = PARM_LABEL("Operator paths", "paths") WIDTH(1.5);
+ PARM_FIELD (pathstring, "paths") LABELREF(paths.label) 
+	VALUE(paths.val) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(paths.plus) LOOKFLAT
+    HELP("Open floating bundle chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+path_attr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    path_attr.label = PARM_LABEL("String Attribute to set", "path_attr") WIDTH(1.5);
+    PARM_FIELD(string, "path_attr") VALUE(path_attr.val) 
+	LABELREF(path_attr.label) HSTRETCH;
+
+    path_attr.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Random Seed", "seed") WIDTH(1.5);
+ PARM(integer, 1, "seed", none, none) RANGE(0,10)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+use_id.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+use_id.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+use_id.gad = PARM_BUTTON("use_id", "") toggle VALUE(use_id.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+id_attr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    id_attr.label = PARM_LABEL("Seed with 'id' Attrib", "id_attr") WIDTH(1.32);
+    PARM_FIELD(string, "id_attr") VALUE(id_attr.val) 
+	LABELREF(id_attr.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+weights.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Path Random Weights", "weights") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(weights.val)
+
+        weights.field = PARM_FIELD (integer, "weights")
+				VALUE(weights.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(weights.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(weights.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(weights.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+weights.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+weights.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(weights.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    weights.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    weights.multilist;
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    vis.gad; 
+    input.gad; 
+    paths.gad; 
+    path_attr.gad; 
+    seed.gad; 
+    use_id.row.join; 
+    weights.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

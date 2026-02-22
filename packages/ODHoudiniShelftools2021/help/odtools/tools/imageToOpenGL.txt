@@ -1,0 +1,5 @@
+= Image to OpenGL =
+
+"""Lets you assign an Image to the OpenGL Viewport Representation"""
+
+When right clicking on an image node within a material Vop, you can assign it to an openGL Channel of that Vop (Material).  This makes it very easy to see your images in the viewport versus the typically grey shaded representation you get with 3rd party renderers.

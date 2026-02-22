@@ -1,0 +1,5 @@
+= Import Syntheyes Camera Clip =
+
+"""Loads a clip file exported from Syntheyes"""
+
+With this tool, you can load a .clip file exported from Syntheyes (www.ssontech.com) and load it directly on the selected camera.

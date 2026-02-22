@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["BoundingBox"]}, {"type": "para", "indent": 0, "text": ["This example demonstrates how to create a bounding box from geometry."], "extent": [0, 70]}], "examplefor": "/nodes/sop/bound", "examplefile": "/examples/nodes/sop/bound/BoundingBox.otl"}

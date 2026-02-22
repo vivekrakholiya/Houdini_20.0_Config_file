@@ -1,0 +1,866 @@
+// Magic: 9f566ff1
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri May  3 21:52:17 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+basecolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    basecolor.label = PARM_LABEL("Base Color", "basecolor") WIDTH(1.5);
+    PARM(float, 3, "basecolor", none, COLOR, "R,G,B") 
+	LABELREF(basecolor.label) HSTRETCH;
+
+    basecolor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(basecolor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+basecolor_useTexture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("basecolor_useTexture", "Use Texture") toggle VALUE(basecolor_useTexture.val);
+
+    { HSTRETCH }
+
+    basecolor_useTexture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(basecolor_useTexture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+basecolor_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ basecolor_texture.label = PARM_LABEL("Texture", "basecolor_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "basecolor_texture") LABELREF(basecolor_texture.label)
+	VALUE(basecolor_texture.val) HSTRETCH;
+
+    basecolor_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(basecolor_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    basecolor_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(basecolor_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+IOR.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ IOR.label = PARM_LABEL("IOR", "IOR") WIDTH(1.5);
+ PARM(float, 1, "IOR", none, none) RANGE(1,3)
+	 LABELREF(IOR.label) HSTRETCH;
+
+    IOR.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(IOR.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+rough.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rough.label = PARM_LABEL("Roughness", "rough") WIDTH(1.5);
+ PARM(float, 1, "rough", none, none) RANGE(0,1)
+	 LABELREF(rough.label) HSTRETCH;
+
+    rough.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rough.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+horizon_fade.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ horizon_fade.label = PARM_LABEL("Horizon Smoothing", "horizon_fade") WIDTH(1.5);
+ PARM(float, 1, "horizon_fade", none, none) RANGE(0,1)
+	 LABELREF(horizon_fade.label) HSTRETCH;
+
+    horizon_fade.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(horizon_fade.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+invert_rough.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invert_rough", "Invert Roughness") toggle VALUE(invert_rough.val);
+
+    { HSTRETCH }
+
+    invert_rough.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(invert_rough.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+rough_useTexture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("rough_useTexture", "Use Texture") toggle VALUE(rough_useTexture.val);
+
+    { HSTRETCH }
+
+    rough_useTexture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rough_useTexture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+rough_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ rough_texture.label = PARM_LABEL("Texture", "rough_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "rough_texture") LABELREF(rough_texture.label)
+	VALUE(rough_texture.val) HSTRETCH;
+
+    rough_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(rough_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    rough_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rough_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+rough_monoChannel.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    rough_monoChannel.label = PARM_LABEL_SIMPLE("Channel", "rough_monoChannel") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    rough_monoChannel.menu;
+
+    { HSTRETCH }
+
+    rough_monoChannel.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(rough_monoChannel.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+metallic.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ metallic.label = PARM_LABEL("Metallic", "metallic") WIDTH(1.5);
+ PARM(float, 1, "metallic", none, none) RANGE(0,1)
+	 LABELREF(metallic.label) HSTRETCH;
+
+    metallic.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(metallic.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+metallic_useTexture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("metallic_useTexture", "Use Texture") toggle VALUE(metallic_useTexture.val);
+
+    { HSTRETCH }
+
+    metallic_useTexture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(metallic_useTexture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+metallic_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ metallic_texture.label = PARM_LABEL("Texture", "metallic_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "metallic_texture") LABELREF(metallic_texture.label)
+	VALUE(metallic_texture.val) HSTRETCH;
+
+    metallic_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(metallic_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    metallic_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(metallic_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+metallic_monoChannel.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    metallic_monoChannel.label = PARM_LABEL_SIMPLE("Channel", "metallic_monoChannel") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    metallic_monoChannel.menu;
+
+    { HSTRETCH }
+
+    metallic_monoChannel.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(metallic_monoChannel.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+baseBumpAndNormal_enable.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("baseBumpAndNormal_enable", "Enable") toggle VALUE(baseBumpAndNormal_enable.val);
+
+    { HSTRETCH }
+
+    baseBumpAndNormal_enable.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(baseBumpAndNormal_enable.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+baseNormal_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ baseNormal_texture.label = PARM_LABEL("Texture Path", "baseNormal_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "baseNormal_texture") LABELREF(baseNormal_texture.label)
+	VALUE(baseNormal_texture.val) HSTRETCH;
+
+    baseNormal_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(baseNormal_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    baseNormal_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(baseNormal_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+baseNormal_scale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+baseNormal_scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ baseNormal_scale.label = PARM_LABEL("Effect Scale", "baseNormal_scale") WIDTH(1.5);
+ PARM(float, 1, "baseNormal_scale", none, none) RANGE(0,1)
+	 LABELREF(baseNormal_scale.label) HSTRETCH;
+
+    baseNormal_scale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(baseNormal_scale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  {  }
+}
+
+baseNormal_flipX.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("baseNormal_flipX", "Flip X") toggle VALUE(baseNormal_flipX.val);
+
+    {  }
+
+    baseNormal_flipX.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(baseNormal_flipX.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+baseNormal_flipY.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    PARM_BUTTON("baseNormal_flipY", "Flip Y") toggle VALUE(baseNormal_flipY.val);
+
+    { HSTRETCH }
+
+    baseNormal_flipY.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(baseNormal_flipY.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+use_mikkt.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("use_mikkt", "Use Model's Tangent") toggle VALUE(use_mikkt.val);
+
+    { HSTRETCH }
+
+    use_mikkt.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(use_mikkt.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+occlusion.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ occlusion.label = PARM_LABEL("Occlusion", "occlusion") WIDTH(1.5);
+ PARM(float, 1, "occlusion", none, none) RANGE(0,1)
+	 LABELREF(occlusion.label) HSTRETCH;
+
+    occlusion.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(occlusion.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+occlusion_useTexture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("occlusion_useTexture", "Use Texture") toggle VALUE(occlusion_useTexture.val);
+
+    { HSTRETCH }
+
+    occlusion_useTexture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(occlusion_useTexture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+occlusion_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ occlusion_texture.label = PARM_LABEL("Texture", "occlusion_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "occlusion_texture") LABELREF(occlusion_texture.label)
+	VALUE(occlusion_texture.val) HSTRETCH;
+
+    occlusion_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(occlusion_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    occlusion_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(occlusion_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+occlusion_monoChannel.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    occlusion_monoChannel.label = PARM_LABEL_SIMPLE("Channel", "occlusion_monoChannel") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    occlusion_monoChannel.menu;
+
+    { HSTRETCH }
+
+    occlusion_monoChannel.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(occlusion_monoChannel.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+emitint.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ emitint.label = PARM_LABEL("Emission Intensity", "emitint") WIDTH(1.5);
+ PARM(float, 1, "emitint", none, none) RANGE(0,10)
+	 LABELREF(emitint.label) HSTRETCH;
+
+    emitint.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(emitint.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+emitcolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    emitcolor.label = PARM_LABEL("Emission Color", "emitcolor") WIDTH(1.5);
+    PARM(float, 3, "emitcolor", none, COLOR, "R,G,B") 
+	LABELREF(emitcolor.label) HSTRETCH;
+
+    emitcolor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(emitcolor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+emitcolor_useTexture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("emitcolor_useTexture", "Use Texture") toggle VALUE(emitcolor_useTexture.val);
+
+    { HSTRETCH }
+
+    emitcolor_useTexture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(emitcolor_useTexture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+emitcolor_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ emitcolor_texture.label = PARM_LABEL("Texture", "emitcolor_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "emitcolor_texture") LABELREF(emitcolor_texture.label)
+	VALUE(emitcolor_texture.val) HSTRETCH;
+
+    emitcolor_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(emitcolor_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    emitcolor_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(emitcolor_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+transparency.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ transparency.label = PARM_LABEL("Transparency", "transparency") WIDTH(1.5);
+ PARM(float, 1, "transparency", none, none) RANGE(0,1)
+	 LABELREF(transparency.label) HSTRETCH;
+
+    transparency.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(transparency.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+opaccolor_useTexture.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("opaccolor_useTexture", "Use Texture") toggle VALUE(opaccolor_useTexture.val);
+
+    { HSTRETCH }
+
+    opaccolor_useTexture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(opaccolor_useTexture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+opaccolor_texture.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ opaccolor_texture.label = PARM_LABEL("Texture", "opaccolor_texture") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "opaccolor_texture") LABELREF(opaccolor_texture.label)
+	VALUE(opaccolor_texture.val) HSTRETCH;
+
+    opaccolor_texture.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(opaccolor_texture.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    opaccolor_texture.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(opaccolor_texture.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+importance_sampling_diffuse.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("importance_sampling_diffuse", "Importance Sampled Ambient") toggle VALUE(importance_sampling_diffuse.val);
+
+    { HSTRETCH }
+
+    importance_sampling_diffuse.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(importance_sampling_diffuse.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+nbSamples_diff.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ nbSamples_diff.label = PARM_LABEL("Number of Diffuse Samples", "nbSamples_diff") WIDTH(1.5);
+ PARM(integer, 1, "nbSamples_diff", none, none) RANGE(0,10)
+	 LABELREF(nbSamples_diff.label) HSTRETCH;
+
+    nbSamples_diff.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(nbSamples_diff.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+importance_sampling.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("importance_sampling", "Importance Sampled Reflections") toggle VALUE(importance_sampling.val);
+
+    { HSTRETCH }
+
+    importance_sampling.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(importance_sampling.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+nbSamples.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ nbSamples.label = PARM_LABEL("Number of Specular Samples", "nbSamples") WIDTH(1.5);
+ PARM(integer, 1, "nbSamples", none, none) RANGE(0,10)
+	 LABELREF(nbSamples.label) HSTRETCH;
+
+    nbSamples.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(nbSamples.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+frontface.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("frontface", "Shade Both Sides As Front") toggle VALUE(frontface.val);
+
+    { HSTRETCH }
+
+    frontface.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(frontface.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+specmodel.gad = NULL { }
+coatspecmodel.gad = NULL { }
+uv.gad = NULL { }
+st.gad = NULL { }
+
+fd_transparency.gad = 
+
+GROUP simple "Transparency" flat 
+{ 
+    VALUE(fd_transparency.gad.val) LAYOUT(vertical) HSTRETCH 
+	    transparency.gad;		
+	    opaccolor_useTexture.gad;		
+	    opaccolor_texture.gad;		
+} 
+
+fd_emissive.gad = 
+
+GROUP simple "Emissive" flat 
+{ 
+    VALUE(fd_emissive.gad.val) LAYOUT(vertical) HSTRETCH 
+	    emitint.gad;		
+	    emitcolor.gad;		
+	    emitcolor_useTexture.gad;		
+	    emitcolor_texture.gad;		
+} 
+
+fd_occlusion.gad = 
+
+GROUP simple "Occlusion" flat 
+{ 
+    VALUE(fd_occlusion.gad.val) LAYOUT(vertical) HSTRETCH 
+	    occlusion.gad;		
+	    occlusion_useTexture.gad;		
+	    occlusion_texture.gad;		
+	    occlusion_monoChannel.gad;		
+} 
+
+fd_normal.gad = 
+
+GROUP simple "Normal" flat 
+{ 
+    VALUE(fd_normal.gad.val) LAYOUT(vertical) HSTRETCH 
+	    baseBumpAndNormal_enable.gad;		
+	    baseNormal_texture.gad;		
+	    baseNormal_scale.row.join;		
+	    use_mikkt.gad;		
+} 
+
+fd_metallic.gad = 
+
+GROUP simple "Metallic" flat 
+{ 
+    VALUE(fd_metallic.gad.val) LAYOUT(vertical) HSTRETCH 
+	    metallic.gad;		
+	    metallic_useTexture.gad;		
+	    metallic_texture.gad;		
+	    metallic_monoChannel.gad;		
+} 
+
+fd_roughness.gad = 
+
+GROUP simple "Roughness" flat 
+{ 
+    VALUE(fd_roughness.gad.val) LAYOUT(vertical) HSTRETCH 
+	    IOR.gad;		
+	    rough.gad;		
+	    horizon_fade.gad;		
+	    invert_rough.gad;		
+	    rough_useTexture.gad;		
+	    rough_texture.gad;		
+	    rough_monoChannel.gad;		
+} 
+
+fd_albedo.gad = 
+
+GROUP simple "Albedo" flat 
+{ 
+    VALUE(fd_albedo.gad.val) LAYOUT(vertical) HSTRETCH 
+	    basecolor.gad;		
+	    basecolor_useTexture.gad;		
+	    basecolor_texture.gad;		
+} 
+
+fd_surface.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_surface.gad"
+    { 
+	VALUE(fd_surface.gad.val) STRETCH(1,0)
+
+	TAB "Surface"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    fd_albedo.gad;		
+	    fd_roughness.gad;		
+	    fd_metallic.gad;		
+	    fd_normal.gad;		
+	    fd_occlusion.gad;		
+	    fd_emissive.gad;		
+	    fd_transparency.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Advanced"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    importance_sampling_diffuse.gad;		
+	    nbSamples_diff.gad;		
+	    importance_sampling.gad;		
+	    nbSamples.gad;		
+	    frontface.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fd_surface.gad; 
+    specmodel.gad; 
+    coatspecmodel.gad; 
+    uv.gad; 
+    st.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

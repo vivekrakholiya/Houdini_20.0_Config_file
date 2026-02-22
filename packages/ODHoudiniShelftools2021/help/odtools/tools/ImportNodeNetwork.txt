@@ -1,0 +1,16 @@
+= Import Node Network =
+
+"""Allows the import of nodes that were saved via the Export Node Network."""
+
+This makes it easy to load/save specific setups and exchange them between sessions of Houdini.  You will be prompted via a file requester to select a file that was written via the Export Node tool.
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+    #!python
+    from OD import shelftools
+    shelftools.importNetwork(file=None)
+
+    # if no file is given, you'll pre prompted to select a file for import
+    }}}

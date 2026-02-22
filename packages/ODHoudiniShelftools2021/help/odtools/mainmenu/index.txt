@@ -1,0 +1,92 @@
+= Main Menu =
+
+"""ODTools Main Menu."""
+
+This page describes the ODTools Main Menu Items.
+
+NOTE:
+    This document is a work in progress.
+
+    Existing documentation might not be up to date (especially in User Interface),
+    please report any ideas or inconsistencies. Thank you!
+
+@subtopics
+#display: notitle
+
+:col:
+
+    == Main Menu Items ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Asset Library|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Project Selector|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Reference Manager|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Light Placer|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Snippets Manager|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Copy View To Camera|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Go To Frame|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Create Key at Frame(s)|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Delete Key at Frame(s)|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Pick Material From Viewport|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Renderer Material Switch|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Create Render Batch File|comingsoon/]
+
+    == Import / Export Submenu ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Copy To External|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Paste From External|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Import Node Network|../tools/importNodeNetwork]
+    :: [Icon:BUTTONS/gear] [Export Node Network|../tools/exportNodeNetwork]
+    :: [Icon:BUTTONS/gear] [Save Selection to Separate Hip|../tools/saveSelectionToHip]
+    :: [Icon:BUTTONS/gear] [LWO Import|comingsoon/]
+    :: [Icon:BUTTONS/gear] [OBJ Export|comingsoon/]
+    :: [Icon:BUTTONS/gear] [MDD Export|comingsoon/]
+    :: [Icon:BUTTONS/gear] [PFX Export|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Import Lightwave Scene|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Import Lightwave Motion|comingsoon/]
+
+    == Conversion Bridges Submenu ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Convert Blender Grove3D Trees|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Rizom Bridge|comingsoon/]
+
+:col:
+
+    == Image Tools Submenu ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Create Viewport Light for Modeling|../tools/viewportLight]
+    :: [Icon:BUTTONS/gear] [Image To OpenGL|../tools/imageToOpenGL]
+    :: [Icon:BUTTONS/gear] [Image Cycle (+)|../tools/imageCycle]
+    :: [Icon:BUTTONS/gear] [Image Cycle (-)|../tools/imageCycle]
+    :: [Icon:BUTTONS/gear] [Multi PBR Material Setup|comingsoon/]
+    :: [Icon:BUTTONS/gear] [LW Clipboard to Octane Images|comingsoon/]
+
+    == Utility Tools Submenu ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Display all Current Node Names|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Parameters to Attributes|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Prim Group Split|../tools/primGroupSplit]
+    :: [Icon:BUTTONS/gear] [Copy Selection to New Geo|../tools/copySelToNewGeo]
+    :: [Icon:BUTTONS/gear] [Move Selection to New Geo|../tools/moveSelToNewGeo]
+    :: [Icon:BUTTONS/gear] [Convert Obj Node Anim To Sop Transform|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Create Channel Group of All Animated Parameters|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Find References in Other Location|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Localize External Files|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Install HDAs from Path|comingsoon/]
+
+    == Material Tools Submenu ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [List Material Networks|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Match Materials|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Materials from Shop MaterialPath|../tools/shoptomat]
+
+    == Character Tools Submenu ==
+    ~~~
+    :: [Icon:BUTTONS/gear] [Convert Prims To Bones|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Object Hierarchy to Bones|comingsoon/]
+    :: [Icon:BUTTONS/gear] [Agent + Transforms -> Locomotion|comingsoon/]
+
+    == Help / Bugs / Feature Submission SubMenu ==
+    ~~~
+    :: [Icon:DIALOG/question] [Help|../../odtools/]
+    :: [Icon:DIALOG/question] [Helper Videos on Vimeo|https://vimeo.com/showcase/5860456]
+    :: [Icon:NETWORKS/vop] [Submit Bugs & Features|https://origamidigital.com/bugs]

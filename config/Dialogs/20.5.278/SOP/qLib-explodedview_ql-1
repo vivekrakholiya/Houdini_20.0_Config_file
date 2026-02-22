@@ -1,0 +1,323 @@
+// Magic: 296e84d6
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:06:20 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    group.label = PARM_LABEL("Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(group.script_action)
+	HELP("Select geometry from an available viewport.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+envelope.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ envelope.label = PARM_LABEL("Envelope", "envelope") WIDTH(1.5);
+ PARM(float, 1, "envelope", none, none) RANGE(0,1)
+	 LABELREF(envelope.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+doscale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+doscale.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+doscale.gad = PARM_BUTTON("doscale", "") toggle VALUE(doscale.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ scale.label = PARM_LABEL("Scale", "scale") WIDTH(1.32);
+ PARM(float, 1, "scale", none, none) RANGE(0,1)
+	 LABELREF(scale.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+dopush.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dopush.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dopush.gad = PARM_BUTTON("dopush", "") toggle VALUE(dopush.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+push.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ push.label = PARM_LABEL("Push", "push") WIDTH(1.32);
+ PARM(float, 1, "push", none, none) RANGE(0,1)
+	 LABELREF(push.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+pushneighbours.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pushneighbours.label = PARM_LABEL("Push Neighbours", "pushneighbours") WIDTH(1.5);
+ PARM(integer, 1, "pushneighbours", none, LOGSCALE) RANGE(8,2048)
+	 LABELREF(pushneighbours.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+dojitter.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dojitter.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dojitter.gad = PARM_BUTTON("dojitter", "") toggle VALUE(dojitter.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+jitter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ jitter.label = PARM_LABEL("Jitter", "jitter") WIDTH(1.32);
+ PARM(float, 1, "jitter", none, none) RANGE(-1,1)
+	 LABELREF(jitter.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+dorotatejitter.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dorotatejitter.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dorotatejitter.gad = PARM_BUTTON("dorotatejitter", "") toggle VALUE(dorotatejitter.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+rotatejitter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ rotatejitter.label = PARM_LABEL("Rotation", "rotatejitter") WIDTH(1.32);
+ PARM(float, 1, "rotatejitter", none, none) RANGE(-1,1)
+	 LABELREF(rotatejitter.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+jitterseed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ jitterseed.label = PARM_LABEL("Seed", "jitterseed") WIDTH(1.5);
+ PARM(float, 1, "jitterseed", none, none) RANGE(0,9999)
+	 LABELREF(jitterseed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+overridecenter.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+overridecenter.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+overridecenter.gad = PARM_BUTTON("overridecenter", "") toggle VALUE(overridecenter.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+t.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   t.label = PARM_LABEL("Override Center", "t") WIDTH(1.32);
+   PARM(float, 3, "t", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(t.label)
+	HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+piecetype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    piecetype.label = PARM_LABEL_SIMPLE("Piece Type", "piecetype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    piecetype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+groupmask.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    groupmask.label = PARM_LABEL("Group Mask", "groupmask") WIDTH(1.5);
+    PARM_FIELD(string, "groupmask") VALUE(groupmask.val) 
+	LABELREF(groupmask.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+attribute.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attribute.label = PARM_LABEL("Piece Attribute", "attribute") WIDTH(1.5);
+    PARM_FIELD(string, "attribute") VALUE(attribute.val) 
+	LABELREF(attribute.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "VIEW_visualization" VALUE(attribute.script_action)
+	HELP("")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+visualizepieces.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualizepieces", "Visualize Pieces") toggle VALUE(visualizepieces.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+visualizepiecesseed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ visualizepiecesseed.label = PARM_LABEL("Seed", "visualizepiecesseed") WIDTH(1.5);
+ PARM(float, 1, "visualizepiecesseed", none, none) RANGE(0,999)
+	 LABELREF(visualizepiecesseed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+folder0.gad = 
+
+GROUP simple "Piece Detection" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    piecetype.gad;		
+	    groupmask.gad;		
+	    attribute.gad;		
+	    visualizepieces.gad;		
+	    visualizepiecesseed.gad;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Explode Settings" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    doscale.row.join;		
+	    dopush.row.join;		
+	    pushneighbours.gad;		
+	    dojitter.row.join;		
+	    dorotatejitter.row.join;		
+	    jitterseed.gad;		
+	    overridecenter.row.join;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    group.gad; 
+    envelope.gad; 
+    folder1.gad; 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

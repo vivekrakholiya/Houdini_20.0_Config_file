@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["ScalingRBDs"]}, {"type": "para", "indent": 0, "text": ["This example demonstrates how to modify the scale of RBD objects during a simulation."], "extent": [0, 86]}], "examplefor": "/nodes/dop/rbdpackedobject", "examplefile": "/examples/nodes/dop/rbdpackedobject/ScalingRBDs.hda"}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+    <menu>
+        <subMenu id="panetype_axiom">
+            <label>Axiom</label>
+            <actionItem id="pythonpanel::axiom3.3_profiler">
+                <label>Axiom 3.3 Profiler</label>
+            </actionItem>
+        </subMenu>
+    </menu>
+</menuDocument>

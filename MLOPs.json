@@ -1,0 +1,37 @@
+{
+    "path": "$MLOPS",
+    "load_package_once": true,
+    "version": "20.0",
+    "enable": true,
+    "env": [
+        {
+            "MLOPS": "H:/Github/MLOPS/"
+        },
+        {
+            "MLOPS_MODELS": "$MLOPS/data/models/"
+        },
+        {
+            "MLOPS_PIP_FOLDER": "$MLOPS/data/dependencies/python/"
+        },
+        {
+            "MLOPS_SD_MODEL": "$MLOPS_MODELS/diffusers/runwayml-_-stable-diffusion-v1-5"
+        },
+        {
+            "OPENAI_API_KEY": "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"
+        },
+        {
+            "HUGGINGFACE_HUB_CACHE": "$MLOPS_MODELS/cache/"
+        },
+        {
+            "PYTHONPATH" : 
+            {
+
+                "value": ["$MLOPS_PIP_FOLDER", "$MLOPS/scripts/python/characterpipeline/MotionBert"],
+                "method": "prepend"
+            }
+        },
+        {
+            "MLOPS_VERSION": "3.0"
+        }
+    ]
+}

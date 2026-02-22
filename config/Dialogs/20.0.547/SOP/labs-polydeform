@@ -1,0 +1,171 @@
+// Magic: cdc72528
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Tue Jul 22 20:36:27 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+retain_features.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ retain_features.label = PARM_LABEL("Retain Features", "retain_features") WIDTH(1.5);
+ PARM(float, 1, "retain_features", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(retain_features.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+shape_blend.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shape_blend.label = PARM_LABEL("Shape Blend", "shape_blend") WIDTH(1.5);
+ PARM(float, 1, "shape_blend", none, none) RANGE(0,1)
+	 LABELREF(shape_blend.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+low_res_preview.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("low_res_preview", "Low Res Preview") toggle VALUE(low_res_preview.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale_inputs.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scale_inputs", "Equalize Input Scale") toggle VALUE(scale_inputs.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+method.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    method.label = PARM_LABEL_SIMPLE("Smoothing Method", "method") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    method.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+smoothiter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ smoothiter.label = PARM_LABEL("Global Iterations", "smoothiter") WIDTH(1.5);
+ PARM(integer, 1, "smoothiter", none, none) RANGE(0,100)
+	 LABELREF(smoothiter.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+falloffsmoothiter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ falloffsmoothiter.label = PARM_LABEL("Falloff Iterations", "falloffsmoothiter") WIDTH(1.5);
+ PARM(integer, 1, "falloffsmoothiter", none, none) RANGE(0,100)
+	 LABELREF(falloffsmoothiter.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+nmlsmoothiter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ nmlsmoothiter.label = PARM_LABEL("Normal Iterations", "nmlsmoothiter") WIDTH(1.5);
+ PARM(integer, 1, "nmlsmoothiter", none, none) RANGE(0,100)
+	 LABELREF(nmlsmoothiter.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+stepsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ stepsize.label = PARM_LABEL("Step Size", "stepsize") WIDTH(1.5);
+ PARM(float, 1, "stepsize", none, none) RANGE(0,1)
+	 LABELREF(stepsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+fd_smoothing.gad = 
+
+GROUP simple "Smoothing" flat 
+{ 
+    VALUE(fd_smoothing.gad.val) LAYOUT(vertical) HSTRETCH 
+	    method.gad;		
+	    smoothiter.gad;		
+	    falloffsmoothiter.gad;		
+	    nmlsmoothiter.gad;		
+	    stepsize.gad;		
+} 
+
+fd_basesettings.gad = 
+
+GROUP simple "Base Settings" flat 
+{ 
+    VALUE(fd_basesettings.gad.val) LAYOUT(vertical) HSTRETCH 
+	    retain_features.gad;		
+	    shape_blend.gad;		
+	    low_res_preview.gad;		
+	    scale_inputs.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fd_basesettings.gad; 
+    fd_smoothing.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

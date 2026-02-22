@@ -1,0 +1,447 @@
+// Magic: e62c848a
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Jun  8 19:47:57 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+execute.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("execute", "Render")
+	push VALUE(execute.val);
+
+    { WIDTH(0.1) }
+}
+
+renderdialog.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("renderdialog", "Controls...")
+	push VALUE(renderdialog.val);
+
+    { WIDTH(0.1) }
+}
+
+switch_cach.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("switch_cach", "switch_cach") toggle VALUE(switch_cach.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+reload.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("reload", "Reload Geometry")
+	push VALUE(reload.val);
+
+    { WIDTH(0.1) }
+}
+File_path.gad = NULL { }
+
+File_name2.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ File_name2.label = PARM_LABEL("File_name", "File_name2") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "File_name2") LABELREF(File_name2.label)
+	VALUE(File_name2.val) HSTRETCH;
+
+    File_name2.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(File_name2.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+frame.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ frame.label = PARM_LABEL("First Frame", "frame") WIDTH(1.5);
+ PARM(integer, 1, "frame", none, none) RANGE(0,10)
+	 LABELREF(frame.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+f.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   f.label = PARM_LABEL("Start/End/Inc", "f") WIDTH(1.5);
+   PARM(float, 3, "f", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(f.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+mkpath.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("mkpath", "Create Intermediate Directories") toggle VALUE(mkpath.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+bgeo_path.sval := 1;
+
+bgeo_path.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    SWITCHER tight
+    {
+	VALUE(bgeo_path.sval) HSTRETCH
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+	    LABEL "bgeo_path" HSTRETCH;
+
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[10]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[11]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[12]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[12]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[13]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[12]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[13]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[14]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+        {
+            LAYOUT(horizontal) HSTRETCH
+
+            LABEL "bgeo_path":1.5 JUSTIFY(right, center);
+
+            LABEL VALUE(bgeo_path.val[0]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[1]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[2]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[3]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[4]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[5]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[6]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[7]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[8]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[9]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[10]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[11]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[12]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[13]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[14]) JUSTIFY(center,center) HSTRETCH;
+            LABEL VALUE(bgeo_path.val[15]) JUSTIFY(center,center) HSTRETCH;
+        }
+
+    }
+}
+
+File_name.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "File_name.gad"
+    { 
+	VALUE(File_name.gad.val) STRETCH(1,0)
+
+	TAB "File_name"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    reload.gad;		
+	    File_path.gad;		
+	    File_name2.gad;		
+	    frame.gad;		
+	    f.gad;		
+	    mkpath.gad;		
+	    bgeo_path.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+folder0.gad = 
+
+GROUP simple "Render" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    execute.gad;		
+	    renderdialog.gad;		
+	    switch_cach.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+    File_name.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

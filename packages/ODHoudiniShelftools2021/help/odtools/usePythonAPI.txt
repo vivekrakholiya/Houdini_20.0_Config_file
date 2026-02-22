@@ -1,0 +1,15 @@
+= How to use ODTools within your own python code =
+
+"""ODTools Python Functions"""
+
+Most of the tools have been designed with the ability to use them within other scripts in mind.  You can use them by simply importing the shelftools module.
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+    #!python
+    from OD import shelftools
+
+    # you then can just type shelftools. and will get a list of all the available functions
+    }}}

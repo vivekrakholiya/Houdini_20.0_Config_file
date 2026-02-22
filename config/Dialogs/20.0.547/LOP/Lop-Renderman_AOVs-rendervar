@@ -1,0 +1,523 @@
+// Magic: aa07000a
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Thu Jul  3 18:23:22 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+sample_behavior.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    sample_behavior.label = PARM_LABEL_SIMPLE("Sampling Behavior", "sample_behavior") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    sample_behavior.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sample_f.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   sample_f.label = PARM_LABEL("Start/End/Inc", "sample_f") WIDTH(1.5);
+   PARM(float, 3, "sample_f", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(sample_f.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sample_subframeenable.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("sample_subframeenable", "Subframe Sampling") toggle VALUE(sample_subframeenable.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sample_shuttermode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    sample_shuttermode.label = PARM_LABEL_SIMPLE("Shutter", "sample_shuttermode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    sample_shuttermode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sample_shutterrange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   sample_shutterrange.label = PARM_LABEL("Shutter Open/Close", "sample_shutterrange") WIDTH(1.5);
+   PARM(float, 2, "sample_shutterrange", none, none, "#1,#2")
+	RANGE(0,1)  LABELREF(sample_shutterrange.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sample_cameraprim.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    sample_cameraprim.label = PARM_LABEL("Camera Prim", "sample_cameraprim") WIDTH(1.5);
+    PARM_FIELD(string, "sample_cameraprim") VALUE(sample_cameraprim.val) 
+	LABELREF(sample_cameraprim.label) HSTRETCH;
+
+    sample_cameraprim.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(sample_cameraprim.script_action)
+	HELP("Select a primitive in the Scene Viewer or Scene Graph Tree pane.\nCtrl-click to select using the primitive picker dialog.\nAlt-click to toggle movement of the display flag.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+sample_count.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ sample_count.label = PARM_LABEL("Samples", "sample_count") WIDTH(1.5);
+ PARM(integer, 1, "sample_count", none, none) RANGE(2,10)
+	LOCK_RANGE_MIN LABELREF(sample_count.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+sample_includeframe.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("sample_includeframe", "Always Include Frame Sample") toggle VALUE(sample_includeframe.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+primpattern.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    primpattern.label = PARM_LABEL("Primitives", "primpattern") WIDTH(1.5);
+    PARM_FIELD(string, "primpattern") VALUE(primpattern.val) 
+	LABELREF(primpattern.label) HSTRETCH;
+
+    primpattern.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(primpattern.script_action)
+	HELP("Select primitives using the primitive picker dialog. Shift-click to select using the primitive pattern editor.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+primpath.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    primpath.label = PARM_LABEL("Primitive Path", "primpath") WIDTH(1.5);
+    PARM_FIELD(string, "primpath") VALUE(primpath.val) 
+	LABELREF(primpath.label) HSTRETCH;
+
+    primpath.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(primpath.script_action)
+	HELP("Select a primitive using the primitive picker dialog.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+createprims.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    createprims.label = PARM_LABEL_SIMPLE("Action", "createprims") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    createprims.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+initforedit.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    initforedit.label = PARM_LABEL_SIMPLE("Initialize Parameters", "initforedit") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    initforedit.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+primcount.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ primcount.label = PARM_LABEL("Primitive Count", "primcount") WIDTH(1.5);
+ PARM(integer, 1, "primcount", none, none) RANGE(0,10)
+	 LABELREF(primcount.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+primtype.gad = NULL { }
+
+primkind.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    primkind.label = PARM_LABEL_SIMPLE("Primitive Kind", "primkind") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    primkind.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+specifier.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    specifier.label = PARM_LABEL_SIMPLE("Primitive Specifier", "specifier") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    specifier.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+classancestor.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    classancestor.label = PARM_LABEL("Class Ancestor", "classancestor") WIDTH(1.5);
+    PARM_FIELD(string, "classancestor") VALUE(classancestor.val) 
+	LABELREF(classancestor.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(classancestor.script_action)
+	HELP("Select a primitive using the primitive picker dialog.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+parentprimtype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    parentprimtype.label = PARM_LABEL_SIMPLE("Parent Primitive Type", "parentprimtype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    parentprimtype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+dataType_control.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+dataType_control.gad = dataType_control.menu WIDTH(0.27);
+
+dataType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    {  }
+
+    dataType.label = PARM_LABEL_SIMPLE("Data Type", "dataType") WIDTH(1.23);
+    { WIDTH(0.09) }
+
+    dataType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+sourceName_control.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+sourceName_control.gad = sourceName_control.menu WIDTH(0.27);
+
+sourceName.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    sourceName.label = PARM_LABEL("Source Name", "sourceName") WIDTH(1.23);
+    PARM_FIELD(string, "sourceName") VALUE(sourceName.val) 
+	LABELREF(sourceName.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+sourceType_control.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+sourceType_control.gad = sourceType_control.menu WIDTH(0.27);
+
+sourceType.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    {  }
+
+    sourceType.label = PARM_LABEL_SIMPLE("Source Type", "sourceType") WIDTH(1.23);
+    { WIDTH(0.09) }
+
+    sourceType.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+xn__driverparametersaovname_control_krbkd.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__driverparametersaovname_control_krbkd.gad = xn__driverparametersaovname_control_krbkd.menu WIDTH(0.27);
+
+xn__driverparametersaovname_jebkd.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    xn__driverparametersaovname_jebkd.label = PARM_LABEL("Name", "xn__driverparametersaovname_jebkd") WIDTH(1.23);
+    PARM_FIELD(string, "xn__driverparametersaovname_jebkd") VALUE(xn__driverparametersaovname_jebkd.val) 
+	LABELREF(xn__driverparametersaovname_jebkd.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+}	
+xn__driverparametersaovformat_control_tubkd.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__driverparametersaovformat_control_tubkd.gad = xn__driverparametersaovformat_control_tubkd.menu WIDTH(0.27);
+
+xn__driverparametersaovformat_shbkd.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    {  }
+
+    xn__driverparametersaovformat_shbkd.label = PARM_LABEL_SIMPLE("Format", "xn__driverparametersaovformat_shbkd") WIDTH(1.23);
+    { WIDTH(0.09) }
+
+    xn__driverparametersaovformat_shbkd.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__driverparametersaovmultiSampled_control_l4bkd.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__driverparametersaovmultiSampled_control_l4bkd.gad = xn__driverparametersaovmultiSampled_control_l4bkd.menu WIDTH(0.27);
+
+xn__driverparametersaovmultiSampled_krbkd.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    { WIDTH(1.23) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__driverparametersaovmultiSampled_krbkd", "Multi Sampled") toggle VALUE(xn__driverparametersaovmultiSampled_krbkd.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+}	
+xn__driverparametersaovclearValue_control_c1bkd.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0) NO_MARGIN_SPACING_SCALE
+
+xn__driverparametersaovclearValue_control_c1bkd.gad = xn__driverparametersaovclearValue_control_c1bkd.menu WIDTH(0.27);
+
+xn__driverparametersaovclearValue_bobkd.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ xn__driverparametersaovclearValue_bobkd.label = PARM_LABEL("Clear Value", "xn__driverparametersaovclearValue_bobkd") WIDTH(1.23);
+ PARM(integer, 1, "xn__driverparametersaovclearValue_bobkd", none, none) RANGE(0,10)
+	 LABELREF(xn__driverparametersaovclearValue_bobkd.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+}	
+errorseverity.gad = NULL { }
+errormsg.gad = NULL { }
+
+settings.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "settings.gad"
+    { 
+	VALUE(settings.gad.val) STRETCH(1,0)
+
+	TAB "Standard"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    dataType_control.join;		
+	    sourceName_control.join;		
+	    sourceType_control.join;		
+	    sepparm.gad;		
+	    xn__driverparametersaovname_control_krbkd.join;		
+	    xn__driverparametersaovformat_control_tubkd.join;		
+	    xn__driverparametersaovmultiSampled_control_l4bkd.join;		
+	    xn__driverparametersaovclearValue_control_c1bkd.join;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+createprimsgroup2.gad = 
+GROUP collapsible "Create Primitives" flat   
+{
+    VALUE(createprimsgroup2.gad.val) LAYOUT(vertical) HSTRETCH
+	    primcount.gad;		
+	    primtype.gad;		
+	    primkind.gad;		
+	    specifier.gad;		
+	    classancestor.gad;		
+	    parentprimtype.gad;		
+} 
+
+sample_subframegroup2.gad = 
+
+GROUP simple "Subframe Sampling" flat TOGGLEREF(sample_subframeenable.gad)
+{ 
+    VALUE(sample_subframegroup2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    sample_shuttermode.gad;		
+	    sample_shutterrange.gad;		
+	    sample_cameraprim.gad;		
+	    sample_count.gad;		
+	    sample_includeframe.gad;		
+} 
+
+sample_group2.gad = 
+GROUP collapsible "Frame Range/Subframes" flat  PARMREF(sample_behavior.gad) 
+{
+    VALUE(sample_group2.gad.val) LAYOUT(vertical) HSTRETCH
+	    sample_behavior.gad;		
+	    sample_f.gad;		
+	    sample_subframeenable.gad;		
+	    sample_subframegroup2.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    sample_group2.gad; 
+    primpattern.gad; 
+    primpath.gad; 
+    createprims.gad; 
+    initforedit.gad; 
+    createprimsgroup2.gad; 
+    settings.gad; 
+    errorseverity.gad; 
+    errormsg.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

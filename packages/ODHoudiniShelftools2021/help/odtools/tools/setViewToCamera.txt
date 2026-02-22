@@ -1,0 +1,5 @@
+= Set View To Camera =
+
+"""Takes the current viewport, and applies it to the currently selected Camera"""
+
+Sometimes you want to apply the current viewport to a camera.  With this tool, simply select the camera node in the network editor, and run the plugin.  The current view will be transferred to the camera.

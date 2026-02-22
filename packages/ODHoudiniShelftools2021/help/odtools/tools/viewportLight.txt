@@ -1,0 +1,6 @@
+= Create Viewport Light for Modeling =
+
+"""Creates a Domelight with HDR selection for better viewport quality."""
+
+When modeling, its sometimes hard to see details with the default lighting that Houdini provides in the viewport.  This tool allows you to select an HDR that it will use for a domelight in the viewport.  For maximum benefit,
+enable "High Quality with Shadows" on the right side of the viewer and enable ambient occlusion in its options (via a right click.)

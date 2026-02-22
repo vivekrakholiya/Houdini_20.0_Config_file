@@ -1,0 +1,2860 @@
+// Magic: 1e001d9b
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sun Oct 12 15:02:33 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+tabmenumask.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    tabmenumask.label = PARM_LABEL("Tab Menu Mask", "tabmenumask") WIDTH(1.5);
+    PARM_FIELD(string, "tabmenumask") VALUE(tabmenumask.val) 
+	LABELREF(tabmenumask.label) HSTRETCH;
+
+    tabmenumask.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(tabmenumask.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+shader_rendermask.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    shader_rendermask.label = PARM_LABEL("Render Context Name", "shader_rendermask") WIDTH(1.5);
+    PARM_FIELD(string, "shader_rendermask") VALUE(shader_rendermask.val) 
+	LABELREF(shader_rendermask.label) HSTRETCH;
+
+    shader_rendermask.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shader_rendermask.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+enablesmoke.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enablesmoke", "Enable Smoke") toggle VALUE(enablesmoke.val);
+
+    { HSTRETCH }
+
+    enablesmoke.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(enablesmoke.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+densityscale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+densityscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ densityscale.label = PARM_LABEL("Density Scale", "densityscale") WIDTH(1.5);
+ PARM(float, 1, "densityscale", none, none) RANGE(0,10)
+	 LABELREF(densityscale.label) HSTRETCH;
+
+    densityscale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(densityscale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  {  }
+}
+
+density_remapmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    density_remapmode.menu;
+
+    {  }
+
+    density_remapmode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_remapmode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+density_sourcerange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   density_sourcerange.label = PARM_LABEL("Density Range", "density_sourcerange") WIDTH(1.5);
+   PARM(float, 2, "density_sourcerange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(density_sourcerange.label)
+	HSTRETCH;
+
+    density_sourcerange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_sourcerange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+densityramp.si_rampedit = FLOAT_RAMP VALUE(densityramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+densityramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	densityramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(densityramp.pointno.val) HSTRETCH;
+    }
+}
+
+densityramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(densityramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(densityramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    densityramp.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(densityramp.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    densityramp.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(densityramp.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+densityramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    densityramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	densityramp.buttons.gad VSTRETCH;
+
+	densityramp.si_rampedit HSTRETCH;
+    }
+}
+
+densityramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Density Ramp", "densityramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(densityramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(densityramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	densityramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	densityramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	densityramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(densityramp.hideparms.val) HSTRETCH
+	    densityramp.multiramp;
+	    {}
+	}
+    }
+}
+
+density_enablecontrolscale.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("density_enablecontrolscale", "Scale by Control Volume") toggle VALUE(density_enablecontrolscale.val);
+
+    { HSTRETCH }
+
+    density_enablecontrolscale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_enablecontrolscale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+density_controlrange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   density_controlrange.label = PARM_LABEL("Control Range", "density_controlrange") WIDTH(1.5);
+   PARM(float, 2, "density_controlrange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(density_controlrange.label)
+	HSTRETCH;
+
+    density_controlrange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_controlrange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+density_controlscale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+density_controlscale.gad = ROW
+{
+   HSTRETCH
+   {  }
+
+   density_controlscale.label = PARM_LABEL("Scale Range", "density_controlscale") WIDTH(1.5);
+   PARM(float, 2, "density_controlscale", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(density_controlscale.label)
+	HSTRETCH;
+
+    density_controlscale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_controlscale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+density_controlrangemode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    density_controlrangemode.menu;
+
+    {  }
+
+    density_controlrangemode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_controlrangemode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+density_controlrangeramp.si_rampedit = FLOAT_RAMP VALUE(density_controlrangeramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+density_controlrangeramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	density_controlrangeramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(density_controlrangeramp.pointno.val) HSTRETCH;
+    }
+}
+
+density_controlrangeramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(density_controlrangeramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(density_controlrangeramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    density_controlrangeramp.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(density_controlrangeramp.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    density_controlrangeramp.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(density_controlrangeramp.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+density_controlrangeramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    density_controlrangeramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	density_controlrangeramp.buttons.gad VSTRETCH;
+
+	density_controlrangeramp.si_rampedit HSTRETCH;
+    }
+}
+
+density_controlrangeramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Control Ramp", "density_controlrangeramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(density_controlrangeramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(density_controlrangeramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	density_controlrangeramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	density_controlrangeramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	density_controlrangeramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(density_controlrangeramp.hideparms.val) HSTRETCH
+	    density_controlrangeramp.multiramp;
+	    {}
+	}
+    }
+}
+smokecolor.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+smokecolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    smokecolor.label = PARM_LABEL("Smoke Color", "smokecolor") WIDTH(1.5);
+    PARM(float, 3, "smokecolor", none, COLOR, "R,G,B") 
+	LABELREF(smokecolor.label) HSTRETCH;
+
+    smokecolor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smokecolor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+smokecolor_remapmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    smokecolor_remapmode.menu;
+
+    {  }
+
+    smokecolor_remapmode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smokecolor_remapmode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+smokecolor_sourcerange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   smokecolor_sourcerange.label = PARM_LABEL("Source Range", "smokecolor_sourcerange") WIDTH(1.5);
+   PARM(float, 2, "smokecolor_sourcerange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(smokecolor_sourcerange.label)
+	HSTRETCH;
+
+    smokecolor_sourcerange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smokecolor_sourcerange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+smokecolorramp.si_rampedit = COLOR_RAMP VALUE(smokecolorramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+smokecolorramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	smokecolorramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(smokecolorramp.pointno.val) HSTRETCH;
+    }
+}
+
+smokecolorramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(smokecolorramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(smokecolorramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    smokecolorramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(smokecolorramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+smokecolorramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    smokecolorramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	smokecolorramp.buttons.gad VSTRETCH;
+
+	smokecolorramp.si_rampedit HSTRETCH;
+    }
+}
+
+smokecolorramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Smoke Color Ramp", "smokecolorramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(smokecolorramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(smokecolorramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	smokecolorramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	smokecolorramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	smokecolorramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(smokecolorramp.hideparms.val) HSTRETCH
+	    smokecolorramp.multiramp;
+	    {}
+	}
+    }
+}
+absorpcolor.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+absorpcolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    absorpcolor.label = PARM_LABEL("Absorption Color", "absorpcolor") WIDTH(1.5);
+    PARM(float, 3, "absorpcolor", none, COLOR, "R,G,B") 
+	LABELREF(absorpcolor.label) HSTRETCH;
+
+    absorpcolor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(absorpcolor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+absorpcolor_remapmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    absorpcolor_remapmode.menu;
+
+    {  }
+
+    absorpcolor_remapmode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(absorpcolor_remapmode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+absorpcolor_sourcerange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   absorpcolor_sourcerange.label = PARM_LABEL("Source Range", "absorpcolor_sourcerange") WIDTH(1.5);
+   PARM(float, 2, "absorpcolor_sourcerange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(absorpcolor_sourcerange.label)
+	HSTRETCH;
+
+    absorpcolor_sourcerange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(absorpcolor_sourcerange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+absorpcolorramp.si_rampedit = COLOR_RAMP VALUE(absorpcolorramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+absorpcolorramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	absorpcolorramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(absorpcolorramp.pointno.val) HSTRETCH;
+    }
+}
+
+absorpcolorramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(absorpcolorramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(absorpcolorramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    absorpcolorramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(absorpcolorramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+absorpcolorramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    absorpcolorramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	absorpcolorramp.buttons.gad VSTRETCH;
+
+	absorpcolorramp.si_rampedit HSTRETCH;
+    }
+}
+
+absorpcolorramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Absorption Color Ramp", "absorpcolorramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(absorpcolorramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(absorpcolorramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	absorpcolorramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	absorpcolorramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	absorpcolorramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(absorpcolorramp.hideparms.val) HSTRETCH
+	    absorpcolorramp.multiramp;
+	    {}
+	}
+    }
+}
+shadowcolor.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+shadowcolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    shadowcolor.label = PARM_LABEL("Shadow Color", "shadowcolor") WIDTH(1.5);
+    PARM(float, 3, "shadowcolor", none, COLOR, "R,G,B") 
+	LABELREF(shadowcolor.label) HSTRETCH;
+
+    shadowcolor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowcolor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+shadowcolor_remapmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    shadowcolor_remapmode.menu;
+
+    {  }
+
+    shadowcolor_remapmode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowcolor_remapmode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+shadowcolor_sourcerange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   shadowcolor_sourcerange.label = PARM_LABEL("Source Range", "shadowcolor_sourcerange") WIDTH(1.5);
+   PARM(float, 2, "shadowcolor_sourcerange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(shadowcolor_sourcerange.label)
+	HSTRETCH;
+
+    shadowcolor_sourcerange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowcolor_sourcerange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+shadowcolorramp.si_rampedit = COLOR_RAMP VALUE(shadowcolorramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+shadowcolorramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	shadowcolorramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(shadowcolorramp.pointno.val) HSTRETCH;
+    }
+}
+
+shadowcolorramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(shadowcolorramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(shadowcolorramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    shadowcolorramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(shadowcolorramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+shadowcolorramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    shadowcolorramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	shadowcolorramp.buttons.gad VSTRETCH;
+
+	shadowcolorramp.si_rampedit HSTRETCH;
+    }
+}
+
+shadowcolorramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Shadow Color Ramp", "shadowcolorramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(shadowcolorramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(shadowcolorramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	shadowcolorramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	shadowcolorramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	shadowcolorramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(shadowcolorramp.hideparms.val) HSTRETCH
+	    shadowcolorramp.multiramp;
+	    {}
+	}
+    }
+}
+
+shadowint.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ shadowint.label = PARM_LABEL("Shadow Density", "shadowint") WIDTH(1.5);
+ PARM(float, 1, "shadowint", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(shadowint.label) HSTRETCH;
+
+    shadowint.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowint.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+smokeint.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ smokeint.label = PARM_LABEL("Smoke Brightness", "smokeint") WIDTH(1.5);
+ PARM(float, 1, "smokeint", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(smokeint.label) HSTRETCH;
+
+    smokeint.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smokeint.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+tintwithcd.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("tintwithcd", "Tint Smoke Color with Cd") toggle VALUE(tintwithcd.val);
+
+    { HSTRETCH }
+
+    tintwithcd.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(tintwithcd.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+mixusingalpha.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("mixusingalpha", "Mix Smoke Color with Cd using Alpha") toggle VALUE(mixusingalpha.val);
+
+    { HSTRETCH }
+
+    mixusingalpha.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(mixusingalpha.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+anisotropy.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ anisotropy.label = PARM_LABEL("Anisotropy", "anisotropy") WIDTH(1.5);
+ PARM(float, 1, "anisotropy", none, none) RANGE(-1,1)
+	LOCK_RANGE LABELREF(anisotropy.label) HSTRETCH;
+
+    anisotropy.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(anisotropy.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+useanisotropyroughness.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+useanisotropyroughness.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+useanisotropyroughness.gad = PARM_BUTTON("useanisotropyroughness", "") toggle VALUE(useanisotropyroughness.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+anisotropyroughness.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ anisotropyroughness.label = PARM_LABEL("Roughness", "anisotropyroughness") WIDTH(1.32);
+ PARM(float, 1, "anisotropyroughness", none, none) RANGE(0,3)
+	LOCK_RANGE_MIN LABELREF(anisotropyroughness.label) HSTRETCH;
+
+    anisotropyroughness.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(anisotropyroughness.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+usesecondaryanisotropy.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("usesecondaryanisotropy", "Use Secondary Anisotropy") toggle VALUE(usesecondaryanisotropy.val);
+
+    { HSTRETCH }
+
+    usesecondaryanisotropy.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(usesecondaryanisotropy.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+secondarymix.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ secondarymix.label = PARM_LABEL("Secondary Mix", "secondarymix") WIDTH(1.5);
+ PARM(float, 1, "secondarymix", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(secondarymix.label) HSTRETCH;
+
+    secondarymix.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(secondarymix.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+secondaryanisotropy.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ secondaryanisotropy.label = PARM_LABEL("Secondary Anisotropy", "secondaryanisotropy") WIDTH(1.5);
+ PARM(float, 1, "secondaryanisotropy", none, none) RANGE(-1,1)
+	 LABELREF(secondaryanisotropy.label) HSTRETCH;
+
+    secondaryanisotropy.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(secondaryanisotropy.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+extinctionfalloff.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ extinctionfalloff.label = PARM_LABEL("Extinction Falloff", "extinctionfalloff") WIDTH(1.5);
+ PARM(float, 1, "extinctionfalloff", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(extinctionfalloff.label) HSTRETCH;
+
+    extinctionfalloff.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(extinctionfalloff.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+albedocontribution.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ albedocontribution.label = PARM_LABEL("Albedo Contribution", "albedocontribution") WIDTH(1.5);
+ PARM(float, 1, "albedocontribution", none, none) RANGE(0,3)
+	LOCK_RANGE_MIN LABELREF(albedocontribution.label) HSTRETCH;
+
+    albedocontribution.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(albedocontribution.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+startlevel.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ startlevel.label = PARM_LABEL("Start Level", "startlevel") WIDTH(1.5);
+ PARM(integer, 1, "startlevel", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(startlevel.label) HSTRETCH;
+
+    startlevel.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(startlevel.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+enablescatter.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enablescatter", "Enable Scatter") toggle VALUE(enablescatter.val);
+
+    { HSTRETCH }
+
+    enablescatter.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(enablescatter.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scatterint.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scatterint.label = PARM_LABEL("Intensity Scale", "scatterint") WIDTH(1.5);
+ PARM(float, 1, "scatterint", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(scatterint.label) HSTRETCH;
+
+    scatterint.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scatterint.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+hotcoreint.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ hotcoreint.label = PARM_LABEL("Hot Core Scale", "hotcoreint") WIDTH(1.5);
+ PARM(float, 1, "hotcoreint", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(hotcoreint.label) HSTRETCH;
+
+    hotcoreint.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(hotcoreint.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scattersignature.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    scattersignature.label = PARM_LABEL_SIMPLE("Signature", "scattersignature") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    scattersignature.menu;
+
+    { HSTRETCH }
+
+    scattersignature.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattersignature.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scattercolormode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    scattercolormode.label = PARM_LABEL_SIMPLE("Color Mode", "scattercolormode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    scattercolormode.menu;
+
+    { HSTRETCH }
+
+    scattercolormode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattercolormode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scattercolor.si_rampedit = COLOR_RAMP VALUE(scattercolor.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+scattercolor.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	scattercolor.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(scattercolor.pointno.val) HSTRETCH;
+    }
+}
+
+scattercolor.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(scattercolor.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(scattercolor.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    scattercolor.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(scattercolor.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+scattercolor.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    scattercolor.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	scattercolor.buttons.gad VSTRETCH;
+
+	scattercolor.si_rampedit HSTRETCH;
+    }
+}
+
+scattercolor.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Scatter Color Ramp", "scattercolor");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(scattercolor.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(scattercolor.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	scattercolor.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	scattercolor.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	scattercolor.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(scattercolor.hideparms.val) HSTRETCH
+	    scattercolor.multiramp;
+	    {}
+	}
+    }
+}
+
+scattertempscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scattertempscale.label = PARM_LABEL("Temperature Scale", "scattertempscale") WIDTH(1.5);
+ PARM(float, 1, "scattertempscale", none, none) RANGE(0,10000)
+	LOCK_RANGE_MIN LABELREF(scattertempscale.label) HSTRETCH;
+
+    scattertempscale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattertempscale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scattertint.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scattertint", "Tint with Smoke Color") toggle VALUE(scattertint.val);
+
+    { HSTRETCH }
+
+    scattertint.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattertint.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scattertintstrength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scattertintstrength.label = PARM_LABEL("Tint Strength", "scattertintstrength") WIDTH(1.5);
+ PARM(float, 1, "scattertintstrength", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(scattertintstrength.label) HSTRETCH;
+
+    scattertintstrength.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattertintstrength.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+docc.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("docc", "Color Correct") toggle VALUE(docc.val);
+
+    { HSTRETCH }
+
+    docc.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(docc.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+hue.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ hue.label = PARM_LABEL("Hue", "hue") WIDTH(1.5);
+ PARM(float, 1, "hue", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(hue.label) HSTRETCH;
+
+    hue.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(hue.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+saturation.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ saturation.label = PARM_LABEL("Saturation", "saturation") WIDTH(1.5);
+ PARM(float, 1, "saturation", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(saturation.label) HSTRETCH;
+
+    saturation.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(saturation.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scatterenablemask.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scatterenablemask", "Enable Mask") toggle VALUE(scatterenablemask.val);
+
+    { HSTRETCH }
+
+    scatterenablemask.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scatterenablemask.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scattermaskcenter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scattermaskcenter.label = PARM_LABEL("Mask Center", "scattermaskcenter") WIDTH(1.5);
+ PARM(float, 1, "scattermaskcenter", none, none) RANGE(0,10)
+	 LABELREF(scattermaskcenter.label) HSTRETCH;
+
+    scattermaskcenter.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattermaskcenter.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scattermaskwidth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scattermaskwidth.label = PARM_LABEL("Mask Width", "scattermaskwidth") WIDTH(1.5);
+ PARM(float, 1, "scattermaskwidth", none, none) RANGE(0,1)
+	 LABELREF(scattermaskwidth.label) HSTRETCH;
+
+    scattermaskwidth.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattermaskwidth.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+scatterusemaskramp.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("scatterusemaskramp", "Use Mask Ramp") toggle VALUE(scatterusemaskramp.val);
+
+    { HSTRETCH }
+
+    scatterusemaskramp.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scatterusemaskramp.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+scattermaskramp.si_rampedit = COLOR_RAMP VALUE(scattermaskramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+scattermaskramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	scattermaskramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(scattermaskramp.pointno.val) HSTRETCH;
+    }
+}
+
+scattermaskramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(scattermaskramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(scattermaskramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    scattermaskramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(scattermaskramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+scattermaskramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    scattermaskramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	scattermaskramp.buttons.gad VSTRETCH;
+
+	scattermaskramp.si_rampedit HSTRETCH;
+    }
+}
+
+scattermaskramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Mask Ramp", "scattermaskramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(scattermaskramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(scattermaskramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	scattermaskramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	scattermaskramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	scattermaskramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(scattermaskramp.hideparms.val) HSTRETCH
+	    scattermaskramp.multiramp;
+	    {}
+	}
+    }
+}
+scattervolumemask.gad = NULL { }
+
+enablefire.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enablefire", "Enable Fire") toggle VALUE(enablefire.val);
+
+    { HSTRETCH }
+
+    enablefire.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(enablefire.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+fireintscale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+fireintscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ fireintscale.label = PARM_LABEL("Intensity Scale", "fireintscale") WIDTH(1.5);
+ PARM(float, 1, "fireintscale", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(fireintscale.label) HSTRETCH;
+
+    fireintscale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fireintscale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  {  }
+}
+
+fireintmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    fireintmode.menu;
+
+    {  }
+
+    fireintmode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fireintmode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+fireintrange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   fireintrange.label = PARM_LABEL("Source Range", "fireintrange") WIDTH(1.5);
+   PARM(float, 2, "fireintrange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(fireintrange.label)
+	HSTRETCH;
+
+    fireintrange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fireintrange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+fireintramp.si_rampedit = FLOAT_RAMP VALUE(fireintramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+fireintramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	fireintramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(fireintramp.pointno.val) HSTRETCH;
+    }
+}
+
+fireintramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(fireintramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(fireintramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    fireintramp.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(fireintramp.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    fireintramp.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(fireintramp.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+fireintramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    fireintramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	fireintramp.buttons.gad VSTRETCH;
+
+	fireintramp.si_rampedit HSTRETCH;
+    }
+}
+
+fireintramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Fire Intensity Ramp", "fireintramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(fireintramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(fireintramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	fireintramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	fireintramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	fireintramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(fireintramp.hideparms.val) HSTRETCH
+	    fireintramp.multiramp;
+	    {}
+	}
+    }
+}
+
+firecolormode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    firecolormode.label = PARM_LABEL_SIMPLE("Color Mode", "firecolormode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    firecolormode.menu;
+
+    { HSTRETCH }
+
+    firecolormode.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firecolormode.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+firecolorrange.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   firecolorrange.label = PARM_LABEL("Source Range", "firecolorrange") WIDTH(1.5);
+   PARM(float, 2, "firecolorrange", none, none, "#1,#2")
+	RANGE(0,10)  LABELREF(firecolorrange.label)
+	HSTRETCH;
+
+    firecolorrange.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firecolorrange.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+firecolorramp.si_rampedit = COLOR_RAMP VALUE(firecolorramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+firecolorramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	firecolorramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(firecolorramp.pointno.val) HSTRETCH;
+    }
+}
+
+firecolorramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(firecolorramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(firecolorramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    firecolorramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(firecolorramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+firecolorramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    firecolorramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	firecolorramp.buttons.gad VSTRETCH;
+
+	firecolorramp.si_rampedit HSTRETCH;
+    }
+}
+
+firecolorramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Fire Color Ramp", "firecolorramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(firecolorramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(firecolorramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	firecolorramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	firecolorramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	firecolorramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(firecolorramp.hideparms.val) HSTRETCH
+	    firecolorramp.multiramp;
+	    {}
+	}
+    }
+}
+
+firetempscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ firetempscale.label = PARM_LABEL("Temperature Scale", "firetempscale") WIDTH(1.5);
+ PARM(float, 1, "firetempscale", none, none) RANGE(0,5000)
+	LOCK_RANGE_MIN LABELREF(firetempscale.label) HSTRETCH;
+
+    firetempscale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firetempscale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+fireenablemask.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("fireenablemask", "Enable Mask") toggle VALUE(fireenablemask.val);
+
+    { HSTRETCH }
+
+    fireenablemask.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fireenablemask.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+firemaskcenter.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ firemaskcenter.label = PARM_LABEL("Mask Center", "firemaskcenter") WIDTH(1.5);
+ PARM(float, 1, "firemaskcenter", none, none) RANGE(0,10)
+	 LABELREF(firemaskcenter.label) HSTRETCH;
+
+    firemaskcenter.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firemaskcenter.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+firemaskwidth.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ firemaskwidth.label = PARM_LABEL("Mask Width", "firemaskwidth") WIDTH(1.5);
+ PARM(float, 1, "firemaskwidth", none, none) RANGE(0,1)
+	 LABELREF(firemaskwidth.label) HSTRETCH;
+
+    firemaskwidth.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firemaskwidth.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+fireusemaskramp.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("fireusemaskramp", "Use Mask Ramp") toggle VALUE(fireusemaskramp.val);
+
+    { HSTRETCH }
+
+    fireusemaskramp.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fireusemaskramp.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+firemaskramp.si_rampedit = COLOR_RAMP VALUE(firemaskramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+firemaskramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	firemaskramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(firemaskramp.pointno.val) HSTRETCH;
+    }
+}
+
+firemaskramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(firemaskramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(firemaskramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    firemaskramp.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(firemaskramp.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+firemaskramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    firemaskramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	firemaskramp.buttons.gad VSTRETCH;
+
+	firemaskramp.si_rampedit HSTRETCH;
+    }
+}
+
+firemaskramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Mask Ramp", "firemaskramp");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(firemaskramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(firemaskramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	firemaskramp.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	firemaskramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	firemaskramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(firemaskramp.hideparms.val) HSTRETCH
+	    firemaskramp.multiramp;
+	    {}
+	}
+    }
+}
+firevolumemask.gad = NULL { }
+emission.gad = NULL { }
+density.gad = NULL { }
+densitycontrol.gad = NULL { }
+smokecolorsource.gad = NULL { }
+absorpcolorsource.gad = NULL { }
+shadowcolorsource.gad = NULL { }
+Cd.gad = NULL { }
+Alpha.gad = NULL { }
+
+density_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    density_volumename.label = PARM_LABEL("Density Volume", "density_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "density_volumename") VALUE(density_volumename.val) 
+	LABELREF(density_volumename.label) HSTRETCH;
+
+    density_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    density_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(density_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+densitycontrol_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    densitycontrol_volumename.label = PARM_LABEL("Density Control Volume", "densitycontrol_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "densitycontrol_volumename") VALUE(densitycontrol_volumename.val) 
+	LABELREF(densitycontrol_volumename.label) HSTRETCH;
+
+    densitycontrol_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    densitycontrol_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(densitycontrol_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+smokecolorsource_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+smokecolorsource_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    smokecolorsource_volume.label = PARM_LABEL_SIMPLE("Smoke Color Source Volume", "smokecolorsource_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    smokecolorsource_volume.menu;
+
+    {  }
+
+    smokecolorsource_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smokecolorsource_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+smokecolorsource_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "smokecolorsource_volumename") VALUE(smokecolorsource_volumename.val) HSTRETCH;
+
+    smokecolorsource_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    smokecolorsource_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smokecolorsource_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+absorpcolorsource_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+absorpcolorsource_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    absorpcolorsource_volume.label = PARM_LABEL_SIMPLE("Absorption Color Source Volume", "absorpcolorsource_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    absorpcolorsource_volume.menu;
+
+    {  }
+
+    absorpcolorsource_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(absorpcolorsource_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+absorpcolorsource_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "absorpcolorsource_volumename") VALUE(absorpcolorsource_volumename.val) HSTRETCH;
+
+    absorpcolorsource_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    absorpcolorsource_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(absorpcolorsource_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+shadowcolorsource_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+shadowcolorsource_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    shadowcolorsource_volume.label = PARM_LABEL_SIMPLE("Shadow Color Source Volume", "shadowcolorsource_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    shadowcolorsource_volume.menu;
+
+    {  }
+
+    shadowcolorsource_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowcolorsource_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+shadowcolorsource_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "shadowcolorsource_volumename") VALUE(shadowcolorsource_volumename.val) HSTRETCH;
+
+    shadowcolorsource_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    shadowcolorsource_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(shadowcolorsource_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+cd_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    cd_volumename.label = PARM_LABEL("Cd Volume", "cd_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "cd_volumename") VALUE(cd_volumename.val) 
+	LABELREF(cd_volumename.label) HSTRETCH;
+
+    cd_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    cd_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(cd_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+alpha_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    alpha_volumename.label = PARM_LABEL("Alpha Volume", "alpha_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "alpha_volumename") VALUE(alpha_volumename.val) 
+	LABELREF(alpha_volumename.label) HSTRETCH;
+
+    alpha_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    alpha_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(alpha_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+anisotropycontrol_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    anisotropycontrol_volumename.label = PARM_LABEL("Anisotropy Control Volume", "anisotropycontrol_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "anisotropycontrol_volumename") VALUE(anisotropycontrol_volumename.val) 
+	LABELREF(anisotropycontrol_volumename.label) HSTRETCH;
+
+    anisotropycontrol_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    anisotropycontrol_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(anisotropycontrol_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+scattermask.gad = NULL { }
+scatterAlpha.gad = NULL { }
+
+scatter_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    scatter_volumename.label = PARM_LABEL("Scatter Volume", "scatter_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "scatter_volumename") VALUE(scatter_volumename.val) 
+	LABELREF(scatter_volumename.label) HSTRETCH;
+
+    scatter_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    scatter_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scatter_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+scattermask_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+scattermask_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    scattermask_volume.label = PARM_LABEL_SIMPLE("Mask Volume", "scattermask_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    scattermask_volume.menu;
+
+    {  }
+
+    scattermask_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattermask_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+scattermask_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "scattermask_volumename") VALUE(scattermask_volumename.val) HSTRETCH;
+
+    scattermask_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    scattermask_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scattermask_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+scatteralpha_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+scatteralpha_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    scatteralpha_volume.label = PARM_LABEL_SIMPLE("Alpha Volume", "scatteralpha_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    scatteralpha_volume.menu;
+
+    {  }
+
+    scatteralpha_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scatteralpha_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+scatteralpha_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "scatteralpha_volumename") VALUE(scatteralpha_volumename.val) HSTRETCH;
+
+    scatteralpha_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    scatteralpha_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(scatteralpha_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+fireint.gad = NULL { }
+firecolor.gad = NULL { }
+firemask.gad = NULL { }
+fireAlpha.gad = NULL { }
+
+fireint_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    fireint_volumename.label = PARM_LABEL("Intensity Volume", "fireint_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "fireint_volumename") VALUE(fireint_volumename.val) 
+	LABELREF(fireint_volumename.label) HSTRETCH;
+
+    fireint_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    fireint_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(fireint_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+firecolor_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    firecolor_volumename.label = PARM_LABEL("Color Volume", "firecolor_volumename") WIDTH(1.5);
+    PARM_FIELD(string, "firecolor_volumename") VALUE(firecolor_volumename.val) 
+	LABELREF(firecolor_volumename.label) HSTRETCH;
+
+    firecolor_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    firecolor_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firecolor_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+firemask_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+firemask_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    firemask_volume.label = PARM_LABEL_SIMPLE("Mask Volume", "firemask_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    firemask_volume.menu;
+
+    {  }
+
+    firemask_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firemask_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+firemask_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "firemask_volumename") VALUE(firemask_volumename.val) HSTRETCH;
+
+    firemask_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    firemask_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firemask_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+firealpha_volume.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+firealpha_volume.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    firealpha_volume.label = PARM_LABEL_SIMPLE("Alpha Volume", "firealpha_volume") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    firealpha_volume.menu;
+
+    {  }
+
+    firealpha_volume.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firealpha_volume.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+
+firealpha_volumename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    PARM_FIELD(string, "firealpha_volumename") VALUE(firealpha_volumename.val) HSTRETCH;
+
+    firealpha_volumename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    firealpha_volumename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firealpha_volumename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    {  }
+}
+}	// Template join.bot
+
+
+folder43.gad = 
+GROUP collapsible "Fire" flat   
+{
+    VALUE(folder43.gad.val) LAYOUT(vertical) HSTRETCH
+	    fireint.gad;		
+	    firecolor.gad;		
+	    firemask.gad;		
+	    fireAlpha.gad;		
+	    fireint_volumename.gad;		
+	    firecolor_volumename.gad;		
+	    firemask_volume.row.join;		
+	    firealpha_volume.row.join;		
+} 
+
+folder42.gad = 
+GROUP collapsible "Scatter" flat   
+{
+    VALUE(folder42.gad.val) LAYOUT(vertical) HSTRETCH
+	    scattermask.gad;		
+	    scatterAlpha.gad;		
+	    scatter_volumename.gad;		
+	    scattermask_volume.row.join;		
+	    scatteralpha_volume.row.join;		
+} 
+
+folder41.gad = 
+GROUP collapsible "Smoke" flat   
+{
+    VALUE(folder41.gad.val) LAYOUT(vertical) HSTRETCH
+	    density.gad;		
+	    densitycontrol.gad;		
+	    smokecolorsource.gad;		
+	    absorpcolorsource.gad;		
+	    shadowcolorsource.gad;		
+	    Cd.gad;		
+	    Alpha.gad;		
+	    density_volumename.gad;		
+	    densitycontrol_volumename.gad;		
+	    smokecolorsource_volume.row.join;		
+	    absorpcolorsource_volume.row.join;		
+	    shadowcolorsource_volume.row.join;		
+	    cd_volumename.gad;		
+	    alpha_volumename.gad;		
+	    anisotropycontrol_volumename.gad;		
+} 
+
+folder36.gad = 
+GROUP collapsible "Masking" flat   
+{
+    VALUE(folder36.gad.val) LAYOUT(vertical) HSTRETCH
+	    fireenablemask.gad;		
+	    firemaskcenter.gad;		
+	    firemaskwidth.gad;		
+	    fireusemaskramp.gad;		
+	    firemaskramp.gad;		
+	    firevolumemask.gad;		
+} 
+
+folder4.gad = 
+GROUP collapsible "Color" flat   
+{
+    VALUE(folder4.gad.val) LAYOUT(vertical) HSTRETCH
+	    firecolormode.gad;		
+	    firecolorrange.gad;		
+	    firecolorramp.gad;		
+	    firetempscale.gad;		
+} 
+
+folder3.gad = 
+GROUP collapsible "Intensity" flat  PARMREF(fireintscale.gad) 
+{
+    VALUE(folder3.gad.val) LAYOUT(vertical) HSTRETCH
+	    fireintscale.row.join;		
+	    fireintrange.gad;		
+	    fireintramp.gad;		
+} 
+
+folder34.gad = 
+GROUP collapsible "Masking" flat   
+{
+    VALUE(folder34.gad.val) LAYOUT(vertical) HSTRETCH
+	    scatterenablemask.gad;		
+	    scattermaskcenter.gad;		
+	    scattermaskwidth.gad;		
+	    scatterusemaskramp.gad;		
+	    scattermaskramp.gad;		
+	    scattervolumemask.gad;		
+} 
+
+folder8.gad = 
+GROUP collapsible "Color Correction" flat   
+{
+    VALUE(folder8.gad.val) LAYOUT(vertical) HSTRETCH
+	    scattertint.gad;		
+	    scattertintstrength.gad;		
+	    docc.gad;		
+	    hue.gad;		
+	    saturation.gad;		
+} 
+
+folder7.gad = 
+GROUP collapsible "Color" flat   
+{
+    VALUE(folder7.gad.val) LAYOUT(vertical) HSTRETCH
+	    scattersignature.gad;		
+	    scattercolormode.gad;		
+	    scattercolor.gad;		
+	    scattertempscale.gad;		
+} 
+
+folder5.gad = 
+GROUP collapsible "Intensity" flat  PARMREF(scatterint.gad) 
+{
+    VALUE(folder5.gad.val) LAYOUT(vertical) HSTRETCH
+	    scatterint.gad;		
+	    hotcoreint.gad;		
+} 
+
+folder6.gad = 
+GROUP collapsible "Multiscatter" flat   
+{
+    VALUE(folder6.gad.val) LAYOUT(vertical) HSTRETCH
+	    extinctionfalloff.gad;		
+	    albedocontribution.gad;		
+	    startlevel.gad;		
+} 
+
+folder2.gad = 
+GROUP collapsible "Anisotropy" flat  PARMREF(anisotropy.gad) 
+{
+    VALUE(folder2.gad.val) LAYOUT(vertical) HSTRETCH
+	    anisotropy.gad;		
+	    useanisotropyroughness.row.join;		
+	    usesecondaryanisotropy.gad;		
+	    secondarymix.gad;		
+	    secondaryanisotropy.gad;		
+} 
+
+folder0.gad = 
+GROUP collapsible "Color" flat  PARMREF(smokecolor.gad) 
+{
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH
+	    smokecolor.row.join;		
+	    smokecolor_sourcerange.gad;		
+	    smokecolorramp.gad;		
+	    absorpcolor.row.join;		
+	    absorpcolor_sourcerange.gad;		
+	    absorpcolorramp.gad;		
+	    shadowcolor.row.join;		
+	    shadowcolor_sourcerange.gad;		
+	    shadowcolorramp.gad;		
+	    shadowint.gad;		
+	    smokeint.gad;		
+	    tintwithcd.gad;		
+	    mixusingalpha.gad;		
+} 
+
+folder1.gad = 
+GROUP collapsible "Density" flat  PARMREF(densityscale.gad) 
+{
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH
+	    densityscale.row.join;		
+	    density_sourcerange.gad;		
+	    densityramp.gad;		
+	    density_enablecontrolscale.gad;		
+	    density_controlrange.gad;		
+	    density_controlscale.row.join;		
+	    density_controlrangeramp.gad;		
+} 
+
+folder25.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder25.gad"
+    { 
+	VALUE(folder25.gad.val) STRETCH(1,0)
+
+	TAB "Smoke"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    enablesmoke.gad;		
+	    folder1.gad;		
+	    folder0.gad;		
+	    folder2.gad;		
+	    folder6.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Scatter"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    enablescatter.gad;		
+	    folder5.gad;		
+	    folder7.gad;		
+	    folder8.gad;		
+	    folder34.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Fire"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    enablefire.gad;		
+	    folder3.gad;		
+	    folder4.gad;		
+	    folder36.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Bindings"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    folder41.gad;		
+	    folder42.gad;		
+	    folder43.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+folder10.gad = 
+GROUP collapsible "MaterialX Subnet" flat   
+{
+    VALUE(folder10.gad.val) LAYOUT(vertical) HSTRETCH
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder25.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

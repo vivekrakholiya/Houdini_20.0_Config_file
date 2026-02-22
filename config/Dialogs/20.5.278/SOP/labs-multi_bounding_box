@@ -1,0 +1,83 @@
+// Magic: cd97b6f1
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Mar 24 15:55:48 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+iOutputMode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    iOutputMode.label = PARM_LABEL_SIMPLE("Output", "iOutputMode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    iOutputMode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+divisions.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   divisions.label = PARM_LABEL("Divisions", "divisions") WIDTH(1.5);
+   PARM(integer, 3, "divisions", none, none, "X,Y,Z")
+	RANGE(1,10) LOCK_RANGE_MIN LABELREF(divisions.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+isolate_index.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("isolate_index", "Isolate Index") toggle VALUE(isolate_index.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+index.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ index.label = PARM_LABEL("Index", "index") WIDTH(1.5);
+ PARM(integer, 1, "index", none, none) RANGE(0,10)
+	 LABELREF(index.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    iOutputMode.gad; 
+    divisions.gad; 
+    isolate_index.gad; 
+    index.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

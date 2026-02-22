@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pythonPanelDocument>
+  <!-- This file contains definitions of Python interfaces and the
+ interfaces menu.  It should not be hand-edited when it is being
+ used by the application.  Note, that two definitions of the
+ same interface or of the interfaces menu are not allowed
+ in a single file. -->
+  <interfacesMenu type="panetab">
+    <interfaceItem name="ConstraintBrowser"/>
+    <interfaceItem name="labs::diff"/>
+    <interfaceItem name="OD_AnimBox"/>
+    <interfaceItem name="OD_Asset_Library"/>
+    <interfaceItem name="OD_External_Window"/>
+    <interfaceItem name="OD_HDAManager"/>
+    <interfaceItem name="OD_LightPlacer"/>
+    <interfaceItem name="OD_octQuickSetupSelector"/>
+    <interfaceItem name="OD_ProjectSelector"/>
+    <interfaceItem name="OD_RefManager"/>
+    <interfaceItem name="OD_Snippets"/>
+    <interfaceItem name="OD_snapshotManager"/>
+    <interfaceItem name="sesi_auto_rigs"/>
+    <interfaceItem name="pdgdatalayerpanel"/>
+    <interfaceItem name="pdgpathmap"/>
+    <interfaceItem name="pdgservicemenu"/>
+    <interfaceItem name="PackageBrowser"/>
+    <interfaceItem name="taskgraphtable"/>
+    <interfaceItem name="ViewerHandleBrowser"/>
+    <interfaceItem name="ViewerStateBrowser"/>
+    <interfaceItem name="networkInfo_qL"/>
+    <interfaceItem name="contexteditor"/>
+    <interfaceItem name="clone_control"/>
+    <interfaceItem name="motionclipmixer"/>
+    <interfaceItem name="rig_tree"/>
+    <interfaceItem name="sesi_bookmarks_editor"/>
+    <interfaceItem name="sesi_character_picker"/>
+    <interfaceItem name="sesi_pose_library"/>
+    <interfaceItem name="SceneGraphDetails"/>
+    <interfaceItem name="SceneGraphLayersPanel"/>
+    <interfaceItem name="sesi_light_linker"/>
+    <interfaceItem name="sesi_light_mixer"/>
+    <interfaceItem name="log_viewer"/>
+    <interfaceItem name="apexselectionmanager"/>
+    <interfaceItem name="layout_asset_gallery"/>
+  </interfacesMenu>
+  <interface name="sesi_auto_rigs" label="Object Autorigs (Deprecated)" icon="MISC_python" showNetworkNavigationBar="false" help_url="charcter:autorigs">
+    <script><![CDATA[from toolutils import safe_reload
+from autorigs import mainGUI
+safe_reload(mainGUI)
+
+theAutoRigs = None
+
+def onCreateInterface():
+    global theAutoRigs
+    panetab = kwargs["paneTab"]
+    theAutoRigs = mainGUI.MainGUI()
+    theAutoRigs.buildMainGUI(panetab)
+    return theAutoRigs
+
+def onDestroyInterface():
+    global theAutoRigs
+    theAutoRigs.cleanup()
+
+def onActivateInterface():
+    global theAutoRigs
+    theAutoRigs.activate()
+
+def onDeactivateInterface():
+    global theAutoRigs
+    theAutoRigs.deactivate()
+
+]]></script>
+    <includeInPaneTabMenu menu_position="0" create_separator="false"/>
+    <includeInToolbarMenu menu_position="201" create_separator="false"/>
+    <help><![CDATA[]]></help>
+  </interface>
+</pythonPanelDocument>

@@ -1,0 +1,33 @@
+= Shop MaterialPath to Material Network =
+
+"""Creates a Material Network with a material for each shop_materialpath."""
+
+For each unique shop_materialpath primitive attribute a material gets created.  A Renderer selection gets shown on start and will create the renderer specific material.
+
+
+:vimeo: Example Use of the Tool
+    #id: 483613506
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+	#!python
+	from OD import shelftools
+	shelftools.matsFromShopMaterialPath(nodes = None, attribName = "shop_materialpath", ctxPath = None, renderer=None)
+
+	# Any parameters not defined will bring up a requester upon launch
+
+	# nodes is an array of nodes
+	# attribName is the primitive attribute name to be parsed for the material creation
+	# ctxPath is the context path in which to create the Material Network
+	# renderer defines which renderer to use:
+	#   0: Mantra
+	#   1: Octane
+	#   2: Redshift
+	#   3: Renderman
+	#   4: Arnold
+	#   5: 3Delight
+	#   6: VRay
+
+	}}}

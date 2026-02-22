@@ -1,0 +1,487 @@
+// Magic: 99565c74
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Wed Nov 27 18:07:49 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+method.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    method.label = PARM_LABEL_SIMPLE("Method", "method") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    method.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sampleresolution.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ sampleresolution.label = PARM_LABEL("Sample Resolution", "sampleresolution") WIDTH(1.5);
+ PARM(integer, 1, "sampleresolution", none, none) RANGE(1,100)
+	LOCK_RANGE_MIN LABELREF(sampleresolution.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+perpiece.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+perpiece.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+perpiece.gad = PARM_BUTTON("perpiece", "") toggle VALUE(perpiece.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+pieceattr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    pieceattr.label = PARM_LABEL("Piece Attribute", "pieceattr") WIDTH(1.32);
+    PARM_FIELD(string, "pieceattr") VALUE(pieceattr.val) 
+	LABELREF(pieceattr.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+sepparm.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+convexityattr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    convexityattr.label = PARM_LABEL("Convexity Attribute", "convexityattr") WIDTH(1.5);
+    PARM_FIELD(string, "convexityattr") VALUE(convexityattr.val) 
+	LABELREF(convexityattr.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "VIEW_visualization" VALUE(convexityattr.script_action)
+	HELP("Toggle visualization Ctrl-LMB: Open the visualization editor")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+concavityattr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    concavityattr.label = PARM_LABEL("Concavity Attribute", "concavityattr") WIDTH(1.5);
+    PARM_FIELD(string, "concavityattr") VALUE(concavityattr.val) 
+	LABELREF(concavityattr.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "VIEW_visualization" VALUE(concavityattr.script_action)
+	HELP("Toggle visualization Ctrl-LMB: Open the visualization editor")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+convexitymult.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ convexitymult.label = PARM_LABEL("Multiplier", "convexitymult") WIDTH(1.5);
+ PARM(float, 1, "convexitymult", none, none) RANGE(0,10)
+	 LABELREF(convexitymult.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+convexityblur.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ convexityblur.label = PARM_LABEL("Blur Amount", "convexityblur") WIDTH(1.5);
+ PARM(float, 1, "convexityblur", none, none) RANGE(0,100)
+	 LABELREF(convexityblur.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+convexityramp.si_rampedit = FLOAT_RAMP VALUE(convexityramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+convexityramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	convexityramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(convexityramp.pointno.val) HSTRETCH;
+    }
+}
+
+convexityramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(convexityramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(convexityramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    convexityramp.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(convexityramp.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    convexityramp.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(convexityramp.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+convexityramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    convexityramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	convexityramp.buttons.gad VSTRETCH;
+
+	convexityramp.si_rampedit HSTRETCH;
+    }
+}
+
+convexityramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Remap Range", "convexityramp");
+
+	{ HSTRETCH }
+	convexityramp.interp
+	    = ACTION_MENU_ICONBUTTON convexityramp.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(convexityramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(convexityramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	convexityramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(convexityramp.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	convexityramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(convexityramp.hideparms.val) HSTRETCH
+	    convexityramp.multiramp;
+	    {}
+	}
+    }
+}
+
+concavitymult.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ concavitymult.label = PARM_LABEL("Multiplier", "concavitymult") WIDTH(1.5);
+ PARM(float, 1, "concavitymult", none, none) RANGE(0,10)
+	 LABELREF(concavitymult.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+concavityblur.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ concavityblur.label = PARM_LABEL("Blur Amount", "concavityblur") WIDTH(1.5);
+ PARM(float, 1, "concavityblur", none, none) RANGE(0,100)
+	 LABELREF(concavityblur.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+concavityramp.si_rampedit = FLOAT_RAMP VALUE(concavityramp.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+concavityramp.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	concavityramp.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(concavityramp.pointno.val) HSTRETCH;
+    }
+}
+
+concavityramp.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(concavityramp.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(concavityramp.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    ROW
+    {
+	    concavityramp.toggleparms.gad
+	      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+		HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+		VALUE(concavityramp.toggle.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+
+	    concavityramp.togglerampsize.gad
+	      = ACTION_ICONBUTTON "BUTTONS_restore_mini"
+		HELP("Maximize ramp", "h.pane.parms.toggle_ramp_size")
+		VALUE(concavityramp.togglerampsize.val)
+		LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+    }
+}
+
+concavityramp.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    concavityramp.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	concavityramp.buttons.gad VSTRETCH;
+
+	concavityramp.si_rampedit HSTRETCH;
+    }
+}
+
+concavityramp.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Remap Range", "concavityramp");
+
+	{ HSTRETCH }
+	concavityramp.interp
+	    = ACTION_MENU_ICONBUTTON concavityramp.interp_icon.val
+                HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(concavityramp.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(concavityramp.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	concavityramp.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	TOGGLE_ICONBUTTON "COP2_ramp" VALUE(concavityramp.drawgrayscale.val)
+		LOOKFLAT HELP("Grayscale View") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	concavityramp.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(concavityramp.hideparms.val) HSTRETCH
+	    concavityramp.multiramp;
+	    {}
+	}
+    }
+}
+
+viscolor.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("viscolor", "Visualize Output") toggle VALUE(viscolor.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+usegrayscale.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("usegrayscale", "Use Grayscale") toggle VALUE(usegrayscale.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+fd_visualization.gad = 
+
+GROUP simple "Visualization" flat 
+{ 
+    VALUE(fd_visualization.gad.val) LAYOUT(vertical) HSTRETCH 
+	    viscolor.gad;		
+	    usegrayscale.gad;		
+} 
+
+fd_adjustments.gad = 
+
+GROUP simple "Adjustments" flat 
+{ 
+    VALUE(fd_adjustments.gad.val) LAYOUT(vertical) HSTRETCH 
+} 
+
+fd_concaveadjustment.gad = 
+GROUP collapsible "Concavity Adjustment" flat   
+{
+    VALUE(fd_concaveadjustment.gad.val) LAYOUT(vertical) HSTRETCH
+	    concavitymult.gad;		
+	    concavityblur.gad;		
+	    concavityramp.gad;		
+} 
+
+fd_convexadjustment.gad = 
+GROUP collapsible "Convexity Adjustment" flat   
+{
+    VALUE(fd_convexadjustment.gad.val) LAYOUT(vertical) HSTRETCH
+	    convexitymult.gad;		
+	    convexityblur.gad;		
+	    convexityramp.gad;		
+} 
+
+fd_curvature.gad = 
+
+{
+    VALUE(fd_curvature.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    method.gad;		
+	    sampleresolution.gad;		
+	    perpiece.row.join;		
+	    sepparm.gad;		
+	    convexityattr.gad;		
+	    concavityattr.gad;		
+	    sepparm2.gad;		
+} 
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fd_curvature.gad; 
+    fd_convexadjustment.gad; 
+    fd_concaveadjustment.gad; 
+    fd_visualization.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

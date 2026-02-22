@@ -1,0 +1,239 @@
+// Magic: 28afbaea
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 21:59:15 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+inputgeotype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    inputgeotype.label = PARM_LABEL_SIMPLE("Geometry Type", "inputgeotype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    inputgeotype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+voxelsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ voxelsize.label = PARM_LABEL("Voxel Size", "voxelsize") WIDTH(1.5);
+ PARM(float, 1, "voxelsize", none, none) RANGE(0.01,1)
+	 LABELREF(voxelsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+vdbbasename.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vdbbasename.label = PARM_LABEL("VDB Base Name", "vdbbasename") WIDTH(1.5);
+    PARM_FIELD(string, "vdbbasename") VALUE(vdbbasename.val) 
+	LABELREF(vdbbasename.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+conversion.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    conversion.label = PARM_LABEL_SIMPLE("Convert To", "conversion") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    conversion.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+primattributes.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    primattributes.label = PARM_LABEL("Point Attribs to Prims", "primattributes") WIDTH(1.5);
+    PARM_FIELD(string, "primattributes") VALUE(primattributes.val) 
+	LABELREF(primattributes.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+computenormals.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("computenormals", "Compute Vertex Normals") toggle VALUE(computenormals.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+transferattributes.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("transferattributes", "Transfer Surface Attributes") toggle VALUE(transferattributes.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sharpenfeatures.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("sharpenfeatures", "Sharpen Features") toggle VALUE(sharpenfeatures.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+edgetolerance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ edgetolerance.label = PARM_LABEL("Edge Tolerance", "edgetolerance") WIDTH(1.5);
+ PARM(float, 1, "edgetolerance", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(edgetolerance.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+surfacegroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    surfacegroup.label = PARM_LABEL("Surface Group", "surfacegroup") WIDTH(1.5);
+    PARM_FIELD(string, "surfacegroup") VALUE(surfacegroup.val) 
+	LABELREF(surfacegroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+interiorgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    interiorgroup.label = PARM_LABEL("Interior Group", "interiorgroup") WIDTH(1.5);
+    PARM_FIELD(string, "interiorgroup") VALUE(interiorgroup.val) 
+	LABELREF(interiorgroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+seamlinegroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    seamlinegroup.label = PARM_LABEL("Seam Line Group", "seamlinegroup") WIDTH(1.5);
+    PARM_FIELD(string, "seamlinegroup") VALUE(seamlinegroup.val) 
+	LABELREF(seamlinegroup.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+seampoints.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    seampoints.label = PARM_LABEL("Seam Points", "seampoints") WIDTH(1.5);
+    PARM_FIELD(string, "seampoints") VALUE(seampoints.val) 
+	LABELREF(seampoints.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+folder0.gad = 
+
+GROUP simple "VDB Conversion Options" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    computenormals.gad;		
+	    transferattributes.gad;		
+	    sharpenfeatures.gad;		
+	    edgetolerance.gad;		
+	    surfacegroup.gad;		
+	    interiorgroup.gad;		
+	    seamlinegroup.gad;		
+	    seampoints.gad;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Output" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    conversion.gad;		
+	    primattributes.gad;		
+	    folder0.gad;		
+} 
+
+folder2.gad = 
+
+GROUP simple "Input" flat 
+{ 
+    VALUE(folder2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    inputgeotype.gad;		
+	    voxelsize.gad;		
+	    vdbbasename.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder2.gad; 
+    folder1.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

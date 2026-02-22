@@ -1,0 +1,531 @@
+// Magic: e10b68a8
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:03:26 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+dostreams.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dostreams", "Stream Selection") toggle VALUE(dostreams.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+dokeepstreams.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dokeepstreams.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dokeepstreams.gad = PARM_BUTTON("dokeepstreams", "") toggle VALUE(dokeepstreams.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+keepstreams.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    keepstreams.label = PARM_LABEL("Keep Stream(s)", "keepstreams") WIDTH(1.32);
+    PARM_FIELD(string, "keepstreams") VALUE(keepstreams.val) 
+	LABELREF(keepstreams.label) HSTRETCH;
+
+    keepstreams.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(keepstreams.script_action)
+	HELP("Select geometry from an available viewport.\nShift-click to turn on Select Groups.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+doprefixstreams.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+doprefixstreams.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+doprefixstreams.gad = PARM_BUTTON("doprefixstreams", "") toggle VALUE(doprefixstreams.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+prefixstreams.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    prefixstreams.label = PARM_LABEL("Add Prefix", "prefixstreams") WIDTH(1.32);
+    PARM_FIELD(string, "prefixstreams") VALUE(prefixstreams.val) 
+	LABELREF(prefixstreams.label) HSTRETCH;
+
+    prefixstreams.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+streamprefix.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    streamprefix.label = PARM_LABEL("To Streams", "streamprefix") WIDTH(1.5);
+    PARM_FIELD(string, "streamprefix") VALUE(streamprefix.val) 
+	LABELREF(streamprefix.label) HSTRETCH;
+
+    streamprefix.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+doattribkeep.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+doattribkeep.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+doattribkeep.gad = PARM_BUTTON("doattribkeep", "") toggle VALUE(doattribkeep.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+attribkeep.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    attribkeep.label = PARM_LABEL("Keep Attributes", "attribkeep") WIDTH(1.32);
+    PARM_FIELD(string, "attribkeep") VALUE(attribkeep.val) 
+	LABELREF(attribkeep.label) HSTRETCH;
+
+    attribkeep.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+doattribdel.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+doattribdel.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+doattribdel.gad = PARM_BUTTON("doattribdel", "") toggle VALUE(doattribdel.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+attribdel.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    attribdel.label = PARM_LABEL("Delete Attributes", "attribdel") WIDTH(1.32);
+    PARM_FIELD(string, "attribdel") VALUE(attribdel.val) 
+	LABELREF(attribdel.label) HSTRETCH;
+
+    attribdel.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+doattribcast.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+doattribcast.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+doattribcast.gad = PARM_BUTTON("doattribcast", "") toggle VALUE(doattribcast.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+attribcast.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    attribcast.label = PARM_LABEL("Cast to 16-bit Floats", "attribcast") WIDTH(1.32);
+    PARM_FIELD(string, "attribcast") VALUE(attribcast.val) 
+	LABELREF(attribcast.label) HSTRETCH;
+
+    attribcast.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    group.label = PARM_LABEL("Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(group.script_action)
+	HELP("Select geometry from an available viewport.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+grouptype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    grouptype.label = PARM_LABEL_SIMPLE("Type", "grouptype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    grouptype.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dodeletebyage.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dodeletebyage", "Delete outside Birth/Death Age") toggle VALUE(dodeletebyage.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dodeleteunborn.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dodeleteunborn", "Delete Unborn") toggle VALUE(dodeleteunborn.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dodeleteoveraged.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dodeleteoveraged", "Delete Over-aged") toggle VALUE(dodeleteoveraged.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+invertdeletebyage.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invertdeletebyage", "Invert (debug)") toggle VALUE(invertdeletebyage.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+dotimescale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dotimescale.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dotimescale.gad = PARM_BUTTON("dotimescale", "") toggle VALUE(dotimescale.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+timescale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ timescale.label = PARM_LABEL("Apply Timescale", "timescale") WIDTH(1.32);
+ PARM(float, 1, "timescale", none, none) RANGE(0,10)
+	 LABELREF(timescale.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+timescaleattribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    timescaleattribs.label = PARM_LABEL("Attribs", "timescaleattribs") WIDTH(1.5);
+    PARM_FIELD(string, "timescaleattribs") VALUE(timescaleattribs.val) 
+	LABELREF(timescaleattribs.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+dointerleaveids.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dointerleaveids", "Interleave Particle Ids") toggle VALUE(dointerleaveids.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+currentparticlesys.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ currentparticlesys.label = PARM_LABEL("Current Particle System", "currentparticlesys") WIDTH(1.5);
+ PARM(integer, 1, "currentparticlesys", none, none) RANGE(0,10)
+	 LABELREF(currentparticlesys.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+numparticlesys.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ numparticlesys.label = PARM_LABEL("Num Particle Systems", "numparticlesys") WIDTH(1.5);
+ PARM(integer, 1, "numparticlesys", none, none) RANGE(0,10)
+	 LABELREF(numparticlesys.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+setup_particle_streams.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("setup_particle_streams", "Setup Particle Streams")
+	push VALUE(setup_particle_streams.val);
+
+    { WIDTH(0.1) }
+}
+dogroupdel.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dogroupdel.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dogroupdel.gad = PARM_BUTTON("dogroupdel", "") toggle VALUE(dogroupdel.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+groupdel.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    groupdel.label = PARM_LABEL("Delete Groups", "groupdel") WIDTH(1.32);
+    PARM_FIELD(string, "groupdel") VALUE(groupdel.val) 
+	LABELREF(groupdel.label) HSTRETCH;
+
+    groupdel.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+groupdelunused.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("groupdelunused", "Delete Unused Groups") toggle VALUE(groupdelunused.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+op_label.gad = NULL { }
+
+groups_cleanup_c.gad = 
+GROUP collapsible "Groups" flat   
+{
+    VALUE(groups_cleanup_c.gad.val) LAYOUT(vertical) HSTRETCH
+	    dogroupdel.row.join;		
+	    groupdelunused.gad;		
+} 
+
+popmerge_c.gad = 
+GROUP collapsible "Multiple POPs Merging" flat   
+{
+    VALUE(popmerge_c.gad.val) LAYOUT(vertical) HSTRETCH
+	    dointerleaveids.gad;		
+	    currentparticlesys.gad;		
+	    numparticlesys.gad;		
+	    setup_particle_streams.gad;		
+} 
+
+timescale_c.gad = 
+GROUP collapsible "Attribute Timescale Adjustment" flat   
+{
+    VALUE(timescale_c.gad.val) LAYOUT(vertical) HSTRETCH
+	    dotimescale.row.join;		
+	    timescaleattribs.gad;		
+} 
+
+lifespan_c.gad = 
+GROUP collapsible "Lifespan" flat   
+{
+    VALUE(lifespan_c.gad.val) LAYOUT(vertical) HSTRETCH
+	    dodeletebyage.gad;		
+	    dodeleteunborn.gad;		
+	    dodeleteoveraged.gad;		
+	    invertdeletebyage.gad;		
+} 
+
+group_c.gad = 
+GROUP collapsible "Group Selection" flat   
+{
+    VALUE(group_c.gad.val) LAYOUT(vertical) HSTRETCH
+	    group.gad;		
+	    grouptype.gad;		
+} 
+
+particles_c.gad = 
+
+GROUP simple "Particles" flat 
+{ 
+    VALUE(particles_c.gad.val) LAYOUT(vertical) HSTRETCH 
+	    group_c.gad;		
+	    lifespan_c.gad;		
+	    timescale_c.gad;		
+	    popmerge_c.gad;		
+	    groups_cleanup_c.gad;		
+} 
+
+attribs_c.gad = 
+
+GROUP simple "Attributes" flat 
+{ 
+    VALUE(attribs_c.gad.val) LAYOUT(vertical) HSTRETCH 
+	    doattribkeep.row.join;		
+	    doattribdel.row.join;		
+	    doattribcast.row.join;		
+} 
+
+popstreams_c.gad = 
+GROUP collapsible "POP Streams" flat   
+{
+    VALUE(popstreams_c.gad.val) LAYOUT(vertical) HSTRETCH
+	    dostreams.gad;		
+	    dokeepstreams.row.join;		
+	    doprefixstreams.row.join;		
+	    streamprefix.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "POP/Particle Post-Process" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    popstreams_c.gad;		
+	    attribs_c.gad;		
+	    particles_c.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+    op_label.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

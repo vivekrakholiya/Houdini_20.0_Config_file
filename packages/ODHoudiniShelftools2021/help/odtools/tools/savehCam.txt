@@ -1,0 +1,5 @@
+= Save hCam file =
+
+"""Simply saves the currently selected cameras parameters and keyframes"""
+
+To facilitate the easy of swapping in and out cameras, This tool saves the parameters and keyframes of a selected camera to a file (.hcam) that can then be loaded with the Load hCam plugin.

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1041</width>
+    <height>769</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="toolTip">
+   <string>When enabled this will create a __Last__ state if the current state is different than whats in the Snapshot library already
+This can be helpful when you accidently forgot to store a snapshot before loading one and dont want to loose data.</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>3</number>
+    </property>
+    <property name="spacing">
+     <number>2</number>
+    </property>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="spacing">
+       <number>2</number>
+      </property>
+      <item row="24" column="5">
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="toolTip">
+         <string>When enabled, the collaboration snapshot base path gets combined with other userpaths and it allows to share the snapshots at the time of working.</string>
+        </property>
+        <property name="text">
+         <string>Collaboration</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="toolTip">
+         <string>By default, the snapshots are named base on the current date.  This prefix will be added to the name.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="maximumSize">
+         <size>
+          <width>220</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Snapshots marked as favorite will not be cleared and have to be deleted via the right-click menu.</string>
+        </property>
+        <property name="text">
+         <string>Clear All</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="pushButton">
+        <property name="toolTip">
+         <string>If you have Nodes that have states that need to be committed, you have to commit them to be stored properly
+(for example the topobuild node. 
+Keep in mind that nodes with geometry parms will also be stored and can balloon the snapshot file.
+In that case, it might be better to store the snapshots as an external json.</string>
+        </property>
+        <property name="text">
+         <string>Store Snapshot</string>
+        </property>
+       </widget>
+      </item>
+      <item row="24" column="3">
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="toolTip">
+         <string>Select a base file (typically the file you get from save external)</string>
+        </property>
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+      <item row="24" column="4">
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="toolTip">
+         <string>Manually reload the collaboration files.</string>
+        </property>
+        <property name="text">
+         <string>Reload</string>
+        </property>
+       </widget>
+      </item>
+      <item row="24" column="0" colspan="3">
+       <widget class="QLineEdit" name="lineEdit_3"/>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Search/Filter with a keyword.  You can search for anything in the name, date, author, notes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="maximumSize">
+         <size>
+          <width>220</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>218</width>
+           <height>693</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="checkBox_13">
+              <property name="text">
+               <string>Create Unsaved</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Networks</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox">
+              <property name="toolTip">
+               <string>This specifies which parts of Houdini are part of the snapshot</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>All</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>ch</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>img</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>mat</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>obj</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>out</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>shop</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>stage</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>tasks</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Update Options</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_5">
+              <property name="toolTip">
+               <string>When Enabled, Display/Selection/bypassed/etc flags get restored</string>
+              </property>
+              <property name="text">
+               <string>Flags (Display/etc)</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_9">
+              <property name="toolTip">
+               <string>When enabled, Node connections are updated.</string>
+              </property>
+              <property name="text">
+               <string>Connections</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_8">
+              <property name="toolTip">
+               <string>When enabled, node positions in the network are restored</string>
+              </property>
+              <property name="text">
+               <string>Positions</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_7">
+              <property name="toolTip">
+               <string>When enabled, Comments on nodes are updated</string>
+              </property>
+              <property name="text">
+               <string>Comments</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_6">
+              <property name="toolTip">
+               <string>When enabled, node colors are restored</string>
+              </property>
+              <property name="text">
+               <string>Colors</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_3">
+              <property name="toolTip">
+               <string>When enabled creating missing, or delete nodes that are not part of the snapshot</string>
+              </property>
+              <property name="text">
+               <string>Del/Add Missing</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox">
+              <property name="toolTip">
+               <string>When enabled, only the selected Node is updated.  You should also disable &quot;create missing and node connections&quot; when enabled.</string>
+              </property>
+              <property name="text">
+               <string>Selected Only</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_4">
+              <property name="toolTip">
+               <string>When enabled, only update Vop Materials</string>
+              </property>
+              <property name="text">
+               <string>incl. Vop/Materials</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_10">
+              <property name="toolTip">
+               <string>When enabled, only sop nodes are updated</string>
+              </property>
+              <property name="text">
+               <string>incl. Sop Nodes</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_11">
+              <property name="toolTip">
+               <string>When enabled, only obj nodes are updated.</string>
+              </property>
+              <property name="text">
+               <string>incl. obj Nodes</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_14">
+              <property name="text">
+               <string>Small Thumbnails</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_12">
+              <property name="toolTip">
+               <string>Sorts by name instead of date.</string>
+              </property>
+              <property name="text">
+               <string>Sort by Name</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="toolTip">
+               <string>Loads an externally stored .json Snapshot file</string>
+              </property>
+              <property name="text">
+               <string>Load External</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="toolTip">
+               <string>Saves the snapshots to an external json file, after which you can clear all, so that nothing gets saved in the hip file</string>
+              </property>
+              <property name="text">
+               <string>Save External</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Size of Snapshots</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="0" rowspan="23" colspan="5">
+       <widget class="QListWidget" name="listWidget">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>Area for the Snapshots.  You can right click on any Snapshot for additional options.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

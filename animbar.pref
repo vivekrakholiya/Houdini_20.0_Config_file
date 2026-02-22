@@ -1,0 +1,4 @@
+channeleditor.hidden_tools := "";
+channeleditor.show_labels := 1;
+channeleditor.tool_size := 1;
+channeleditor.tools := "tween,blendtoneighbor,blendtoframe,easeinout,blendtoease,pullpush,noisewave,blendtosnapshot,timeoffsetter,timeoffsetterstagger,reduceresample,smoothrough,reverse";

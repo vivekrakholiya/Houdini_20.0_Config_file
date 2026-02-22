@@ -1,0 +1,17 @@
+{
+    "enable" : true,
+    "env":
+    [
+        {"HOUDINI_PATH" : "/home/vivek-nr/houdini20.0/packages/ODHoudiniShelftools2021"},
+        {"ODAcesSRGBSource" :"srgb_texture"},
+        {"ODAcesLinearSource" : "linear"},
+        {"ODAcesTarget" : "ACES - ACEScg"},
+        {"ODRendererPreference":"Prompt"},
+        {"ODFBXPreference":"Prompt"},
+        {"djvpath":"/usr/local/DJV2/bin/djv.sh"},
+        {"DisableODNetworkHotkeys":"0"},
+        {"DisableRandomNullColors":"0"},
+        {"flipBookDestination":"#HIP/flipbook"},
+        {"colorswatchvalue":"asis"}
+    ]
+}

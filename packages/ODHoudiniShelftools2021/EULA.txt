@@ -1,0 +1,63 @@
+OD Houdini Tools Shelf
+Copyright (c) 2019 Oliver Hotz / Origami Digital, LLC
+www.origamidigital.com
+
+*** END USER LICENSE AGREEMENT ***
+
+IMPORTANT: PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THIS SOFTWARE.
+
+1. LICENSE
+
+By receiving, opening the file package, and/or using the OD Houdini Tools Shelf ("Software") containing this software, you agree that this End User User License Agreement(EULA) is a legally binding and valid contract and agree to be bound by it. You agree to abide by the intellectual property laws and all of the terms and conditions of this Agreement.
+
+Unless you have a different license agreement signed by Oliver Hotz your use of the Software indicates your acceptance of this license agreement and warranty.
+
+Subject to the terms of this Agreement, Oliver Hotz grants to you a limited, non-exclusive, non-transferable license, without right to sub-license, to use the Software in accordance with this Agreement and any other written agreement with Oliver Hotz. Olver Hotz does not transfer the title of the Software to you; the license granted to you is not a sale. This agreement is a binding legal agreement between Oliver Hotz and the purchasers or users of the Software.
+
+If you do not agree to be bound by this agreement, remove the Software from your computer now and, if applicable, promptly return to Oliver Hotz by mail any copies of the Software and related documentation and packaging in your possession.
+
+2. DISTRIBUTION
+
+The Software and the license herein granted shall not be copied, shared, distributed, re-sold, offered for re-sale, transferred or sub-licensed in whole or in part except that you may make one copy for archive purposes only. For information about redistribution of the Software contact Oliver Hotz.
+
+3. USER AGREEMENT
+
+3.1 Use
+
+Your license to use the Software is limited to the number of licenses purchased by you. You shall not allow others to use, copy or evaluate copies of the Software.
+
+3.2 Use Restrictions
+
+You shall use the Software in compliance with all applicable laws and not for any unlawful purpose.
+
+3.3 Copyright Restriction
+
+None
+
+3.4 Limitation of Responsibility
+
+You will indemnify, hold harmless, and defend Oliver Hotz , its employees, agents and distributors against any and all claims, proceedings, demand and costs resulting from or in any way connected with your use of Oliver Hotz's Software.
+
+In no event (including, without limitation, in the event of negligence) will Oliver Hotz , its employees, agents or distributors be liable for any consequential, incidental, indirect, special or punitive damages whatsoever (including, without limitation, damages for loss of profits, loss of use, business interruption, loss of information or data, or pecuniary loss), in connection with or arising out of or related to this Agreement, the Software or the use or inability to use the Software or the furnishing, performance or use of any other matters hereunder whether based upon contract, tort or any other theory including negligence.
+
+Oliver Hotz's entire liability, without exception, is limited to the customers' reimbursement of the purchase price of the Software (maximum being the lesser of the amount paid by you and the suggested retail price as listed by Oliver Hotz ) in exchange for the return of the product, all copies, registration papers and manuals, and all materials that constitute a transfer of license from the customer back to Oliver Hotz.
+
+3.5 Warranties
+
+Except as expressly stated in writing, Oliver Hotz makes no representation or warranties in respect of this Software and expressly excludes all other warranties, expressed or implied, oral or written, including, without limitation, any implied warranties of merchantable quality or fitness for a particular purpose.
+
+3.6 Governing Law
+
+This Agreement shall be governed by the law of the United States applicable therein. You hereby irrevocably attorn and submit to the non-exclusive jurisdiction of the courts of United States therefrom. If any provision shall be considered unlawful, void or otherwise unenforceable, then that provision shall be deemed severable from this License and not affect the validity and enforceability of any other provisions.
+
+3.7 Termination
+
+Any failure to comply with the terms and conditions of this Agreement will result in automatic and immediate termination of this license. Upon termination of this license granted herein for any reason, you agree to immediately cease use of the Software and destroy all copies of the Software supplied under this Agreement. The financial obligations incurred by you shall survive the expiration or termination of this license.
+
+4. DISCLAIMER OF WARRANTY
+
+THIS SOFTWARE AND THE ACCOMPANYING FILES ARE SOLD "AS IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE OR MERCHANTABILITY OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. THIS DISCLAIMER CONCERNS ALL FILES GENERATED AND EDITED BY THE SOFTWARE AS WELL.
+
+5. CONSENT OF USE OF DATA
+
+You agree that Oliver Hotz may collect and use information gathered in any manner as part of the product support services provided to you, if any, related to the Software. Oliver Hotz may also use this information to provide notices to you which may be of use or interest to you.

@@ -1,0 +1,280 @@
+// Magic: 6a9cbe2a
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sat Nov 29 09:21:02 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+subdivisions.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ subdivisions.label = PARM_LABEL("Subdivisions", "subdivisions") WIDTH(1.5);
+ PARM(integer, 1, "subdivisions", none, none) RANGE(1,10)
+	 LABELREF(subdivisions.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+uniformscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ uniformscale.label = PARM_LABEL("Uniform Scale", "uniformscale") WIDTH(1.5);
+ PARM(float, 1, "uniformscale", none, none) RANGE(0,10)
+	 LABELREF(uniformscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+scale.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   scale.label = PARM_LABEL("Scale", "scale") WIDTH(1.5);
+   PARM(float, 3, "scale", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(scale.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+cuspangle.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cuspangle.label = PARM_LABEL("Cusp Angle", "cuspangle") WIDTH(1.5);
+ PARM(float, 1, "cuspangle", none, none) RANGE(0,10)
+	 LABELREF(cuspangle.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cutsphere.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cutsphere", "Cut Sphere") toggle VALUE(cutsphere.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+cutposition.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cutposition.label = PARM_LABEL("Cut Position", "cutposition") WIDTH(1.5);
+ PARM(float, 1, "cutposition", none, none) RANGE(0,1)
+	 LABELREF(cutposition.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cutdirection.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   cutdirection.label = PARM_LABEL("Cut Direction", "cutdirection") WIDTH(1.5);
+   PARM(float, 3, "cutdirection", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(cutdirection.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+addcolour.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("addcolour", "Add Colour") toggle VALUE(addcolour.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+rampaxis.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rampaxis.label = PARM_LABEL("Ramp Axis", "rampaxis") WIDTH(1.5);
+ PARM(integer, 1, "rampaxis", none, none) RANGE(0,2)
+	 LABELREF(rampaxis.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+colourrmap.si_rampedit = COLOR_RAMP VALUE(colourrmap.ramp_val)
+			LAYOUT(horizontal)  HSTRETCH;
+
+colourrmap.multiramp = 
+{
+    LAYOUT(vertical) STRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+    ROW
+    {
+	JUSTIFY(left,center) SPACING(0.1) VMARGIN(0.02) HSTRETCH
+
+	COL
+	{
+	    JUSTIFY(right,center) WIDTH(1.5)
+	    LABEL "Point No.";
+	}
+
+	colourrmap.pointno.gad
+	    = INT_SLIDER_FIELD VALUE(colourrmap.pointno.val) HSTRETCH;
+    }
+}
+
+colourrmap.buttons.gad = COL
+{
+    VSTRETCH
+
+    ICON_BUTTON_STRIP
+    {
+	LAYOUT(horizontal) INITSIZE(20p, 20p) 
+
+	ACTION_ICONBUTTON "BUTTONS_delete"
+		HELP("Remove Point") VALUE(colourrmap.delpoint.val);
+	ACTION_ICONBUTTON "BUTTONS_add"
+		HELP("Add Point") VALUE(colourrmap.addpoint.val);
+    }
+
+    { VSTRETCH }
+
+    colourrmap.toggleparms.gad
+      = ACTION_ICONBUTTON "BUTTONS_show_controls"
+	HELP("Hide Controls", "h.pane.parms.toggle_ramp_parms")
+	VALUE(colourrmap.toggle.val)
+	LOOKFLAT UI_FLAT_ICON_BTN_SIZE_TINY;
+}
+
+colourrmap.parm =
+{
+    LAYOUT(vertical) HSTRETCH JUSTIFY(left, center)
+
+    colourrmap.ramp.gad = ROW
+    {
+	MARGIN(0.02) SPACING(0.02) JUSTIFY(left, top) HSTRETCH
+
+	colourrmap.buttons.gad VSTRETCH;
+
+	colourrmap.si_rampedit HSTRETCH;
+    }
+}
+
+colourrmap.gad =
+{
+    LAYOUT(vertical) MARGIN(2p) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+	LAYOUT(horizontal) HSTRETCH
+
+	PARM_LABEL_SIMPLE("Colour Ramp", "colourrmap");
+
+	{ HSTRETCH }
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_x" VALUE(colourrmap.reverse.val)
+		LOOKFLAT HELP("Reverse Domain") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	ACTION_ICONBUTTON "BUTTONS_ramp_flip_y" VALUE(colourrmap.complement.val)
+		LOOKFLAT HELP("Complement Ramp") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	colourrmap.interp
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_curve_segment_makecurved"
+		LOOKFLAT HELP("Set Interpolation on All Points") UI_FLAT_ICON_BTN_SIZE_SMALL;
+	colourrmap.presets
+	    = ACTION_MENU_ICONBUTTON "BUTTONS_gear"
+		LOOKFLAT HELP("Presets") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    }
+
+    {
+	LAYOUT(vertical) MARGIN(2p) SPACING(0.02) HSTRETCH
+
+	colourrmap.parm;
+
+	SWITCHER tight
+	{
+	    LAYOUT(overlap) VALUE(colourrmap.hideparms.val) HSTRETCH
+	    colourrmap.multiramp;
+	    {}
+	}
+    }
+}
+
+fd_settings.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fd_settings.gad"
+    { 
+	VALUE(fd_settings.gad.val) STRETCH(1,0)
+
+	TAB "Settings"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    subdivisions.gad;		
+	    uniformscale.gad;		
+	    scale.gad;		
+	    cuspangle.gad;		
+	    cutsphere.gad;		
+	    cutposition.gad;		
+	    cutdirection.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Vertex Colour"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    addcolour.gad;		
+	    rampaxis.gad;		
+	    colourrmap.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fd_settings.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

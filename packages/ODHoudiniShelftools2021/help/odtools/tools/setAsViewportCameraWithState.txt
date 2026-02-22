@@ -1,0 +1,8 @@
+= Set As Viewport Camera with State=
+
+"""Set Selected Camera as Viewport Camera and load States"""
+
+This simply sets the current camera as the viewport camera with the added benefit, if you are using an OD Camera Overly, it will adjust the frame range to the one specified in the Overlay.  Additionally, it will also load specified State Files from the overlay.  The Base State is loaded first, and then the state file.
+
+:vimeo: Example Use of the Tool
+    #id: 473592819

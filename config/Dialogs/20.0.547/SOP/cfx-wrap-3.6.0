@@ -1,0 +1,679 @@
+// Magic: 793af903
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri May 23 23:22:47 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+group.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    group.label = PARM_LABEL("Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(group.script_action)
+	HELP("Select Geometry to apply Deformer to.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    {  }
+}
+
+grouptype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    grouptype.menu;
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+envelope.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ envelope.label = PARM_LABEL("Envelope", "envelope") WIDTH(1.5);
+ PARM(float, 1, "envelope", none, none) RANGE(0,1)
+	 LABELREF(envelope.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+visualize.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualize", "Visualize") toggle VALUE(visualize.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm2.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+showGuides.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showGuides", "Show Guides") toggle VALUE(showGuides.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+rest_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    rest_attrib.label = PARM_LABEL("Rest Pose Driver", "rest_attrib") WIDTH(1.5);
+    PARM_FIELD(string, "rest_attrib") VALUE(rest_attrib.val) 
+	LABELREF(rest_attrib.label) HSTRETCH;
+
+    rest_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+sepparm3.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+assign_pose_geo.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    assign_pose_geo.label = PARM_LABEL("Assign Pose Geo", "assign_pose_geo") WIDTH(1.5);
+    PARM_FIELD(string, "assign_pose_geo") VALUE(assign_pose_geo.val) 
+	LABELREF(assign_pose_geo.label) HSTRETCH;
+
+    assign_pose_geo.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+assign_pose_driver.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    assign_pose_driver.label = PARM_LABEL("Assign Pose Driver", "assign_pose_driver") WIDTH(1.5);
+    PARM_FIELD(string, "assign_pose_driver") VALUE(assign_pose_driver.val) 
+	LABELREF(assign_pose_driver.label) HSTRETCH;
+
+    assign_pose_driver.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+static_assignment.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+static_assignment.gad = ROW
+{
+    
+    {  }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("static_assignment", "Static Assignment") toggle VALUE(static_assignment.val);
+
+    {  }
+
+    {  }
+}
+
+recache.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("recache", "Re-Cache Assignment")
+	push VALUE(recache.val);
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm6.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+rigidWrap.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("rigidWrap", "Rigid Wrap / Rivet") toggle VALUE(rigidWrap.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+rest_plugged.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("rest_plugged", "Rest Plugged") toggle VALUE(rest_plugged.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    mode.label = PARM_LABEL_SIMPLE("Mode", "mode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    mode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+pretransformsmoothiters.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pretransformsmoothiters.label = PARM_LABEL("Iterations", "pretransformsmoothiters") WIDTH(1.5);
+ PARM(integer, 1, "pretransformsmoothiters", none, none) RANGE(0,50)
+	 LABELREF(pretransformsmoothiters.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+pretranssmoothstepsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pretranssmoothstepsize.label = PARM_LABEL("Step Size", "pretranssmoothstepsize") WIDTH(1.5);
+ PARM(float, 1, "pretranssmoothstepsize", none, none) RANGE(0,1)
+	 LABELREF(pretranssmoothstepsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+frequency.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ frequency.label = PARM_LABEL("Cutoff Frequency", "frequency") WIDTH(1.5);
+ PARM(float, 1, "frequency", none, none) RANGE(0,0.2)
+	 LABELREF(frequency.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+smoothiters.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ smoothiters.label = PARM_LABEL("Smooth Iterations", "smoothiters") WIDTH(1.5);
+ PARM(integer, 1, "smoothiters", none, none) RANGE(0,50)
+	LOCK_RANGE_MIN LABELREF(smoothiters.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+smoothstepsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ smoothstepsize.label = PARM_LABEL("Smooth Step Size", "smoothstepsize") WIDTH(1.5);
+ PARM(float, 1, "smoothstepsize", none, none) RANGE(0,1)
+	 LABELREF(smoothstepsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+scale_mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    scale_mode.label = PARM_LABEL_SIMPLE("Scale Mode", "scale_mode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    scale_mode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+customscale.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    customscale.label = PARM_LABEL("Custom Scale", "customscale") WIDTH(1.5);
+    PARM_FIELD(string, "customscale") VALUE(customscale.val) 
+	LABELREF(customscale.label) HSTRETCH;
+
+    customscale.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+attribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attribs.label = PARM_LABEL("Attributes to Transform", "attribs") WIDTH(1.5);
+    PARM_FIELD(string, "attribs") VALUE(attribs.val) 
+	LABELREF(attribs.label) HSTRETCH;
+
+    attribs.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+updateaffectednmls.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("updateaffectednmls", "Recompute Affected Normals") toggle VALUE(updateaffectednmls.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+visualize_overrides.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualize_overrides", "Visualize Overrides") toggle VALUE(visualize_overrides.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+sepparm4.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+pairing_attr.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+pairing_attr.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    pairing_attr.label = PARM_LABEL("Pairing Attribute", "pairing_attr") WIDTH(1.5);
+    PARM_FIELD(string, "pairing_attr") VALUE(pairing_attr.val) 
+	LABELREF(pairing_attr.label) HSTRETCH;
+
+    pairing_attr.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+
+do_attr_pairing.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("do_attr_pairing", "Enable") toggle VALUE(do_attr_pairing.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+sepparm7.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+do_overrides.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_overrides", "Enable All") toggle VALUE(do_overrides.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+multi_overrides.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Overrides", "multi_overrides") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(multi_overrides.val)
+
+        multi_overrides.field = PARM_FIELD (integer, "multi_overrides")
+				VALUE(multi_overrides.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(multi_overrides.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(multi_overrides.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(multi_overrides.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+multi_overrides.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+multi_overrides.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(multi_overrides.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    multi_overrides.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    multi_overrides.multilist;
+}
+
+fOutput.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fOutput.gad"
+    { 
+	VALUE(fOutput.gad.val) STRETCH(1,0)
+
+	TAB "Output"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    attribs.gad;		
+	    updateaffectednmls.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+fscaling.gad = 
+
+GROUP simple "Scaling" flat 
+{ 
+    VALUE(fscaling.gad.val) LAYOUT(vertical) HSTRETCH 
+	    scale_mode.gad;		
+	    customscale.gad;		
+} 
+
+fposttranssmooth.gad = 
+
+GROUP simple "Post Transform Smooth" flat 
+{ 
+    VALUE(fposttranssmooth.gad.val) LAYOUT(vertical) HSTRETCH 
+	    smoothiters.gad;		
+	    smoothstepsize.gad;		
+} 
+
+fpretranssmooth.gad = 
+
+GROUP simple "Pre Transform Smooth" flat 
+{ 
+    VALUE(fpretranssmooth.gad.val) LAYOUT(vertical) HSTRETCH 
+	    mode.gad;		
+	    pretransformsmoothiters.gad;		
+	    pretranssmoothstepsize.gad;		
+	    frequency.gad;		
+} 
+
+fDeform.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fDeform.gad"
+    { 
+	VALUE(fDeform.gad.val) STRETCH(1,0)
+
+	TAB "Deform"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    fpretranssmooth.gad;		
+	    fposttranssmooth.gad;		
+	    fscaling.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+fposeutils.gad = 
+GROUP collapsible "Pose Utils" flat   
+{
+    VALUE(fposeutils.gad.val) LAYOUT(vertical) HSTRETCH
+	    rest_plugged.gad;		
+} 
+
+fassign.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fassign.gad"
+    { 
+	VALUE(fassign.gad.val) STRETCH(1,0)
+
+	TAB "Assignment"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    rest_attrib.gad;		
+	    sepparm3.gad;		
+	    assign_pose_geo.gad;		
+	    assign_pose_driver.gad;		
+	    static_assignment.row.join;		
+	    sepparm6.gad;		
+	    rigidWrap.gad;		
+	    fposeutils.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+fGeneral.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "fGeneral.gad"
+    { 
+	VALUE(fGeneral.gad.val) STRETCH(1,0)
+
+	TAB "General"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    group.row.join;		
+	    envelope.gad;		
+	    visualize.gad;		
+	    sepparm2.gad;		
+	    showGuides.gad;		
+	    fassign.gad;		
+	    fDeform.gad;		
+	    fOutput.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Overrides"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    visualize_overrides.gad;		
+	    sepparm4.gad;		
+	    pairing_attr.row.join;		
+	    sepparm7.gad;		
+	    do_overrides.gad;		
+	    multi_overrides.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    fGeneral.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

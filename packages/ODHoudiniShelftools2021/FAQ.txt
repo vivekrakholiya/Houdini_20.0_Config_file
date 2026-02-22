@@ -1,0 +1,7 @@
+#######################################################################################
+# Frequently asked questions or issues and their Workarounds if something goes wrong. #
+#######################################################################################
+
+Check in the documentation here:
+
+https://odtools.notion.site/FAQ-e8d726b8677a4ccd8ddb19a23057d94d

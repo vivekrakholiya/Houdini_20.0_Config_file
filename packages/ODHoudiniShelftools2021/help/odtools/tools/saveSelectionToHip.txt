@@ -1,0 +1,18 @@
+= Save Selection to Hip =
+
+"""Saves the current selection of nodes into a new separate HIP file."""
+
+At times, you might want to branch of a selection of nodes into a new HIP file.  This takes the selected nodes, and writes them into a new
+hip file.
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+    #!python
+    from OD import shelftools
+    shelftools.saveNodesToNewFile(file=None, nodes=None)
+
+    # if no file is given, you'll pre prompted to select a file for import
+    # nodes: an array of nodes to be written to a new hip file.
+    }}}

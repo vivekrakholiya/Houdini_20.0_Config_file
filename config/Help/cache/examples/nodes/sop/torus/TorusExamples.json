@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["TorusExamples"]}, {"type": "para", "indent": 0, "text": ["This example contains the various geometry types possible when creating a torus."], "extent": [0, 81]}], "examplefor": "/nodes/sop/torus", "examplefile": "/examples/nodes/sop/torus/TorusExamples.otl"}

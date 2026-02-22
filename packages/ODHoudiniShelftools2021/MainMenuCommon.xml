@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id: MainMenuCommon.xml 1129 2014-12-23 15:52:19Z kik $ -->
+
+<mainMenu>
+    <menuBar>
+        <subMenu id="OD_menu">
+            <label>ODTools</label>
+            <insertBefore>help_menu</insertBefore>
+
+            <scriptItem id="OD_animbox">
+                <label>AnimBox (WIP-EXP)</label>
+                <scriptCode><![CDATA[
+import hou
+from OD import shelftools
+shelftools.launchAnimBox()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+
+
+            <scriptItem id="OD_al">
+                <label>Asset Library</label>
+                <scriptCode><![CDATA[
+import hou
+x = hou.ui.curDesktop().createFloatingPaneTab(hou.paneTabType.PythonPanel, (200,200), (1200,800), "OD_Asset_Library")
+if x:
+    x.floatingPanel().setName("OD Asset Library")
+
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_psel">
+                <label>Project Selector</label>
+                <scriptCode><![CDATA[
+import hou
+from OD import projectSelector
+projectSelector.callInterface()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_refm">
+                <label>Reference Manager</label>
+                <scriptCode><![CDATA[
+import hou
+from OD import refManager
+refManager.callInterface()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_hdam">
+                <label>HDA Manager</label>
+                <scriptCode><![CDATA[
+import hou
+from OD import hdaManager
+hdaManager.callInterface()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_lp">
+                <label>LightPlacer</label>
+                <scriptCode><![CDATA[
+import hou
+from OD import lightPlacer
+lightPlacer.callInterface()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_sn">
+                <label>Snippets Manager</label>
+                <scriptCode><![CDATA[
+import hou
+from OD import snippets
+snippets.callInterface()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+                <scriptItem id="OD_snapshotManager">
+                <label>Snapshot Manager</label>
+                <scriptCode><![CDATA[
+from OD import snapshotManager
+import sys
+if sys.version_info[0] > 2:
+  import importlib
+  importlib.reload(snapshotManager)
+else:
+  reload(snapshotManager)
+snapshotManager.callInterface()
+                ]]></scriptCode>
+                </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_flipAndSave">
+                <label>Flipbook and Save</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createFlipAndHipCopy()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_scv">
+                <label>Copy View to Camera</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setCamToView()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_gt">
+                <label>Go to Frame</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.goToFrame()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_sif">
+                <label>Set IN Frame</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setInFrame()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_sof">
+                <label>Set OUT Frame</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setOutFrame()
+                ]]></scriptCode>
+            </scriptItem>
+
+
+            <scriptItem id="OD_stk">
+                <label>Create Key at Frame(s)</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createKeyframeAt()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_dtk">
+                <label>Delete Key at Frame(s)</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.deleteKeyframeAt()
+                ]]></scriptCode>
+            </scriptItem>
+
+<!--            <scriptItem id="OD_ipm">
+                <label>Init MaterialPicker</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.initjumpToMaterial()
+                ]]></scriptCode>
+            </scriptItem> -->
+
+            <scriptItem id="OD_vmp">
+                <label>Pick Material From Viewport</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.jumpToMaterial()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_rms">
+                <label>Renderer Material Switch</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setMaterialPerRenderer()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_cr">
+                <label>Create Render Batch File</label>
+                <scriptCode><![CDATA[
+import os
+from OD import shelftools
+
+  ###############################################################################
+  # CHANGE LOCATION WHERE YOU WANT TO WRITE THE FILE (INCL. NAME) FOR THE BATCH #
+  # THIS SCRIPT DOES REQUIRE PYTHON TO BE INSTALLED IN IN YOUR PATH             #
+  # IF YOU OPEN A COMMAND PROMPT, AND CAN TYPE python.exe, or py AND A PYTHON   #
+  # CONSOLE STARTS, THEN YOU ARE SET UP CORRECTLY, OTHERWISE, PLEASE INSTALL    #
+  # PYTHON.                                                                     #
+  #                                                                             #
+  #This will save the batchfiles on the users desktop in windows.               #
+  #modify this to a locatin of your choice, ie.                                 #
+  #location = "c:\\temp"                                                        #
+  #note on windows, a \ needs to be a \\                                        #
+  ###############################################################################
+
+location = os.sep.join(os.path.expanduser('~').split("/")[:-1]) + "\Desktop"
+outContext = "/out"
+
+shelftools.createRenderBatchFile(location, outContext)
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <subMenu id="OD_import_export">
+            <label>Import / Export</label>
+
+                <scriptItem id="OD_ct">
+                <label>Copy To External</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.copyToExternal()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_pf">
+                <label>Paste From External</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pasteFromExternal()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_in">
+                <label>Import Node Network</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.importNetwork()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_en">
+                <label>Export Node Network</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportNetwork()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_execPython">
+                <label>Execute Clipboard as Python</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pythonFromClipboard()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_stohip">
+                <label>Save Selection to new Hip</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.saveNodesToNewFile()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_li">
+                <label>LWO Import</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.addLWOReader()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_oe">
+                <label>OBJ Export</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objExport()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_em">
+                <label>MDD Export</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportMDD()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_pe">
+                <label>PFX Export</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.exportPFX()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_il">
+                <label>Import Lightwave Scene</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.importLWS()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_iw">
+                <label>Import Lightwave Motion</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.importLWMotion()
+                ]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_conversion_bridges">
+            <label>Conversion / Bridges</label>
+
+                <scriptItem id="OD_tg3da">
+                <label>The Grove3D Tree Alembic Import</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.grove3dToHoudini()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_speedtreeImport">
+                <label>Speedtree stmat Import</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.importSpeedTree()
+                ]]></scriptCode>
+                </scriptItem>
+
+
+                <scriptItem id="OD_o2hda">
+                <label>.obj File(s) to HDA conversion</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objToHDA()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_odr">
+                <label>OD Rizom Bridge</label>
+                <scriptCode><![CDATA[
+import tempfile, os, hou
+from OD import rizomBridge
+###########################################################################
+#  Change the RizomUV path to your location                               #
+###########################################################################
+rizomPath = os.getenv('rizomuvpath')
+################## DONT TOUCH ANYTHING BELOW THIS LINE ####################
+
+exportFile = tempfile.gettempdir() + os.sep + "odrizombridge.obj"
+
+res = hou.ui.displayMessage("OD Rizom Bridge\nby Oliver Hotz @ oliver@heimlich.net", buttons=('Send To Rizom','Send To Rizom (Clear UVs)','Get from Rizom', 'Automatic Roundtrip', 'Cancel'))
+if res == 0:
+    rizomBridge.sendToRizom(rizomPath = rizomPath, exportFile = exportFile)
+if res == 1:
+    rizomBridge.sendToRizomClearUvs(rizomPath = rizomPath, exportFile = exportFile)
+if res == 2:
+    rizomBridge.getFromRizom(None, rizomPath = rizomPath, exportFile = exportFile)
+if res == 3:
+    rizomBridge.automaticRoundtrip(rizomPath = rizomPath, exportFile = exportFile)
+                ]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_Image_tools">
+            <label>Image Tools</label>
+
+                <scriptItem id="OD_vlm">
+                <label>Create Viewport Light For Modeling</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createModelLight()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_iogl">
+                <label>Image to OpenGL</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.imageToOpenGLChannel()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_cyclePlus">
+                <label>Image Cycle (+)</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.fileCycle(increment=1, parmName = None)
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_cycleMinus">
+                <label>Image Cycle (-)</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.fileCycle(increment=-1, parmName = None)
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_mp">
+                <label>Multi PBR Material Setup</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.multiPBR()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_oc">
+                <label>LW Clipboard to Octane Images</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.octaneClipboardToPBR()
+                ]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_ultility_tools">
+            <label>Utility Tools</label>
+
+                <scriptItem id="OD_memFootPrint">
+                <label>Show Hip Footprint On Disk</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.showDiskUsage()
+                ]]></scriptCode>
+                </scriptItem>
+
+            <scriptItem id="OD_checkLatestHDAVersion">
+                <label>Check Latest HDA Versions</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.checkLatestHDAVersions()
+            ]]></scriptCode>
+            </scriptItem>
+
+                <scriptItem id="OD_pt">
+                <label>Display all Current Node Names</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.print_tree(hou.node('/'))
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_p2a">
+                <label>Parameters to Attributes</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+#you can change the prefix of the attribute in the line below
+shelftools.parmsToAttributes(prefix="OD")
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_pg">
+                <label>Primitive Group Split</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.primGrpSplitUI()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_cs">
+                <label>Copy Selection to New Geo</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.copySelToNewGeo()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_ms">
+                <label>Move Selection to New Geo</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.moveSelToNewGeo()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_oa">
+                <label>Convert Obj Node Anim to Sop Transform</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objAnimToSopTransform()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_ccg">
+                <label>Create Channel Group of all Animated Parameters</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createAllAnimationChannelGroup()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_friop">
+                <label>Find References in Other Location</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.findAndReplaceFileReferencePaths()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_loc">
+                <label>Localize External Files</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.localizeExternals()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <separatorItem />
+
+                <scriptItem id="OD_lhdafp">
+                <label>Install HDAs from Path</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.installHDAsfromPath()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_pdgwedge">
+                <label>PDG Wedges</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.pdgWedges()
+                ]]></scriptCode>
+                </scriptItem>
+
+
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_material_tools">
+            <label>Material Tools</label>
+
+                <scriptItem id="OD_lmn">
+                <label>List Material Networks</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.listAllMatnets()
+                ]]></scriptCode>
+                </scriptItem>
+
+
+                <scriptItem id="OD_mm">
+                <label>Match Materials</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.matchMaterials()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_msm">
+                <label>Materials from shop_materialpath</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.matsFromShopMaterialPath(askContext="ask")
+                ]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_charTools">
+            <label>Character Tools</label>
+
+                <scriptItem id="OD_cpb">
+                <label>Convert Prims to Bones</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.convertPrimsToBones()
+                ]]></scriptCode>
+                </scriptItem>
+
+
+                <scriptItem id="OD_otbik">
+                <label>Object Hierarchy to Bones</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.objectHierarchyToBonesIK()
+                ]]></scriptCode>
+                </scriptItem>
+                <separatorItem />
+
+                <scriptItem id="OD_atloco">
+                <label>Agent + Transform -> Locomotion</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.agentTransformToWorld()
+                ]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_prefs">
+            <label>Preferences</label>
+
+                <scriptItem id="OD_setRender">
+                <label>Define Renderer</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setRendererPrefs()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_setFbxAction">
+                <label>Define FBX Action</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setFBXPrefs()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_networkHotkeys">
+                <label>Enable additional Network Hotkeys</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.networkHotkeys("on")
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_networkHotkeys2">
+                <label>Disable additional Network Hotkeys</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.networkHotkeys("off")
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_sub1">
+                <label>ODTools OPMenu/ParmMenu Submenu Toggle</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.enableSubMenu()
+                ]]></scriptCode>
+                </scriptItem>
+
+
+
+            </subMenu>
+
+            <scriptItem id="OD_backupAndRestore">
+            <label>Backup / Restore ODTools Configs</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.backupAndRestore()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <subMenu id="OD_help_and_bugs">
+            <label>Help / Bugs / Feature Submission</label>
+
+                <scriptItem id="OD_help">
+                <label>Documentation</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.help()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_help2">
+                <label>Changelog</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.changelog()
+                ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_download">
+                <label>OD Tools Download Location</label>
+                <scriptCode><![CDATA[__import__('webbrowser').open('https://origamidigital.com/cart/index.php?route=account/download')]]></scriptCode>
+                </scriptItem>
+
+
+                <scriptItem id="OD_videos">
+                <label>OD Helper Videos on Vimeo</label>
+                <scriptCode><![CDATA[__import__('webbrowser').open('https://vimeo.com/showcase/5860456')]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_discord">
+                <label>Discord Chat Server</label>
+                <scriptCode><![CDATA[__import__('webbrowser').open('https://discord.gg/fvAutB2jc5')]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_bugs">
+                <label>Submit Bugs and Features</label>
+                <scriptCode><![CDATA[__import__('webbrowser').open('https://origamidigital.com/bugs')]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+            <subMenu id="OD_Dev_tools">
+            <label>Development Tools</label>
+
+                <scriptItem id="OD_rpc">
+                <label>Start RPC Server</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.startRPCServer()
+                ]]></scriptCode>
+                </scriptItem>
+
+            </subMenu>
+
+            <separatorItem />
+
+
+
+<!--             <subMenu id="OD_beta">
+            <label>Beta</label>
+
+
+
+            </subMenu>
+
+            <separatorItem /> -->
+
+            <scriptItem id="OD_ro">
+                <label>Reload ODTools Modules</label>
+                <scriptCode><![CDATA[
+from OD import shelftools, animbox, assetLibrary, rizomBridge, snippets, refManager, hdaManager, projectSelector, lightPlacer, snapshotManager, octQuickSetupSelector
+import sys
+if sys.version_info[0] > 2:
+  import importlib
+  importlib.reload(animbox)
+  importlib.reload(shelftools)
+  importlib.reload(assetLibrary)
+  importlib.reload(rizomBridge)
+  importlib.reload(snippets)
+  importlib.reload(refManager)
+  importlib.reload(hdaManager)
+  importlib.reload(projectSelector)
+  importlib.reload(lightPlacer)
+  importlib.reload(snapshotManager)
+  importlib.reload(octQuickSetupSelector)
+else:
+  reload(animbox)
+  reload(shelftools)
+  reload(assetLibrary)
+  reload(rizomBridge)
+  reload(snippets)
+  reload(refManager)
+  reload(hdaManager)
+  reload(projectSelector)
+  reload(lightPlacer)
+  reload(snapshotManager)
+  reload(octQuickSetupSelector)
+hou.hscript("menurefresh")
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+            <scriptItem id="OD_cv">
+                <label>Check for New Version</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.checkVersion()
+                ]]></scriptCode>
+            </scriptItem>
+
+
+        </subMenu>
+    </menuBar>
+</mainMenu>

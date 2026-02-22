@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <tool name="geo0" label="geo1" icon="OBJ_geo">
+    <helpURL>operator:Object/geo</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Object/geo</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if "outputnodename" in kwargs and "inputindex" in kwargs:
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if "inputnodename" in kwargs and "outputindex" in kwargs:
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9
+    if "autoplace" in kwargs:
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if "shiftclick" in kwargs and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if "nodepositionx" in kwargs and             "nodepositiony" in kwargs:
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if "node_bbox" in kwargs:
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if 'geo' not in child_type:
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r'''
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_obj_geo1 (Object/geo)
+set _obj_geo1 = `run("opadd -e -n -v geo geo1")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_geo1
+opspareds '    group {         name    "stdswitcher4"         label   "Transform"         grouptag { "sidefx::switcher" "stdswitcher" }          parm {             name    "xOrd"             baseparm             label   "Transform Order"             joinnext             export  none         }         parm {             name    "rOrd"             baseparm             label   "Rotate Order"             nolabel             export  none         }         parm {             name    "t"             baseparm             label   "Translate"             export  all         }         parm {             name    "r"             baseparm             label   "Rotate"             export  all         }         parm {             name    "s"             baseparm             label   "Scale"             export  none         }         parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }         parm {             name    "scale"             baseparm             label   "Uniform Scale"             export  none         }         parm {             name    "pre_xform"             baseparm             label   "Modify Pre-Transform"             export  none         }         parm {             name    "keeppos"             baseparm             label   "Keep Position When Parenting"             export  none         }         parm {             name    "childcomp"             baseparm             label   "Child Compensation"             export  none         }         parm {             name    "constraints_on"             baseparm             label   "Enable Constraints"             export  none         }         parm {             name    "constraints_path"             baseparm             label   "Constraints"             export  none         }         parm {             name    "lookatpath"             baseparm             label   "Look At"             invisible             export  none         }         parm {             name    "lookupobjpath"             baseparm             label   "Look Up Object"             invisible             export  none         }         parm {             name    "lookup"             baseparm             label   "Look At Up Vector"             invisible             export  none         }         parm {             name    "pathobjpath"             baseparm             label   "Path Object"             invisible             export  none         }         parm {             name    "roll"             baseparm             label   "Roll"             invisible             export  none         }         parm {             name    "pos"             baseparm             label   "Position"             invisible             export  none         }         parm {             name    "uparmtype"             baseparm             label   "Parameterization"             invisible             export  none         }         parm {             name    "pathorient"             baseparm             label   "Orient Along Path"             invisible             export  none         }         parm {             name    "up"             baseparm             label   "Orient Up Vector"             invisible             export  none         }         parm {             name    "bank"             baseparm             label   "Auto-Bank factor"             invisible             export  none         }     }      group {         name    "stdswitcher4_1"         label   "Render"          parm {             name    "shop_materialpath"             baseparm             label   "Material"             export  none         }         parm {             name    "shop_materialopts"             baseparm             label   "Options"             invisible             export  none         }         parm {             name    "tdisplay"             baseparm             label   "Display"             joinnext             export  none         }         parm {             name    "display"             baseparm             label   "Display"             export  none         }         parm {             name    "viewportlod"             label   "Display As"             type    ordinal             default { "full" }             help    "Choose how the object\'s geometry should be rendered in the viewport"             menu {                 "full"      "Full Geometry"                 "points"    "Point Cloud"                 "box"       "Bounding Box"                 "centroid"  "Centroid"                 "hidden"    "Hidden"                 "subd"      "Subdivision Surface / Curves"             }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendervisibility"             label   "Render Visibility"             type    string             default { "*" }             menureplace {                 "*"                             "Visible to all"                 "primary"                       "Visible only to primary rays"                 "primary|shadow"                "Visible only to primary and shadow rays"                 "-primary"                      "Invisible to primary rays (Phantom)"                 "-diffuse"                      "Invisible to diffuse rays"                 "-diffuse&-reflect&-refract"    "Invisible to secondary rays"                 ""                              "Invisible (Unrenderable)"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendervisibility" }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendersubd"             label   "Render Polygons As Subdivision (Mantra)"             type    toggle             default { "0" }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendersubd" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdstyle"             label   "Subdivision Style"             type    string             default { "mantra_catclark" }             hidewhen "{ vm_rendersubd == 0 }"             menu {                 "mantra_catclark"   "Mantra Catmull-Clark"                 "osd_catclark"      "OpenSubdiv Catmull-Clark"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdstyle" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdgroup"             label   "Subdivision Group"             type    string             default { "" }             hidewhen "{ vm_rendersubd == 0 }"             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdgroup" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_quality"             label   "Open Subdiv Quality"             type    float             default { "1" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_quality" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_vtxinterp"             label   "OSD Vtx Interp"             type    integer             default { "2" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "No vertex interpolation"                 "1" "Edges only"                 "2" "Edges and Corners"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_vtxinterp" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_fvarinterp"             label   "OSD FVar Interp"             type    integer             default { "4" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "Smooth everywhere"                 "1" "Sharpen corners only"                 "2" "Sharpen edges and corners"                 "3" "Sharpen edges and propagated corners"                 "4" "Sharpen all boundaries"                 "5" "Bilinear interpolation"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_fvarinterp" }             parmtag { "spare_category" "Geometry" }         }         group {             name    "folder0"             label   "Shading"              parm {                 name    "categories"                 label   "Categories"                 type    string                 default { "" }                 help    "A list of tags which can be used to select the object"                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "reflectmask"                 label   "Reflection Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be reflected on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "refractmask"                 label   "Refraction Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be refracted on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightmask"                 label   "Light Mask"                 type    oplist                 default { "*" }                 help    "Lights that illuminate this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/LIGHT!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightcategories"                 label   "Light Selection"                 type    string                 default { "*" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_lpetag"                 label   "LPE Tag"                 type    string                 default { "" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "lpetag" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilter"                 label   "Volume Filter"                 type    string                 default { "box" }                 menu {                     "box"       "Box Filter"                     "gaussian"  "Gaussian"                     "bartlett"  "Bartlett (triangle)"                     "catrom"    "Catmull-Rom"                     "hanning"   "Hanning"                     "blackman"  "Blackman"                     "sinc"      "Sinc (sharpening)"                 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filter" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilterwidth"                 label   "Volume Filter Width"                 type    float                 default { "1" }                 range   { 0.001 5 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filterwidth" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_matte"                 label   "Matte shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "matte" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_rayshade"                 label   "Raytrace Shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rayshade" }                 parmtag { "spare_category" "Shading" }             }         }          group {             name    "folder0_1"             label   "Sampling"              parm {                 name    "geo_velocityblur"                 label   "Geometry Velocity Blur"                 type    ordinal                 default { "off" }                 disablewhen "{ allowmotionblur == 0 }"                 menu {                     "off"       "No Velocity Blur"                     "on"        "Velocity Blur"                     "accelblur" "Acceleration Blur"                 }             }             parm {                 name    "geo_accelattribute"                 label   "Acceleration Attribute"                 type    string                 default { "accel" }                 hidewhen "{ geo_velocityblur != accelblur }"                 parmtag { "spare_category" "Sampling" }             }         }          group {             name    "folder0_2"             label   "Dicing"              parm {                 name    "vm_shadingquality"                 label   "Shading Quality"                 type    float                 default { "1" }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "shadingquality" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_flatness"                 label   "Dicing Flatness"                 type    float                 default { "0.05" }                 range   { 0 1 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "flatness" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_raypredice"                 label   "Ray Predicing"                 type    integer                 default { "0" }                 menu {                     "0" "Disable Predicing"                     "1" "Full Predicing"                     "2" "Precompute Bounds"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "raypredice" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_curvesurface"                 label   "Shade Curves As Surfaces"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "curvesurface" }                 parmtag { "spare_category" "Dicing" }             }         }          group {             name    "folder0_3"             label   "Geometry"              parm {                 name    "vm_rmbackface"                 label   "Backface Removal"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rmbackface" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "shop_geometrypath"                 label   "Procedural Shader"                 type    oppath                 default { "" }                 parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }                 parmtag { "oprelative" "." }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_forcegeometry"                 label   "Force Procedural Geometry Output"                 type    toggle                 default { "1" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_rendersubdcurves"                 label   "Render Polygon Curves As Subdivision (Mantra)"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rendersubdcurves" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpoints"                 label   "Render As Points (Mantra)"                 type    integer                 default { "2" }                 menu {                     "0" "No Point Rendering"                     "1" "Render Only Points"                     "2" "Render Unconnected Points"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpointsas"                 label   "Render Points As (Mantra)"                 type    integer                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 menu {                     "0" "Spheres"                     "1" "Circles"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpointsas" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_usenforpoints"                 label   "Use N For Point Rendering"                 type    toggle                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "usenforpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pointscale"                 label   "Point Scale"                 type    float                 default { "1" }                 disablewhen "{ vm_renderpoints == 0 }"                 range   { 0! 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pointscale" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pscalediameter"                 label   "Treat Point Scale as Diameter Instead of Radius"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pscalediameter" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_metavolume"                 label   "Metaballs as Volume"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "metavolume" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_coving"                 label   "Coving"                 type    integer                 default { "1" }                 menu {                     "0" "Disable Coving"                     "1" "Coving for displacement/sub-d"                     "2" "Coving for all primitives"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "coving" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_materialoverride"                 label   "Material Override"                 type    string                 default { "compact" }                 menu {                     "none"      "Disabled"                     "full"      "Evaluate for Each Primitve/Point"                     "compact"   "Evaluate Once"                 }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_overridedetail"                 label   "Ignore Geometry Attribute Shaders"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "overridedetail" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_procuseroottransform"                 label   "Proc Use Root Transform"                 type    toggle                 default { "1" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "procuseroottransform" }                 parmtag { "spare_category" "Geometry" }             }         }      }      group {         name    "stdswitcher4_2"         label   "Misc"          parm {             name    "use_dcolor"             baseparm             label   "Set Wireframe Color"             export  none         }         parm {             name    "dcolor"             baseparm             label   "Wireframe Color"             export  none         }         parm {             name    "picking"             baseparm             label   "Viewport Selecting Enabled"             export  none         }         parm {             name    "pickscript"             baseparm             label   "Select Script"             export  none         }         parm {             name    "caching"             baseparm             label   "Cache Object Transform"             export  none         }         parm {             name    "vport_shadeopen"             baseparm             label   "Shade Open Curves In Viewport"             export  none         }         parm {             name    "vport_displayassubdiv"             baseparm             label   "Display as Subdivision in Viewport"             invisible             export  none         }         parm {             name    "vport_onionskin"             baseparm             label   "Onion Skinning"             export  none         }     }  ' $_obj_geo1
+opset -S on $_obj_geo1
+chautoscope $_obj_geo1 +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off $_obj_geo1
+opexprlanguage -s hscript $_obj_geo1
+opset -p on $_obj_geo1
+
+opcf $arg1
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_obj_geo1
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_obj_geo1
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="KB3D2MTLX" label="KB3D2MTLX" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[# https://github.com/insanerob/kitbashToMTLX
+# Searches for principled shader nodes in a path and tries to recreate them as 
+# 3Delight Substance and Glass materials
+# Add a primitive wrangle to alter the material paths 
+# @shop_materialpath = replace(s@shop_materialpath , '/obj/KB3D_HOK/matnet' , '/obj/MTLXmatnet') ;
+        
+import hou
+
+ior_default = 1.52 #Glass IOR
+
+def get_kb3d_materials(shader_path):
+    # Returns all the principled shader nodes in the path
+
+    in_materials = []
+    root = hou.node(shader_path)
+    node_type = "principledshader"
+    
+    for child in root.allSubChildren():
+        if node_type in child.type().name():
+            print(child.parent().name())
+            in_materials.append(child)
+
+    print(str(len(in_materials)) + " Shaders Found") 
+    
+    return in_materials
+    
+    
+def split_substance_glass(in_materials):
+    # Returns the materials split by type substance or glass (has transparency_texture param)
+    out_materials = []
+    substance_materials = []
+    glass_materials = []
+    print(str(len(in_materials)) + " materials to convert")
+    
+    for material in in_materials:
+        parent_material = material.parent().name()
+        parm_transparency_tex = material.parm('transparency_texture').eval()
+        if len(parm_transparency_tex) > 0:
+            glass_materials.append(material)
+            out_materials.append({'mat_node': material, 'type': "glass", 'parent_name': material.parent().name()})
+            print("Glass: " + parent_material + " " + parm_transparency_tex)
+        else:
+            substance_materials.append(material)
+            out_materials.append({'mat_node': material, 'type': "substance", 'parent_name': material.parent().name()})
+            print("Substance: " + parent_material)
+            
+    print("Substance materials = " + str(len(substance_materials)))
+    print("Glass materials = " + str(len(glass_materials))) 
+    print("Total materials in dict list: " + str(len(out_materials)))
+    
+    return out_materials
+        
+        
+def parse_kb3d_substance(material):
+    # Populates the paramaters in the kb3d principled shader specific to the 3dl Substance shader
+    material_dict = {}
+    
+    mat_node = material["mat_node"]
+    material_dict["name"] = material["parent_name"]
+    material_dict["base"] = mat_node.parm('basecolor_texture').eval()
+    material_dict["rough"] = mat_node.parm('rough_texture').eval()
+    material_dict["metallic"] = mat_node.parm('metallic_texture').eval()
+    material_dict["emission"] = mat_node.parm('emitcolor_texture').eval()
+    material_dict["opacity"] = mat_node.parm('opaccolor_texture').eval()
+    material_dict["transparency"] = mat_node.parm('transparency_texture').eval()
+    material_dict["normal"] = mat_node.parm('baseNormal_texture').eval()
+    material_dict["displacement"] = mat_node.parm('dispTex_texture').eval()
+    
+    return material_dict
+    
+    
+def parse_kb3d_glass(material):
+    # Populates the paramaters in the kb3d principled shader specific to the 3dl Glass shader
+    material_dict = {}
+    
+    mat_node = material["mat_node"]
+    material_dict["name"] = material["parent_name"]
+    material_dict["base"] = mat_node.parm('basecolor_texture').eval()
+    material_dict["rough"] = mat_node.parm('rough_texture').eval()
+    material_dict["metallic"] = mat_node.parm('metallic_texture').eval()
+    material_dict["refract"] = mat_node.parm('transparency_texture').eval()
+    material_dict["normal"] = mat_node.parm('baseNormal_texture').eval()
+    material_dict["displacement"] = mat_node.parm('dispTex_texture').eval()
+    
+    return material_dict
+    
+    
+def create_matnet(matnet_name):
+# Check if the Material Network already exists
+    matnet_path = "/obj/" + matnet_name
+    if not hou.node(matnet_path):
+        # If it doesn't exist, create it
+        obj = hou.node("/obj")
+        matnet = obj.createNode("matnet", matnet_name)
+        matnet.cook()
+        print("matnet created " + matnet_name)
+
+
+def create_substance(texture_dict, matnet_name):
+    # creates the 3dl material network with a substance shader
+    matnet = hou.node(matnet_name)
+
+    # create output final suface material - final surface material
+    material_out = matnet.createNode("mtlxsurfacematerial", texture_dict['name'])
+        
+#    # create output subnet connector - surface
+#    surface_out = matnet.createNode("subnetconnector", "surface_out" + texture_dict['name'])
+#    surface_out_parm1 = surface_out.parm("connectorkind")
+#    surface_out_parm1.set("output")
+#    surface_out_parm2 = surface_out.parm("parmname")
+#    surface_out_parm2.set("surface")
+#    surface_out_parm3 = surface_out.parm("parmlabel")
+#    surface_out_parm3.set("Surface")
+#    surface_out_parm4 = surface_out.parm("parmtype")
+#    surface_out_parm4.set("surface")
+#    
+#    material_out.setInput(0, surface_out, 0)
+#    
+#    # create output subnet connector - displacement
+#    displacement_out = matnet.createNode("subnetconnector", "displacement_out" + texture_dict['name'])
+#    displacement_out_parm1 = displacement_out.parm("connectorkind")
+#    displacement_out_parm1.set("output")
+#    displacement_out_parm2 = displacement_out.parm("parmname")
+#    displacement_out_parm2.set("displacement")
+#    displacement_out_parm3 = displacement_out.parm("parmlabel")
+#    displacement_out_parm3.set("Displacement")
+#    displacement_out_parm4 = displacement_out.parm("parmtype")
+#    displacement_out_parm4.set("displacement")
+#    
+#    material_out.setInput(1, displacement_out, 0)
+        
+        
+#    # create Collect node 
+#    collect = matnet.createNode("collect", texture_dict['name'])
+    
+    # create MTLX standard surface node
+    standard = matnet.createNode("mtlxstandard_surface", "mtlx_standard_" + texture_dict['name'])
+    standard_parm_specular = standard.parm("specular")
+    standard_parm_specular.set(specular_value)
+        
+    material_out.setInput(0, standard, 0)
+
+    # create mtxl base texture
+    if (texture_dict["base"] != ""):
+        base_texture = matnet.createNode("mtlximage", "base_" + texture_dict['name'])
+        base_texture_parm = base_texture.parm("file")
+        base_texture_parm.set(texture_dict["base"])
+        #base_texture_parm1 = base_texture.parm("signature")
+        #base_texture_parm1.set("Color")
+#        base_texture_parm2 = base_texture.parm("filecolorspace")
+#        base_texture_parm2.set("srgb_texture")
+        standard.setInput(1, base_texture, 0)
+    
+    
+    
+    # create mtlx rough texture
+    if (texture_dict["rough"] != ""):
+        rough_texture = matnet.createNode("mtlximage", "rough_" + texture_dict['name'])
+        rough_texture_parm = rough_texture.parm("file")
+        rough_texture_parm.set(texture_dict["rough"])
+        rough_texture_parm1 = rough_texture.parm("signature")
+        rough_texture_parm1.set("float")
+#        rough_texture_parm2 = rough_texture.parm("filecolorspace")
+#        rough_texture_parm2.set("lin_rec709")
+        standard.setInput(6, rough_texture, 0)
+
+    # create mtlx metallic texture
+    if (texture_dict["metallic"] != ""):
+        metallic_texture = matnet.createNode("mtlximage", "metallic_" + texture_dict['name'])
+        metallic_texture_parm =  metallic_texture.parm("file")
+        metallic_texture_parm.set(texture_dict["metallic"])
+        metallic_texture_parm1 = metallic_texture.parm("signature")
+        metallic_texture_parm1.set("float")
+#        metallic_texture_parm2 = metallic_texture.parm("filecolorspace")
+#        metallic_texture_parm2.set("lin_rec709")
+        standard.setInput(3, metallic_texture, 0)
+        
+    # create mtlx emission texture
+    if (texture_dict["emission"] != ""):
+        emission_texture = matnet.createNode("mtlximage", "emission_" + texture_dict['name'])
+        emission_texture_parm =  emission_texture.parm("file")
+        emission_texture_parm.set(texture_dict["emission"])
+        #emission_texture_parm1 = emission_texture.parm("signature")
+        #emission_texture_parm1.set("Color")
+#        emission_texture_parm2 = emission_texture.parm("filecolorspace")
+#        emission_texture_parm2.set("lin_rec709")
+        standard_parm_emission = standard.parm("emission")
+        standard_parm_emission.set(emission_value)
+        standard.setInput(37, emission_texture, 0)
+
+    # create mtlx opactiy texture
+    if (texture_dict["opacity"] != ""):
+        opacity_texture = matnet.createNode("mtlximage", "opacity_" + texture_dict['name'])
+        opacity_texture_parm =  opacity_texture.parm("file")
+        opacity_texture_parm.set(texture_dict["opacity"])
+        #opacity_texture_parm1 = opacity_texture.parm("signature")
+        #opacity_texture_parm1.set("float")
+#        opacity_texture_parm2 = opacity_texture.parm("filecolorspace")
+#        opacity_texture_parm2.set("lin_rec709")
+        standard.setInput(38, opacity_texture, 0)
+
+    # create mtlx transparency texture
+    if (texture_dict["transparency"] != ""):
+        transparency_texture = matnet.createNode("mtlximage", "transparency_" + texture_dict['name'])
+        transparency_texture_parm =  transparency_texture.parm("file")
+        transparency_texture_parm.set(texture_dict["transparency"])
+        transparency_texture_parm1 = transparency_texture.parm("signature")
+        transparency_texture_parm1.set("float")
+#        transparency_texture_parm2 = transparency_texture.parm("filecolorspace")
+#        transparency_texture_parm2.set("lin_rec709")
+        standard.setInput(10, transparency_texture, 0)
+
+    # create mtlx normal texture
+    if (texture_dict["normal"] != ""):
+        mtlx_normal_map = matnet.createNode("mtlxnormalmap", "normalmap_" + texture_dict['name'])
+        mtlx_normal_map_parm = mtlx_normal_map.parm("scale")
+        mtlx_normal_map_parm.set(normal_scale)
+        
+        normal_texture = matnet.createNode("mtlximage", "normal_" + texture_dict['name'])
+        normal_texture_parm =  normal_texture.parm("file")
+        normal_texture_parm.set(texture_dict["normal"])
+        normal_texture_parm1 = normal_texture.parm("signature")
+        normal_texture_parm1.set("vector3")
+#        normal_texture_parm2 = normal_texture.parm("filecolorspace")
+#        normal_texture_parm2.set(norm_map_color_space)
+        mtlx_normal_map.setInput(0, normal_texture, 0)
+        standard.setInput(40, mtlx_normal_map, 0)
+        
+    # create mtlx displacement texture
+    if (texture_dict["displacement"] != ""):
+        mtlx_disp_remap = matnet.createNode("mtlxremap", "disp_remap_" + texture_dict['name'])
+        remap_parm = mtlx_disp_remap.parm("signature") 
+        remap_parm.set("0")
+        remap_parm1 = mtlx_disp_remap.parm("inlow") 
+        remap_parm1.set("0.0")
+        remap_parm2 = mtlx_disp_remap.parm("inhigh") 
+        remap_parm2.set("1.0")
+        remap_parm3 = mtlx_disp_remap.parm("outlow") 
+        remap_parm3.set("-0.5")
+        remap_parm4 = mtlx_disp_remap.parm("outhigh") 
+        remap_parm4.set("0.5")
+        
+        displacement_texture = matnet.createNode("mtlximage", "displacement_" + texture_dict['name'])
+        displacement_texture_parm =  displacement_texture.parm("file")
+        displacement_texture_parm.set(texture_dict["displacement"])
+        displacement_texture_parm1 = displacement_texture.parm("signature")
+        displacement_texture_parm1.set("color")
+#        displacement_texture_parm2 = displacement_texture.parm("filecolorspace")
+#        displacement_texture_parm2.set("lin_rec709")
+        
+        # create mtlx displacement node
+        mtlx_disp = matnet.createNode("mtlxdisplacement", "disp_map_" + texture_dict['name'])
+        disp_parm = mtlx_disp.parm("scale") 
+        disp_parm.set(displacement_scale)
+        
+        # connect displacement texture to remap
+        mtlx_disp_remap.setInput(0, displacement_texture, 0)
+        
+        # connect remap to mtlx_disp
+        mtlx_disp.setInput(0, mtlx_disp_remap, 0)
+        
+        # connect mtlx_disp to collect
+        material_out.setInput(1, mtlx_disp, 0)
+    
+    # Tidy up node layout
+    matnet.layoutChildren()
+
+    
+    
+    
+def create_glass(texture_dict, matnet_name):
+    print("no separate glass shader needed")
+    
+def process_substance(material, matnet_name):
+    # handles converting substance materials
+    print("Substance processing: " + material["parent_name"] + " " + material["type"])
+    texture_dict = parse_kb3d_substance(material)
+    create_substance(texture_dict, matnet_name)
+    
+    
+def process_glass(material, matnet_name):
+    # handles converting glass materials
+    print("Glass processing: " + material["parent_name"] + " " + material["type"])
+    texture_dict = parse_kb3d_glass(material)
+    create_glass(texture_dict, matnet_name)
+        
+        
+def process_materials(materials_list, matnet_name):
+    # takes each material and calls is processor by type
+    
+    # create material network if it doesn't exist
+    create_matnet(matnet_name)
+    matnet_name = "/obj/" + matnet_name
+    # itterate through materials
+    for material in materials_list:
+        #if material["type"] == "substance":
+        #    process_substance(material, matnet_name)
+        #if material["type"] == "glass":
+        #    process_glass(material, matnet_name)
+        process_substance(material, matnet_name)
+
+def main():
+    input_material_path = hou.selectedNodes()[0].path()
+    matnet_name="MTLXmatnet"
+    in_materials = get_kb3d_materials(input_material_path)
+    materials_list = split_substance_glass(in_materials)
+    process_materials(materials_list, matnet_name)
+    print("Finished Processing")
+
+specular_value = float(hou.ui.readInput("Enter a default specular value (default is 0.00 i.e. dielectric):", buttons=("OK", "Cancel"), initial_contents="0.04")[1])
+emission_value = float(hou.ui.readInput("Enter a default emission value:", buttons=("OK", "Cancel"), initial_contents="2.0")[1])
+#norm_map_color_space = hou.ui.readInput("Normal map colour space (ACEScg, lin_rec709, srgb_tx, Raw):", buttons=("OK", "Cancel"), initial_contents="")[1]
+normal_scale = float(hou.ui.readInput("Enter a default normal scale:", buttons=("OK", "Cancel"), initial_contents="1.0")[1])
+displacement_scale = float(hou.ui.readInput("Enter a default displacement scale:", buttons=("OK", "Cancel"), initial_contents="0.1")[1])
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+# read me 
+
+
+
+
+#
+#
+#
+#
+#
+## kitbashToMTLX
+#Houdini - Python Converts Kitbash Cargo principled Materials to MTLX Materials for use in Karma XPU
+#
+### Setup
+#### Add to Shelf
+#Right-click on the shelf and then New Tool
+#Options - set name and label, I call mine KB3D2MTLX
+#Script - Make sure the language is python and then paste in the context of the .py in the repo
+#.. apply, accept.
+#
+### Use - in SOPs !
+#
+#### Convert Materials
+#Select the /obj node containing your kitbash model and its matnet (after importing it from Kitbash3D Cargo
+#Click the tool you created (KB3D2MTLX).
+#It will now look for all principled shaders within that node and convert them to a new node /obj/MTLXmatnet which contains the 3delight materials
+#
+#### Update Material references
+#In the kitbash object geo node add a Primivite Wrangle node before the Output node.
+#Add this vex (example for Mission To Minerva kit), change the KB3D_MTM to your geo name e.g. '/obj/KB3D_HOK/matnet' for Hong Kong kit )
+#
+#primitive wrangle:
+#```
+#@shop_materialpath = replace(s@shop_materialpath , '/obj/KB3D_MTM/matnet' , '/obj/MTLXmatnet') ;
+#```
+#
+### Import OBJ to Stage 
+#
+#### In Stage (Solaris)
+#Create a Scene Import node
+#  Root Object: /obj
+#  Objects: /obj/KB3D_MTM
+#
+#The Scene Import node will automatically bring in the materials and assign them
+#
+#.. let me know if you find any issues
+#
+#rOb :)
+#
+#
+]]></script>
+  </tool>
+
+  <tool name="geo" label="testgeometry_pighead1" icon="OBJ_geo">
+    <helpURL>operator:Object/geo</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Object/geo</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if "outputnodename" in kwargs and "inputindex" in kwargs:
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if "inputnodename" in kwargs and "outputindex" in kwargs:
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9
+    if "autoplace" in kwargs:
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if "shiftclick" in kwargs and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if "nodepositionx" in kwargs and             "nodepositiony" in kwargs:
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if "node_bbox" in kwargs:
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if 'geo' not in child_type:
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r'''
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_obj_testgeometry_pighead1 (Object/geo)
+set _obj_testgeometry_pighead1 = `run("opadd -e -n -v geo testgeometry_pighead1")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_testgeometry_pighead1
+opspareds '    group {         name    "stdswitcher4"         label   "Transform"         grouptag { "sidefx::switcher" "stdswitcher" }          parm {             name    "xOrd"             baseparm             label   "Transform Order"             joinnext             export  none         }         parm {             name    "rOrd"             baseparm             label   "Rotate Order"             nolabel             export  none         }         parm {             name    "t"             baseparm             label   "Translate"             export  all         }         parm {             name    "r"             baseparm             label   "Rotate"             export  all         }         parm {             name    "s"             baseparm             label   "Scale"             export  none         }         parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }         parm {             name    "scale"             baseparm             label   "Uniform Scale"             export  none         }         parm {             name    "pre_xform"             baseparm             label   "Modify Pre-Transform"             export  none         }         parm {             name    "keeppos"             baseparm             label   "Keep Position When Parenting"             export  none         }         parm {             name    "childcomp"             baseparm             label   "Child Compensation"             export  none         }         parm {             name    "constraints_on"             baseparm             label   "Enable Constraints"             export  none         }         parm {             name    "constraints_path"             baseparm             label   "Constraints"             export  none         }         parm {             name    "lookatpath"             baseparm             label   "Look At"             invisible             export  none         }         parm {             name    "lookupobjpath"             baseparm             label   "Look Up Object"             invisible             export  none         }         parm {             name    "lookup"             baseparm             label   "Look At Up Vector"             invisible             export  none         }         parm {             name    "pathobjpath"             baseparm             label   "Path Object"             invisible             export  none         }         parm {             name    "roll"             baseparm             label   "Roll"             invisible             export  none         }         parm {             name    "pos"             baseparm             label   "Position"             invisible             export  none         }         parm {             name    "uparmtype"             baseparm             label   "Parameterization"             invisible             export  none         }         parm {             name    "pathorient"             baseparm             label   "Orient Along Path"             invisible             export  none         }         parm {             name    "up"             baseparm             label   "Orient Up Vector"             invisible             export  none         }         parm {             name    "bank"             baseparm             label   "Auto-Bank factor"             invisible             export  none         }     }      group {         name    "stdswitcher4_1"         label   "Render"          parm {             name    "shop_materialpath"             baseparm             label   "Material"             export  none         }         parm {             name    "shop_materialopts"             baseparm             label   "Options"             invisible             export  none         }         parm {             name    "tdisplay"             baseparm             label   "Display"             joinnext             export  none         }         parm {             name    "display"             baseparm             label   "Display"             export  none         }         parm {             name    "viewportlod"             label   "Display As"             type    ordinal             default { "full" }             help    "Choose how the object\'s geometry should be rendered in the viewport"             menu {                 "full"      "Full Geometry"                 "points"    "Point Cloud"                 "box"       "Bounding Box"                 "centroid"  "Centroid"                 "hidden"    "Hidden"                 "subd"      "Subdivision Surface / Curves"             }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendervisibility"             label   "Render Visibility"             type    string             default { "*" }             menureplace {                 "*"                             "Visible to all"                 "primary"                       "Visible only to primary rays"                 "primary|shadow"                "Visible only to primary and shadow rays"                 "-primary"                      "Invisible to primary rays (Phantom)"                 "-diffuse"                      "Invisible to diffuse rays"                 "-diffuse&-reflect&-refract"    "Invisible to secondary rays"                 ""                              "Invisible (Unrenderable)"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendervisibility" }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendersubd"             label   "Render Polygons As Subdivision (Mantra)"             type    toggle             default { "0" }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendersubd" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdstyle"             label   "Subdivision Style"             type    string             default { "mantra_catclark" }             hidewhen "{ vm_rendersubd == 0 }"             menu {                 "mantra_catclark"   "Mantra Catmull-Clark"                 "osd_catclark"      "OpenSubdiv Catmull-Clark"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdstyle" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdgroup"             label   "Subdivision Group"             type    string             default { "" }             hidewhen "{ vm_rendersubd == 0 }"             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdgroup" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_quality"             label   "Open Subdiv Quality"             type    float             default { "1" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_quality" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_vtxinterp"             label   "OSD Vtx Interp"             type    integer             default { "2" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "No vertex interpolation"                 "1" "Edges only"                 "2" "Edges and Corners"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_vtxinterp" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_fvarinterp"             label   "OSD FVar Interp"             type    integer             default { "4" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "Smooth everywhere"                 "1" "Sharpen corners only"                 "2" "Sharpen edges and corners"                 "3" "Sharpen edges and propagated corners"                 "4" "Sharpen all boundaries"                 "5" "Bilinear interpolation"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_fvarinterp" }             parmtag { "spare_category" "Geometry" }         }         group {             name    "folder0"             label   "Shading"              parm {                 name    "categories"                 label   "Categories"                 type    string                 default { "" }                 help    "A list of tags which can be used to select the object"                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "reflectmask"                 label   "Reflection Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be reflected on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "refractmask"                 label   "Refraction Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be refracted on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightmask"                 label   "Light Mask"                 type    oplist                 default { "*" }                 help    "Lights that illuminate this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/LIGHT!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightcategories"                 label   "Light Selection"                 type    string                 default { "*" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_lpetag"                 label   "LPE Tag"                 type    string                 default { "" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "lpetag" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilter"                 label   "Volume Filter"                 type    string                 default { "box" }                 menu {                     "box"       "Box Filter"                     "gaussian"  "Gaussian"                     "bartlett"  "Bartlett (triangle)"                     "catrom"    "Catmull-Rom"                     "hanning"   "Hanning"                     "blackman"  "Blackman"                     "sinc"      "Sinc (sharpening)"                 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filter" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilterwidth"                 label   "Volume Filter Width"                 type    float                 default { "1" }                 range   { 0.001 5 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filterwidth" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_matte"                 label   "Matte shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "matte" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_rayshade"                 label   "Raytrace Shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rayshade" }                 parmtag { "spare_category" "Shading" }             }         }          group {             name    "folder0_1"             label   "Sampling"              parm {                 name    "geo_velocityblur"                 label   "Geometry Velocity Blur"                 type    ordinal                 default { "off" }                 disablewhen "{ allowmotionblur == 0 }"                 menu {                     "off"       "No Velocity Blur"                     "on"        "Velocity Blur"                     "accelblur" "Acceleration Blur"                 }             }             parm {                 name    "geo_accelattribute"                 label   "Acceleration Attribute"                 type    string                 default { "accel" }                 hidewhen "{ geo_velocityblur != accelblur }"                 parmtag { "spare_category" "Sampling" }             }         }          group {             name    "folder0_2"             label   "Dicing"              parm {                 name    "vm_shadingquality"                 label   "Shading Quality"                 type    float                 default { "1" }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "shadingquality" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_flatness"                 label   "Dicing Flatness"                 type    float                 default { "0.05" }                 range   { 0 1 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "flatness" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_raypredice"                 label   "Ray Predicing"                 type    integer                 default { "0" }                 menu {                     "0" "Disable Predicing"                     "1" "Full Predicing"                     "2" "Precompute Bounds"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "raypredice" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_curvesurface"                 label   "Shade Curves As Surfaces"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "curvesurface" }                 parmtag { "spare_category" "Dicing" }             }         }          group {             name    "folder0_3"             label   "Geometry"              parm {                 name    "vm_rmbackface"                 label   "Backface Removal"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rmbackface" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "shop_geometrypath"                 label   "Procedural Shader"                 type    oppath                 default { "" }                 parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }                 parmtag { "oprelative" "." }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_forcegeometry"                 label   "Force Procedural Geometry Output"                 type    toggle                 default { "1" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_rendersubdcurves"                 label   "Render Polygon Curves As Subdivision (Mantra)"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rendersubdcurves" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpoints"                 label   "Render As Points (Mantra)"                 type    integer                 default { "2" }                 menu {                     "0" "No Point Rendering"                     "1" "Render Only Points"                     "2" "Render Unconnected Points"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpointsas"                 label   "Render Points As (Mantra)"                 type    integer                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 menu {                     "0" "Spheres"                     "1" "Circles"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpointsas" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_usenforpoints"                 label   "Use N For Point Rendering"                 type    toggle                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "usenforpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pointscale"                 label   "Point Scale"                 type    float                 default { "1" }                 disablewhen "{ vm_renderpoints == 0 }"                 range   { 0! 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pointscale" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pscalediameter"                 label   "Treat Point Scale as Diameter Instead of Radius"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pscalediameter" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_metavolume"                 label   "Metaballs as Volume"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "metavolume" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_coving"                 label   "Coving"                 type    integer                 default { "1" }                 menu {                     "0" "Disable Coving"                     "1" "Coving for displacement/sub-d"                     "2" "Coving for all primitives"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "coving" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_materialoverride"                 label   "Material Override"                 type    string                 default { "compact" }                 menu {                     "none"      "Disabled"                     "full"      "Evaluate for Each Primitve/Point"                     "compact"   "Evaluate Once"                 }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_overridedetail"                 label   "Ignore Geometry Attribute Shaders"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "overridedetail" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_procuseroottransform"                 label   "Proc Use Root Transform"                 type    toggle                 default { "1" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "procuseroottransform" }                 parmtag { "spare_category" "Geometry" }             }         }      }      group {         name    "stdswitcher4_2"         label   "Misc"          parm {             name    "use_dcolor"             baseparm             label   "Set Wireframe Color"             export  none         }         parm {             name    "dcolor"             baseparm             label   "Wireframe Color"             export  none         }         parm {             name    "picking"             baseparm             label   "Viewport Selecting Enabled"             export  none         }         parm {             name    "pickscript"             baseparm             label   "Select Script"             export  none         }         parm {             name    "caching"             baseparm             label   "Cache Object Transform"             export  none         }         parm {             name    "vport_shadeopen"             baseparm             label   "Shade Open Curves In Viewport"             export  none         }         parm {             name    "vport_displayassubdiv"             baseparm             label   "Display as Subdivision in Viewport"             invisible             export  none         }         parm {             name    "vport_onionskin"             baseparm             label   "Onion Skinning"             export  none         }     }  ' $_obj_testgeometry_pighead1
+opset -S on $_obj_testgeometry_pighead1
+chautoscope $_obj_testgeometry_pighead1 +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off $_obj_testgeometry_pighead1
+opexprlanguage -s hscript $_obj_testgeometry_pighead1
+opcf $_obj_testgeometry_pighead1
+
+# Node $_obj_testgeometry_pighead1_testgeometry_pighead1 (Sop/testgeometry_pighead)
+set _obj_testgeometry_pighead1_testgeometry_pighead1 = `run("opadd -e -n -v testgeometry_pighead testgeometry_pighead1")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_testgeometry_pighead1_testgeometry_pighead1
+opparm $_obj_testgeometry_pighead1_testgeometry_pighead1 addshader ( off )
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off $_obj_testgeometry_pighead1_testgeometry_pighead1
+opexprlanguage -s hscript $_obj_testgeometry_pighead1_testgeometry_pighead1
+opuserdata -n '___Version___' -v '' $_obj_testgeometry_pighead1_testgeometry_pighead1
+opuserdata -n '___toolcount___' -v '1' $_obj_testgeometry_pighead1_testgeometry_pighead1
+opuserdata -n '___toolid___' -v 'sop_testgeometry_pighead' $_obj_testgeometry_pighead1_testgeometry_pighead1
+opcf ..
+opcf $_obj_testgeometry_pighead1
+opcf ..
+opset -p on $_obj_testgeometry_pighead1
+
+opcf $arg1
+opcf $_obj_testgeometry_pighead1
+opcf ..
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_obj_testgeometry_pighead1
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_obj_testgeometry_pighead1
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="geo1" label="Ground" icon="OBJ_geo">
+    <helpURL>operator:Object/geo</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Object/geo</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if "outputnodename" in kwargs and "inputindex" in kwargs:
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if "inputnodename" in kwargs and "outputindex" in kwargs:
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9
+    if "autoplace" in kwargs:
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if "shiftclick" in kwargs and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if "nodepositionx" in kwargs and             "nodepositiony" in kwargs:
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if "node_bbox" in kwargs:
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if 'geo' not in child_type:
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r'''
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_obj_Ground (Object/geo)
+set _obj_Ground = `run("opadd -e -n -v geo Ground")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_Ground
+opspareds '    group {         name    "stdswitcher4"         label   "Transform"         grouptag { "sidefx::switcher" "stdswitcher" }          parm {             name    "xOrd"             baseparm             label   "Transform Order"             joinnext             export  none         }         parm {             name    "rOrd"             baseparm             label   "Rotate Order"             nolabel             export  none         }         parm {             name    "t"             baseparm             label   "Translate"             export  all         }         parm {             name    "r"             baseparm             label   "Rotate"             export  all         }         parm {             name    "s"             baseparm             label   "Scale"             export  none         }         parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }         parm {             name    "scale"             baseparm             label   "Uniform Scale"             export  none         }         parm {             name    "pre_xform"             baseparm             label   "Modify Pre-Transform"             export  none         }         parm {             name    "keeppos"             baseparm             label   "Keep Position When Parenting"             export  none         }         parm {             name    "childcomp"             baseparm             label   "Child Compensation"             export  none         }         parm {             name    "constraints_on"             baseparm             label   "Enable Constraints"             export  none         }         parm {             name    "constraints_path"             baseparm             label   "Constraints"             export  none         }         parm {             name    "lookatpath"             baseparm             label   "Look At"             invisible             export  none         }         parm {             name    "lookupobjpath"             baseparm             label   "Look Up Object"             invisible             export  none         }         parm {             name    "lookup"             baseparm             label   "Look At Up Vector"             invisible             export  none         }         parm {             name    "pathobjpath"             baseparm             label   "Path Object"             invisible             export  none         }         parm {             name    "roll"             baseparm             label   "Roll"             invisible             export  none         }         parm {             name    "pos"             baseparm             label   "Position"             invisible             export  none         }         parm {             name    "uparmtype"             baseparm             label   "Parameterization"             invisible             export  none         }         parm {             name    "pathorient"             baseparm             label   "Orient Along Path"             invisible             export  none         }         parm {             name    "up"             baseparm             label   "Orient Up Vector"             invisible             export  none         }         parm {             name    "bank"             baseparm             label   "Auto-Bank factor"             invisible             export  none         }     }      group {         name    "stdswitcher4_1"         label   "Render"          parm {             name    "shop_materialpath"             baseparm             label   "Material"             export  none         }         parm {             name    "shop_materialopts"             baseparm             label   "Options"             invisible             export  none         }         parm {             name    "tdisplay"             baseparm             label   "Display"             joinnext             export  none         }         parm {             name    "display"             baseparm             label   "Display"             export  none         }         parm {             name    "viewportlod"             label   "Display As"             type    ordinal             default { "full" }             help    "Choose how the object\'s geometry should be rendered in the viewport"             menu {                 "full"      "Full Geometry"                 "points"    "Point Cloud"                 "box"       "Bounding Box"                 "centroid"  "Centroid"                 "hidden"    "Hidden"                 "subd"      "Subdivision Surface / Curves"             }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendervisibility"             label   "Render Visibility"             type    string             default { "*" }             menureplace {                 "*"                             "Visible to all"                 "primary"                       "Visible only to primary rays"                 "primary|shadow"                "Visible only to primary and shadow rays"                 "-primary"                      "Invisible to primary rays (Phantom)"                 "-diffuse"                      "Invisible to diffuse rays"                 "-diffuse&-reflect&-refract"    "Invisible to secondary rays"                 ""                              "Invisible (Unrenderable)"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendervisibility" }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendersubd"             label   "Render Polygons As Subdivision (Mantra)"             type    toggle             default { "0" }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendersubd" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdstyle"             label   "Subdivision Style"             type    string             default { "mantra_catclark" }             hidewhen "{ vm_rendersubd == 0 }"             menu {                 "mantra_catclark"   "Mantra Catmull-Clark"                 "osd_catclark"      "OpenSubdiv Catmull-Clark"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdstyle" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdgroup"             label   "Subdivision Group"             type    string             default { "" }             hidewhen "{ vm_rendersubd == 0 }"             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdgroup" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_quality"             label   "Open Subdiv Quality"             type    float             default { "1" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_quality" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_vtxinterp"             label   "OSD Vtx Interp"             type    integer             default { "2" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "No vertex interpolation"                 "1" "Edges only"                 "2" "Edges and Corners"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_vtxinterp" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_fvarinterp"             label   "OSD FVar Interp"             type    integer             default { "4" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "Smooth everywhere"                 "1" "Sharpen corners only"                 "2" "Sharpen edges and corners"                 "3" "Sharpen edges and propagated corners"                 "4" "Sharpen all boundaries"                 "5" "Bilinear interpolation"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_fvarinterp" }             parmtag { "spare_category" "Geometry" }         }         group {             name    "folder0"             label   "Shading"              parm {                 name    "categories"                 label   "Categories"                 type    string                 default { "" }                 help    "A list of tags which can be used to select the object"                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "reflectmask"                 label   "Reflection Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be reflected on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "refractmask"                 label   "Refraction Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be refracted on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightmask"                 label   "Light Mask"                 type    oplist                 default { "*" }                 help    "Lights that illuminate this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/LIGHT!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightcategories"                 label   "Light Selection"                 type    string                 default { "*" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_lpetag"                 label   "LPE Tag"                 type    string                 default { "" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "lpetag" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilter"                 label   "Volume Filter"                 type    string                 default { "box" }                 menu {                     "box"       "Box Filter"                     "gaussian"  "Gaussian"                     "bartlett"  "Bartlett (triangle)"                     "catrom"    "Catmull-Rom"                     "hanning"   "Hanning"                     "blackman"  "Blackman"                     "sinc"      "Sinc (sharpening)"                 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filter" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilterwidth"                 label   "Volume Filter Width"                 type    float                 default { "1" }                 range   { 0.001 5 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filterwidth" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_matte"                 label   "Matte shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "matte" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_rayshade"                 label   "Raytrace Shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rayshade" }                 parmtag { "spare_category" "Shading" }             }         }          group {             name    "folder0_1"             label   "Sampling"              parm {                 name    "geo_velocityblur"                 label   "Geometry Velocity Blur"                 type    ordinal                 default { "off" }                 disablewhen "{ allowmotionblur == 0 }"                 menu {                     "off"       "No Velocity Blur"                     "on"        "Velocity Blur"                     "accelblur" "Acceleration Blur"                 }             }             parm {                 name    "geo_accelattribute"                 label   "Acceleration Attribute"                 type    string                 default { "accel" }                 hidewhen "{ geo_velocityblur != accelblur }"                 parmtag { "spare_category" "Sampling" }             }         }          group {             name    "folder0_2"             label   "Dicing"              parm {                 name    "vm_shadingquality"                 label   "Shading Quality"                 type    float                 default { "1" }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "shadingquality" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_flatness"                 label   "Dicing Flatness"                 type    float                 default { "0.05" }                 range   { 0 1 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "flatness" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_raypredice"                 label   "Ray Predicing"                 type    integer                 default { "0" }                 menu {                     "0" "Disable Predicing"                     "1" "Full Predicing"                     "2" "Precompute Bounds"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "raypredice" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_curvesurface"                 label   "Shade Curves As Surfaces"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "curvesurface" }                 parmtag { "spare_category" "Dicing" }             }         }          group {             name    "folder0_3"             label   "Geometry"              parm {                 name    "vm_rmbackface"                 label   "Backface Removal"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rmbackface" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "shop_geometrypath"                 label   "Procedural Shader"                 type    oppath                 default { "" }                 parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }                 parmtag { "oprelative" "." }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_forcegeometry"                 label   "Force Procedural Geometry Output"                 type    toggle                 default { "1" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_rendersubdcurves"                 label   "Render Polygon Curves As Subdivision (Mantra)"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rendersubdcurves" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpoints"                 label   "Render As Points (Mantra)"                 type    integer                 default { "2" }                 menu {                     "0" "No Point Rendering"                     "1" "Render Only Points"                     "2" "Render Unconnected Points"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpointsas"                 label   "Render Points As (Mantra)"                 type    integer                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 menu {                     "0" "Spheres"                     "1" "Circles"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpointsas" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_usenforpoints"                 label   "Use N For Point Rendering"                 type    toggle                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "usenforpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pointscale"                 label   "Point Scale"                 type    float                 default { "1" }                 disablewhen "{ vm_renderpoints == 0 }"                 range   { 0! 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pointscale" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pscalediameter"                 label   "Treat Point Scale as Diameter Instead of Radius"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pscalediameter" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_metavolume"                 label   "Metaballs as Volume"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "metavolume" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_coving"                 label   "Coving"                 type    integer                 default { "1" }                 menu {                     "0" "Disable Coving"                     "1" "Coving for displacement/sub-d"                     "2" "Coving for all primitives"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "coving" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_materialoverride"                 label   "Material Override"                 type    string                 default { "compact" }                 menu {                     "none"      "Disabled"                     "full"      "Evaluate for Each Primitve/Point"                     "compact"   "Evaluate Once"                 }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_overridedetail"                 label   "Ignore Geometry Attribute Shaders"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "overridedetail" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_procuseroottransform"                 label   "Proc Use Root Transform"                 type    toggle                 default { "1" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "procuseroottransform" }                 parmtag { "spare_category" "Geometry" }             }         }      }      group {         name    "stdswitcher4_2"         label   "Misc"          parm {             name    "use_dcolor"             baseparm             label   "Set Wireframe Color"             export  none         }         parm {             name    "dcolor"             baseparm             label   "Wireframe Color"             export  none         }         parm {             name    "picking"             baseparm             label   "Viewport Selecting Enabled"             export  none         }         parm {             name    "pickscript"             baseparm             label   "Select Script"             export  none         }         parm {             name    "caching"             baseparm             label   "Cache Object Transform"             export  none         }         parm {             name    "vport_shadeopen"             baseparm             label   "Shade Open Curves In Viewport"             export  none         }         parm {             name    "vport_displayassubdiv"             baseparm             label   "Display as Subdivision in Viewport"             invisible             export  none         }         parm {             name    "vport_onionskin"             baseparm             label   "Onion Skinning"             export  none         }     }  ' $_obj_Ground
+opset -S on $_obj_Ground
+chautoscope $_obj_Ground +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off $_obj_Ground
+opexprlanguage -s hscript $_obj_Ground
+opcf $_obj_Ground
+
+# Node $_obj_Ground_grid1 (Sop/grid)
+set _obj_Ground_grid1 = `run("opadd -e -n -v grid grid1")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_Ground_grid1
+opparm -V 20.5.278 $_obj_Ground_grid1 size ( 100 100 )
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off $_obj_Ground_grid1
+opexprlanguage -s hscript $_obj_Ground_grid1
+opcf ..
+opset -p on $_obj_Ground
+
+opcf $arg1
+opcf $_obj_Ground
+opcf ..
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_obj_Ground
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_obj_Ground
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="dopnet" label="dopnet1" icon="NETWORKS_dop">
+    <helpURL>operator:Sop/dopnet</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/dopnet</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if "outputnodename" in kwargs and "inputindex" in kwargs:
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if "inputnodename" in kwargs and "outputindex" in kwargs:
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9
+    if "autoplace" in kwargs:
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if "shiftclick" in kwargs and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if "nodepositionx" in kwargs and             "nodepositiony" in kwargs:
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if "node_bbox" in kwargs:
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if 'dopnet' not in child_type:
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r'''
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_obj_Ground_dopnet1 (Sop/dopnet)
+set _obj_Ground_dopnet1 = `run("opadd -e -n -v dopnet dopnet1")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_Ground_dopnet1
+opparm $_obj_Ground_dopnet1  numobj ( 1 )
+chblockbegin
+chadd -t 41.666666666666664 41.666666666666664 $_obj_Ground_dopnet1 timestep
+chkey -t 41.666666666666664 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("timescale")/(ch("substep")*$FPS)' $_obj_Ground_dopnet1/timestep
+chadd -t 41.666666666666664 41.666666666666664 $_obj_Ground_dopnet1 timeoffset
+chkey -t 41.666666666666664 -v 0 -m 0 -a 0 -A 0 -T a  -F '(ch("startframe")-1)/$FPS' $_obj_Ground_dopnet1/timeoffset
+chblockend
+opparm -V 20.5.278 $_obj_Ground_dopnet1 startframe ( 1001 ) objname1 ( * )
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off $_obj_Ground_dopnet1
+opexprlanguage -s hscript $_obj_Ground_dopnet1
+opcf $_obj_Ground_dopnet1
+
+# Node $_obj_Ground_dopnet1_output (Dop/output)
+set _obj_Ground_dopnet1_output = `run("opadd -e -n -v output output")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_Ground_dopnet1_output
+chblockbegin
+chadd -t 41.666666666666664 41.666666666666664 $_obj_Ground_dopnet1_output f1
+chkey -t 41.666666666666664 -v 0 -m 0 -a 0 -A 0 -T a  -F '$FSTART' $_obj_Ground_dopnet1_output/f1
+chadd -t 41.666666666666664 41.666666666666664 $_obj_Ground_dopnet1_output f2
+chkey -t 41.666666666666664 -v 0 -m 0 -a 0 -A 0 -T a  -F '$FEND' $_obj_Ground_dopnet1_output/f2
+chblockend
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off $_obj_Ground_dopnet1_output
+opexprlanguage -s hscript $_obj_Ground_dopnet1_output
+opuserdata -n '___Version___' -v '' $_obj_Ground_dopnet1_output
+opcf ..
+opset -p on $_obj_Ground_dopnet1
+
+opcf $arg1
+opcf $_obj_Ground_dopnet1
+opcf ..
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_obj_Ground_dopnet1
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_obj_Ground_dopnet1
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="hincTohip" label="hincTohip" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="subnet" label="mtlxmaterial" icon="VOP_subnet">
+    <helpURL>operator:Vop/subnet</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/subnet</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if "outputnodename" in kwargs and "inputindex" in kwargs:
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if "inputnodename" in kwargs and "outputindex" in kwargs:
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9
+    if "autoplace" in kwargs:
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if "shiftclick" in kwargs and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if "nodepositionx" in kwargs and             "nodepositiony" in kwargs:
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if "node_bbox" in kwargs:
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if 'subnet' not in child_type:
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r'''
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial (Vop/subnet)
+set _stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial = `run("opadd -e -n -v subnet mtlxmaterial")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+opspareds '    groupcollapsible {         name    "folder1"         label   "MaterialX Builder"         grouptag { "sidefx::shader_isparm" "0" }          parm {             name    "inherit_ctrl"             label   "Inherit from Class"             type    integer             default { "2" }             menu {                 "0" "Never"                 "1" "Always"                 "2" "Material Flag"             }             range   { 0 10 }         }         parm {             name    "shader_referencetype"             label   "Class Arc"             type    string             default { [ "n = hou.pwd()\\nn_hasFlag = n.isMaterialFlagSet()\\ni = n.evalParm(\'inherit_ctrl\')\\nr = \'none\'\\nif i == 1 or (n_hasFlag and i == 2):\\n    r = \'inherit\'\\nreturn r" python ] }             menu {                 "none"          "None"                 "reference"     "Reference"                 "inherit"       "Inherit"                 "specialize"    "Specialize"                 "represent"     "Represent"             }             parmtag { "sidefx::shader_isparm" "0" }             parmtag { "spare_category" "Shader" }         }         parm {             name    "shader_baseprimpath"             label   "Class Prim Path"             type    string             default { "/__class_mtl__/`$OS`" }             parmtag { "script_action" "import lopshaderutils\\nlopshaderutils.selectPrimFromInputOrFile(kwargs)" }             parmtag { "script_action_help" "Select a primitive in the Scene Viewer or Scene Graph Tree pane.\\nCtrl-click to select using the primitive picker dialog." }             parmtag { "script_action_icon" "BUTTONS_reselect" }             parmtag { "sidefx::shader_isparm" "0" }             parmtag { "sidefx::usdpathtype" "prim" }             parmtag { "spare_category" "Shader" }         }         parm {             name    "separator1"             label   "separator1"             type    separator             default { "" }         }         parm {             name    "tabmenumask"             label   "Tab Menu Mask"             type    string             default { "MaterialX parameter constant collect null genericshader subnet subnetconnector suboutput subinput" }             parmtag { "spare_category" "Tab Menu" }         }         parm {             name    "shader_rendercontextname"             label   "Render Context Name"             type    string             default { "mtlx" }             parmtag { "sidefx::shader_isparm" "0" }             parmtag { "spare_category" "Shader" }         }         parm {             name    "shader_forcechildren"             label   "Force Translation of Children"             type    toggle             default { "1" }             parmtag { "sidefx::shader_isparm" "0" }             parmtag { "spare_category" "Shader" }         }     }  ' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+chblockbegin
+chadd -t 41.666666666666664 41.666666666666664 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial shader_referencetype
+chkey -t 41.666666666666664 -v 0 -m 0 -a 0 -A 0 -T a  -F 'n = hou.pwd()\nn_hasFlag = n.isMaterialFlagSet()\ni = n.evalParm(\'inherit_ctrl\')\nr = \'none\'\nif i == 1 or (n_hasFlag and i == 2):\n    r = \'inherit\'\nreturn r' -l p $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial/shader_referencetype
+chblockend
+opparm -V 20.5.278 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E on $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+opexprlanguage -s hscript $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+opcf $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+
+# Node $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_inputs (Vop/subinput)
+set _stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_inputs = `run("opadd -e -n -v subinput inputs")`
+oplocate -x `$arg2 + -4.53993` -y `$arg3 + 0.037600000000000001` $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_inputs
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E off $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_inputs
+opexprlanguage -s hscript $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_inputs
+
+# Node $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface (Vop/mtlxstandard_surface)
+set _stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface = `run("opadd -e -n -v mtlxstandard_surface mtlxstandard_surface")`
+oplocate -x `$arg2 + -0.2883` -y `$arg3 + 0.037600000000000001` $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opparm $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface folder0 ( 1 )
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E off $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opexprlanguage -s hscript $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '___Version___' -v '' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Base' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Coat' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Emission' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Geometry' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Sheen' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Specular' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Subsurface' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Thin Film' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+opuserdata -n '__inputgroup_Transmission' -v 'collapsed' $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface
+
+# Node $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxdisplacement (Vop/mtlxdisplacement)
+set _stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxdisplacement = `run("opadd -e -n -v mtlxdisplacement mtlxdisplacement")`
+oplocate -x `$arg2 + -0.2883` -y `$arg3 + -2.4333999999999998` $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxdisplacement
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E off $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxdisplacement
+opexprlanguage -s hscript $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxdisplacement
+
+# Node $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output (Vop/subnetconnector)
+set _stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output = `run("opadd -e -n -v subnetconnector surface_output")`
+oplocate -x `$arg2 + 2.5236000000000001` -y `$arg3 + 0.037600000000000001` $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output
+opparm -V 20.5.278 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output connectorkind ( output ) parmname ( surface ) parmlabel ( Surface ) parmtype ( surface )
+opcolor -c 0.88999998569488525 0.68999999761581421 0.60000002384185791 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off -L off -M off -H on -E off $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output
+opexprlanguage -s hscript $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output
+
+# Node $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output (Vop/subnetconnector)
+set _stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output = `run("opadd -e -n -v subnetconnector displacement_output")`
+oplocate -x `$arg2 + 2.5236000000000001` -y `$arg3 + -2.4333999999999998` $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output
+opparm -V 20.5.278 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output connectorkind ( output ) parmname ( displacement ) parmlabel ( Displacement ) parmtype ( displacement )
+opcolor -c 0.60000002384185791 0.68999999761581421 0.88999998569488525 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off -L off -M off -H on -E off $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output
+opexprlanguage -s hscript $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output
+opcf ..
+opcf $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+oporder -e inputs mtlxstandard_surface mtlxdisplacement surface_output displacement_output 
+opcf ..
+opset -p on $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+
+opcf $arg1
+opcf $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+opwire -n $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxstandard_surface -0 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_surface_output
+opwire -n $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_mtlxdisplacement -0 $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial_displacement_output
+opcf ..
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_stage_Desert_Western_Rock_Large_06_0_lod0_materiallibrary1_mtlxmaterial
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="trigger" label="trigger rop or render button" icon="TOP_opnotify">
+    <script scriptType="python"><![CDATA[import psutil
+import time
+import hou
+
+cpu=0
+seconds=0
+
+cpu = int((hou.ui.readInput("Enter CPU Utilixation %", buttons=("OK", "Cancel"), initial_contents='20')[1]))
+seconds = int((hou.ui.readInput("Enter After Secounds %", buttons=("OK", "Cancel"), initial_contents='30')[1]))
+
+rop = hou.selectedNodes()[0]
+
+
+
+def monitor_cpu(threshold=cpu, duration=seconds, check_interval=1):
+
+    start_time = None
+    
+    while True:
+        cpu_utilization = psutil.cpu_percent(interval=1)
+
+        if cpu_utilization < threshold:
+            if start_time is None:
+                start_time = time.time()
+            elapsed_time = time.time() - start_time
+
+            if elapsed_time >= duration:
+                
+                break
+        else:
+            start_time = None
+        
+        time.sleep(check_interval)
+
+def execute_task():
+    r = rop.parm('execute').pressButton()
+
+monitor_cpu()
+execute_task()
+
+]]></script>
+  </tool>
+
+  <tool name="tool_3" label="New Tool" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+def s():
+    for n in hou.selectedNodes():
+        
+        if n.type() in 'principleshader':
+            print('yes')
+          
+s()]]></script>
+  </tool>
+
+  <tool name="vr_flipbook" label="vr_flipbook" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="vr_flipbook0" label="vr_flipbook" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou 
+import os
+
+import time
+import tempfile
+import subprocess
+
+
+
+
+
+flipbookPath = 'G:/flipbooks'
+fileType = '.jpeg'
+interverlCheck = '7'
+
+
+
+
+    
+
+def capture_flipbook(num_frames=24, interval=0.1, fmt="png"):
+    """
+    Captures `num_frames` screenshots of the entire desktop,
+    waiting `interval` seconds between each, and writes them
+    out as frame_0001.png, frame_0002.png, etc., in a temp dir.
+    Returns the path to the directory containing the frames.
+    """
+    temp_dir = tempfile.mkdtemp(prefix="flipbook_")
+    with mss() as sct:
+        for i in range(1, num_frames + 1):
+            filename = os.path.join(temp_dir, f"frame_{i:04d}.{fmt}")
+            sct_img = sct.grab(sct.monitors[0])  # full desktop
+            mss.tools.to_png(sct_img.rgb, sct_img.size, output=filename)
+            print(f"Captured {filename}")
+            time.sleep(interval)
+    return temp_dir
+
+def launch_mplay(sequence_dir, fmt="png"):
+    """
+    Launches Houdini's mplay pointing at the image sequence
+    in `sequence_dir`. Assumes mplay is in your PATH.
+    """
+    # Construct sequence expression, e.g. /tmp/flipbook_xxxx/frame_%04d.png
+    pattern = os.path.join(sequence_dir, f"frame_%04d.{fmt}")
+    cmd = ["mplay", "-f", pattern]
+    print(f"Launching mplay with: {' '.join(cmd)}")
+    subprocess.run(cmd)
+
+if __name__ == "__main__":
+    # === Configuration ===
+    NUM_FRAMES = 48       # how many frames to shoot
+    INTERVAL   = 0.05     # delay (in seconds) between frames
+    FORMAT     = "png"    # image format (png, jpg, tiff, etc.)
+
+    seq_dir = capture_flipbook(NUM_FRAMES, INTERVAL, FORMAT)
+    launch_mplay(seq_dir, FORMAT)
+    
+    
+    
+ ]]></script>
+  </tool>
+
+  <shelfSetEdit name="shelf_set_1" fileLocation="/opt/hfs20.0.547/houdini/toolbar/ShelfDefinitions.shelf">
+    <addMemberToolshelf name="vr_tool" inPosition="14"/>
+    <addMemberToolshelf name="vr_utiliti" inPosition="15"/>
+    <addMemberToolshelf name="Ak" inPosition="16"/>
+    <addMemberToolshelf name="RenderManRIS" inPosition="17"/>
+    <addMemberToolshelf name="RenderMan26" inPosition="18"/>
+  </shelfSetEdit>
+
+  <shelfSetEdit name="solaris_1" fileLocation="/opt/hfs20.0.547/houdini/toolbar/Solaris.shelf">
+    <addMemberToolshelf name="vr_utiliti" inPosition="2"/>
+    <addMemberToolshelf name="vr_tool" inPosition="3"/>
+  </shelfSetEdit>
+
+  <shelfSetEdit name="solaris_2" fileLocation="/opt/hfs20.0.547/houdini/toolbar/Solaris.shelf">
+    <addMemberToolshelf name="ui" inPosition="1"/>
+  </shelfSetEdit>
+</shelfDocument>

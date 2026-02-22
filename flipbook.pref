@@ -1,0 +1,1 @@
+res 0 767 432 zoom 100 croptoview 1 range 1001 $RFEND 1 keyframesonly 0 framesappend 0 audiofrompanel 1 audio '' audioframe 1 audiooffset 0 visible '' blockedit 0 background '' usegamma 0 gamma 1 uselut 0 lut '' initializeops 0 mblur 0 5 2 0 0.500000 aa -1 render current session '101010' leaveframeatend 0 outputmplay 1 limittime 1 20.000000 limitpercent 0 25.000000 outputfile ''

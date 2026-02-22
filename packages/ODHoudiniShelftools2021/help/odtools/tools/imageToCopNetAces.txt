@@ -1,0 +1,7 @@
+= Image to Copnet - Aces =
+
+"""Takes an image node and creates a copnet for it"""
+
+When right clicking on an image node this will create a copynet for the image, and reference the result back to the image node.  This can be very useful when modifications to the image need to be made, such as blurring, color correcting, distortions, etc.
+
+This version converts the image to Aces.  .png, .jpg, .tga, .tif are converted from srgb_texture -> aces cg, .exr & .hdr are converted from linear -> aces cg

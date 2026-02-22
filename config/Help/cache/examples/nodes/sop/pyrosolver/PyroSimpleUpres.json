@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["PyroSimpleUpres"]}, {"type": "para", "indent": 0, "text": ["This example illustrates the workflow for upressing pyro simulations."], "extent": [0, 70]}], "examplefor": "/nodes/sop/pyrosolver", "examplefile": "/examples/nodes/sop/pyrosolver/PyroSimpleUpres.hda"}

@@ -1,0 +1,264 @@
+// Magic: 48f6c811
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Mar 10 08:22:10 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+is_generator.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("is_generator", "Is Generator") toggle VALUE(is_generator.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+input_in.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    input_in.label = PARM_LABEL("In", "input_in") WIDTH(1.5);
+    PARM_FIELD(string, "input_in") VALUE(input_in.val) 
+	LABELREF(input_in.label) HSTRETCH;
+
+    input_in.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+Variations.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ Variations.label = PARM_LABEL("Variations", "Variations") WIDTH(1.5);
+ PARM(integer, 1, "Variations", none, none) RANGE(2,10)
+	LOCK_RANGE_MAX LABELREF(Variations.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Strata.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ Strata.label = PARM_LABEL("Strata", "Strata") WIDTH(1.5);
+ PARM(float, 1, "Strata", none, none) RANGE(0,1)
+	LOCK_RANGE_MAX LABELREF(Strata.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Density.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ Density.label = PARM_LABEL("Density", "Density") WIDTH(1.5);
+ PARM(float, 1, "Density", none, none) RANGE(0,1)
+	LOCK_RANGE_MAX LABELREF(Density.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Shape.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ Shape.label = PARM_LABEL("Shape", "Shape") WIDTH(1.5);
+ PARM(float, 1, "Shape", none, none) RANGE(-1,1)
+	LOCK_RANGE_MAX LABELREF(Shape.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Chipped.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Chipped", "Chipped") toggle VALUE(Chipped.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ Seed.label = PARM_LABEL("Seed", "Seed") WIDTH(1.5);
+ PARM(integer, 1, "Seed", none, none) RANGE(0,65535)
+	LOCK_RANGE_MAX LABELREF(Seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Size.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   Size.label = PARM_LABEL("Size", "Size") WIDTH(1.5);
+   PARM(float, 2, "Size", none, none, "X,Y")
+	RANGE(0,1) LOCK_RANGE_MAX LABELREF(Size.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+Height.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   Height.label = PARM_LABEL("Height", "Height") WIDTH(1.5);
+   PARM(float, 2, "Height", none, none, "X,Y")
+	RANGE(0,1) LOCK_RANGE_MAX LABELREF(Height.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+Rotation.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   Rotation.label = PARM_LABEL("Rotation", "Rotation") WIDTH(1.5);
+   PARM(float, 2, "Rotation", none, none, "X,Y")
+	RANGE(0,1) LOCK_RANGE_MAX LABELREF(Rotation.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+networkport.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ networkport.label = PARM_LABEL("Network Port", "networkport") WIDTH(1.5);
+ PARM(integer, 1, "networkport", none, none) RANGE(1,10000)
+	 LABELREF(networkport.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+killoncomplete.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("killoncomplete", "Shutdown Service after Cooking") toggle VALUE(killoncomplete.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+gaea_cook_settings.gad = 
+GROUP collapsible "Advanced Cook Settings" flat   
+{
+    VALUE(gaea_cook_settings.gad.val) LAYOUT(vertical) HSTRETCH
+	    networkport.gad;		
+	    killoncomplete.gad;		
+} 
+
+folder_variation_range.gad = 
+
+GROUP simple "Variation Range" flat 
+{ 
+    VALUE(folder_variation_range.gad.val) LAYOUT(vertical) HSTRETCH 
+	    Size.gad;		
+	    Height.gad;		
+	    Rotation.gad;		
+} 
+
+folder_outcrops.gad = 
+
+GROUP simple "Outcrops" flat 
+{ 
+    VALUE(folder_outcrops.gad.val) LAYOUT(vertical) HSTRETCH 
+	    Variations.gad;		
+	    Strata.gad;		
+	    Density.gad;		
+	    Shape.gad;		
+	    Chipped.gad;		
+	    Seed.gad;		
+} 
+
+gaea_internal_folder.gad = 
+
+{
+    VALUE(gaea_internal_folder.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    folder_outcrops.gad;		
+	    folder_variation_range.gad;		
+} 
+
+gaea_layer_bindings.gad = 
+
+GROUP simple "Layer Bindings" flat 
+{ 
+    VALUE(gaea_layer_bindings.gad.val) LAYOUT(vertical) HSTRETCH 
+	    input_in.gad;		
+} 
+
+gaea_layer_settings.gad = 
+
+GROUP simple "Settings" flat 
+{ 
+    VALUE(gaea_layer_settings.gad.val) LAYOUT(vertical) HSTRETCH 
+} 
+
+gaea_inputs_folder.gad = 
+
+{
+    VALUE(gaea_inputs_folder.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    gaea_layer_bindings.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    gaea_inputs_folder.gad; 
+    gaea_internal_folder.gad; 
+    gaea_cook_settings.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

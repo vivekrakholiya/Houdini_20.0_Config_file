@@ -1,0 +1,28 @@
+{
+	"fileversion":"20.5.278",
+	"name":"quickmarks",
+	"categories":"Network",
+	"pane":"network",
+	"label":"Quickmarks",
+	"type":"submenu",
+	"items":{
+		"0":{
+			"label":"geo1",
+			"type":"script_action",
+			"icon":"OBJ_geo",
+			"script":"radialmenu.runShelfTool(kwargs, 'geo0')"
+		},
+		"4":{
+			"label":"Ground",
+			"type":"script_action",
+			"icon":"OBJ_geo",
+			"script":"radialmenu.runShelfTool(kwargs, 'geo1')"
+		},
+		"6":{
+			"label":"testgeometry_pighead1",
+			"type":"script_action",
+			"icon":"OBJ_geo",
+			"script":"radialmenu.runShelfTool(kwargs, 'geo')"
+		}
+	}
+}

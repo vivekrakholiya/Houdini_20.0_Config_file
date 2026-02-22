@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mainMenu>
+    <menuBar>
+
+    <subMenu id = "ODToolsNetwork">
+        <modifyItem><insertBefore>help_menu</insertBefore></modifyItem>
+        <label>ODTools</label>
+
+            <subMenu id="OD_Octane">
+            <label>Octane</label>
+
+                <scriptItem id="OD_lqs">
+                <label>Convert Quixel to OCT Quick Material</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.quixelToOCTQuickMaterial()
+                    ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_oct_isoON">
+                <label>Isolate Current context in OCT QS</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.octaneIsolateON()
+                    ]]></scriptCode>
+                </scriptItem>
+
+                <scriptItem id="OD_oct_isoOFF">
+                <label>Turn Off Isolation in OCT QS</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.octaneIsolateOFF()
+                    ]]></scriptCode>
+                </scriptItem>
+
+            <scriptItem id="OD_octSelector">
+            <label>Octane QuickSetup Selector</label>
+            <scriptCode><![CDATA[
+import hou
+from OD import octQuickSetupSelector
+octQuickSetupSelector.callInterface()
+                ]]></scriptCode>
+            </scriptItem>
+
+            </subMenu>
+
+            <scriptItem id="OD_shcam">
+            <label>Save OD .hcam camera</label>
+            <scriptCode><![CDATA[
+import hou
+from OD import shelftools
+shelftools.saveCamera(hou.selectedNodes())
+                ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_lhcam">
+            <label>Load OD .hcam camera</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.loadCamera()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_innod">
+            <label>Import Node Network</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.importNetwork()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_vlay">
+            <label>Viewport Info Overlay</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.addCamOverlay()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_objLoadState">
+            <label>Load /obj Display State</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.loadstate()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_objSaveState">
+            <label>Save /obj Display State</label>
+            <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.savestate()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_findmats">
+            <label>Find Unused Materials</label>
+            <scriptCode><![CDATA[
+import hou
+from OD import shelftools
+shelftools.findUnusedMaterials()
+                ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_fflipAndSave">
+                <label>Flipbook and Save</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createFlipAndHipCopy()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_checkLatestHDAVersions">
+                <label>Check Latest HDA Versions</label>
+                <scriptCode><![CDATA[
+from OD import shelftools
+shelftools.checkLatestHDAVersions()
+            ]]></scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_hotkeys">
+            <label>Hotkeys</label>
+            <scriptCode><![CDATA[
+import hou
+hotkeys = []
+for key in hou.session.ODNetworkKeys:
+    hotkeys.append(hou.session.ODNetworkKeys[key] + " --> " + key)
+res = hou.ui.selectFromList(hotkeys, clear_on_cancel=True, exclusive=True, title="Hotkey Reminder")
+                ]]></scriptCode>
+            </scriptItem>
+
+            <separatorItem />
+
+        </subMenu>
+    </menuBar>
+</mainMenu>

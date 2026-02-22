@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "reduced_motion": false,
+    "show_new_attrs": true,
+    "show_attr_diffs": false,
+    "show_full_attr_names": true,
+    "debug": false,
+    "paused": true,
+    "update_interval": 100
+}

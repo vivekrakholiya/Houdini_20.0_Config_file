@@ -1,0 +1,55 @@
+// Magic: bfd4c7e2
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Mon Aug  5 22:08:59 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+singlept.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+singlept.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+singlept.gad = PARM_BUTTON("singlept", "") toggle VALUE(singlept.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+singleptindex.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ singleptindex.label = PARM_LABEL("Single Point", "singleptindex") WIDTH(1.32);
+ PARM(integer, 1, "singleptindex", none, none) RANGE(0,99)
+	 LABELREF(singleptindex.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    singlept.row.join; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

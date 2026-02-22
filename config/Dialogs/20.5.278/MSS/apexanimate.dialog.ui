@@ -1,0 +1,275 @@
+// Magic: 125c8c6
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Thu Apr  3 09:05:59 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+xform_translate_step.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xform_translate_step.label = PARM_LABEL("Handle Translate Step", "xform_translate_step") WIDTH(1.5);
+ PARM(float, 1, "xform_translate_step", none, none) RANGE(0,1)
+	 LABELREF(xform_translate_step.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xform_rotate_step.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xform_rotate_step.label = PARM_LABEL("Handle Rotate Step", "xform_rotate_step") WIDTH(1.5);
+ PARM(float, 1, "xform_rotate_step", none, none) RANGE(1,90)
+	 LABELREF(xform_rotate_step.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xform_scale_step.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xform_scale_step.label = PARM_LABEL("Handle Scale Step", "xform_scale_step") WIDTH(1.5);
+ PARM(float, 1, "xform_scale_step", none, none) RANGE(0,1)
+	 LABELREF(xform_scale_step.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+separator8.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+xform_line_width.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xform_line_width.label = PARM_LABEL("Handle Line Width", "xform_line_width") WIDTH(1.5);
+ PARM(float, 1, "xform_line_width", none, none) RANGE(0.1,10)
+	 LABELREF(xform_line_width.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xform_scale_factor.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xform_scale_factor.label = PARM_LABEL("Handle Scale Factor", "xform_scale_factor") WIDTH(1.5);
+ PARM(float, 1, "xform_scale_factor", none, none) RANGE(0.001,2)
+	 LABELREF(xform_scale_factor.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xform_brightness.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xform_brightness.label = PARM_LABEL("Handle Brightness", "xform_brightness") WIDTH(1.5);
+ PARM(float, 1, "xform_brightness", none, none) RANGE(0.001,2)
+	 LABELREF(xform_brightness.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xform_show_all_vp.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xform_show_all_vp", "Draw Handles in All Viewports") toggle VALUE(xform_show_all_vp.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xform_show_plane_ctrls.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xform_show_plane_ctrls", "Show Handle Plane Controls") toggle VALUE(xform_show_plane_ctrls.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xform_alt_rotate.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xform_alt_rotate", "Alternate Rotate Mode as Default") toggle VALUE(xform_alt_rotate.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xform_axes_outside_sphere.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xform_axes_outside_sphere", "Translate Axes outside Rotate Sphere") toggle VALUE(xform_axes_outside_sphere.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+tool_mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    PARM_LABEL_SIMPLE("Pose Tools", "tool_mode") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    tool_mode.buttonstrip;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+customtoolfile.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    customtoolfile.label = PARM_LABEL("Custom Tool", "customtoolfile") WIDTH(1.5);
+    PARM_FIELD(string, "customtoolfile") VALUE(customtoolfile.val) 
+	LABELREF(customtoolfile.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+clickdrag.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("clickdrag", "Use Click and Drag") toggle VALUE(clickdrag.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+controlxray.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("controlxray", "Use Control XRay") toggle VALUE(controlxray.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xray_strength.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xray_strength.label = PARM_LABEL("XRay Strength", "xray_strength") WIDTH(1.5);
+ PARM(float, 1, "xray_strength", none, none) RANGE(0,1)
+	 LABELREF(xray_strength.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+hidecontrolsduringplayback.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("hidecontrolsduringplayback", "Hide Controls During Playback") toggle VALUE(hidecontrolsduringplayback.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    xform_translate_step.gad; 
+    xform_rotate_step.gad; 
+    xform_scale_step.gad; 
+    separator8.gad; 
+    xform_line_width.gad; 
+    xform_scale_factor.gad; 
+    xform_brightness.gad; 
+    xform_show_all_vp.gad; 
+    xform_show_plane_ctrls.gad; 
+    xform_alt_rotate.gad; 
+    xform_axes_outside_sphere.gad; 
+    tool_mode.gad; 
+    customtoolfile.gad; 
+    clickdrag.gad; 
+    controlxray.gad; 
+    xray_strength.gad; 
+    hidecontrolsduringplayback.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

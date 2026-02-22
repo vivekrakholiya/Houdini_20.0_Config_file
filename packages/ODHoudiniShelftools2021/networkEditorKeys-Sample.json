@@ -1,0 +1,15 @@
+{
+	"OctaneLaunchQuickSetup":"Shift+Tab",
+	"OctaneQuickMaterial":"Ctrl+Shift+O",
+	"OcanteSwitchIPRCamera":"Ctrl+Shift+C",
+	"OctaneSelectQuickSetup":"Ctrl+Shift+Q",
+	"AddAssetClipboardToObjectMerge":"Ctrl+Shift+L",
+	"PickMaterialInOGLViewport":"Ctrl+Shift+M",
+	"AddUVQuickshade":"Ctrl+Shift+U",
+	"PasteNodesAsObjectMerge":"Ctrl+Shift+V",
+	"AddParameter":"Ctrl+Shift+P",
+	"CreateOutNull":"Ctrl+Enter",
+	"CreateOutNullWithMerge": "Ctrl+Shift+Enter",
+	"ToggleDisplayFlag":"Ctrl+Shift+D",
+	"ToggleTemplateFlag":"Ctrl+Shift+T"
+}

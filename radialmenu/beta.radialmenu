@@ -1,0 +1,58 @@
+{
+	"fileversion":"20.5.278",
+	"name":"beta",
+	"categories":"Standard",
+	"pane":"network",
+	"label":"beta",
+	"type":"submenu",
+	"items":{
+		"0":{
+			"label":"v++",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'Version_up')"
+		},
+		"1":{
+			"label":"sent_to_rop",
+			"type":"script_action",
+			"icon":"ROP_mantra",
+			"script":"radialmenu.runShelfTool(kwargs, 'sent_to_rop')"
+		},
+		"2":{
+			"label":"Submenu",
+			"type":"submenu",
+			"items":{
+			}
+		},
+		"3":{
+			"label":"Cam_Frustrum",
+			"type":"script_action",
+			"icon":"SOP_attribwrangle",
+			"script":"radialmenu.runShelfTool(kwargs, 'attribwrangle')"
+		},
+		"4":{
+			"label":"Hip_open",
+			"type":"script_action",
+			"icon":"SOP_flatten",
+			"script":"radialmenu.runShelfTool(kwargs, 'Hip_open')"
+		},
+		"5":{
+			"label":"Open Project Directory in Explore",
+			"type":"script_action",
+			"icon":"SOP_file",
+			"script":"radialmenu.runShelfTool(kwargs, 'Open_Project_dire')"
+		},
+		"6":{
+			"label":"Ak_File_Cache",
+			"type":"script_action",
+			"icon":"SOP_filecache",
+			"script":"radialmenu.runShelfTool(kwargs, 'akshay::dev::Ak_File_Cache::1.0')"
+		},
+		"7":{
+			"label":"create_render_node",
+			"type":"script_action",
+			"icon":"PLASMA_App",
+			"script":"radialmenu.runShelfTool(kwargs, 'create_render_node')"
+		}
+	}
+}

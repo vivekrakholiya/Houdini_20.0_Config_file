@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+	<menu>
+
+	<separatorItem />
+
+	<scriptItem id="OD_cobj">
+	<label>Copy Keys to Other Item(s) (OD)</label>
+	<scriptCode><![CDATA[
+from OD import shelftools
+shelftools.copyOBJMotion()
+	]]></scriptCode>
+	</scriptItem>
+
+	<scriptItem id="OD_setInF">
+	<label>Set IN Point (OD)</label>
+	<scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setInFrame()
+	]]></scriptCode>
+	</scriptItem>
+
+	<scriptItem id="OD_setOutF">
+	<label>Set OUT Point (OD)</label>
+	<scriptCode><![CDATA[
+from OD import shelftools
+shelftools.setOutFrame()
+	]]></scriptCode>
+	</scriptItem>
+
+	<scriptItem id="OD_pflipAndSave">
+	<label>Flipbook and Save (OD)</label>
+	<scriptCode><![CDATA[
+from OD import shelftools
+shelftools.createFlipAndHipCopy()
+	]]></scriptCode>
+	</scriptItem>
+
+	</menu>
+</menuDocument>

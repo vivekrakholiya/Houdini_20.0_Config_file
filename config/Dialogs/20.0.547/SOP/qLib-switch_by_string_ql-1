@@ -1,0 +1,169 @@
+// Magic: 2957db6a
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Wed Jul 16 07:47:37 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+input.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    input.label = PARM_LABEL("Select String", "input") WIDTH(1.5);
+    PARM_FIELD(string, "input") VALUE(input.val) 
+	LABELREF(input.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+selectdefault.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ selectdefault.label = PARM_LABEL("Default Input", "selectdefault") WIDTH(1.5);
+ PARM(integer, 1, "selectdefault", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(selectdefault.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+enable.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("enable", "Enable") toggle VALUE(enable.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+inputs.parm =
+{
+    LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Inputs", "inputs") WIDTH(1.5);
+    { WIDTH(0.1) }
+
+    ROW
+    {
+	HSTRETCH(0.5) JUSTIFY(left, center) VALUE(inputs.val)
+
+        inputs.field = PARM_FIELD (integer, "inputs")
+				VALUE(inputs.val) HSTRETCH(0.5)
+				 PREF_WIDTH(0.5);
+
+        ROW
+        {
+	     LOOK(lightline) VMARGIN(1p)
+
+   	     INCREMENT_ICONBUTTON VALUE(inputs.more.val)	
+	    	HELP("Add Another Instance") SIZE(0.2, 0.24);
+	     DECREMENT_ICONBUTTON VALUE(inputs.less.val)	
+	        HELP("Remove Last Instance") SIZE(0.2, 0.24);
+
+	}
+
+	ACTION_BUTTON "Clear" VALUE(inputs.clear.val);
+    }
+
+    { HSTRETCH }
+}
+
+inputs.multilist = 
+{
+    LAYOUT(vertical) HSTRETCH MARGIN(0.05)
+}
+
+inputs.gad =
+{
+    LAYOUT(vertical) HSTRETCH
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    SWITCHER tight
+    {
+	LAYOUT(overlap!)
+        VALUE(inputs.multilist_hide_buttons.val)
+	{
+	    LAYOUT(vertical) HSTRETCH
+	    inputs.parm;
+	    {LOOK(none) HEIGHT(0.02)}
+	}
+	{
+	}
+    }
+    inputs.multilist;
+}
+
+ignorecase.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("ignorecase", "Ignore Case") toggle VALUE(ignorecase.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+selected.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ selected.label = PARM_LABEL("Selected Input", "selected") WIDTH(1.5);
+ PARM(integer, 1, "selected", none, none) RANGE(0,1)
+	 LABELREF(selected.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+settings.gad = 
+GROUP collapsible "Settings" flat   
+{
+    VALUE(settings.gad.val) LAYOUT(vertical) HSTRETCH
+	    ignorecase.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "Input Selection by String" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    enable.gad;		
+	    inputs.gad;		
+	    settings.gad;		
+	    selected.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    input.gad; 
+    selectdefault.gad; 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

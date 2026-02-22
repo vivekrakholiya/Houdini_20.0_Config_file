@@ -1,0 +1,412 @@
+// Magic: a75a11a0
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Sep 22 11:44:14 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+signature.gad = NULL { }
+
+filename.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ filename.label = PARM_LABEL("Filename", "filename") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "filename") LABELREF(filename.label)
+	VALUE(filename.val) HSTRETCH;
+
+    filename.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(filename.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    filename.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filename.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+filename_colorspace.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    filename_colorspace.label = PARM_LABEL_SIMPLE("Color Space", "filename_colorspace") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filename_colorspace.menu;
+
+    { HSTRETCH }
+
+    filename_colorspace.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filename_colorspace.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+firstChannel.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ firstChannel.label = PARM_LABEL("First Channel Offset", "firstChannel") WIDTH(1.5);
+ PARM(integer, 1, "firstChannel", none, none) RANGE(0,10)
+	 LABELREF(firstChannel.label) HSTRETCH;
+
+    firstChannel.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(firstChannel.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+atlasStyle.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    atlasStyle.label = PARM_LABEL_SIMPLE("Atlas Style", "atlasStyle") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    atlasStyle.menu;
+
+    { HSTRETCH }
+
+    atlasStyle.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(atlasStyle.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+invertT.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invertT", "Invert T") toggle VALUE(invertT.val);
+
+    { HSTRETCH }
+
+    invertT.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(invertT.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+filter.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    filter.label = PARM_LABEL_SIMPLE("Filter", "filter") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    filter.menu;
+
+    { HSTRETCH }
+
+    filter.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(filter.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+smoothRayDerivs.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("smoothRayDerivs", "Smooth Ray Derivs") toggle VALUE(smoothRayDerivs.val);
+
+    { HSTRETCH }
+
+    smoothRayDerivs.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(smoothRayDerivs.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+blur.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ blur.label = PARM_LABEL("Blur", "blur") WIDTH(1.5);
+ PARM(float, 1, "blur", none, none) RANGE(0,1)
+	 LABELREF(blur.label) HSTRETCH;
+
+    blur.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(blur.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+missingColor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    missingColor.label = PARM_LABEL("Missing Color", "missingColor") WIDTH(1.5);
+    PARM(float, 3, "missingColor", none, COLOR, "R,G,B") 
+	LABELREF(missingColor.label) HSTRETCH;
+
+    missingColor.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(missingColor.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+missingAlpha.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ missingAlpha.label = PARM_LABEL("Missing Alpha", "missingAlpha") WIDTH(1.5);
+ PARM(float, 1, "missingAlpha", none, none) RANGE(0,1)
+	 LABELREF(missingAlpha.label) HSTRETCH;
+
+    missingAlpha.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(missingAlpha.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+linearize.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("linearize", "Linearize") toggle VALUE(linearize.val);
+
+    { HSTRETCH }
+
+    linearize.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(linearize.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+colorScale.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    colorScale.label = PARM_LABEL("Color Scale", "colorScale") WIDTH(1.5);
+    PARM(float, 3, "colorScale", none, COLOR, "R,G,B") 
+	LABELREF(colorScale.label) HSTRETCH;
+
+    colorScale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(colorScale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+colorOffset.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    colorOffset.label = PARM_LABEL("Color Offset", "colorOffset") WIDTH(1.5);
+    PARM(float, 3, "colorOffset", none, COLOR, "R,G,B") 
+	LABELREF(colorOffset.label) HSTRETCH;
+
+    colorOffset.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(colorOffset.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+saturation.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ saturation.label = PARM_LABEL("Saturation", "saturation") WIDTH(1.5);
+ PARM(float, 1, "saturation", none, none) RANGE(0,2)
+	LOCK_RANGE_MIN LABELREF(saturation.label) HSTRETCH;
+
+    saturation.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(saturation.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+alphaScale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ alphaScale.label = PARM_LABEL("Alpha Scale", "alphaScale") WIDTH(1.5);
+ PARM(float, 1, "alphaScale", none, none) RANGE(0,1)
+	 LABELREF(alphaScale.label) HSTRETCH;
+
+    alphaScale.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(alphaScale.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+alphaOffset.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ alphaOffset.label = PARM_LABEL("Alpha Offset", "alphaOffset") WIDTH(1.5);
+ PARM(float, 1, "alphaOffset", none, none) RANGE(0,1)
+	 LABELREF(alphaOffset.label) HSTRETCH;
+
+    alphaOffset.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(alphaOffset.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+mipBias.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mipBias.label = PARM_LABEL("MIP bias", "mipBias") WIDTH(1.5);
+ PARM(integer, 1, "mipBias", none, none) RANGE(-10,10)
+	 LABELREF(mipBias.label) HSTRETCH;
+
+    mipBias.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(mipBias.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+  { WIDTH(0.1) }
+}
+
+maxResolution.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    maxResolution.label = PARM_LABEL_SIMPLE("Max Resolution", "maxResolution") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    maxResolution.menu;
+
+    { HSTRETCH }
+
+    maxResolution.exportbtn = PARM_EXPORTBUTTON "SOP_sphere"
+	VALUE(maxResolution.export) LOOKFLAT
+	HELP("Open Shader Effects menu (Ctrl+LMB to promote this parameter)")
+	UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+    { WIDTH(0.1) }
+}
+
+Adjust_Output.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Adjust_Output.gad"
+    { 
+	VALUE(Adjust_Output.gad.val) STRETCH(1,0)
+
+	TAB "Adjust Output"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    colorScale.gad;		
+	    colorOffset.gad;		
+	    saturation.gad;		
+	    alphaScale.gad;		
+	    alphaOffset.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Advanced Texture Settings"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    mipBias.gad;		
+	    maxResolution.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    signature.gad; 
+    filename.gad; 
+    filename_colorspace.gad; 
+    firstChannel.gad; 
+    atlasStyle.gad; 
+    invertT.gad; 
+    filter.gad; 
+    smoothRayDerivs.gad; 
+    blur.gad; 
+    missingColor.gad; 
+    missingAlpha.gad; 
+    linearize.gad; 
+    Adjust_Output.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

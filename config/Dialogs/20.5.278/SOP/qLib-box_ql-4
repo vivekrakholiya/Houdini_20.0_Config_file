@@ -1,0 +1,318 @@
+// Magic: cc6dc9c4
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Dec 22 11:27:17 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+useinput.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("useinput", "Use Live Input Geometry") toggle VALUE(useinput.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+size.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   size.label = PARM_LABEL("Size", "size") WIDTH(1.5);
+   PARM(float, 3, "size", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(size.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+t.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   t.label = PARM_LABEL("Center", "t") WIDTH(1.5);
+   PARM(float, 3, "t", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(t.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+r.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   r.label = PARM_LABEL("Rotate", "r") WIDTH(1.5);
+   PARM(float, 3, "r", none, none, "X,Y,Z")
+	RANGE(0,360)  LABELREF(r.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale.label = PARM_LABEL("Uniform Scale", "scale") WIDTH(1.5);
+ PARM(float, 1, "scale", none, none) RANGE(0,10)
+	 LABELREF(scale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+orientedbbox.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("orientedbbox", "Oriented Bounding Box") toggle VALUE(orientedbbox.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+get_srt_from_input.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("get_srt_from_input", "Fetch from Input Geometry")
+	push VALUE(get_srt_from_input.val);
+
+    { WIDTH(0.1) }
+}
+
+divmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    divmode.label = PARM_LABEL_SIMPLE("Divison Mode", "divmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    divmode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+divrate.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   divrate.label = PARM_LABEL("Axis Divisions", "divrate") WIDTH(1.5);
+   PARM(integer, 3, "divrate", none, none, "X,Y,Z")
+	RANGE(1,50) LOCK_RANGE_MIN LABELREF(divrate.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+divsize.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   divsize.label = PARM_LABEL("Size", "divsize") WIDTH(1.5);
+   PARM(float, 3, "divsize", none, none, "X,Y,Z")
+	RANGE(-1,1)  LABELREF(divsize.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+consolidatepts.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("consolidatepts", "Consolidate Corner Points") toggle VALUE(consolidatepts.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+flip.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("flip", "Flip Face Normals") toggle VALUE(flip.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+side_presets.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+
+side_presets.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    side_presets.menu;
+
+    {  }
+
+    {  }
+}
+
+side_xp.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("side_xp", "X+") toggle VALUE(side_xp.val);
+
+    {  }
+
+    {  }
+}
+
+side_yp.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("side_yp", "Y+") toggle VALUE(side_yp.val);
+
+    {  }
+
+    {  }
+}
+
+side_zp.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("side_zp", "Z+") toggle VALUE(side_zp.val);
+
+    {  }
+
+    {  }
+}
+
+side_xn.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("side_xn", "X-") toggle VALUE(side_xn.val);
+
+    {  }
+
+    {  }
+}
+
+side_yn.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("side_yn", "Y-") toggle VALUE(side_yn.val);
+
+    {  }
+
+    {  }
+}
+
+side_zn.gad = ROW
+{
+    HSTRETCH
+    {  }
+
+    PARM_BUTTON("side_zn", "Z-") toggle VALUE(side_zn.val);
+
+    { HSTRETCH }
+
+    {  }
+}
+}	// Template join.bot
+
+
+folder2.gad = 
+
+GROUP simple "Sides" flat 
+{ 
+    VALUE(folder2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    side_presets.row.join;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Settings" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    divmode.gad;		
+	    divrate.gad;		
+	    divsize.gad;		
+	    consolidatepts.gad;		
+	    flip.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "Dimensions" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    useinput.gad;		
+	    size.gad;		
+	    t.gad;		
+	    r.gad;		
+	    scale.gad;		
+	    orientedbbox.gad;		
+	    get_srt_from_input.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+    folder1.gad; 
+    folder2.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

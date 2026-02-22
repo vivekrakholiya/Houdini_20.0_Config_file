@@ -1,0 +1,334 @@
+// Magic: 99d27761
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Sep 28 12:45:51 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+div.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ div.label = PARM_LABEL("div", "div") WIDTH(1.5);
+ PARM(float, 1, "div", none, none) RANGE(0,10)
+	 LABELREF(div.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+densityscale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ densityscale.label = PARM_LABEL("Density Scale", "densityscale") WIDTH(1.5);
+ PARM(float, 1, "densityscale", none, LOGSCALE) RANGE(0.1,10000)
+	 LABELREF(densityscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Global Seed", "seed") WIDTH(1.5);
+ PARM(float, 1, "seed", none, SNAP) RANGE(0,100)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+bound_pedding.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ bound_pedding.label = PARM_LABEL("Bound Pedding", "bound_pedding") WIDTH(1.5);
+ PARM(float, 1, "bound_pedding", none, none) RANGE(0,10)
+	 LABELREF(bound_pedding.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+viz_bound.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("viz_bound", "Visulize Bound") toggle VALUE(viz_bound.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+targetsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ targetsize.label = PARM_LABEL("Target Size", "targetsize") WIDTH(1.5);
+ PARM(float, 1, "targetsize", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(targetsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+remesh_viz.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("remesh_viz", "Visuliz Remesh") toggle VALUE(remesh_viz.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+viz_main_noise.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("viz_main_noise", "viz main noise") toggle VALUE(viz_main_noise.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+amp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ amp.label = PARM_LABEL("Amplitude", "amp") WIDTH(1.5);
+ PARM(float, 1, "amp", none, none) RANGE(-1,1)
+	 LABELREF(amp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+freq.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   freq.label = PARM_LABEL("Frequency", "freq") WIDTH(1.5);
+   PARM(float, 3, "freq", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(freq.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+offset4.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   offset4.label = PARM_LABEL("Offset", "offset4") WIDTH(1.5);
+   PARM(float, 3, "offset4", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(offset4.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+rough.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rough.label = PARM_LABEL("Roughness", "rough") WIDTH(1.5);
+ PARM(float, 1, "rough", none, none) RANGE(0,1)
+	 LABELREF(rough.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+turb.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ turb.label = PARM_LABEL("Turbulence", "turb") WIDTH(1.5);
+ PARM(integer, 1, "turb", none, none) RANGE(0,10)
+	 LABELREF(turb.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+viz_secound_noise.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("viz_secound_noise", "viz secound noise") toggle VALUE(viz_secound_noise.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+input2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ input2.label = PARM_LABEL("Noise_Amp", "input2") WIDTH(1.5);
+ PARM(float, 1, "input2", none, none) RANGE(0,1)
+	 LABELREF(input2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+freq4.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   freq4.label = PARM_LABEL("Frequency", "freq4") WIDTH(1.5);
+   PARM(float, 3, "freq4", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(freq4.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+offset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   offset.label = PARM_LABEL("Offset", "offset") WIDTH(1.5);
+   PARM(float, 3, "offset", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(offset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+amp2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ amp2.label = PARM_LABEL("Amplitude", "amp2") WIDTH(1.5);
+ PARM(float, 1, "amp2", none, none) RANGE(-1,1)
+	 LABELREF(amp2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+secound_noise.gad = 
+
+GROUP simple "Secound Noise" flat 
+{ 
+    VALUE(secound_noise.gad.val) LAYOUT(vertical) HSTRETCH 
+	    viz_secound_noise.gad;		
+	    input2.gad;		
+	    freq4.gad;		
+	    offset.gad;		
+	    amp2.gad;		
+} 
+
+main_noise.gad = 
+
+GROUP simple "Main Noise" flat 
+{ 
+    VALUE(main_noise.gad.val) LAYOUT(vertical) HSTRETCH 
+	    viz_main_noise.gad;		
+	    amp.gad;		
+	    freq.gad;		
+	    offset4.gad;		
+	    rough.gad;		
+	    turb.gad;		
+} 
+
+noise.gad = 
+
+GROUP simple "Noise" flat 
+{ 
+    VALUE(noise.gad.val) LAYOUT(vertical) HSTRETCH 
+	    main_noise.gad;		
+	    secound_noise.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "Remesh" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    targetsize.gad;		
+	    remesh_viz.gad;		
+} 
+
+scatter_points.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "scatter_points.gad"
+    { 
+	VALUE(scatter_points.gad.val) STRETCH(1,0)
+
+	TAB "Scatter Points"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    div.gad;		
+	    densityscale.gad;		
+	    seed.gad;		
+	    bound_pedding.gad;		
+	    viz_bound.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    scatter_points.gad; 
+    folder0.gad; 
+    noise.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,69 @@
+// Magic: c2be5dc6
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Oct  5 04:14:45 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+clearregion.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("clearregion", "Clear Render Region")
+	push VALUE(clearregion.val);
+
+    { WIDTH(0.1) }
+}
+
+clearfocus.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("clearfocus", "Clear Focus")
+	push VALUE(clearfocus.val);
+
+    { WIDTH(0.1) }
+}
+
+showgl.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showgl", "Show GL Outside Region") toggle VALUE(showgl.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    clearregion.gad; 
+    clearfocus.gad; 
+    showgl.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

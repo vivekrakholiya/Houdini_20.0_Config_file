@@ -1,0 +1,233 @@
+// Magic: b2d0a86c
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Dec 31 11:23:27 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+op_label.gad = NULL { }
+
+deformgeo.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("deformgeo", "Deform Geometry") toggle VALUE(deformgeo.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+deformvolume.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("deformvolume", "Deform Volumes") toggle VALUE(deformvolume.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+envelope.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ envelope.label = PARM_LABEL("Envelope", "envelope") WIDTH(1.5);
+ PARM(float, 1, "envelope", none, none) RANGE(0,1)
+	 LABELREF(envelope.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+use_weight.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+use_weight.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+use_weight.gad = PARM_BUTTON("use_weight", "") toggle VALUE(use_weight.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+weight_name.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    weight_name.label = PARM_LABEL("Weight Name", "weight_name") WIDTH(1.32);
+    PARM_FIELD(string, "weight_name") VALUE(weight_name.val) 
+	LABELREF(weight_name.label) HSTRETCH;
+
+    weight_name.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+
+invert_weight.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("invert_weight", "Invert") toggle VALUE(invert_weight.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+pieceattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    pieceattrib.label = PARM_LABEL("Piece Attribute", "pieceattrib") WIDTH(1.5);
+    PARM_FIELD(string, "pieceattrib") VALUE(pieceattrib.val) 
+	LABELREF(pieceattrib.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+attribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attribs.label = PARM_LABEL("Attributes to Transform", "attribs") WIDTH(1.5);
+    PARM_FIELD(string, "attribs") VALUE(attribs.val) 
+	LABELREF(attribs.label) HSTRETCH;
+
+    attribs.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+dovoxelscale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+dovoxelscale.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+dovoxelscale.gad = PARM_BUTTON("dovoxelscale", "") toggle VALUE(dovoxelscale.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+voxelscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ voxelscale.label = PARM_LABEL("Voxel Scale", "voxelscale") WIDTH(1.32);
+ PARM(float, 1, "voxelscale", none, none) RANGE(1,4)
+	 LABELREF(voxelscale.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+activatebyfield.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("activatebyfield", "Mask All Volumes") toggle VALUE(activatebyfield.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+activatefieldgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    activatefieldgroup.label = PARM_LABEL("Mask Volume", "activatefieldgroup") WIDTH(1.5);
+    PARM_FIELD(string, "activatefieldgroup") VALUE(activatefieldgroup.val) 
+	LABELREF(activatefieldgroup.label) HSTRETCH;
+
+    activatefieldgroup.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(activatefieldgroup.script_action)
+	HELP("Select geometry from an available viewport.\nShift-click to turn on Select Groups.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+folder4.gad = 
+
+GROUP simple "VDB Masking (Activation)" flat 
+{ 
+    VALUE(folder4.gad.val) LAYOUT(vertical) HSTRETCH 
+	    activatebyfield.gad;		
+	    activatefieldgroup.gad;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Volume Options" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    dovoxelscale.row.join;		
+	    folder4.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "Geometry Options" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    envelope.gad;		
+	    use_weight.row.join;		
+	    pieceattrib.gad;		
+	    attribs.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    op_label.gad; 
+    deformgeo.gad; 
+    deformvolume.gad; 
+    folder0.gad; 
+    folder1.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

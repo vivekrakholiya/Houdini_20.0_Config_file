@@ -1,0 +1,8 @@
+= Move Selection to New Geo =
+
+"""Move Sop Selection to New Geometry Container."""
+
+This tool takes the currently selected sop nodes and moves them into a new geo container.  Its helpful for when you want to quickly move a subsection of your container into a new one.
+
+:vimeo: Example Use of the Tool
+    #id: 484116644

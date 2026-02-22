@@ -1,0 +1,371 @@
+// Magic: 287fece2
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Oct 15 11:03:59 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+object_is_alredy_pack.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("object_is_alredy_pack", "object_is_alredy_pack") toggle VALUE(object_is_alredy_pack.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+attribname.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    attribname.label = PARM_LABEL("Attribute", "attribname") WIDTH(1.5);
+    PARM_FIELD(string, "attribname") VALUE(attribname.val) 
+	LABELREF(attribname.label) HSTRETCH;
+
+    ACTION_ICONBUTTON "VIEW_visualization" VALUE(attribname.script_action)
+	HELP("")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+adjust_pcale.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("adjust_pcale", "adjust pcale") toggle VALUE(adjust_pcale.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+pscale_cnt.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ pscale_cnt.label = PARM_LABEL("pscale constant", "pscale_cnt") WIDTH(1.5);
+ PARM(float, 1, "pscale_cnt", none, none) RANGE(0,10)
+	 LABELREF(pscale_cnt.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+random_pscal2.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("random_pscal2", "random_pscal") toggle VALUE(random_pscal2.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale.label = PARM_LABEL("Global Scale", "scale") WIDTH(1.5);
+ PARM(float, 1, "scale", none, none) RANGE(0,10)
+	 LABELREF(scale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+min_pscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ min_pscale.label = PARM_LABEL("min_pscale", "min_pscale") WIDTH(1.5);
+ PARM(float, 1, "min_pscale", none, none) RANGE(0,10)
+	 LABELREF(min_pscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+max_pscale.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ max_pscale.label = PARM_LABEL("max_pscale", "max_pscale") WIDTH(1.5);
+ PARM(float, 1, "max_pscale", none, none) RANGE(0,10)
+	 LABELREF(max_pscale.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed.label = PARM_LABEL("Global Seed", "seed") WIDTH(1.5);
+ PARM(float, 1, "seed", none, none) RANGE(0,10)
+	 LABELREF(seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seedattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    seedattrib.label = PARM_LABEL("Seed Attribute", "seedattrib") WIDTH(1.5);
+    PARM_FIELD(string, "seedattrib") VALUE(seedattrib.val) 
+	LABELREF(seedattrib.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+adjust_rotatetion.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("adjust_rotatetion", "adjust rotatetion") toggle VALUE(adjust_rotatetion.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+n_seed.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ n_seed.label = PARM_LABEL("N Direction Seed", "n_seed") WIDTH(1.5);
+ PARM(float, 1, "n_seed", none, none) RANGE(0,10)
+	 LABELREF(n_seed.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seedattrib2.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    seedattrib2.label = PARM_LABEL("Seed Attribute", "seedattrib2") WIDTH(1.5);
+    PARM_FIELD(string, "seedattrib2") VALUE(seedattrib2.val) 
+	LABELREF(seedattrib2.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+orient_rotatetion.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("orient_rotatetion", "orient rotatetion") toggle VALUE(orient_rotatetion.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+scale2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ scale2.label = PARM_LABEL("Global Scale", "scale2") WIDTH(1.5);
+ PARM(float, 1, "scale2", none, none) RANGE(0,10)
+	 LABELREF(scale2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+distribution.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    distribution.label = PARM_LABEL_SIMPLE("Distribution", "distribution") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    distribution.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+min.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   min.label = PARM_LABEL("Min Value", "min") WIDTH(1.5);
+   PARM(float, 4, "min", none, none, "X,Y,Z,W")
+	RANGE(-1,1)  LABELREF(min.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+max.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   max.label = PARM_LABEL("Max Value", "max") WIDTH(1.5);
+   PARM(float, 4, "max", none, none, "X,Y,Z,W")
+	RANGE(-1,1)  LABELREF(max.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+seed2.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ seed2.label = PARM_LABEL("Global Seed", "seed2") WIDTH(1.5);
+ PARM(float, 1, "seed2", none, none) RANGE(0,10)
+	 LABELREF(seed2.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+seedattrib3.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    seedattrib3.label = PARM_LABEL("Seed Attribute", "seedattrib3") WIDTH(1.5);
+    PARM_FIELD(string, "seedattrib3") VALUE(seedattrib3.val) 
+	LABELREF(seedattrib3.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+orient_random_rotatet.gad = 
+
+GROUP simple "orient random rotatet" flat 
+{ 
+    VALUE(orient_random_rotatet.gad.val) LAYOUT(vertical) HSTRETCH 
+	    orient_rotatetion.gad;		
+	    scale2.gad;		
+	    distribution.gad;		
+	    min.gad;		
+	    max.gad;		
+	    seed2.gad;		
+	    seedattrib3.gad;		
+} 
+
+random_rotatet.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "random_rotatet.gad"
+    { 
+	VALUE(random_rotatet.gad.val) STRETCH(1,0)
+
+	TAB "random rotatet"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    adjust_rotatetion.gad;		
+	    n_seed.gad;		
+	    seedattrib2.gad;		
+	    orient_random_rotatet.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+random_pscal.gad = 
+
+GROUP simple "random pscale" flat 
+{ 
+    VALUE(random_pscal.gad.val) LAYOUT(vertical) HSTRETCH 
+	    random_pscal2.gad;		
+	    scale.gad;		
+	    min_pscale.gad;		
+	    max_pscale.gad;		
+	    seed.gad;		
+	    seedattrib.gad;		
+} 
+
+points_random.gad = 
+
+GROUP simple "points random" flat 
+{ 
+    VALUE(points_random.gad.val) LAYOUT(vertical) HSTRETCH 
+	    adjust_pcale.gad;		
+	    pscale_cnt.gad;		
+	    random_pscal.gad;		
+} 
+
+radom_attrib.gad = 
+
+GROUP simple "radom_attrib" flat 
+{ 
+    VALUE(radom_attrib.gad.val) LAYOUT(vertical) HSTRETCH 
+	    object_is_alredy_pack.gad;		
+	    attribname.gad;		
+	    points_random.gad;		
+	    random_rotatet.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    radom_attrib.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

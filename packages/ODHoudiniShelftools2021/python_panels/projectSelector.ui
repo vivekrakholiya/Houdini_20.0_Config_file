@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1099</width>
+    <height>443</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Project Selector</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>450</height>
+         </size>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Project Selection</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="12" column="1">
+             <widget class="QLineEdit" name="lineEdit_5">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Filter Hips by searching for this term in the files Notes.</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QComboBox" name="comboBox_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Select a Shot Layer</string>
+              </property>
+              <property name="maxVisibleItems">
+               <number>25</number>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="0" colspan="2">
+             <widget class="Line" name="line_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QComboBox" name="comboBox">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Select a Scene Layer</string>
+              </property>
+              <property name="maxVisibleItems">
+               <number>25</number>
+              </property>
+             </widget>
+            </item>
+            <item row="12" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Notes</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_19">
+                <property name="toolTip">
+                 <string>Shows the Notes for all scenes/shots/hipfiles</string>
+                </property>
+                <property name="text">
+                 <string>Show Project Notes</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_20">
+                <property name="toolTip">
+                 <string>Shows the Shot Note and all HIP file Notes</string>
+                </property>
+                <property name="text">
+                 <string>Show all Shot Notes</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="toolTip">
+                 <string>Shows the notes for all Hip Files in the selected Shot</string>
+                </property>
+                <property name="text">
+                 <string>Show all Hip Notes</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_9">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Updates a note for the scene/shot/hipfile</string>
+                </property>
+                <property name="text">
+                 <string>Update Note</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="pushButton_18">
+                <property name="toolTip">
+                 <string>Initialize a New &quot;File&quot; with the parameters from the Preferences (fps, start/endframe)</string>
+                </property>
+                <property name="text">
+                 <string>New / Init</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_7">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Loads the selected Hip File</string>
+                </property>
+                <property name="text">
+                 <string>Load</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_17">
+                <property name="toolTip">
+                 <string>Merges the selected Hip File</string>
+                </property>
+                <property name="text">
+                 <string>Merge</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_8">
+                <property name="toolTip">
+                 <string>Saves a new Hip file into the selected Shot Folder</string>
+                </property>
+                <property name="text">
+                 <string>Save New</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_6">
+                <property name="toolTip">
+                 <string>Versions up a file on save.  If no version number is present, it will add _v001</string>
+                </property>
+                <property name="text">
+                 <string>Save Version UP</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_10">
+                <property name="toolTip">
+                 <string>Opens an explorer window to the selected folder/file</string>
+                </property>
+                <property name="text">
+                 <string>Explorer</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_5">
+                <property name="toolTip">
+                 <string>Locks a file</string>
+                </property>
+                <property name="text">
+                 <string>Lock</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_21">
+                <property name="toolTip">
+                 <string>File Checkout</string>
+                </property>
+                <property name="text">
+                 <string>Check Out</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="1">
+             <widget class="QCheckBox" name="checkBox_6">
+              <property name="toolTip">
+               <string>When Enabled, sorts the hip files based on file creation.</string>
+              </property>
+              <property name="text">
+               <string>Sort by Date</string>
+              </property>
+             </widget>
+            </item>
+            <item row="21" column="0" colspan="2">
+             <widget class="QLineEdit" name="lineEdit_2">
+              <property name="toolTip">
+               <string>This shows the debug information of any Project Selector specific variables that you can use throughout the Houdini Session.</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" colspan="2">
+             <widget class="Line" name="line">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QCheckBox" name="checkBox">
+              <property name="toolTip">
+               <string>When checked, show only the latest version of files</string>
+              </property>
+              <property name="text">
+               <string>Show Only Latest</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="checkBox_2">
+              <property name="toolTip">
+               <string>When selected, reverse the shorting of the hip file list</string>
+              </property>
+              <property name="text">
+               <string>Reverse Sort</string>
+              </property>
+             </widget>
+            </item>
+            <item row="19" column="0" colspan="2">
+             <widget class="QTextEdit" name="textEdit">
+              <property name="cursor" stdset="0">
+               <cursorShape>IBeamCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>You can set/update notes on a scene, shot or hip specific basis.
+If no shot is specified, the note will be scene specific.
+If no hip is specified, the note will be shot specific.
+If a hip is specified, the note will be hip specific.</string>
+              </property>
+              <property name="cursorWidth">
+               <number>3</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_4">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Filter string that will only show hips where this string is contained.</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QComboBox" name="comboBox_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Select a Hip File</string>
+              </property>
+              <property name="maxVisibleItems">
+               <number>50</number>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="pushButton_12">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Save selected Nodes into new hip file</string>
+                </property>
+                <property name="text">
+                 <string>Save Sel to New Hip</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_11">
+                <property name="toolTip">
+                 <string>Saves a .bgeo of the selected sop node</string>
+                </property>
+                <property name="text">
+                 <string>Save Sop as bgeo</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_14">
+                <property name="toolTip">
+                 <string>Loads a geo file</string>
+                </property>
+                <property name="text">
+                 <string>Load Geo</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_15">
+                <property name="toolTip">
+                 <string>Saves current sop as .usd file</string>
+                </property>
+                <property name="text">
+                 <string>Save USD</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_16">
+                <property name="toolTip">
+                 <string>Loads USD File</string>
+                </property>
+                <property name="text">
+                 <string>Load USD</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_3">
+                <property name="toolTip">
+                 <string>Creates an HDA from selected nodes</string>
+                </property>
+                <property name="text">
+                 <string>HDA from Selection</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_13">
+                <property name="toolTip">
+                 <string>Loads HDA</string>
+                </property>
+                <property name="text">
+                 <string>Load HDA</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="9" column="1">
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="toolTip">
+               <string>Refresh UI / Drop down boxes</string>
+              </property>
+              <property name="text">
+               <string>Refresh</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>Preferences</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="3" column="1" colspan="2">
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="text">
+               <string>Save Prefs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="8">
+             <widget class="QLineEdit" name="lineEdit"/>
+            </item>
+            <item row="3" column="8" alignment="Qt::AlignRight">
+             <widget class="QCheckBox" name="checkBox_3">
+              <property name="toolTip">
+               <string>When enabled, hdas will automatically be loaded within Houdini
+ when they are found in project/scene/shot specific hda folders.</string>
+              </property>
+              <property name="text">
+               <string>Autoload HDAs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1" colspan="8">
+             <widget class="QLineEdit" name="lineEdit_6"/>
+            </item>
+            <item row="3" column="5">
+             <widget class="QCheckBox" name="checkBox_7">
+              <property name="text">
+               <string>Load Base File</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>User Name</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="toolTip">
+               <string>Comma Separated list of additional directories to be created in a Shot directory</string>
+              </property>
+              <property name="text">
+               <string>Additional Shot Dirs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="4">
+             <widget class="QCheckBox" name="checkBox_5">
+              <property name="toolTip">
+               <string>When ensabled, uses the shot name as prefix before the hip name on save</string>
+              </property>
+              <property name="text">
+               <string>Hip Shot Prefix</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" colspan="8">
+             <widget class="QLineEdit" name="lineEdit_3"/>
+            </item>
+            <item row="3" column="3">
+             <widget class="QCheckBox" name="checkBox_4">
+              <property name="toolTip">
+               <string>When Enabled, enables autosave after the loading of a hip file.</string>
+              </property>
+              <property name="text">
+               <string>Enable Autosave</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Project Root</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="6">
+             <widget class="QCheckBox" name="checkBox_8">
+              <property name="statusTip">
+               <string>When Enabled, will save a userdata file showing who/when/where\nthe last time the file was saved.  This is added to the tooltip when the hip is selected in the dropdown.</string>
+              </property>
+              <property name="text">
+               <string>Meta</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" colspan="9">
+             <widget class="QTableWidget" name="tableWidget">
+              <property name="toolTip">
+               <string>Project Name: An easy short name to identify a project
+Project Path: Full path to the project
+FPS: Frames per second to be used for this project (NEW/INIT) button will initialize
+ a new scene with those settings
+Start Frame: Start Frame of timeline (NEW/INIT) button will will initialize a new scene
+ with those settings
+End Frame: End Frame of timeline (NEW/INIT) button will will initialize a new scene with those settings
+Base File: Will load this file as base when New/Init is pressed
+Make Dirs: By Default is True, and will create all required directories.  In rare circumstances
+, where you might never ever want to create additional subdirectories (like hda, tex, etc)
+ you can set this to False
+Scene Parent / Shot Parent / Hip Parent
+Relative directories to the normal Scene/Shot/Hip folders.  Normally Scenes are generated
+from all the folders in a project directory.  with the scene subdir set 
+to &quot;cgi/&quot; (required /) the scenes are generated based on the folders within project/cgi/</string>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="columnCount">
+               <number>10</number>
+              </property>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>135</number>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Project Name</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Project Path</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>FPS</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Start Frame</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>End Frame</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Base File</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Make Standard Dirs</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Scene Parent</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Shot Parent</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Hip Parent</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Right-Click Below</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="7">
+             <widget class="QCheckBox" name="checkBox_9">
+              <property name="toolTip">
+               <string>When enabled, issues a warning when you load a .hip with an indie license, or anything other than a hipnc with apprentice.</string>
+              </property>
+              <property name="text">
+               <string>Lic. Warning</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="title">
+          <string>Reports</string>
+         </attribute>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>pushButton_7</tabstop>
+  <tabstop>pushButton_8</tabstop>
+  <tabstop>pushButton_6</tabstop>
+  <tabstop>pushButton_10</tabstop>
+  <tabstop>pushButton_5</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>lineEdit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

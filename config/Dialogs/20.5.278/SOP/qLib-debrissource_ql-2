@@ -1,0 +1,568 @@
+// Magic: 5c653a5b
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Nov 30 19:13:22 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+resimulate.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("resimulate", "Reset Simulation")
+	push VALUE(resimulate.val);
+
+    { WIDTH(0.1) }
+}
+
+restframe.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ restframe.label = PARM_LABEL("Rest Frame", "restframe") WIDTH(1.5);
+ PARM(integer, 1, "restframe", none, none) RANGE(0,240)
+	 LABELREF(restframe.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+showguide.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("showguide", "Guide Geometry Display") toggle VALUE(showguide.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    group.label = PARM_LABEL("Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    ACTION_ICONBUTTON "BUTTONS_reselect" VALUE(group.script_action)
+	HELP("Select geometry from an available viewport.\nShift-click to turn on Select Groups.")
+	UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+    { WIDTH(0.1) }
+}
+
+surfaced.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ surfaced.label = PARM_LABEL("Surface Density", "surfaced") WIDTH(1.5);
+ PARM(float, 1, "surfaced", none, LOGSCALE) RANGE(0.1,10000)
+	 LABELREF(surfaced.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+useemergencylimit.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+useemergencylimit.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+useemergencylimit.gad = PARM_BUTTON("useemergencylimit", "") toggle VALUE(useemergencylimit.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+emergencylimit.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ emergencylimit.label = PARM_LABEL("Max Points", "emergencylimit") WIDTH(1.32);
+ PARM(integer, 1, "emergencylimit", none, LOGSCALE) RANGE(1000,10000000)
+	 LABELREF(emergencylimit.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+nameattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    nameattrib.label = PARM_LABEL("Name Attribute", "nameattrib") WIDTH(1.5);
+    PARM_FIELD(string, "nameattrib") VALUE(nameattrib.val) 
+	LABELREF(nameattrib.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+searchradiusmult.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ searchradiusmult.label = PARM_LABEL("Search Radius Mult", "searchradiusmult") WIDTH(1.5);
+ PARM(float, 1, "searchradiusmult", none, none) RANGE(0,4)
+	 LABELREF(searchradiusmult.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+searchpoints.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ searchpoints.label = PARM_LABEL("Search Points", "searchpoints") WIDTH(1.5);
+ PARM(integer, 1, "searchpoints", none, none) RANGE(0,100)
+	 LABELREF(searchpoints.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+pointattribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    pointattribs.label = PARM_LABEL("Point Attributes", "pointattribs") WIDTH(1.5);
+    PARM_FIELD(string, "pointattribs") VALUE(pointattribs.val) 
+	LABELREF(pointattribs.label) HSTRETCH;
+
+    pointattribs.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+vertattribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    vertattribs.label = PARM_LABEL("Vertex Attributes", "vertattribs") WIDTH(1.5);
+    PARM_FIELD(string, "vertattribs") VALUE(vertattribs.val) 
+	LABELREF(vertattribs.label) HSTRETCH;
+
+    vertattribs.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+primattribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    primattribs.label = PARM_LABEL("Primitive Attributes", "primattribs") WIDTH(1.5);
+    PARM_FIELD(string, "primattribs") VALUE(primattribs.val) 
+	LABELREF(primattribs.label) HSTRETCH;
+
+    primattribs.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+
+detailattribs.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    detailattribs.label = PARM_LABEL("Detail Attributes", "detailattribs") WIDTH(1.5);
+    PARM_FIELD(string, "detailattribs") VALUE(detailattribs.val) 
+	LABELREF(detailattribs.label) HSTRETCH;
+
+    detailattribs.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    { WIDTH(0.1) }
+}
+cacheenabled.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+cacheenabled.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+cacheenabled.gad = PARM_BUTTON("cacheenabled", "") toggle VALUE(cacheenabled.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+cachemaxsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ cachemaxsize.label = PARM_LABEL("Cache Memory (MB)", "cachemaxsize") WIDTH(1.32);
+ PARM(integer, 1, "cachemaxsize", none, none) RANGE(0,1000)
+	LOCK_RANGE_MIN LABELREF(cachemaxsize.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+sepdistmult.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ sepdistmult.label = PARM_LABEL("Separation Dist Mult", "sepdistmult") WIDTH(1.5);
+ PARM(float, 1, "sepdistmult", none, none) RANGE(1,2)
+	LOCK_RANGE_MIN LABELREF(sepdistmult.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+delzerov.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+delzerov.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+delzerov.gad = PARM_BUTTON("delzerov", "") toggle VALUE(delzerov.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+vthresh.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ {  }
+
+ vthresh.label = PARM_LABEL("Velocity Threshold", "vthresh") WIDTH(1.32);
+ PARM(float, 1, "vthresh", none, none) RANGE(0,0.1)
+	 LABELREF(vthresh.label) HSTRETCH;
+
+  {  }
+}
+}	
+}	// Template join.bot
+
+
+lifespan.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("lifespan", "Use Lifespan") toggle VALUE(lifespan.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+lifemin.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ lifemin.label = PARM_LABEL("Lifespan Min", "lifemin") WIDTH(1.5);
+ PARM(float, 1, "lifemin", none, none) RANGE(0,10)
+	 LABELREF(lifemin.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+lifemax.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ lifemax.label = PARM_LABEL("Lifespan Max", "lifemax") WIDTH(1.5);
+ PARM(float, 1, "lifemax", none, none) RANGE(0,10)
+	 LABELREF(lifemax.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+lifeexp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ lifeexp.label = PARM_LABEL("Lifespan Exp", "lifeexp") WIDTH(1.5);
+ PARM(float, 1, "lifeexp", none, none) RANGE(0.001,4)
+	LOCK_RANGE_MIN LABELREF(lifeexp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+doreapparticles.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("doreapparticles", "Reap Particles") toggle VALUE(doreapparticles.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+outputattribs.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("outputattribs", "Output Attributes") toggle VALUE(outputattribs.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+outputid.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+outputid.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+outputid.gad = PARM_BUTTON("outputid", "") toggle VALUE(outputid.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+idattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    idattrib.label = PARM_LABEL("id", "idattrib") WIDTH(1.32);
+    PARM_FIELD(string, "idattrib") VALUE(idattrib.val) 
+	LABELREF(idattrib.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+outputage.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+outputage.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+outputage.gad = PARM_BUTTON("outputage", "") toggle VALUE(outputage.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+ageattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    ageattrib.label = PARM_LABEL("Age", "ageattrib") WIDTH(1.32);
+    PARM_FIELD(string, "ageattrib") VALUE(ageattrib.val) 
+	LABELREF(ageattrib.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+outputlife.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+outputlife.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+outputlife.gad = PARM_BUTTON("outputlife", "") toggle VALUE(outputlife.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+lifeattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    lifeattrib.label = PARM_LABEL("Life", "lifeattrib") WIDTH(1.32);
+    PARM_FIELD(string, "lifeattrib") VALUE(lifeattrib.val) 
+	LABELREF(lifeattrib.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+outputpscale.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+outputpscale.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+outputpscale.gad = PARM_BUTTON("outputpscale", "") toggle VALUE(outputpscale.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+pscaleattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    pscaleattrib.label = PARM_LABEL("pscale", "pscaleattrib") WIDTH(1.32);
+    PARM_FIELD(string, "pscaleattrib") VALUE(pscaleattrib.val) 
+	LABELREF(pscaleattrib.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+folder_outputattribs.gad = 
+GROUP collapsible "Output Attributes" flat   
+{
+    VALUE(folder_outputattribs.gad.val) LAYOUT(vertical) HSTRETCH
+	    outputattribs.gad;		
+	    outputid.row.join;		
+	    outputage.row.join;		
+	    outputlife.row.join;		
+	    outputpscale.row.join;		
+} 
+
+folder_lifespan.gad = 
+GROUP collapsible "Lifespan" flat   
+{
+    VALUE(folder_lifespan.gad.val) LAYOUT(vertical) HSTRETCH
+	    lifespan.gad;		
+	    lifemin.gad;		
+	    lifemax.gad;		
+	    lifeexp.gad;		
+	    doreapparticles.gad;		
+} 
+
+folder2.gad = 
+
+GROUP simple "Postprocessing / Output" flat 
+{ 
+    VALUE(folder2.gad.val) LAYOUT(vertical) HSTRETCH 
+	    delzerov.row.join;		
+	    folder_lifespan.gad;		
+	    folder_outputattribs.gad;		
+} 
+
+folder0.gad = 
+
+GROUP simple "Simulation" flat 
+{ 
+    VALUE(folder0.gad.val) LAYOUT(vertical) HSTRETCH 
+	    cacheenabled.row.join;		
+	    sepdistmult.gad;		
+} 
+
+folder_inherit.gad = 
+GROUP collapsible "Inherit Attributes" flat   
+{
+    VALUE(folder_inherit.gad.val) LAYOUT(vertical) HSTRETCH
+	    pointattribs.gad;		
+	    vertattribs.gad;		
+	    primattribs.gad;		
+	    detailattribs.gad;		
+} 
+
+folder_search.gad = 
+GROUP collapsible "Search" flat   
+{
+    VALUE(folder_search.gad.val) LAYOUT(vertical) HSTRETCH
+	    nameattrib.gad;		
+	    searchradiusmult.gad;		
+	    searchpoints.gad;		
+} 
+
+folder1.gad = 
+
+GROUP simple "Scatter / Neighbour Detection" flat 
+{ 
+    VALUE(folder1.gad.val) LAYOUT(vertical) HSTRETCH 
+	    group.gad;		
+	    surfaced.gad;		
+	    useemergencylimit.row.join;		
+	    folder_search.gad;		
+	    folder_inherit.gad;		
+} 
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    resimulate.gad; 
+    restframe.gad; 
+    showguide.gad; 
+    folder1.gad; 
+    folder0.gad; 
+    folder2.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

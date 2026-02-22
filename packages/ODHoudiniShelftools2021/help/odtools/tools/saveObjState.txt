@@ -1,0 +1,8 @@
+= Save /obj Display State =
+
+"""Saves a template file of stored display states"""
+
+You can save a file that can be loaded with "Load /obj Display State" which stores the display flag state of current /obj level nodes.  This makes it very easy to switch on/off certain items for a variety of use cases, together with "Set as Viewport Camera with State" allows you to quickly change the visibility of items for specific camera views.
+
+:vimeo: Example Use of the Tool
+    #id: 473592819

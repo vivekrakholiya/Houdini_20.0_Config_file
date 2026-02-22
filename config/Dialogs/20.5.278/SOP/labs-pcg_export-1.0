@@ -1,0 +1,446 @@
+// Magic: e389b402
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Jul 27 09:30:41 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+export.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("export", "Export PCG Data")
+	push VALUE(export.val);
+
+    { WIDTH(0.1) }
+}
+enablemesh.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enablemesh.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enablemesh.gad = PARM_BUTTON("enablemesh", "") toggle VALUE(enablemesh.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+file_mesh.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ file_mesh.label = PARM_LABEL("Mesh", "file_mesh") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "file_mesh") LABELREF(file_mesh.label)
+	VALUE(file_mesh.val) HSTRETCH;
+
+    file_mesh.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(file_mesh.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+enablemat.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+enablemat.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+enablemat.gad = PARM_BUTTON("enablemat", "") toggle VALUE(enablemat.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+file_mat.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ {  }
+
+ file_mat.label = PARM_LABEL("Material", "file_mat") WIDTH(1.32);
+
+ PARM_FIELD (pathstring, "file_mat") LABELREF(file_mat.label)
+	VALUE(file_mat.val) HSTRETCH;
+
+    file_mat.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(file_mat.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ {  }
+}
+}	
+}	// Template join.bot
+
+
+mesh.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    mesh.label = PARM_LABEL("Mesh ID", "mesh") WIDTH(1.5);
+    PARM_FIELD(string, "mesh") VALUE(mesh.val) 
+	LABELREF(mesh.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+rotmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    rotmode.label = PARM_LABEL_SIMPLE("Set Rotation By", "rotmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    rotmode.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+orient.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    orient.label = PARM_LABEL("Orient", "orient") WIDTH(1.5);
+    PARM_FIELD(string, "orient") VALUE(orient.val) 
+	LABELREF(orient.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+n.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    n.label = PARM_LABEL("Normal", "n") WIDTH(1.5);
+    PARM_FIELD(string, "n") VALUE(n.val) 
+	LABELREF(n.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+up.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    up.label = PARM_LABEL("Up", "up") WIDTH(1.5);
+    PARM_FIELD(string, "up") VALUE(up.val) 
+	LABELREF(up.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+scale.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    scale.label = PARM_LABEL("Scale", "scale") WIDTH(1.5);
+    PARM_FIELD(string, "scale") VALUE(scale.val) 
+	LABELREF(scale.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+pscale.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    pscale.label = PARM_LABEL("Uniform Scale", "pscale") WIDTH(1.5);
+    PARM_FIELD(string, "pscale") VALUE(pscale.val) 
+	LABELREF(pscale.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sepparm3.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+material.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    material.label = PARM_LABEL("Material 0 ID", "material") WIDTH(1.5);
+    PARM_FIELD(string, "material") VALUE(material.val) 
+	LABELREF(material.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+material_1.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    material_1.label = PARM_LABEL("Material 1 ID", "material_1") WIDTH(1.5);
+    PARM_FIELD(string, "material_1") VALUE(material_1.val) 
+	LABELREF(material_1.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+material_2.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    material_2.label = PARM_LABEL("Material 2 ID", "material_2") WIDTH(1.5);
+    PARM_FIELD(string, "material_2") VALUE(material_2.val) 
+	LABELREF(material_2.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+material_3.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    material_3.label = PARM_LABEL("Material 3 ID", "material_3") WIDTH(1.5);
+    PARM_FIELD(string, "material_3") VALUE(material_3.val) 
+	LABELREF(material_3.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+material_4.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    material_4.label = PARM_LABEL("Material 4 ID", "material_4") WIDTH(1.5);
+    PARM_FIELD(string, "material_4") VALUE(material_4.val) 
+	LABELREF(material_4.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+material_5.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    material_5.label = PARM_LABEL("Material 5 ID", "material_5") WIDTH(1.5);
+    PARM_FIELD(string, "material_5") VALUE(material_5.val) 
+	LABELREF(material_5.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+custom.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    custom.label = PARM_LABEL("Custom", "custom") WIDTH(1.5);
+    PARM_FIELD(string, "custom") VALUE(custom.val) 
+	LABELREF(custom.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+custom_1.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    custom_1.label = PARM_LABEL("Custom 1", "custom_1") WIDTH(1.5);
+    PARM_FIELD(string, "custom_1") VALUE(custom_1.val) 
+	LABELREF(custom_1.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+custom_2.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    custom_2.label = PARM_LABEL("Custom 2", "custom_2") WIDTH(1.5);
+    PARM_FIELD(string, "custom_2") VALUE(custom_2.val) 
+	LABELREF(custom_2.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+custom_3.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    custom_3.label = PARM_LABEL("Custom 3", "custom_3") WIDTH(1.5);
+    PARM_FIELD(string, "custom_3") VALUE(custom_3.val) 
+	LABELREF(custom_3.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+sepparm7.gad = 
+
+{
+    LAYOUT(vertical) HSTRETCH HMARGIN(0.18, 0.1)
+    NO_MARGIN_SPACING_SCALE
+
+    { HEIGHT(0.1) }
+    SEPARATOR;
+    { HEIGHT(0.1) }
+}
+
+openunrealshaderpath.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("openunrealshaderpath", "Unreal Engine Content Plugin and Guides")
+	push VALUE(openunrealshaderpath.val);
+
+    { WIDTH(0.1) }
+}
+
+sepparm8.gad = 
+
+{
+
+    LAYOUT(vertical) HSTRETCH
+
+    { HEIGHT(0.070590) }
+}
+
+lb_shaderinfo.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(lb_shaderinfo.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+custom_floats.gad = 
+GROUP collapsible "Custom Floats" flat   
+{
+    VALUE(custom_floats.gad.val) LAYOUT(vertical) HSTRETCH
+	    custom.gad;		
+	    custom_1.gad;		
+	    custom_2.gad;		
+	    custom_3.gad;		
+} 
+
+fd_mat.gad = 
+GROUP collapsible "Materials" flat   
+{
+    VALUE(fd_mat.gad.val) LAYOUT(vertical) HSTRETCH
+	    material.gad;		
+	    material_1.gad;		
+	    material_2.gad;		
+	    material_3.gad;		
+	    material_4.gad;		
+	    material_5.gad;		
+} 
+
+fd_mesh.gad = 
+
+{
+    VALUE(fd_mesh.gad.val) LAYOUT(vertical) HSTRETCH SPACING(0.02)
+	    mesh.gad;		
+	    rotmode.gad;		
+	    orient.gad;		
+	    n.gad;		
+	    up.gad;		
+	    scale.gad;		
+	    pscale.gad;		
+} 
+
+fd_attribute_names.gad = 
+
+GROUP simple "Input Attribute Names" flat 
+{ 
+    VALUE(fd_attribute_names.gad.val) LAYOUT(vertical) HSTRETCH 
+	    fd_mesh.gad;		
+	    sepparm3.gad;		
+	    fd_mat.gad;		
+	    custom_floats.gad;		
+} 
+
+fd_export.gad = 
+
+GROUP simple "Export Paths" flat 
+{ 
+    VALUE(fd_export.gad.val) LAYOUT(vertical) HSTRETCH 
+	    enablemesh.row.join;		
+	    enablemat.row.join;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    export.gad; 
+    fd_export.gad; 
+    fd_attribute_names.gad; 
+    sepparm7.gad; 
+    openunrealshaderpath.gad; 
+    sepparm8.gad; 
+    lb_shaderinfo.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

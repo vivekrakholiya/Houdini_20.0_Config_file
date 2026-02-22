@@ -1,0 +1,273 @@
+// Magic: 2c7fdd4f
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Jul 12 23:06:51 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+labelparm.gad =
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+    HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+    {
+        LAYOUT(horizontal) HSTRETCH
+        { WIDTH(1.5) }
+        { WIDTH(0.08) }
+        LABEL VALUE(labelparm.val[0]) HSTRETCH;
+    }
+    { HEIGHT(0.05) }
+}
+
+resimulate.gad = ROW
+{
+    JUSTIFY(left, center)
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.1) }
+
+    PARM_BUTTON("resimulate", "Reset Simulation")
+	push VALUE(resimulate.val);
+
+    { WIDTH(0.1) }
+}
+
+startframe.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ startframe.label = PARM_LABEL("Start Frame", "startframe") WIDTH(1.5);
+ PARM(integer, 1, "startframe", none, none) RANGE(1,240)
+	 LABELREF(startframe.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+substep.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ substep.label = PARM_LABEL("Sub Steps", "substep") WIDTH(1.5);
+ PARM(integer, 1, "substep", none, none) RANGE(1,10)
+	LOCK_RANGE_MIN LABELREF(substep.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+cacheenabled.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cacheenabled", "Cache Simulation") toggle VALUE(cacheenabled.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+cachemaxsize.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ cachemaxsize.label = PARM_LABEL("Cache Memory (MB)", "cachemaxsize") WIDTH(1.5);
+ PARM(integer, 1, "cachemaxsize", none, none) RANGE(0,1000)
+	LOCK_RANGE_MIN LABELREF(cachemaxsize.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+mx_dis.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mx_dis.label = PARM_LABEL("Mx Dis", "mx_dis") WIDTH(1.5);
+ PARM(float, 1, "mx_dis", none, none) RANGE(0,1)
+	 LABELREF(mx_dis.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+mx_pt.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ mx_pt.label = PARM_LABEL("Mx Pt", "mx_pt") WIDTH(1.5);
+ PARM(integer, 1, "mx_pt", none, none) RANGE(0,10)
+	 LABELREF(mx_pt.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+freq.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   freq.label = PARM_LABEL("Frequency", "freq") WIDTH(1.5);
+   PARM(float, 3, "freq", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(freq.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+offset_time.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ offset_time.label = PARM_LABEL("offset_time", "offset_time") WIDTH(1.5);
+ PARM(float, 1, "offset_time", none, none) RANGE(0,10)
+	 LABELREF(offset_time.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+offset.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   offset.label = PARM_LABEL("Offset", "offset") WIDTH(1.5);
+   PARM(float, 3, "offset", none, none, "#1,#2,#3")
+	RANGE(0,10)  LABELREF(offset.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+amp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ amp.label = PARM_LABEL("Amplitude", "amp") WIDTH(1.5);
+ PARM(float, 1, "amp", none, none) RANGE(-1,1)
+	 LABELREF(amp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+rough.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ rough.label = PARM_LABEL("Roughness", "rough") WIDTH(1.5);
+ PARM(float, 1, "rough", none, none) RANGE(0,1)
+	 LABELREF(rough.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+atten.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ atten.label = PARM_LABEL("Attenuation", "atten") WIDTH(1.5);
+ PARM(float, 1, "atten", none, none) RANGE(0,1)
+	 LABELREF(atten.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+noise.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "noise.gad"
+    { 
+	VALUE(noise.gad.val) STRETCH(1,0)
+
+	TAB "noise"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    freq.gad;		
+	    offset_time.gad;		
+	    offset.gad;		
+	    amp.gad;		
+	    rough.gad;		
+	    atten.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+infaction.gad = 
+
+GROUP simple "infaction" flat 
+{ 
+    VALUE(infaction.gad.val) LAYOUT(vertical) HSTRETCH 
+	    mx_dis.gad;		
+	    mx_pt.gad;		
+} 
+
+solver.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "solver.gad"
+    { 
+	VALUE(solver.gad.val) STRETCH(1,0)
+
+	TAB "solver"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    resimulate.gad;		
+	    startframe.gad;		
+	    substep.gad;		
+	    cacheenabled.gad;		
+	    cachemaxsize.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    labelparm.gad; 
+    solver.gad; 
+    infaction.gad; 
+    noise.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

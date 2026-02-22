@@ -1,0 +1,1 @@
+{"type": "root", "attrs": {"type": "example"}, "body": [{"type": "title", "indent": 0, "text": ["PolybevelBox"]}, {"type": "para", "indent": 0, "text": ["This example demonstrates how to bevel geometry using the Poly Bevel SOP."], "extent": [0, 74]}], "examplefor": "/nodes/sop/polybevel", "examplefile": "/examples/nodes/sop/polybevel/PolybevelBox.otl"}

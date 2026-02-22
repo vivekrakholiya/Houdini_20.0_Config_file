@@ -1,0 +1,224 @@
+// Magic: 5243c82d
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Tue Jan  7 22:43:50 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+converttopolygons.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("converttopolygons", "Convert Input to Polygons") toggle VALUE(converttopolygons.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+usegroup.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+usegroup.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+usegroup.gad = PARM_BUTTON("usegroup", "") toggle VALUE(usegroup.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    group.label = PARM_LABEL("Boundary Group", "group") WIDTH(1.32);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+cap.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("cap", "Cap Geometry") toggle VALUE(cap.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+reverse.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("reverse", "Reverse Caps") toggle VALUE(reverse.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+triangulate.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("triangulate", "Triangulate Caps") toggle VALUE(triangulate.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+unique.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("unique", "Unique Points") toggle VALUE(unique.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+updatenorms.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("updatenorms", "Update Point Normals") toggle VALUE(updatenorms.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+groupedges.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+groupedges.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+groupedges.gad = PARM_BUTTON("groupedges", "") toggle VALUE(groupedges.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+edgesgroupname.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    edgesgroupname.label = PARM_LABEL("Edges Group Name", "edgesgroupname") WIDTH(1.32);
+    PARM_FIELD(string, "edgesgroupname") VALUE(edgesgroupname.val) 
+	LABELREF(edgesgroupname.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+groupcaps.row.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0.18, 0.1) NO_MARGIN_SPACING_SCALE
+groupcaps.join =		
+{
+
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+  HMARGIN(0, 0) NO_MARGIN_SPACING_SCALE
+
+groupcaps.gad = PARM_BUTTON("groupcaps", "") toggle VALUE(groupcaps.val) RETAIN_SIZE_WHEN_HIDDEN;
+
+capsgroupname.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    {  }
+
+    capsgroupname.label = PARM_LABEL("Caps Group Name", "capsgroupname") WIDTH(1.32);
+    PARM_FIELD(string, "capsgroupname") VALUE(capsgroupname.val) 
+	LABELREF(capsgroupname.label) HSTRETCH;
+
+    {  }
+}
+}	
+}	// Template join.bot
+
+
+visualizegroups.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("visualizegroups", "Visualize Groups") toggle VALUE(visualizegroups.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    converttopolygons.gad; 
+    usegroup.row.join; 
+    cap.gad; 
+    reverse.gad; 
+    triangulate.gad; 
+    unique.gad; 
+    updatenorms.gad; 
+    groupedges.row.join; 
+    groupcaps.row.join; 
+    visualizegroups.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

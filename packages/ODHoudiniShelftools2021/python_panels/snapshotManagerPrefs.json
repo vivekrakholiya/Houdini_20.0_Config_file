@@ -1,0 +1,19 @@
+{
+    "basename": "",
+    "checkunsaved": false,
+    "collabfile": "",
+    "colors": true,
+    "comments": true,
+    "connections": true,
+    "createmissing": true,
+    "enablecollaboration": false,
+    "flags": true,
+    "includesobj": true,
+    "includesops": true,
+    "includevops": true,
+    "networks": 0,
+    "positions": true,
+    "selectedonly": false,
+    "smallthumbnails": false,
+    "sortname": false
+}

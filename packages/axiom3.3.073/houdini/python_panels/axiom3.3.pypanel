@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pythonPanelDocument>
+  <!-- This file contains definitions of Python interfaces and the
+ interfaces menu.  It should not be hand-edited when it is being
+ used by the application.  Note, that two definitions of the
+ same interface or of the interfaces menu are not allowed
+ in a single file. -->
+  <interface name="axiom3.3_profiler" label="Axiom 3.3 Profiler" icon="opdef:/Sop/axiom_velocityTrail::3.3?IconImage" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[import os
+import math
+import json
+from PySide2 import QtCore, QtWidgets, QtGui
+
+globalInterface = None
+
+class AxiomProfile(QtWidgets.QFrame):
+    
+    scrollChanged = QtCore.Signal(int)
+    dragChanged = QtCore.Signal(int)
+    cursorChanged = QtCore.Signal(int)
+    timer = QtCore.QTimer()
+    
+    c_selectedNode = None
+    
+    c_filePathLabel = None
+    c_filePath = ""
+    c_filePathMaxCharacters = 48
+    
+    c_previousData = ""
+    
+    pos_x = -1
+    pos_y = -1
+    
+    clicked = False
+    
+    c_graphMemoryUsed = None
+    c_graphGPUEfficiency = None
+    
+    c_labelNode = None
+    c_labelDevice = None
+    c_labelActiveVoxels = None
+    c_labelVoxelPerSecond = None
+    c_labelMemoryType = None
+    
+    c_layoutTracks = None
+    
+    c_tracks = {}
+    
+    def __init__(self):
+        QtWidgets.QFrame.__init__(self)
+
+        self.setMouseTracking(True)
+    
+        self.pos_x = -1
+        self.pos_y = -1
+        self.clicked = False
+
+        if self.c_layoutTracks is None:
+            self.c_layoutTracks = QtWidgets.QVBoxLayout()
+            self.c_layoutTracks.setSpacing(0)
+            
+        self.c_tracks["empty"] = timeline("", dict(), 0, 1, self.scrollChanged, self.dragChanged, self.cursorChanged)
+        self.c_layoutTracks.addWidget(self.c_tracks["empty"])
+        
+        l_labelWidth = 170
+        
+        l_labelNode = QtWidgets.QLabel('Source: ')
+        l_labelNode.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelNode.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelNode.setFixedWidth(l_labelWidth)
+        
+        l_labelDevice = QtWidgets.QLabel('Device: ')
+        l_labelDevice.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelDevice.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelDevice.setFixedWidth(l_labelWidth)
+        
+        l_labelAPI = QtWidgets.QLabel('API: ')
+        l_labelAPI.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelAPI.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelAPI.setFixedWidth(l_labelWidth)
+        
+        l_labelActiveVoxels = QtWidgets.QLabel('Active Voxels: ')
+        l_labelActiveVoxels.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelActiveVoxels.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelActiveVoxels.setFixedWidth(l_labelWidth)
+        
+        l_labelVoxelPerSecond = QtWidgets.QLabel('Perfomance: ')
+        l_labelVoxelPerSecond.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelVoxelPerSecond.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelVoxelPerSecond.setFixedWidth(l_labelWidth)
+        
+        l_labelMemoryType = QtWidgets.QLabel('Memory Type: ')
+        l_labelMemoryType.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelMemoryType.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelMemoryType.setFixedWidth(l_labelWidth)
+        
+        l_labelHostMemory = QtWidgets.QLabel('Total Host Memory: ')
+        l_labelHostMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelHostMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelHostMemory.setFixedWidth(l_labelWidth)
+        
+        l_labelComputeMemory = QtWidgets.QLabel('Total Compute Memory: ')
+        l_labelComputeMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelComputeMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelComputeMemory.setFixedWidth(l_labelWidth)
+        
+        self.c_tagDeviceMemory = QtWidgets.QLabel('Device Memory: ')
+        self.c_tagDeviceMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_tagDeviceMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.c_tagDeviceMemory.setFixedWidth(l_labelWidth)
+        
+        self.c_tagSharedMemory = QtWidgets.QLabel('Shared Memory: ')
+        self.c_tagSharedMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_tagSharedMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.c_tagSharedMemory.setFixedWidth(l_labelWidth)
+        
+        l_layoutLabels = QtWidgets.QVBoxLayout()
+        l_layoutLabels.addWidget(l_labelNode)
+        l_layoutLabels.addWidget(l_labelDevice)
+        l_layoutLabels.addWidget(l_labelAPI)
+        l_layoutLabels.addWidget(l_labelActiveVoxels)
+        l_layoutLabels.addWidget(l_labelVoxelPerSecond)
+        l_layoutLabels.addWidget(l_labelMemoryType)
+        l_layoutLabels.addWidget(l_labelHostMemory)
+        l_layoutLabels.addWidget(l_labelComputeMemory)
+        l_layoutLabels.addWidget(self.c_tagDeviceMemory)
+        l_layoutLabels.addWidget(self.c_tagSharedMemory)
+        
+        self.c_labelNode = QtWidgets.QLabel('')
+        self.c_labelNode.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelNode.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelNode.setFixedWidth(200)
+        
+        self.c_labelDevice = QtWidgets.QLabel('')
+        self.c_labelDevice.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelDevice.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelDevice.setFixedWidth(200)
+        
+        self.c_labelAPI = QtWidgets.QLabel('')
+        self.c_labelAPI.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelAPI.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelAPI.setFixedWidth(200)
+        
+        self.c_labelActiveVoxels = QtWidgets.QLabel('')
+        self.c_labelActiveVoxels.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelActiveVoxels.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelActiveVoxels.setFixedWidth(200)
+        
+        self.c_labelVoxelPerSecond = QtWidgets.QLabel('')
+        self.c_labelVoxelPerSecond.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelVoxelPerSecond.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelVoxelPerSecond.setFixedWidth(200)
+        
+        self.c_labelMemoryType = QtWidgets.QLabel('')
+        self.c_labelMemoryType.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelMemoryType.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelMemoryType.setFixedWidth(200)
+        
+        self.c_labelHostMemory = QtWidgets.QLabel('')
+        self.c_labelHostMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelHostMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelHostMemory.setFixedWidth(200)
+        
+        self.c_labelComputeMemory = QtWidgets.QLabel('')
+        self.c_labelComputeMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelComputeMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelComputeMemory.setFixedWidth(200)
+        
+        self.c_labelDeviceMemory = QtWidgets.QLabel('')
+        self.c_labelDeviceMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelDeviceMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelDeviceMemory.setFixedWidth(200)
+        
+        self.c_labelSharedMemory = QtWidgets.QLabel('')
+        self.c_labelSharedMemory.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.c_labelSharedMemory.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        #self.c_labelSharedMemory.setFixedWidth(200)
+        
+        l_layoutLabelValues = QtWidgets.QVBoxLayout()
+        l_layoutLabelValues.addWidget(self.c_labelNode)
+        l_layoutLabelValues.addWidget(self.c_labelDevice)
+        l_layoutLabelValues.addWidget(self.c_labelAPI)
+        l_layoutLabelValues.addWidget(self.c_labelActiveVoxels)
+        l_layoutLabelValues.addWidget(self.c_labelVoxelPerSecond)
+        l_layoutLabelValues.addWidget(self.c_labelMemoryType)
+        l_layoutLabelValues.addWidget(self.c_labelHostMemory)
+        l_layoutLabelValues.addWidget(self.c_labelComputeMemory)
+        l_layoutLabelValues.addWidget(self.c_labelDeviceMemory)
+        l_layoutLabelValues.addWidget(self.c_labelSharedMemory)
+        
+        #self.c_graphGPUEfficiency = CircularBarGraph("GPU Efficiency", 1)
+        self.c_graphGPUEfficiency = CircularBarGraph("GPU Busy", 1)
+        self.c_graphGPUEfficiency.setFixedHeight(100)
+        self.c_graphGPUEfficiency.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+
+        self.c_graphMemoryUsed = CircularBarGraph("Used Memory \n(Allocated)", 0)
+        self.c_graphMemoryUsed.setFixedHeight(100)
+        self.c_graphMemoryUsed.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+
+        l_layoutInfo = QtWidgets.QHBoxLayout()
+        l_layoutInfo.setSpacing(0)
+        l_layoutInfo.addLayout(l_layoutLabels)
+        l_layoutInfo.addLayout(l_layoutLabelValues)
+        l_layoutInfo.addWidget(self.c_graphMemoryUsed)
+        l_layoutInfo.addWidget(self.c_graphGPUEfficiency)
+
+        
+        l_labelSource = QtWidgets.QLabel('File: ')
+        l_labelSource.setFocusPolicy(QtCore.Qt.NoFocus)
+        l_labelSource.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_labelSource.setFixedWidth(l_labelWidth)
+
+        
+        l_buttonWidth = 75
+        
+        l_filePathLabel = QtWidgets.QLabel()
+        l_filePathLabel.setText("File Path: ")
+        l_filePathLabel.setFixedWidth(l_buttonWidth)
+        
+        self.c_filePathLabel = QtWidgets.QLabel()
+        self.c_filePathLabel.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        l_profilePathEnvVariable = "AXIOM_PROFILE_PATH"
+        l_filePath = hou.getenv(l_profilePathEnvVariable)
+        if not l_filePath is None:
+            self.c_filePath = l_filePath
+            if len(l_filePath) > self.c_filePathMaxCharacters:
+                l_filePath = "..." + l_filePath[-1 * self.c_filePathMaxCharacters:]
+            hou.unsetenv(l_profilePathEnvVariable)
+            self.c_filePathLabel.setText(l_filePath)
+        
+        
+
+        l_fileButton = QtWidgets.QPushButton("Open")
+        l_fileButton.clicked.connect(self.openFile)
+        l_fileButton.setFixedWidth(l_buttonWidth)
+        
+        l_clearButton = QtWidgets.QPushButton("Clear")
+        l_clearButton.clicked.connect(self.clearFile)
+        l_clearButton.setFixedWidth(l_buttonWidth)
+        
+        l_layoutSource = QtWidgets.QHBoxLayout()
+        l_layoutSource.setSpacing(0)
+        l_layoutSource.addWidget(l_filePathLabel)
+        l_layoutSource.addWidget(self.c_filePathLabel)
+        l_layoutSource.addWidget(l_fileButton)
+        l_layoutSource.addWidget(l_clearButton)
+        
+        
+        
+        l_masterLayout = QtWidgets.QVBoxLayout()
+        
+
+        l_masterLayout.addLayout(l_layoutSource)
+        l_masterLayout.addLayout(self.c_layoutTracks)
+        l_masterLayout.addLayout(l_layoutInfo)
+        
+        l_masterLayout.setStretchFactor(self.c_layoutTracks, 80)
+        l_masterLayout.setStretchFactor(l_layoutInfo, 20)
+
+        self.setLayout(l_masterLayout)
+        
+        self.refreshTimelineData()
+        
+        self.timer.timeout.connect(self.refreshTimelineData)
+        self.timer.start(41)
+        
+    def closeEvent(self, event):
+    
+        self.timer.stop()
+        
+    def openFile(self):
+    
+        l_file = QtWidgets.QFileDialog.getOpenFileName(self, 'Open Trace File', "", "JSON Files (*.json);;All Files (*)")
+        
+        l_filePath = l_file[0]
+        
+        self.c_filePath = l_filePath
+        
+        if len(l_filePath) > self.c_filePathMaxCharacters:
+            l_filePath = "..." + l_filePath[-1 * self.c_filePathMaxCharacters:]
+        
+        self.c_filePathLabel.setText(l_filePath)
+        
+    def clearFile(self):
+
+        self.c_filePath = ""
+        self.c_filePathLabel.setText("")
+        
+        self.clearTracks()
+        
+    def clearTracks(self):
+    
+        for l_row in self.c_tracks.keys():
+        
+            self.c_tracks[l_row].hide()
+            
+            self.c_tracks["empty"].show()
+            
+            self.c_previousData = ""
+        
+    def refreshTimelineData(self):
+    
+        if not hou.getenv("AXIOM_PROFILE_IS_RUNNING") is None:
+        
+            return 0
+            
+        self.c_labelNode.setText("Select a node or file.")
+        self.c_labelDevice.setText("")
+        self.c_labelActiveVoxels.setText("")
+        self.c_labelVoxelPerSecond.setText("")
+        self.c_labelMemoryType.setText("")
+        self.c_labelHostMemory.setText("")
+        self.c_labelComputeMemory.setText("")
+        self.c_labelDeviceMemory.setText("")
+        self.c_labelSharedMemory.setText("")
+        
+        self.c_tagSharedMemory.setText("Shared Memory:")
+        self.c_tagDeviceMemory.show()
+        self.c_labelDeviceMemory.show()
+            
+        l_filePath = self.c_filePath
+        if l_filePath != "":
+            if not os.path.isfile(l_filePath):
+                self.clearFile()
+                l_filePath = ""
+        
+        l_detailValues = {}
+        
+        if l_filePath == "":
+
+            l_selectedNodes = hou.selectedNodes()
+            
+            if len(l_selectedNodes) > 0:
+                self.c_selectedNode = l_selectedNodes[0]
+            
+            if self.c_selectedNode is None:
+                return 0
+        
+            self.c_labelNode.setText(self.c_selectedNode.path())
+    
+            if self.c_selectedNode.type().category().name().lower() != "sop":
+                
+                self.clearTracks()
+                
+                return 0
+            
+            l_geo = self.c_selectedNode.geometry()
+            
+            if l_geo is None:
+                
+                self.clearTracks()
+                
+                return 0
+            
+            l_globalAttrs = l_geo.globalAttribs()
+            
+            for l_globalAttr in l_globalAttrs:
+            
+                l_attrName = l_globalAttr.name()
+                l_attrValue = l_geo.attribValue(l_attrName)
+                
+                l_detailValues[l_attrName] = l_attrValue
+                
+        else:
+        
+            l_file = open(l_filePath)
+            
+            l_fileData = json.load(l_file)
+            
+            if not "frames" in l_fileData.keys():
+                self.c_labelNode.setText("Invalid profile json file.")
+                return 0
+                
+            l_currentFrame = str(hou.intFrame())
+            
+            l_formatedLabel = l_filePath.replace("\\", "/").split("/")[-1]
+            
+            if l_currentFrame in l_fileData["frames"].keys():
+                
+                l_detailValues = l_fileData["frames"][l_currentFrame]
+                
+                self.c_labelNode.setText(l_formatedLabel + " (Frame " + l_currentFrame + ")")
+                
+            else:
+            
+                l_frameRange = l_fileData["frameRange"]
+
+                self.c_labelNode.setText(l_formatedLabel + " (Frame " + l_currentFrame + " out of range " + str(l_frameRange[0]) + "-" + str(l_frameRange[1]) + ")")
+        
+                self.c_graphMemoryUsed.updateData(0)
+                self.c_graphGPUEfficiency.updateData(0)
+                
+        if not "axiom_profile" in l_detailValues.keys():
+            
+            self.clearTracks()
+            
+            l_missingDataMessage = "Missing profile data."
+            
+            self.c_labelDevice.setText(l_missingDataMessage)
+            self.c_labelActiveVoxels.setText(l_missingDataMessage)
+            self.c_labelVoxelPerSecond.setText(l_missingDataMessage)
+            self.c_labelMemoryType.setText(l_missingDataMessage)
+            self.c_labelHostMemory.setText(l_missingDataMessage)
+            self.c_labelComputeMemory.setText(l_missingDataMessage)
+            self.c_labelDeviceMemory.setText(l_missingDataMessage)
+            self.c_labelSharedMemory.setText(l_missingDataMessage)
+ 
+            return 0
+            
+        if "axiom_device" in l_detailValues.keys():
+        
+            self.c_labelDevice.setText(str(l_detailValues["axiom_device"]))
+            
+        if "axiom_api" in l_detailValues.keys():
+        
+            self.c_labelAPI.setText(str(l_detailValues["axiom_api"]))
+            
+        if "axiom_activeVoxels" in l_detailValues.keys():
+            
+            self.c_labelActiveVoxels.setText('{:,}'.format(l_detailValues["axiom_activeVoxels"]))   
+            
+        if "axiom_activeVoxels" in l_detailValues.keys():
+            
+            self.c_labelVoxelPerSecond.setText('{:,} voxels/s'.format(l_detailValues["axiom_voxelsPerSecond"]))   
+            
+        if "axiom_activeVoxels" in l_detailValues.keys():
+            
+            l_type = "Device"
+        
+            if l_detailValues["axiom_deviceHasUnifiedMemory"] == 1:
+                l_type = "Unified"
+                
+                self.c_tagSharedMemory.setText("Unified Memory:")
+                self.c_tagDeviceMemory.hide()
+                self.c_labelDeviceMemory.hide()
+                
+            elif l_detailValues["axiom_deviceUsedSharedMemory"] == 1:
+                l_type = "Shared"
+            
+            self.c_labelMemoryType.setText(l_type)
+        
+        if "axiom_usedHostBufferTotalMemory" in l_detailValues.keys():
+        
+            l_memoryValue = str(l_detailValues["axiom_usedHostBufferTotalMemory"])
+            
+            if len(l_memoryValue) <= 3:
+                l_memoryValue += " MBs"
+            else:
+                l_memoryValue = str(float(l_memoryValue) / 1000.0) + " GBs"
+            
+            self.c_labelHostMemory.setText(l_memoryValue)
+            
+        if "axiom_usedBufferTotalMemory" in l_detailValues.keys():
+        
+            l_memoryValue = str(l_detailValues["axiom_usedBufferTotalMemory"])
+            
+            if len(l_memoryValue) <= 3:
+                l_memoryValue += " MBs"
+            else:
+                l_memoryValue = str(float(l_memoryValue) / 1000.0) + " GBs"
+            
+            self.c_labelComputeMemory.setText(l_memoryValue)
+            
+        if "axiom_usedBufferDeviceMemory" in l_detailValues.keys():
+        
+            l_memoryValue = str(l_detailValues["axiom_usedBufferDeviceMemory"])
+            
+            if len(l_memoryValue) <= 3:
+                l_memoryValue += " MBs"
+            else:
+                l_memoryValue = str(float(l_memoryValue) / 1000.0) + " GBs"
+            
+            self.c_labelDeviceMemory.setText(l_memoryValue)
+            
+        if "axiom_usedBufferSharedMemory" in l_detailValues.keys():
+        
+            l_memoryValue = str(l_detailValues["axiom_usedBufferSharedMemory"])
+            
+            if len(l_memoryValue) <= 3:
+                l_memoryValue += " MBs"
+            else:
+                l_memoryValue = str(float(l_memoryValue) / 1000.0) + " GBs"
+            
+            self.c_labelSharedMemory.setText(l_memoryValue)
+            
+        if "axiom_memoryLoad" in l_detailValues.keys():
+            
+            self.c_graphMemoryUsed.updateData(l_detailValues["axiom_memoryLoad"])
+            
+        data = l_detailValues["axiom_profile"]
+        
+        if data == self.c_previousData:
+        
+            return 0
+            
+        self.c_previousData = data
+            
+        for row in self.c_tracks.keys():
+            self.c_tracks[row].hide()
+            
+        self.c_tracks["empty"].show()
+        
+        timelines = data.split("<tl>")
+        
+        lo = -1;
+        hi = -1;
+        
+        allValues = {}
+        
+        for timelineO in timelines:
+            
+            timlineO_data = timelineO.split("<tld>")
+            
+            if len(timlineO_data) != 2:
+                continue
+            
+            label = timlineO_data[0]
+            
+            timlineO_data = timlineO_data[1].split("<tlo>")
+            
+            values = {}
+            
+            count = 0
+            
+            for timlineO_dataObject in timlineO_data:
+            
+                timline_dataObject_data = timlineO_dataObject.split("<tlod>")
+                
+                if len(timline_dataObject_data) == 3:
+                
+                    inVal = float(timline_dataObject_data[1])
+                    outVal = float(timline_dataObject_data[2])
+                    
+                    if lo == -1:
+                        lo = inVal
+                    if hi == -1:
+                        hi = inVal
+                
+                    lo = min(inVal, lo)
+                    lo = min(outVal, lo)
+                    
+                    hi = max(inVal, hi)
+                    hi = max(outVal, hi)
+        
+                    values[timline_dataObject_data[0] + ":" + str(count)] = [inVal, outVal]
+                    
+                    count += 1
+             
+            allValues[label] = values
+            
+        efficiency = 0.0
+            
+        if "total" in allValues.keys():
+        
+            if len(allValues["total"]) == 0:
+                
+                    return 0
+        
+            values = allValues["total"][list(allValues["total"].keys())[0]]
+            
+            minVal = values[0]
+            maxVal = values[1]
+            
+            #Clamp the timeline range to this track too.
+            low = minVal
+            hi = maxVal
+        
+            for track in allValues.keys():
+            
+                for item in allValues[track].keys():
+            
+                    #allValues[track][item][0] = max(minVal, allValues[track][item][0])
+                    #allValues[track][item][0] = min(maxVal, allValues[track][item][0])
+                    
+                    #allValues[track][item][1] = max(minVal, allValues[track][item][1])
+                    #allValues[track][item][1] = min(maxVal, allValues[track][item][1])
+                    
+                    if track == "compute_0" or track == "blit_0":
+                        efficiency += allValues[track][item][1] - allValues[track][item][0]
+            
+            
+            efficiency /= maxVal - minVal
+            
+            self.c_graphGPUEfficiency.updateData(efficiency)
+                    
+        order = ["dcc", "input", "solver", "script", "compute", "blit"]
+        
+        for s in range(16):
+            order.append("compute_" + str(s))
+        for s in range(16):
+            order.append("blit_" + str(s))
+        for s in range(16):
+            order.append("eventWait_" + str(s))
+        
+        order += ["queue_commit", "queue_finish", "queue_compute", "queue_blit", "queue", "output"]
+        
+        for s in range(16):
+            order.append("debug_" + str(s))
+        
+        order += ["total"]
+                 
+        for values in order:
+        
+            if not values in allValues.keys():
+                continue
+                
+            if not values in self.c_tracks.keys():
+                self.c_tracks[values] = timeline(values, allValues[values], lo, hi, self.scrollChanged, self.dragChanged, self.cursorChanged)
+                self.c_layoutTracks.addWidget(self.c_tracks[values])
+                
+            self.c_tracks[values].refreshTimelineData(allValues[values], lo, hi)
+                
+            if len(allValues[values].keys()) == 0:
+                self.c_tracks[values].hide()
+            else:
+                self.c_tracks[values].show()
+                self.c_tracks["empty"].hide()
+    
+    def wheelEvent(self, event):
+        offset = event.delta() / 4
+        self.scrollChanged.emit(offset)
+
+    def mousePressEvent(self, event):
+        #print("click")
+        if self.clicked == False:
+            self.pos_x = event.pos().x()
+            self.clicked = True
+            
+    def mouseMoveEvent(self, event):
+        #print("move")
+        if self.clicked:
+            offset = event.pos().x() - self.pos_x
+            self.pos_x = event.pos().x()
+            self.dragChanged.emit(offset)
+        
+    def mouseReleaseEvent(self, event):
+        #print("release")
+        if self.clicked == True:
+            self.clicked = False
+
+        
+
+
+
+
+
+class CircularBarGraph(QtWidgets.QWidget):
+
+    c_graph = None
+    c_percentLabel = None
+    
+    c_mode = 0
+    
+    def __init__(self, label, mode, parent=None):
+    
+        QtWidgets.QWidget.__init__(self, parent)
+        
+        self.c_mode = mode
+        
+        #Sets the mouseMoveEventToTrack live. Without it the even is only triggered when clicked.
+        self.setMouseTracking(True)
+
+        self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
+        #self.setStyleSheet("background-color: rgb(32, 32, 32);")
+        
+        MasterLayout = QtWidgets.QHBoxLayout()
+        
+        nodeLabel = QtWidgets.QLabel(label)
+        nodeLabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        nodeLabel.setFocusPolicy(QtCore.Qt.NoFocus)
+        nodeLabel.setFixedWidth(100)
+        
+        MasterLayout.addWidget(nodeLabel)
+        
+        self.c_graph = CircularBarGraphChart(mode)
+
+        width = self.frameGeometry().width()
+        height = self.frameGeometry().height()
+
+        radius = min(self.width(), self.height())
+        
+        self.c_percentLabel = QtWidgets.QLabel("")
+        self.c_percentLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        self.c_percentLabel.setFocusPolicy(QtCore.Qt.NoFocus)
+        
+        stack = QtWidgets.QStackedLayout()
+        stack.setStackingMode(QtWidgets.QStackedLayout.StackAll)
+        stack.addWidget(self.c_percentLabel)
+        stack.addWidget(self.c_graph )
+
+        MasterLayout.addLayout(stack)
+        
+        MasterLayout.setContentsMargins(0,0,0,0)
+        
+        self.setLayout(MasterLayout)
+        
+        self.show()
+        
+    def updateData(self, data):
+        self.c_percentLabel.setText(str(int(data * 100)) + "%")
+        self.c_graph.updateData(data)
+
+
+class CircularBarGraphChart(QtWidgets.QWidget):
+
+    c_value = 0.8
+    
+    c_mode = 0
+
+    def __init__(self, mode, parent=None):
+    
+        QtWidgets.QWidget.__init__(self, parent)
+        
+        self.c_mode = mode
+        
+        #self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
+        #self.setStyleSheet("background-color: rgb(64, 32, 32);")
+        
+        
+        policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        policy.setHeightForWidth(True)
+        self.setSizePolicy(policy)
+        
+        
+        self.show()
+        
+    def heightForWidth(self, width):
+        return width
+        
+    def paintEvent(self, event):
+        painter = QtGui.QPainter()
+        painter.begin(self)
+        self.paintShapes(painter)
+        painter.end()
+
+    def paintShapes(self, painter):
+
+        # Set the center and radius of the circle
+        center = self.rect().center()
+        radius = min(self.width(), self.height()) / 2 - 2
+        
+        if radius < 0:
+            radius = 0
+            
+        full_path = QtGui.QPainterPath()
+        full_path.addRect(self.rect())
+        path = QtGui.QPainterPath()
+        path.addEllipse(center, radius * 0.5, radius * 0.5)
+        full_path -= path
+        painter.setClipPath(full_path)
+            
+        painter.setPen(QtGui.QColor(30, 130, 70))
+        painter.setBrush(QtGui.QColor(20, 100, 50))
+        painter.drawEllipse(center, radius, radius)
+
+        painter.setPen(QtGui.QColor(0, 100, 100))
+        painter.setBrush(QtGui.QColor(0, 64, 64))
+        
+        l_testValue = self.c_value
+        
+        if self.c_mode == 0:
+            
+            if l_testValue >= 0.8:
+                painter.setPen(QtGui.QColor(100, 100, 0))
+                painter.setBrush(QtGui.QColor(64, 64, 0))
+                
+            if l_testValue >= 0.9:
+                painter.setPen(QtGui.QColor(100, 0, 0))
+                painter.setBrush(QtGui.QColor(64, 0, 0))
+            
+        elif self.c_mode == 1:
+        
+            if l_testValue < 0.8:
+                painter.setPen(QtGui.QColor(100, 100, 0))
+                painter.setBrush(QtGui.QColor(64, 64, 0))
+                
+            if l_testValue < 0.7:
+                painter.setPen(QtGui.QColor(100, 0, 0))
+                painter.setBrush(QtGui.QColor(64, 0, 0))
+            
+        painter.drawPie(center.x() - radius, center.y() - radius, 2 * radius, 2 * radius, 360*12, -360*16*self.c_value)
+
+    def updateData(self, data):
+        self.c_value = data
+        self.update()
+        
+class timeline(QtWidgets.QWidget):
+    
+    timeLineWidget = None
+    
+    def __init__(self, label, values, lo, hi, scrollEventSignal, dragEventSignal, cursorSignal, parent=None):
+    
+        QtWidgets.QWidget.__init__(self, parent)
+        
+        #Sets the mouseMoveEventToTrack live. Without it the even is only triggered when clicked.
+        self.setMouseTracking(True)
+        
+        MasterLayout = QtWidgets.QHBoxLayout()
+        
+        formatLabel = label.capitalize()
+        formatLabel = formatLabel.replace("Eventwait", "Event Wait").replace("commit", "Commit").replace("finish", "Wait").replace("compute", "Compute").replace("blit", "Blit").replace("_", " - ")
+        
+        nodeLabel = QtWidgets.QLabel(formatLabel)
+        nodeLabel.setFocusPolicy(QtCore.Qt.NoFocus)
+        nodeLabel.setFixedWidth(100)
+        
+        MasterLayout.addWidget(nodeLabel)
+        
+        self.timeLineWidget = timelineView(label, values, lo, hi, scrollEventSignal, dragEventSignal, cursorSignal)
+        
+        MasterLayout.addWidget(self.timeLineWidget)
+        
+        MasterLayout.setContentsMargins(0,0,0,0)
+        
+        self.setLayout(MasterLayout)
+        
+        self.setGeometry(1000, 1000, 1000, 1000)
+
+        self.show()
+        
+    def refreshTimelineData(self, values, lo, hi):
+        self.timeLineWidget.refreshTimelineData(values, lo, hi)
+        
+        
+class timelineView(QtWidgets.QWidget):
+
+    pos_x = 0
+    pos_y = 0
+    
+    click_pos = 0
+    drag_pos = 0
+    clicked = False
+    
+    cursor_pos = 0
+    
+    data = None
+    shapes = []
+    size = [0, 0]
+    lo = 0
+    hi = 0
+    label = ""
+    offset = 0
+    scale = 0
+    
+    cursorSignal = None
+    
+    def __init__(self, label, values, lo, hi, scrollEventSignal, dragEventSignal, cursorSignal, parent=None):
+    
+        QtWidgets.QWidget.__init__(self, parent)
+        
+        #Sets the mouseMoveEventToTrack live. Without it the even is only triggered when clicked.
+        self.setMouseTracking(True)
+        
+        self.label = label
+        
+        self.shapes = values
+        
+        self.lo = lo
+        self.hi = hi
+        
+        self.pos_x = -100
+        self.pos_y = -100
+        self.cursor_pos = -100
+        
+        self.setGeometry(1000, 1000, 1000, 1000)
+
+        self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
+        self.setStyleSheet("background-color: rgb(32, 32, 32);")
+        
+        cursorSignal.connect(self.updateCursor)
+        scrollEventSignal.connect(self.updateScale)
+        dragEventSignal.connect(self.updateOffset)
+        
+        self.cursorSignal = cursorSignal
+        
+        self.show()
+        
+    def refreshTimelineData(self, values, lo, hi):
+        self.shapes = values
+        self.lo = lo
+        self.hi = hi
+        self.update()
+    
+    def resizeEvent(self, event):
+        self.size[0] = event.size().width()
+        self.size[1] = event.size().height()
+        self.update()
+        
+    def leaveEvent(self, event):
+        self.pos_x = -100
+        self.pos_y = -100
+        self.cursor_pos = -100
+        self.update()
+        self.cursorSignal.emit(self.cursor_pos)
+        
+    #update when the mouse moves.
+    def mouseMoveEvent(self, event):
+        self.pos_x = event.pos().x()
+        self.pos_y = event.pos().y()
+        self.cursor_pos = event.pos().x()
+        if self.clicked:
+            self.drag_pos = event.pos().x()
+        self.update()
+        self.cursorSignal.emit(self.cursor_pos)
+        
+    def mousePressEvent(self, event):
+        if self.clicked == False:
+            self.click_pos = event.pos().x()
+            self.drag_pos = event.pos().x()
+            self.clicked = True
+        self.update()
+        
+            
+    def mouseReleaseEvent(self, event):
+        if self.clicked == True:
+            self.clicked = False
+        self.update()
+        
+        
+    def updateCursor(self, cursor):
+        self.cursor_pos = cursor
+        self.update()
+        
+    def updateOffset(self, offset):
+        self.offset += offset
+        self.update()
+        
+    def updateScale(self, scale):
+        self.scale -= scale
+        self.update()
+        
+    #Paints all the shapes.
+    def paintEvent(self, event):
+        painter = QtGui.QPainter()
+        painter.begin(self)
+        self.paintShapes(painter)
+        painter.end()
+
+    def paintShapes(self, painter):
+    
+        global_offset = self.scale
+        if (global_offset * 2.2) > self.size[0]:
+            global_offset = self.size[0] / 2.2
+            self.scale = self.size[0] / 2.2
+        global_width = self.size[0] - (global_offset * 2)
+        global_height_offset = 8
+        global_height = self.size[1] - (global_height_offset * 2)
+
+        global_offset += self.offset
+        
+        global_scale = float(global_width) / float(self.size[0])
+        
+        global_offset_scale = float(global_offset) / float(self.size[0])
+
+        color = QtGui.QColor(0, 64, 64)
+        colorOutline = QtGui.QColor(0, 100, 100)
+        colorHighlight = QtGui.QColor(0, 128, 128)
+        
+        if "queue" in self.label:
+            color = QtGui.QColor(64, 64, 0)
+            colorOutline = QtGui.QColor(100, 100, 0)
+            colorHighlight = QtGui.QColor(128, 128, 0)
+        elif "script" in self.label:
+            color = QtGui.QColor(0, 64, 0)
+            colorOutline = QtGui.QColor(0, 100, 0)
+            colorHighlight = QtGui.QColor(0, 128, 0)
+        elif "input" in self.label or "output" in self.label:
+            color = QtGui.QColor(64, 0, 0)
+            colorOutline = QtGui.QColor(100, 0, 0)
+            colorHighlight = QtGui.QColor(128, 0, 0)
+        elif "solver" in self.label or "dcc" in self.label:
+            color = QtGui.QColor(0, 64, 100)
+            colorOutline = QtGui.QColor(0, 75, 150)
+            colorHighlight = QtGui.QColor(0, 100, 200)
+        elif "debug" in self.label:
+            color = QtGui.QColor(158, 76, 38)
+            colorOutline = QtGui.QColor(190, 100, 48)
+            colorHighlight = QtGui.QColor(247, 126, 57)
+        elif "event" in self.label:
+            color = QtGui.QColor(57, 20, 120)
+            colorOutline = QtGui.QColor(80, 35, 160)
+            colorHighlight = QtGui.QColor(110, 45, 200)
+        
+        #Time Object
+        for shape in self.shapes.keys():
+        
+            if self.label.lower().startswith("blit"):
+                color = QtGui.QColor(80, 20, 80)
+                colorOutline = QtGui.QColor(120, 30, 120)
+                colorHighlight = QtGui.QColor(120, 30, 120)
+                l_shapeLabel = shape.split(":")[0].lower()
+                if "device" in l_shapeLabel:
+                    color = QtGui.QColor(20, 100, 50)
+                    colorOutline = QtGui.QColor(30, 130, 70)
+                    colorHighlight = QtGui.QColor(30, 130, 70)
+                    
+            #Set default colors.
+            painter.setPen(colorOutline)
+            painter.setBrush(color)
+        
+            values = self.shapes[shape]
+            
+            ms = values[1] - values[0]
+        
+            enter = (values[0] - self.lo) / (self.hi - self.lo)
+            exit = (values[1] - self.lo) / (self.hi - self.lo)
+                    
+            x = enter * global_width
+            y = global_height_offset
+            width = (exit - enter) * global_width
+            height = global_height
+            
+            x += global_offset
+            
+            if width < 2:
+                width = 2
+            
+            #Find relative mouse position.
+            rel_x = self.pos_x - x
+            rel_y = self.pos_y - y
+            
+            #If the mouse is inside the shape's bounds, use the highlighted color.
+            if(rel_x > 0 and rel_x < width and self.pos_x > 0) and self.clicked == False:
+                painter.setBrush(colorHighlight)
+                painter.setPen(colorHighlight)
+            else:
+                painter.setBrush(color)
+                painter.setPen(colorOutline)
+            
+            painter.drawRect(x, y, width, height)
+            
+
+        #Time Object Label
+        if self.clicked == False:
+                
+            for shape in self.shapes.keys():
+            
+                values = self.shapes[shape]
+                
+                ms = values[1] - values[0]
+                
+                enter = (values[0] - self.lo) / (self.hi - self.lo)
+                exit = (values[1] - self.lo) / (self.hi - self.lo)
+                
+                x = enter * global_width
+                y = global_height_offset
+                width = (exit - enter) * global_width
+                height = global_height
+                
+                x += global_offset
+                
+                if width < 2:
+                    width = 2
+                    
+                #Find relative mouse position.
+                rel_x = self.pos_x - x
+                rel_y = self.pos_y - y
+    
+                if(rel_x > 0 and rel_x < width and self.pos_x > 0):
+                    textColor = QtGui.QColor(255, 255, 255)
+                    textColorFill = QtGui.QColor(0, 0, 0)
+                    painter.setBrush(textColorFill)
+                    painter.setPen(textColor)
+                    
+                    l_msInt = ms * 1000.0
+                    
+                    l_labelTime = ""
+                    
+                    if l_msInt > 0.1:
+                        l_labelTime = str("{0:.2f}".format(ms * 1000.0)) + " ms"
+                    else:
+                        l_labelTime = str("{0:.0f}".format(ms * 1000000.0)) + " us"
+    
+                    label = shape.split(":")[0] + " : " + l_labelTime
+                    
+                    height = painter.fontMetrics().boundingRect(label).height()
+                    
+                    painter.drawText(self.pos_x + 10, (self.size[1] / 2) + (height/4), label)
+                    
+                    break
+
+
+        #Time Line Markers
+        sep = int(global_width / 86)
+        
+        sep = max(2, sep)
+        
+        for i in range(sep):
+        
+            space = float(i) / float(sep-1)
+            x = space * global_width
+            x += global_offset
+            
+            base = 86
+            
+            color = QtGui.QColor(base, base, base, 128)
+            
+            if (i % 4) == 0:
+                color = QtGui.QColor(base, base, base, 200)
+            
+            painter.setBrush(color)
+            painter.setPen(color)
+            
+            painter.drawLine(x, 0, x, self.size[1])
+            
+            if "dcc" in self.label:
+                textColor = QtGui.QColor(128, 128, 128)
+                textColorFill = QtGui.QColor(0, 0, 0)
+                painter.setBrush(textColorFill)
+                painter.setPen(textColor)
+                
+                ms = (self.hi - self.lo) * space * 1000
+                
+                ms *= 100
+                ms = int(ms)
+                ms /= 100.0
+    
+                label = str(ms) + " ms"
+                
+                offset = painter.fontMetrics().boundingRect(label).height() / 2
+                
+                painter.drawText(x, offset + 1, label)
+                
+                
+        #Time Line Head Label
+        if self.clicked == False:
+                    
+            color = QtGui.QColor(255, 255, 255, 128)
+    
+            painter.setBrush(color)
+            painter.setPen(color)
+            
+            painter.drawLine(self.cursor_pos, 0, self.cursor_pos, self.size[1])
+            
+            textColor = QtGui.QColor(255, 255, 255)
+            textColorFill = QtGui.QColor(0, 0, 0)
+            painter.setBrush(textColorFill)
+            painter.setPen(textColor)
+                            
+            ms = (self.hi - self.lo) * float(float(float(self.pos_x - global_offset) / self.size[0]) / global_scale) * 1000.0
+                
+            ms *= 100
+            ms = int(ms)
+            ms /= 100.0
+    
+            label = str(ms) + " ms"
+            
+            offset = 55
+            if ms > 100:
+                offset += 10
+                
+            offset = painter.fontMetrics().boundingRect(label).width() + 10
+            height = painter.fontMetrics().boundingRect(label).height()
+                        
+            painter.drawText(self.pos_x - offset, (self.size[1] / 2) + (height/4), label)
+        
+        
+        #Timeline Measure Tool
+        if self.clicked:
+        
+            color = QtGui.QColor(100, 180, 255, 64)
+            colorOutline = QtGui.QColor(255, 255, 255, 128)
+            
+            painter.setBrush(color)
+            painter.setPen(colorOutline)
+            
+            width = abs(self.click_pos - self.drag_pos)
+            x = min(self.click_pos, self.drag_pos)
+                
+            painter.drawRect(x, -10, width, 1000)
+            
+            textColor = QtGui.QColor(255, 255, 255)
+            textColorFill = QtGui.QColor(0, 0, 0)
+            painter.setBrush(textColorFill)
+            painter.setPen(textColor)
+            
+            ms0 = (self.hi - self.lo) * float(float(float(self.click_pos - global_offset) / self.size[0]) / global_scale) * 1000.0
+            ms1 = (self.hi - self.lo) * float(float(float(self.drag_pos - global_offset) / self.size[0]) / global_scale) * 1000.0
+            
+            ms = abs(ms0 - ms1)
+            
+            ms *= 100
+            ms = int(ms)
+            ms /= 100.0
+    
+            label = str(ms) + " ms"
+            
+            width = painter.fontMetrics().boundingRect(label).width()
+            height = painter.fontMetrics().boundingRect(label).height()
+            
+            painter.drawText(((self.click_pos + self.drag_pos) / 2) - (width / 2), (self.size[1] / 2) + (height/4), label)
+            
+            
+        #Fixed Markers
+            
+        #Realtime Marker
+        space = (1.0 / float(hou.expandString("$FPS"))) / (self.hi - self.lo)
+        x = space * global_width
+        x += global_offset
+        
+        color = QtGui.QColor(255, 255, 64, 64)
+        
+        painter.setBrush(color)
+        painter.setPen(color)
+        
+        painter.drawLine(x, 0, x, self.size[1])
+        
+        #Second Marker
+        space = 1.0 / (self.hi - self.lo)
+        x = space * global_width
+        x += global_offset
+        
+        color = QtGui.QColor(255, 255, 64, 64)
+        
+        painter.setBrush(color)
+        painter.setPen(color)
+        
+        painter.drawLine(x, 0, x, self.size[1])
+        
+        #Burger Marker
+        space = 15.0 / (self.hi - self.lo)
+        x = space * global_width
+        x += global_offset
+        
+        color = QtGui.QColor(255, 255, 64, 64)
+        
+        painter.setBrush(color)
+        painter.setPen(color)
+        
+        painter.drawLine(x, 0, x, self.size[1])
+        
+        
+        
+
+        
+
+def onCreateInterface():
+    global globalInterface
+    globalInterface = AxiomProfile()
+    return globalInterface
+
+def onNodePathChanged(node):
+    global globalInterface
+    globalInterface.refreshTimelineData()
+
+
+]]></script>
+    <includeInToolbarMenu menu_position="0" create_separator="true"/>
+    <help><![CDATA[]]></help>
+  </interface>
+</pythonPanelDocument>

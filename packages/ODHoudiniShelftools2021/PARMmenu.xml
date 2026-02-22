@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menuDocument>
+
+    <menu>
+
+<!-- <subMenu id="ODMasterParm"> -->
+<!-- <label>ODTools</label> -->
+
+<!--         <subMenu id="ValueEnter">
+            <label>Value Enter</label>
+            <insertBefore /> -->
+            <scriptItem id="OD_venter">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Enter Unit Measure values and convert [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+kwargs["parms"][0].set(shelftools.computeUnits(kwargs["parms"][0].eval()))
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_jobc">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() == "String"</expression>
+                </context>
+                <label>Set Relative to $JOB [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.makePathRelativeToJob(hou.expandString("$JOB"), kwargs["parms"])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+
+
+
+            <scriptItem id="OD_fusionspline">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Create Keyframes From Fusion .spl Spline File [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.importFusionSpline(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_saveclip">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Save Clip/Keys [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.saveClip(kwargs["parms"])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_loadclip">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) == 1 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Load Clip/Keys [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.loadClip(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+
+
+        <!-- </subMenu>             -->
+
+            <separatorItem />
+
+            <scriptItem id="OD_disnoise">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Disable Motion FX [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.disableNoise(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_updatemfx">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Update MotionFX [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.updateMotionFX(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_ennoise">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() != "String"</expression>
+                </context>
+                <label>Enable Motion FX [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.enableNoise(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_openNative">
+                <!-- <insertBefore /> -->
+                <context>
+                    <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() == "String"</expression>
+                </context>
+                <label>Open Native File Requester [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.openNativeFileRequester(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+        <subMenu id="OD_open_in">
+            <label>Open in... [OD]</label>
+            <context>
+		        <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() == "String"</expression>
+	        </context>
+            <scriptItem id="OD_reveal_in_file_browser">
+                <label>File browser [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+path = kwargs["parms"][0].eval()
+old_path = path
+if path != "":
+    path = hou.expandString(path)
+    path = os.path.dirname(path)
+    path = os.path.normpath(path)
+    if os.path.exists(path):
+        if sys.platform == "linux2" or sys.platform == "linux":
+            new_env = os.environ
+            new_env["LD_LIBRARY_PATH"] = ""
+            subprocess.Popen(["xdg-open", path], env=new_env)
+        if sys.platform == "win32":
+            subprocess.Popen(r'explorer /select,"'+kwargs["parms"][0].eval().replace("/", "\\")+'"')
+        if sys.platform == "darwin":
+            subprocess.Popen(["open", path])
+    else:
+        print('Folder "{}" does not exist or you do not have permission to access it'.format(old_path))
+]]>
+                </scriptCode>
+            </scriptItem>
+            <scriptItem id="OD_reveal_in_mplay">
+                <label>Mplay [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+in_path = hou.pwd().path()
+hou.cd(kwargs["parms"][0].node().path())
+path = kwargs["parms"][0].unexpandedString()
+if path != "":
+    path = path.replace("$F", "\$F")
+    path = path.replace("$T", "\$T")
+    path = path.replace("$SF", "\$SF")
+    path = os.path.normpath( hou.expandString(path) )
+    subprocess.Popen(["mplay", path])
+hou.cd(in_path)
+]]>
+                </scriptCode>
+            </scriptItem>
+            <scriptItem id="OD_reveal_in_gplay">
+                <label>Geo Viewer [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = os.path.normpath(path)
+    subprocess.Popen(["gplay", path])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+            <scriptItem id="OD_reveal_in_djv_view">
+                <label>Djv view [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = os.path.normpath(path)
+    djvPath = "C:/Program Files/DJV2/bin/djv"
+    if os.getenv('djvpath'):
+        djvPath = os.getenv('djvPath')
+    subprocess.Popen([djvPath, path])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_reveal_in_cinesync_view">
+                <label>Cinesync Play [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = os.path.normpath(path)
+    playerPath = "C:/Program Files (x86)/cineSync Play/cineSyncPlayBeta.exe"
+    if os.getenv('cineSyncPath'):
+        playerPath = os.getenv('cineSyncPath')
+    subprocess.Popen([playerPath, path])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_reveal_in_affinity">
+                <label>Affinity Photo [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = os.path.normpath(path)
+    affinityPath = "C:/Program Files/Affinity/Photo/Photo.exe"
+    if os.getenv('affinitypath'):
+        affinityPath = os.getenv('affinitypath')
+    subprocess.Popen([affinityPath, path])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_reveal_in_photoshop">
+                <label>Photoshop [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os, sys, subprocess
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = os.path.normpath(path)
+    photoshopPath = "C:/Program Files/Adobe/Adobe Photoshop 2020/Photoshop"
+    if os.getenv('photoshoppath'):
+        photoshopPath = os.getenv('photoshoppath')
+    subprocess.Popen([photoshopPath, path])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+        </subMenu>
+
+<separatorItem />
+            <scriptItem id="OD_loadParm">
+                <!-- <insertBefore /> -->
+                <label>Load Parm [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.loadParm(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+
+            <scriptItem id="OD_saveParm">
+                <!-- <insertBefore /> -->
+                <label>Save Parm [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.saveParm(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_replaceInParm">
+                <!-- <insertBefore /> -->
+                <label>Replace In Parm [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.parmValueReplace(kwargs["parms"][0])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+<separatorItem />
+
+            <scriptItem id="OD_hideParm">
+                <!-- <insertBefore /> -->
+                <label>Hide Parm [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.hideParm(kwargs["parms"])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+            <scriptItem id="OD_unhideParm">
+                <!-- <insertBefore /> -->
+                <label>Un-Hide Parm [OD]</label>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.unhideParm(kwargs["parms"])
+]]>
+                </scriptCode>
+            </scriptItem>
+
+
+<separatorItem />
+<scriptItem id="OD_distribute_knots">
+<label>Distribute Ramp Knots [OD]</label>
+<expression>
+parm = kwargs["parms"]
+if not parm:
+    return False
+
+return parm[0].parmTemplate().type().name() == 'Ramp'
+</expression>
+
+<scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.distributeRampKnots(kwargs["parms"][0])
+]]>
+</scriptCode>
+</scriptItem>
+
+<scriptItem id="OD_double_knots">
+<label>Double Ramp Knots [OD]</label>
+<expression>
+parm = kwargs["parms"]
+if not parm:
+    return False
+
+return parm[0].parmTemplate().type().name() == 'Ramp'
+</expression>
+
+<scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.doubleRampKnots(kwargs["parms"][0])
+]]>
+</scriptCode>
+
+</scriptItem>
+
+<scriptItem id="OD_unique_knots">
+<label>Keep Unique Ramp Knots [OD]</label>
+<expression>
+parm = kwargs["parms"]
+if not parm:
+    return False
+
+return parm[0].parmTemplate().type().name() == 'Ramp'
+</expression>
+
+<scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.keepUniqueRampKnots(kwargs["parms"][0])
+]]>
+</scriptCode>
+
+</scriptItem>
+
+<scriptItem id="OD_resample_knots">
+<label>Resample Ramp Knots [OD]</label>
+<expression>
+parm = kwargs["parms"]
+if not parm:
+    return False
+
+return parm[0].parmTemplate().type().name() == 'Ramp'
+</expression>
+
+<scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.resampleRampKnots(kwargs["parms"][0])
+]]>
+</scriptCode>
+
+
+</scriptItem>
+
+<scriptItem id="OD_colorRampToPoints">
+                <label>ColorRamp to Points [OD]</label>
+<expression>
+parm = kwargs["parms"]
+if not parm:
+    return False
+
+return parm[0].parmTemplate().type().name() == 'Ramp'
+</expression>
+                <scriptCode>
+<![CDATA[
+import os
+from OD import shelftools
+shelftools.colorRampToPoints(kwargs["parms"][0])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+<scriptItem id="OD_palRamp">
+                <label>Palletize Ramp [OD]</label>
+<expression>
+parm = kwargs["parms"]
+if not parm:
+    return False
+
+return parm[0].parmTemplate().type().name() == 'Ramp'
+</expression>
+                <scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.palletizeRamp(kwargs["parms"][0])
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+
+
+
+
+
+            <separatorItem />
+
+<scriptItem id="OD_removeSpareParm">
+<label>Remove Spare Parm [OD]</label>
+<scriptCode>
+<![CDATA[
+from OD import shelftools
+shelftools.removeSpareParm(kwargs["parms"][0])
+]]>
+</scriptCode>
+
+
+</scriptItem>
+<scriptItem id="OD_checkFileExistance">
+                <label>Check File Exists [OD]</label>
+                <scriptCode>
+<![CDATA[
+import os
+path = kwargs["parms"][0].eval()
+if path != "":
+    path = hou.text.expandString(path)
+    if os.path.exists(path):
+        hou.ui.displayMessage("Exists")
+    else:
+        hou.ui.displayMessage("File does not exist")
+ ]]>
+                </scriptCode>
+            </scriptItem>
+
+
+
+
+
+<!-- </subMenu> -->
+    </menu>
+</menuDocument>

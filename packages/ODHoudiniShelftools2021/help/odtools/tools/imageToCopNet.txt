@@ -1,0 +1,5 @@
+= Image to Copnet =
+
+"""Takes an image node and creates a copnet for it"""
+
+When right clicking on an image node this will create a copynet for the image, and reference the result back to the image node.  This can be very useful when modifications to the image need to be made, such as blurring, color correcting, distortions, etc.

@@ -1,0 +1,2185 @@
+// Magic: 3fcfdae
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Fri Apr 26 20:51:16 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+xn__riintegratorname_01ak.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorname_01ak.label = PARM_LABEL_SIMPLE("RenderMan Integrator", "xn__riintegratorname_01ak") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorname_01ak.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracermaxIndirectBounces_zbckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracermaxIndirectBounces_zbckn.label = PARM_LABEL("Max Indirect Bounces", "xn__riintegratorPxrPathTracermaxIndirectBounces_zbckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracermaxIndirectBounces_zbckn", none, none) RANGE(0,15)
+	 LABELREF(xn__riintegratorPxrPathTracermaxIndirectBounces_zbckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracermaxContinuationLength_vgckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracermaxContinuationLength_vgckn.label = PARM_LABEL("Continuation Depth", "xn__riintegratorPxrPathTracermaxContinuationLength_vgckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracermaxContinuationLength_vgckn", none, none) RANGE(-1,15)
+	 LABELREF(xn__riintegratorPxrPathTracermaxContinuationLength_vgckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracermaxNonStochasticOpacityEvents_wtckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracermaxNonStochasticOpacityEvents_wtckn.label = PARM_LABEL("Stochastic Opacity Depth", "xn__riintegratorPxrPathTracermaxNonStochasticOpacityEvents_wtckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracermaxNonStochasticOpacityEvents_wtckn", none, none) RANGE(0,15)
+	 LABELREF(xn__riintegratorPxrPathTracermaxNonStochasticOpacityEvents_wtckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracersampleMode_yxbkn.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrPathTracersampleMode_yxbkn.label = PARM_LABEL_SIMPLE("Sample Mode", "xn__riintegratorPxrPathTracersampleMode_yxbkn") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrPathTracersampleMode_yxbkn.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumLightSamples_35bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumLightSamples_35bkn.label = PARM_LABEL("Light Samples", "xn__riintegratorPxrPathTracernumLightSamples_35bkn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumLightSamples_35bkn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumLightSamples_35bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumBxdfSamples_h4bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumBxdfSamples_h4bkn.label = PARM_LABEL("BXDF Samples", "xn__riintegratorPxrPathTracernumBxdfSamples_h4bkn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumBxdfSamples_h4bkn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumBxdfSamples_h4bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumIndirectSamples_zbckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumIndirectSamples_zbckn.label = PARM_LABEL("Indirect Samples", "xn__riintegratorPxrPathTracernumIndirectSamples_zbckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumIndirectSamples_zbckn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumIndirectSamples_zbckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumDiffuseSamples_d9bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumDiffuseSamples_d9bkn.label = PARM_LABEL("Diffuse Samples", "xn__riintegratorPxrPathTracernumDiffuseSamples_d9bkn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumDiffuseSamples_d9bkn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumDiffuseSamples_d9bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumSpecularSamples_zbckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumSpecularSamples_zbckn.label = PARM_LABEL("Specular Samples", "xn__riintegratorPxrPathTracernumSpecularSamples_zbckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumSpecularSamples_zbckn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumSpecularSamples_zbckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumSubsurfaceSamples_8eckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumSubsurfaceSamples_8eckn.label = PARM_LABEL("Subsurface Samples", "xn__riintegratorPxrPathTracernumSubsurfaceSamples_8eckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumSubsurfaceSamples_8eckn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumSubsurfaceSamples_8eckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracernumRefractionSamples_8eckn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracernumRefractionSamples_8eckn.label = PARM_LABEL("Refraction Samples", "xn__riintegratorPxrPathTracernumRefractionSamples_8eckn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracernumRefractionSamples_8eckn", none, none) RANGE(0,8)
+	 LABELREF(xn__riintegratorPxrPathTracernumRefractionSamples_8eckn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracerallowCaustics_u2bkn.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrPathTracerallowCaustics_u2bkn", "Allow Caustics") toggle VALUE(xn__riintegratorPxrPathTracerallowCaustics_u2bkn.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTraceraccumOpacity_70bkn.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrPathTraceraccumOpacity_70bkn", "Accumulate Opacity") toggle VALUE(xn__riintegratorPxrPathTraceraccumOpacity_70bkn.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrOcclusionnumSamples_cwbkm.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrOcclusionnumSamples_cwbkm.label = PARM_LABEL("Num Samples", "xn__riintegratorPxrOcclusionnumSamples_cwbkm") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrOcclusionnumSamples_cwbkm", none, none) RANGE(4,64)
+	 LABELREF(xn__riintegratorPxrOcclusionnumSamples_cwbkm.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrOcclusiondistribution_lzbkm.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrOcclusiondistribution_lzbkm.label = PARM_LABEL_SIMPLE("Sample Distribution", "xn__riintegratorPxrOcclusiondistribution_lzbkm") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrOcclusiondistribution_lzbkm.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrOcclusioncosineSpread_lzbkm.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrOcclusioncosineSpread_lzbkm.label = PARM_LABEL("Cosine Spread", "xn__riintegratorPxrOcclusioncosineSpread_lzbkm") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrOcclusioncosineSpread_lzbkm", none, none) RANGE(0.5,1.5)
+	 LABELREF(xn__riintegratorPxrOcclusioncosineSpread_lzbkm.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrOcclusionfalloff_grbkm.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrOcclusionfalloff_grbkm.label = PARM_LABEL("Falloff", "xn__riintegratorPxrOcclusionfalloff_grbkm") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrOcclusionfalloff_grbkm", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrOcclusionfalloff_grbkm.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrOcclusionmaxDistance_yxbkm.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrOcclusionmaxDistance_yxbkm.label = PARM_LABEL("Max Distance", "xn__riintegratorPxrOcclusionmaxDistance_yxbkm") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrOcclusionmaxDistance_yxbkm", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrOcclusionmaxDistance_yxbkm.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrOcclusionuseAlbedo_pubkm.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrOcclusionuseAlbedo_pubkm", "Use Albedo") toggle VALUE(xn__riintegratorPxrOcclusionuseAlbedo_pubkm.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMconnectPaths_tpbkg.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrVCMconnectPaths_tpbkg", "connectPaths") toggle VALUE(xn__riintegratorPxrVCMconnectPaths_tpbkg.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMmergePaths_kmbkg.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrVCMmergePaths_kmbkg", "mergePaths") toggle VALUE(xn__riintegratorPxrVCMmergePaths_kmbkg.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMnumLightSamples_pubkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMnumLightSamples_pubkg.label = PARM_LABEL("numLightSamples", "xn__riintegratorPxrVCMnumLightSamples_pubkg") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrVCMnumLightSamples_pubkg", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrVCMnumLightSamples_pubkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMnumBxdfSamples_2sbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMnumBxdfSamples_2sbkg.label = PARM_LABEL("numBxdfSamples", "xn__riintegratorPxrVCMnumBxdfSamples_2sbkg") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrVCMnumBxdfSamples_2sbkg", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrVCMnumBxdfSamples_2sbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMmaxIndirectBounces_lzbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMmaxIndirectBounces_lzbkg.label = PARM_LABEL("Max Indirect Bounces", "xn__riintegratorPxrVCMmaxIndirectBounces_lzbkg") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrVCMmaxIndirectBounces_lzbkg", none, none) RANGE(0,15)
+	 LABELREF(xn__riintegratorPxrVCMmaxIndirectBounces_lzbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracerrouletteDepth_u2bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracerrouletteDepth_u2bkn.label = PARM_LABEL("Depth", "xn__riintegratorPxrPathTracerrouletteDepth_u2bkn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracerrouletteDepth_u2bkn", none, none) RANGE(1,8)
+	 LABELREF(xn__riintegratorPxrPathTracerrouletteDepth_u2bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracerrouletteThreshold_d9bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracerrouletteThreshold_d9bkn.label = PARM_LABEL("Threshold", "xn__riintegratorPxrPathTracerrouletteThreshold_d9bkn") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrPathTracerrouletteThreshold_d9bkn", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrPathTracerrouletteThreshold_d9bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMrouletteDepth_grbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMrouletteDepth_grbkg.label = PARM_LABEL("Depth", "xn__riintegratorPxrVCMrouletteDepth_grbkg") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrVCMrouletteDepth_grbkg", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrVCMrouletteDepth_grbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMrouletteThreshold_yxbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMrouletteThreshold_yxbkg.label = PARM_LABEL("Threshold", "xn__riintegratorPxrVCMrouletteThreshold_yxbkg") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVCMrouletteThreshold_yxbkg", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrVCMrouletteThreshold_yxbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracerclampDepth_yxbkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracerclampDepth_yxbkn.label = PARM_LABEL("Depth", "xn__riintegratorPxrPathTracerclampDepth_yxbkn") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrPathTracerclampDepth_yxbkn", none, none) RANGE(1,4)
+	 LABELREF(xn__riintegratorPxrPathTracerclampDepth_yxbkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrPathTracerclampLuminance_h4bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrPathTracerclampLuminance_h4bkn.label = PARM_LABEL("Luminance", "xn__riintegratorPxrPathTracerclampLuminance_h4bkn") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrPathTracerclampLuminance_h4bkn", none, none) RANGE(0,30)
+	 LABELREF(xn__riintegratorPxrPathTracerclampLuminance_h4bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMclampDepth_kmbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMclampDepth_kmbkg.label = PARM_LABEL("Depth", "xn__riintegratorPxrVCMclampDepth_kmbkg") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrVCMclampDepth_kmbkg", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrVCMclampDepth_kmbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMclampLuminance_2sbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMclampLuminance_2sbkg.label = PARM_LABEL("Luminance", "xn__riintegratorPxrVCMclampLuminance_2sbkg") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVCMclampLuminance_2sbkg", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrVCMclampLuminance_2sbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMmergeRadius_6nbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMmergeRadius_6nbkg.label = PARM_LABEL("mergeRadius", "xn__riintegratorPxrVCMmergeRadius_6nbkg") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVCMmergeRadius_6nbkg", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrVCMmergeRadius_6nbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMtimeRadius_kmbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMtimeRadius_kmbkg.label = PARM_LABEL("timeRadius", "xn__riintegratorPxrVCMtimeRadius_kmbkg") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVCMtimeRadius_kmbkg", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrVCMtimeRadius_kmbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMphotonGuiding_grbkg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVCMphotonGuiding_grbkg.label = PARM_LABEL("photonGuiding", "xn__riintegratorPxrVCMphotonGuiding_grbkg") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVCMphotonGuiding_grbkg", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrVCMphotonGuiding_grbkg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMphotonGuidingBBoxMin_u2bkg.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riintegratorPxrVCMphotonGuidingBBoxMin_u2bkg.label = PARM_LABEL("photonGuidingBBoxMin", "xn__riintegratorPxrVCMphotonGuidingBBoxMin_u2bkg") WIDTH(1.5);
+   PARM(float, 3, "xn__riintegratorPxrVCMphotonGuidingBBoxMin_u2bkg", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riintegratorPxrVCMphotonGuidingBBoxMin_u2bkg.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVCMphotonGuidingBBoxMax_u2bkg.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riintegratorPxrVCMphotonGuidingBBoxMax_u2bkg.label = PARM_LABEL("photonGuidingBBoxMax", "xn__riintegratorPxrVCMphotonGuidingBBoxMax_u2bkg") WIDTH(1.5);
+   PARM(float, 3, "xn__riintegratorPxrVCMphotonGuidingBBoxMax_u2bkg", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riintegratorPxrVCMphotonGuidingBBoxMax_u2bkg.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedtraceLightPaths_70bkk.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrUnifiedtraceLightPaths_70bkk.label = PARM_LABEL_SIMPLE("Trace Light Paths", "xn__riintegratorPxrUnifiedtraceLightPaths_70bkk") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrUnifiedtraceLightPaths_70bkk.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedmaxIndirectBounces_35bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedmaxIndirectBounces_35bkk.label = PARM_LABEL("Max Indirect Bounces", "xn__riintegratorPxrUnifiedmaxIndirectBounces_35bkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedmaxIndirectBounces_35bkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiedmaxIndirectBounces_35bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedmaxRayDistance_lzbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedmaxRayDistance_lzbkk.label = PARM_LABEL("Max Ray Distance", "xn__riintegratorPxrUnifiedmaxRayDistance_lzbkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedmaxRayDistance_lzbkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedmaxRayDistance_lzbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedcatchAllLights_lzbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedcatchAllLights_lzbkk.label = PARM_LABEL("Catch Light on last Hit", "xn__riintegratorPxrUnifiedcatchAllLights_lzbkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedcatchAllLights_lzbkk", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrUnifiedcatchAllLights_lzbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedemissionMultiplier_35bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedemissionMultiplier_35bkk.label = PARM_LABEL("Emission Multiplier", "xn__riintegratorPxrUnifiedemissionMultiplier_35bkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedemissionMultiplier_35bkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedemissionMultiplier_35bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedaccumOpacity_cwbkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedaccumOpacity_cwbkk", "Accumulate Opacity") toggle VALUE(xn__riintegratorPxrUnifiedaccumOpacity_cwbkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiednumLightSamples_70bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiednumLightSamples_70bkk.label = PARM_LABEL("Light Samples", "xn__riintegratorPxrUnifiednumLightSamples_70bkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiednumLightSamples_70bkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiednumLightSamples_70bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiednumBxdfSamples_lzbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiednumBxdfSamples_lzbkk.label = PARM_LABEL("BxDF Samples", "xn__riintegratorPxrUnifiednumBxdfSamples_lzbkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiednumBxdfSamples_lzbkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiednumBxdfSamples_lzbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiednumIndirectSamples_35bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiednumIndirectSamples_35bkk.label = PARM_LABEL("Indirect Samples", "xn__riintegratorPxrUnifiednumIndirectSamples_35bkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiednumIndirectSamples_35bkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiednumIndirectSamples_35bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedsssOversampling_70bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedsssOversampling_70bkk.label = PARM_LABEL("SubSurface Over-Sampling", "xn__riintegratorPxrUnifiedsssOversampling_70bkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedsssOversampling_70bkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiedsssOversampling_70bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedallowMultilobeIndirect_mdckk.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrUnifiedallowMultilobeIndirect_mdckk.label = PARM_LABEL_SIMPLE("Multi-Lobe Indirect", "xn__riintegratorPxrUnifiedallowMultilobeIndirect_mdckk") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrUnifiedallowMultilobeIndirect_mdckk.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedrouletteDepth_yxbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedrouletteDepth_yxbkk.label = PARM_LABEL("Start Depth", "xn__riintegratorPxrUnifiedrouletteDepth_yxbkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedrouletteDepth_yxbkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiedrouletteDepth_yxbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedrouletteLightDepth_35bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedrouletteLightDepth_35bkk.label = PARM_LABEL("Light Start Depth", "xn__riintegratorPxrUnifiedrouletteLightDepth_35bkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedrouletteLightDepth_35bkk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiedrouletteLightDepth_35bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedrouletteThreshold_h4bkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedrouletteThreshold_h4bkk.label = PARM_LABEL("Threshold", "xn__riintegratorPxrUnifiedrouletteThreshold_h4bkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedrouletteThreshold_h4bkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedrouletteThreshold_h4bkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifieddirectClamp_pubkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifieddirectClamp_pubkk.label = PARM_LABEL("Max Direct Lighting Value", "xn__riintegratorPxrUnifieddirectClamp_pubkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifieddirectClamp_pubkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifieddirectClamp_pubkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedindirectClamp_yxbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedindirectClamp_yxbkk.label = PARM_LABEL("Max Indirect Value", "xn__riintegratorPxrUnifiedindirectClamp_yxbkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedindirectClamp_yxbkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedindirectClamp_yxbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedcausticClamp_cwbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedcausticClamp_cwbkk.label = PARM_LABEL("Max Caustics Value", "xn__riintegratorPxrUnifiedcausticClamp_cwbkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedcausticClamp_cwbkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedcausticClamp_cwbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedmanifoldWalk_cwbkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedmanifoldWalk_cwbkk", "Enable Manifold Walk") toggle VALUE(xn__riintegratorPxrUnifiedmanifoldWalk_cwbkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedmaxIterations_yxbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedmaxIterations_yxbkk.label = PARM_LABEL("Max Iterations", "xn__riintegratorPxrUnifiedmaxIterations_yxbkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedmaxIterations_yxbkk", none, none) RANGE(1,256)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrUnifiedmaxIterations_yxbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedmaxInterfaces_yxbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedmaxInterfaces_yxbkk.label = PARM_LABEL("Max Number of Interfaces", "xn__riintegratorPxrUnifiedmaxInterfaces_yxbkk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedmaxInterfaces_yxbkk", none, none) RANGE(1,10)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrUnifiedmaxInterfaces_yxbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedwalkThreshold_yxbkk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedwalkThreshold_yxbkk.label = PARM_LABEL("Threshold", "xn__riintegratorPxrUnifiedwalkThreshold_yxbkk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedwalkThreshold_yxbkk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedwalkThreshold_yxbkk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedenableVolumeCaustics_d9bkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedenableVolumeCaustics_d9bkk", "Enable Volume Caustics") toggle VALUE(xn__riintegratorPxrUnifiedenableVolumeCaustics_d9bkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonEstimationRadius_mdckk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedphotonEstimationRadius_mdckk.label = PARM_LABEL("Estimation Radius", "xn__riintegratorPxrUnifiedphotonEstimationRadius_mdckk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedphotonEstimationRadius_mdckk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedphotonEstimationRadius_mdckk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonEstimationNumber_mdckk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedphotonEstimationNumber_mdckk.label = PARM_LABEL("Estimation Number", "xn__riintegratorPxrUnifiedphotonEstimationNumber_mdckk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedphotonEstimationNumber_mdckk", none, none) RANGE(8,256)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrUnifiedphotonEstimationNumber_mdckk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonVisibilityRod_q7bkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedphotonVisibilityRod_q7bkk", "Visibility Rod") toggle VALUE(xn__riintegratorPxrUnifiedphotonVisibilityRod_q7bkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonVisibilityRodDirectProb_0ockk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedphotonVisibilityRodDirectProb_0ockk.label = PARM_LABEL("Visibility Rod Probability", "xn__riintegratorPxrUnifiedphotonVisibilityRodDirectProb_0ockk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedphotonVisibilityRodDirectProb_0ockk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedphotonVisibilityRodDirectProb_0ockk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonVisibilityRodMin_mdckk.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riintegratorPxrUnifiedphotonVisibilityRodMin_mdckk.label = PARM_LABEL("Visibility Rod Min", "xn__riintegratorPxrUnifiedphotonVisibilityRodMin_mdckk") WIDTH(1.5);
+   PARM(float, 3, "xn__riintegratorPxrUnifiedphotonVisibilityRodMin_mdckk", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riintegratorPxrUnifiedphotonVisibilityRodMin_mdckk.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonVisibilityRodMax_mdckk.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riintegratorPxrUnifiedphotonVisibilityRodMax_mdckk.label = PARM_LABEL("Visibility Rod Max", "xn__riintegratorPxrUnifiedphotonVisibilityRodMax_mdckk") WIDTH(1.5);
+   PARM(float, 3, "xn__riintegratorPxrUnifiedphotonVisibilityRodMax_mdckk", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riintegratorPxrUnifiedphotonVisibilityRodMax_mdckk.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedphotonAdaptive_lzbkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedphotonAdaptive_lzbkk", "Adaptive Photons") toggle VALUE(xn__riintegratorPxrUnifiedphotonAdaptive_lzbkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedindirectTrainingSamples_8eckk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedindirectTrainingSamples_8eckk.label = PARM_LABEL("Training Samples", "xn__riintegratorPxrUnifiedindirectTrainingSamples_8eckk") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrUnifiedindirectTrainingSamples_8eckk", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrUnifiedindirectTrainingSamples_8eckk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedindirectSpatialBlurRadius_iickk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedindirectSpatialBlurRadius_iickk.label = PARM_LABEL("Spatial Blur Radius", "xn__riintegratorPxrUnifiedindirectSpatialBlurRadius_iickk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedindirectSpatialBlurRadius_iickk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedindirectSpatialBlurRadius_iickk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedindirectDirectionalBlurRadius_0ockk.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrUnifiedindirectDirectionalBlurRadius_0ockk.label = PARM_LABEL("Directional Blur Radius", "xn__riintegratorPxrUnifiedindirectDirectionalBlurRadius_0ockk") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrUnifiedindirectDirectionalBlurRadius_0ockk", none, none) RANGE(0,1)
+	 LABELREF(xn__riintegratorPxrUnifiedindirectDirectionalBlurRadius_0ockk.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedindirectOversampling_d9bkk.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrUnifiedindirectOversampling_d9bkk.label = PARM_LABEL_SIMPLE("Oversampling", "xn__riintegratorPxrUnifiedindirectOversampling_d9bkk") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrUnifiedindirectOversampling_d9bkk.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedsuppressNaNs_cwbkk.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrUnifiedsuppressNaNs_cwbkk.label = PARM_LABEL_SIMPLE("Suppress NaNs", "xn__riintegratorPxrUnifiedsuppressNaNs_cwbkk") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrUnifiedsuppressNaNs_cwbkk.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedenableShadingTimers_q7bkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedenableShadingTimers_q7bkk", "Enable Shading Timers") toggle VALUE(xn__riintegratorPxrUnifiedenableShadingTimers_q7bkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrUnifiedenableSampleTimers_35bkk.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrUnifiedenableSampleTimers_35bkk", "Enable Sample Timers") toggle VALUE(xn__riintegratorPxrUnifiedenableSampleTimers_35bkk.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizerstyle_tpbkn.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrVisualizerstyle_tpbkn.label = PARM_LABEL_SIMPLE("style", "xn__riintegratorPxrVisualizerstyle_tpbkn") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrVisualizerstyle_tpbkn.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizerwireframe_cwbkn.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrVisualizerwireframe_cwbkn", "wireframe") toggle VALUE(xn__riintegratorPxrVisualizerwireframe_cwbkn.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizernormalCheck_lzbkn.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__riintegratorPxrVisualizernormalCheck_lzbkn", "normalCheck") toggle VALUE(xn__riintegratorPxrVisualizernormalCheck_lzbkn.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizershadedPrimVar_u2bkn.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrVisualizershadedPrimVar_u2bkn.label = PARM_LABEL("Shaded PrimVar", "xn__riintegratorPxrVisualizershadedPrimVar_u2bkn") WIDTH(1.5);
+    PARM_FIELD(string, "xn__riintegratorPxrVisualizershadedPrimVar_u2bkn") VALUE(xn__riintegratorPxrVisualizershadedPrimVar_u2bkn.val) 
+	LABELREF(xn__riintegratorPxrVisualizershadedPrimVar_u2bkn.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizermatCap_grbkn.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrVisualizermatCap_grbkn.label = PARM_LABEL("MatCap Texture", "xn__riintegratorPxrVisualizermatCap_grbkn") WIDTH(1.5);
+    PARM_FIELD(string, "xn__riintegratorPxrVisualizermatCap_grbkn") VALUE(xn__riintegratorPxrVisualizermatCap_grbkn.val) 
+	LABELREF(xn__riintegratorPxrVisualizermatCap_grbkn.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizerwireframeColor_h4bkn.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrVisualizerwireframeColor_h4bkn.label = PARM_LABEL("Wireframe Color", "xn__riintegratorPxrVisualizerwireframeColor_h4bkn") WIDTH(1.5);
+    PARM(float, 3, "xn__riintegratorPxrVisualizerwireframeColor_h4bkn", none, COLOR, "R,G,B") 
+	LABELREF(xn__riintegratorPxrVisualizerwireframeColor_h4bkn.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizerwireframeOpacity_q7bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVisualizerwireframeOpacity_q7bkn.label = PARM_LABEL("Wireframe Opacity", "xn__riintegratorPxrVisualizerwireframeOpacity_q7bkn") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVisualizerwireframeOpacity_q7bkn", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrVisualizerwireframeOpacity_q7bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrVisualizerwireframeWidth_h4bkn.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrVisualizerwireframeWidth_h4bkn.label = PARM_LABEL("Wireframe Width", "xn__riintegratorPxrVisualizerwireframeWidth_h4bkn") WIDTH(1.5);
+ PARM(float, 1, "xn__riintegratorPxrVisualizerwireframeWidth_h4bkn", none, none) RANGE(0,4)
+	LOCK_RANGE LABELREF(xn__riintegratorPxrVisualizerwireframeWidth_h4bkn.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrDirectLightingnumLightSamples_mdckr.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrDirectLightingnumLightSamples_mdckr.label = PARM_LABEL("numLightSamples", "xn__riintegratorPxrDirectLightingnumLightSamples_mdckr") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrDirectLightingnumLightSamples_mdckr", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrDirectLightingnumLightSamples_mdckr.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrDirectLightingnumBxdfSamples_zbckr.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riintegratorPxrDirectLightingnumBxdfSamples_zbckr.label = PARM_LABEL("numBxdfSamples", "xn__riintegratorPxrDirectLightingnumBxdfSamples_zbckr") WIDTH(1.5);
+ PARM(integer, 1, "xn__riintegratorPxrDirectLightingnumBxdfSamples_zbckr", none, none) RANGE(0,10)
+	 LABELREF(xn__riintegratorPxrDirectLightingnumBxdfSamples_zbckr.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riintegratorPxrDebugShadingContextviewchannel_8eckw.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riintegratorPxrDebugShadingContextviewchannel_8eckw.label = PARM_LABEL_SIMPLE("viewchannel", "xn__riintegratorPxrDebugShadingContextviewchannel_8eckw") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riintegratorPxrDebugShadingContextviewchannel_8eckw.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rihideradaptivemetric_59af.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__rihideradaptivemetric_59af.label = PARM_LABEL_SIMPLE("Adaptive Metric", "xn__rihideradaptivemetric_59af") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__rihideradaptivemetric_59af.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rihiderdarkfalloff_94af.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rihiderdarkfalloff_94af.label = PARM_LABEL("Dark Falloff", "xn__rihiderdarkfalloff_94af") WIDTH(1.5);
+ PARM(float, 1, "xn__rihiderdarkfalloff_94af", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__rihiderdarkfalloff_94af.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rihiderexposurebracket_scbf.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__rihiderexposurebracket_scbf.label = PARM_LABEL("Exposure Bracket", "xn__rihiderexposurebracket_scbf") WIDTH(1.5);
+   PARM(float, 2, "xn__rihiderexposurebracket_scbf", none, none, "#1,#2")
+	RANGE(0,1)  LABELREF(xn__rihiderexposurebracket_scbf.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riRiPixelVariance_n3ac.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riRiPixelVariance_n3ac.label = PARM_LABEL("Pixel Variance", "xn__riRiPixelVariance_n3ac") WIDTH(1.5);
+ PARM(float, 1, "xn__riRiPixelVariance_n3ac", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(xn__riRiPixelVariance_n3ac.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rihiderdecidither_n3af.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rihiderdecidither_n3af.label = PARM_LABEL("Interactive Refinement", "xn__rihiderdecidither_n3af") WIDTH(1.5);
+ PARM(integer, 1, "xn__rihiderdecidither_n3af", none, none) RANGE(0,6)
+	LOCK_RANGE LABELREF(xn__rihiderdecidither_n3af.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rihiderbluenoise_01af.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__rihiderbluenoise_01af", "Blue Noise Samples") toggle VALUE(xn__rihiderbluenoise_01af.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rihidergeomShadowTermBias_ohbf.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__rihidergeomShadowTermBias_ohbf", "Geometric Shadow Terminator on Poly Meshes") toggle VALUE(xn__rihidergeomShadowTermBias_ohbf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rihiderminsamples_n3af.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rihiderminsamples_n3af.label = PARM_LABEL("Min Samples", "xn__rihiderminsamples_n3af") WIDTH(1.5);
+ PARM(integer, 1, "xn__rihiderminsamples_n3af", none, none) RANGE(0,10)
+	 LABELREF(xn__rihiderminsamples_n3af.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rihiderminextrasamples_scbf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rihiderminextrasamples_scbf.label = PARM_LABEL("Min Extra Samples", "xn__rihiderminextrasamples_scbf") WIDTH(1.5);
+ PARM(integer, 1, "xn__rihiderminextrasamples_scbf", none, none) RANGE(0,10)
+	 LABELREF(xn__rihiderminextrasamples_scbf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rihidermaxsamples_n3af.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rihidermaxsamples_n3af.label = PARM_LABEL("Max Samples", "xn__rihidermaxsamples_n3af") WIDTH(1.5);
+ PARM(integer, 1, "xn__rihidermaxsamples_n3af", none, none) RANGE(0,10)
+	 LABELREF(xn__rihidermaxsamples_n3af.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rihideradaptall_e0af.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__rihideradaptall_e0af", "Adapt All") toggle VALUE(xn__rihideradaptall_e0af.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rihiderextrememotiondof_febf.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__rihiderextrememotiondof_febf", "Extreme Motion DOF") toggle VALUE(xn__rihiderextrememotiondof_febf.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rilightingselectionlearningscheme_pubi.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("xn__rilightingselectionlearningscheme_pubi", "Light Learning Scheme") toggle VALUE(xn__rilightingselectionlearningscheme_pubi.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__rishaderoughnessmollification_6nbf.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rishaderoughnessmollification_6nbf.label = PARM_LABEL("Specular Roughness Mollification", "xn__rishaderoughnessmollification_6nbf") WIDTH(1.5);
+ PARM(float, 1, "xn__rishaderoughnessmollification_6nbf", none, none) RANGE(0,1)
+	 LABELREF(xn__rishaderoughnessmollification_6nbf.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rilimitsgeocachememory_scbg.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rilimitsgeocachememory_scbg.label = PARM_LABEL("Geo Cache Memory Limit", "xn__rilimitsgeocachememory_scbg") WIDTH(1.5);
+ PARM(integer, 1, "xn__rilimitsgeocachememory_scbg", none, none) RANGE(0,10)
+	 LABELREF(xn__rilimitsgeocachememory_scbg.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__rilimitstexturememory_59ag.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__rilimitstexturememory_59ag.label = PARM_LABEL("Texture Memory Limit", "xn__rilimitstexturememory_59ag") WIDTH(1.5);
+ PARM(integer, 1, "xn__rilimitstexturememory_59ag", none, none) RANGE(0,10)
+	 LABELREF(xn__rilimitstexturememory_59ag.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__ridiceoffscreenmultiplier_ohbe.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__ridiceoffscreenmultiplier_ohbe.label = PARM_LABEL("Offscreen Multiplier", "xn__ridiceoffscreenmultiplier_ohbe") WIDTH(1.5);
+ PARM(float, 1, "xn__ridiceoffscreenmultiplier_ohbe", none, none) RANGE(0,1)
+	 LABELREF(xn__ridiceoffscreenmultiplier_ohbe.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__ribucketorder_4wag.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__ribucketorder_4wag.label = PARM_LABEL_SIMPLE("Bucket Order", "xn__ribucketorder_4wag") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__ribucketorder_4wag.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__ribucketorderorigin_w6ag.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__ribucketorderorigin_w6ag.label = PARM_LABEL("Bucket Origin", "xn__ribucketorderorigin_w6ag") WIDTH(1.5);
+   PARM(float, 2, "xn__ribucketorderorigin_w6ag", none, none, "#1,#2")
+	RANGE(0,1)  LABELREF(xn__ribucketorderorigin_w6ag.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionname_01ak.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riprojectionname_01ak.label = PARM_LABEL_SIMPLE("RenderMan Projection", "xn__riprojectionname_01ak") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riprojectionname_01ak.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrPerspectivefovEnd_2sbko.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrPerspectivefovEnd_2sbko.label = PARM_LABEL("Field of View (End)", "xn__riprojectionPxrPerspectivefovEnd_2sbko") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrPerspectivefovEnd_2sbko", none, none) RANGE(0,135)
+	 LABELREF(xn__riprojectionPxrPerspectivefovEnd_2sbko.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCylinderCamerahsweep_yxbkr.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCylinderCamerahsweep_yxbkr.label = PARM_LABEL("Horizontal Sweep", "xn__riprojectionPxrCylinderCamerahsweep_yxbkr") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCylinderCamerahsweep_yxbkr", none, none) RANGE(1,360)
+	 LABELREF(xn__riprojectionPxrCylinderCamerahsweep_yxbkr.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCylinderCameravsweep_yxbkr.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCylinderCameravsweep_yxbkr.label = PARM_LABEL("Vertical Sweep", "xn__riprojectionPxrCylinderCameravsweep_yxbkr") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCylinderCameravsweep_yxbkr", none, none) RANGE(1,170)
+	 LABELREF(xn__riprojectionPxrCylinderCameravsweep_yxbkr.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrSphereCamerahsweep_pubkp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrSphereCamerahsweep_pubkp.label = PARM_LABEL("Horizontal Sweep", "xn__riprojectionPxrSphereCamerahsweep_pubkp") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrSphereCamerahsweep_pubkp", none, none) RANGE(1,360)
+	 LABELREF(xn__riprojectionPxrSphereCamerahsweep_pubkp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrSphereCameravsweep_pubkp.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrSphereCameravsweep_pubkp.label = PARM_LABEL("Vertical Sweep", "xn__riprojectionPxrSphereCameravsweep_pubkp") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrSphereCameravsweep_pubkp", none, none) RANGE(1,170)
+	 LABELREF(xn__riprojectionPxrSphereCameravsweep_pubkp.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionOmnidirectionalStereointerpupilaryDistance_wtckv.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionOmnidirectionalStereointerpupilaryDistance_wtckv.label = PARM_LABEL("Interpupilary Distance", "xn__riprojectionOmnidirectionalStereointerpupilaryDistance_wtckv") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionOmnidirectionalStereointerpupilaryDistance_wtckv", none, none) RANGE(0,1)
+	 LABELREF(xn__riprojectionOmnidirectionalStereointerpupilaryDistance_wtckv.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerafovEnd_xkbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCamerafovEnd_xkbkj.label = PARM_LABEL("Field of View (End)", "xn__riprojectionPxrCamerafovEnd_xkbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCamerafovEnd_xkbkj", none, none) RANGE(0,135)
+	 LABELREF(xn__riprojectionPxrCamerafovEnd_xkbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameratilt_ohbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameratilt_ohbkj.label = PARM_LABEL("Tilt Angle", "xn__riprojectionPxrCameratilt_ohbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameratilt_ohbkj", none, none) RANGE(-20,20)
+	 LABELREF(xn__riprojectionPxrCameratilt_ohbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraroll_ohbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraroll_ohbkj.label = PARM_LABEL("Roll Angle", "xn__riprojectionPxrCameraroll_ohbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraroll_ohbkj", none, none) RANGE(-180,180)
+	 LABELREF(xn__riprojectionPxrCameraroll_ohbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerafocus1_xkbkj.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riprojectionPxrCamerafocus1_xkbkj.label = PARM_LABEL("Focus 1", "xn__riprojectionPxrCamerafocus1_xkbkj") WIDTH(1.5);
+   PARM(float, 3, "xn__riprojectionPxrCamerafocus1_xkbkj", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riprojectionPxrCamerafocus1_xkbkj.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerafocus2_xkbkj.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riprojectionPxrCamerafocus2_xkbkj.label = PARM_LABEL("Focus 2", "xn__riprojectionPxrCamerafocus2_xkbkj") WIDTH(1.5);
+   PARM(float, 3, "xn__riprojectionPxrCamerafocus2_xkbkj", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riprojectionPxrCamerafocus2_xkbkj.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerafocus3_xkbkj.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riprojectionPxrCamerafocus3_xkbkj.label = PARM_LABEL("Focus 3", "xn__riprojectionPxrCamerafocus3_xkbkj") WIDTH(1.5);
+   PARM(float, 3, "xn__riprojectionPxrCamerafocus3_xkbkj", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riprojectionPxrCamerafocus3_xkbkj.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerashiftX_xkbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCamerashiftX_xkbkj.label = PARM_LABEL("Shift X", "xn__riprojectionPxrCamerashiftX_xkbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCamerashiftX_xkbkj", none, none) RANGE(-1,1)
+	 LABELREF(xn__riprojectionPxrCamerashiftX_xkbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerashiftY_xkbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCamerashiftY_xkbkj.label = PARM_LABEL("Shift Y", "xn__riprojectionPxrCamerashiftY_xkbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCamerashiftY_xkbkj", none, none) RANGE(-1,1)
+	 LABELREF(xn__riprojectionPxrCamerashiftY_xkbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraradial1_kmbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraradial1_kmbkj.label = PARM_LABEL("Radial Distortion 1", "xn__riprojectionPxrCameraradial1_kmbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraradial1_kmbkj", none, none) RANGE(-0.3,0.3)
+	 LABELREF(xn__riprojectionPxrCameraradial1_kmbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraradial2_kmbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraradial2_kmbkj.label = PARM_LABEL("Radial Distortion 2", "xn__riprojectionPxrCameraradial2_kmbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraradial2_kmbkj", none, none) RANGE(-0.3,0.3)
+	 LABELREF(xn__riprojectionPxrCameraradial2_kmbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraassymX_xkbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraassymX_xkbkj.label = PARM_LABEL("Assymetric Distortion X", "xn__riprojectionPxrCameraassymX_xkbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraassymX_xkbkj", none, none) RANGE(-0.3,0.3)
+	 LABELREF(xn__riprojectionPxrCameraassymX_xkbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraassymY_xkbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraassymY_xkbkj.label = PARM_LABEL("Assymetric Distortion Y", "xn__riprojectionPxrCameraassymY_xkbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraassymY_xkbkj", none, none) RANGE(-0.3,0.3)
+	 LABELREF(xn__riprojectionPxrCameraassymY_xkbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerasqueeze_kmbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCamerasqueeze_kmbkj.label = PARM_LABEL("Anamorphic Squeeze", "xn__riprojectionPxrCamerasqueeze_kmbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCamerasqueeze_kmbkj", none, none) RANGE(0.5,2)
+	 LABELREF(xn__riprojectionPxrCamerasqueeze_kmbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameratransverse_grbkj.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riprojectionPxrCameratransverse_grbkj.label = PARM_LABEL("Transverse", "xn__riprojectionPxrCameratransverse_grbkj") WIDTH(1.5);
+    PARM(float, 3, "xn__riprojectionPxrCameratransverse_grbkj", none, COLOR, "R,G,B") 
+	LABELREF(xn__riprojectionPxrCameratransverse_grbkj.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraaxial_bjbkj.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riprojectionPxrCameraaxial_bjbkj.label = PARM_LABEL("Axial", "xn__riprojectionPxrCameraaxial_bjbkj") WIDTH(1.5);
+    PARM(float, 3, "xn__riprojectionPxrCameraaxial_bjbkj", none, COLOR, "R,G,B") 
+	LABELREF(xn__riprojectionPxrCameraaxial_bjbkj.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameranatural_kmbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameranatural_kmbkj.label = PARM_LABEL("Natural", "xn__riprojectionPxrCameranatural_kmbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameranatural_kmbkj", none, none) RANGE(0,1)
+	 LABELREF(xn__riprojectionPxrCameranatural_kmbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraoptical_kmbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraoptical_kmbkj.label = PARM_LABEL("Optical", "xn__riprojectionPxrCameraoptical_kmbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraoptical_kmbkj", none, none) RANGE(0,1)
+	 LABELREF(xn__riprojectionPxrCameraoptical_kmbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCamerasweep_bjbkj.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    xn__riprojectionPxrCamerasweep_bjbkj.label = PARM_LABEL_SIMPLE("Sweep", "xn__riprojectionPxrCamerasweep_bjbkj") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xn__riprojectionPxrCamerasweep_bjbkj.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraduration_6nbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameraduration_6nbkj.label = PARM_LABEL("Duration", "xn__riprojectionPxrCameraduration_6nbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameraduration_6nbkj", none, none) RANGE(0,1)
+	 LABELREF(xn__riprojectionPxrCameraduration_6nbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameradetail_xkbkj.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameradetail_xkbkj.label = PARM_LABEL("Detail Bias", "xn__riprojectionPxrCameradetail_xkbkj") WIDTH(1.5);
+ PARM(float, 1, "xn__riprojectionPxrCameradetail_xkbkj", none, none) RANGE(-10,10)
+	 LABELREF(xn__riprojectionPxrCameradetail_xkbkj.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameraenhance_kmbkj.gad = ROW
+{
+   HSTRETCH
+   { WIDTH(0.18) }
+
+   xn__riprojectionPxrCameraenhance_kmbkj.label = PARM_LABEL("Enhancement", "xn__riprojectionPxrCameraenhance_kmbkj") WIDTH(1.5);
+   PARM(float, 3, "xn__riprojectionPxrCameraenhance_kmbkj", none, none, "#1,#2,#3")
+	RANGE(0,1)  LABELREF(xn__riprojectionPxrCameraenhance_kmbkj.label)
+	HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+xn__riprojectionPxrCameramatte_bjbkj.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+ { WIDTH(0.18) }
+
+ xn__riprojectionPxrCameramatte_bjbkj.label = PARM_LABEL("Matte file", "xn__riprojectionPxrCameramatte_bjbkj") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "xn__riprojectionPxrCameramatte_bjbkj") LABELREF(xn__riprojectionPxrCameramatte_bjbkj.label)
+	VALUE(xn__riprojectionPxrCameramatte_bjbkj.val) HSTRETCH;
+
+    xn__riprojectionPxrCameramatte_bjbkj.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(xn__riprojectionPxrCameramatte_bjbkj.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+ { WIDTH(0.1) }
+}
+
+Advanced_folder5.gad = 
+GROUP collapsible "Advanced" flat   
+{
+    VALUE(Advanced_folder5.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riprojectionPxrCameradetail_xkbkj.gad;		
+	    xn__riprojectionPxrCameraenhance_kmbkj.gad;		
+	    xn__riprojectionPxrCameramatte_bjbkj.gad;		
+} 
+
+Shutter_folder4.gad = 
+GROUP collapsible "Shutter" flat   
+{
+    VALUE(Shutter_folder4.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riprojectionPxrCamerasweep_bjbkj.gad;		
+	    xn__riprojectionPxrCameraduration_6nbkj.gad;		
+} 
+
+Vignetting_folder3.gad = 
+GROUP collapsible "Vignetting" flat   
+{
+    VALUE(Vignetting_folder3.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riprojectionPxrCameranatural_kmbkj.gad;		
+	    xn__riprojectionPxrCameraoptical_kmbkj.gad;		
+} 
+
+Chromatic_Aberration_folder2.gad = 
+GROUP collapsible "Chromatic Aberration" flat   
+{
+    VALUE(Chromatic_Aberration_folder2.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riprojectionPxrCameratransverse_grbkj.gad;		
+	    xn__riprojectionPxrCameraaxial_bjbkj.gad;		
+} 
+
+Lens_Distortion_folder1.gad = 
+GROUP collapsible "Lens Distortion" flat   
+{
+    VALUE(Lens_Distortion_folder1.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riprojectionPxrCameraradial1_kmbkj.gad;		
+	    xn__riprojectionPxrCameraradial2_kmbkj.gad;		
+	    xn__riprojectionPxrCameraassymX_xkbkj.gad;		
+	    xn__riprojectionPxrCameraassymY_xkbkj.gad;		
+	    xn__riprojectionPxrCamerasqueeze_kmbkj.gad;		
+} 
+
+Tilt_Shift_folder0.gad = 
+GROUP collapsible "Tilt Shift" flat   
+{
+    VALUE(Tilt_Shift_folder0.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riprojectionPxrCameratilt_ohbkj.gad;		
+	    xn__riprojectionPxrCameraroll_ohbkj.gad;		
+	    xn__riprojectionPxrCamerafocus1_xkbkj.gad;		
+	    xn__riprojectionPxrCamerafocus2_xkbkj.gad;		
+	    xn__riprojectionPxrCamerafocus3_xkbkj.gad;		
+	    xn__riprojectionPxrCamerashiftX_xkbkj.gad;		
+	    xn__riprojectionPxrCamerashiftY_xkbkj.gad;		
+} 
+
+Wireframe_Settings_folder.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Wireframe_Settings_folder.gad"
+    { 
+	VALUE(Wireframe_Settings_folder.gad.val) STRETCH(1,0)
+
+	TAB "Wireframe Settings"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorPxrVisualizerwireframeColor_h4bkn.gad;		
+	    xn__riintegratorPxrVisualizerwireframeOpacity_q7bkn.gad;		
+	    xn__riintegratorPxrVisualizerwireframeWidth_h4bkn.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+Intensity_Clamping_folder.gad = 
+GROUP collapsible "Intensity Clamping" flat   
+{
+    VALUE(Intensity_Clamping_folder.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riintegratorPxrUnifieddirectClamp_pubkk.gad;		
+	    xn__riintegratorPxrUnifiedindirectClamp_yxbkk.gad;		
+	    xn__riintegratorPxrUnifiedcausticClamp_cwbkk.gad;		
+} 
+
+Russian_Roulette_folder2.gad = 
+GROUP collapsible "Russian Roulette" flat   
+{
+    VALUE(Russian_Roulette_folder2.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riintegratorPxrUnifiedrouletteDepth_yxbkk.gad;		
+	    xn__riintegratorPxrUnifiedrouletteLightDepth_35bkk.gad;		
+	    xn__riintegratorPxrUnifiedrouletteThreshold_h4bkk.gad;		
+} 
+
+Sampling_folder.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "Sampling_folder.gad"
+    { 
+	VALUE(Sampling_folder.gad.val) STRETCH(1,0)
+
+	TAB "Sampling"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorPxrUnifiednumLightSamples_70bkk.gad;		
+	    xn__riintegratorPxrUnifiednumBxdfSamples_lzbkk.gad;		
+	    xn__riintegratorPxrUnifiednumIndirectSamples_35bkk.gad;		
+	    xn__riintegratorPxrUnifiedsssOversampling_70bkk.gad;		
+	    xn__riintegratorPxrUnifiedallowMultilobeIndirect_mdckk.gad;		
+	    Russian_Roulette_folder2.gad;		
+	    Intensity_Clamping_folder.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "ManifoldWalk"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorPxrUnifiedmanifoldWalk_cwbkk.gad;		
+	    xn__riintegratorPxrUnifiedmaxIterations_yxbkk.gad;		
+	    xn__riintegratorPxrUnifiedmaxInterfaces_yxbkk.gad;		
+	    xn__riintegratorPxrUnifiedwalkThreshold_yxbkk.gad;		
+	    xn__riintegratorPxrUnifiedenableVolumeCaustics_d9bkk.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Photons"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorPxrUnifiedphotonEstimationRadius_mdckk.gad;		
+	    xn__riintegratorPxrUnifiedphotonEstimationNumber_mdckk.gad;		
+	    xn__riintegratorPxrUnifiedphotonVisibilityRod_q7bkk.gad;		
+	    xn__riintegratorPxrUnifiedphotonVisibilityRodDirectProb_0ockk.gad;		
+	    xn__riintegratorPxrUnifiedphotonVisibilityRodMin_mdckk.gad;		
+	    xn__riintegratorPxrUnifiedphotonVisibilityRodMax_mdckk.gad;		
+	    xn__riintegratorPxrUnifiedphotonAdaptive_lzbkk.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "IndirectGuiding"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorPxrUnifiedindirectTrainingSamples_8eckk.gad;		
+	    xn__riintegratorPxrUnifiedindirectSpatialBlurRadius_iickk.gad;		
+	    xn__riintegratorPxrUnifiedindirectDirectionalBlurRadius_0ockk.gad;		
+	    xn__riintegratorPxrUnifiedindirectOversampling_d9bkk.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Diagnostic"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorPxrUnifiedsuppressNaNs_cwbkk.gad;		
+	    xn__riintegratorPxrUnifiedenableShadingTimers_q7bkk.gad;		
+	    xn__riintegratorPxrUnifiedenableSampleTimers_35bkk.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+Photon_Guiding_folder.gad = 
+GROUP collapsible "Photon Guiding" flat   
+{
+    VALUE(Photon_Guiding_folder.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riintegratorPxrVCMphotonGuiding_grbkg.gad;		
+	    xn__riintegratorPxrVCMphotonGuidingBBoxMin_u2bkg.gad;		
+	    xn__riintegratorPxrVCMphotonGuidingBBoxMax_u2bkg.gad;		
+} 
+
+Vertex_Merging_folder.gad = 
+GROUP collapsible "Vertex Merging" flat   
+{
+    VALUE(Vertex_Merging_folder.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riintegratorPxrVCMmergeRadius_6nbkg.gad;		
+	    xn__riintegratorPxrVCMtimeRadius_kmbkg.gad;		
+} 
+
+Indirect_Clamping_folder.gad = 
+GROUP collapsible "Indirect Clamping" flat   
+{
+    VALUE(Indirect_Clamping_folder.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riintegratorPxrPathTracerclampDepth_yxbkn.gad;		
+	    xn__riintegratorPxrPathTracerclampLuminance_h4bkn.gad;		
+	    xn__riintegratorPxrVCMclampDepth_kmbkg.gad;		
+	    xn__riintegratorPxrVCMclampLuminance_2sbkg.gad;		
+} 
+
+Russian_Roulette_folder.gad = 
+GROUP collapsible "Russian Roulette" flat   
+{
+    VALUE(Russian_Roulette_folder.gad.val) LAYOUT(vertical) HSTRETCH
+	    xn__riintegratorPxrPathTracerrouletteDepth_u2bkn.gad;		
+	    xn__riintegratorPxrPathTracerrouletteThreshold_d9bkn.gad;		
+	    xn__riintegratorPxrVCMrouletteDepth_grbkg.gad;		
+	    xn__riintegratorPxrVCMrouletteThreshold_yxbkg.gad;		
+} 
+
+folder0.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG2 flat "folder0.gad"
+    { 
+	VALUE(folder0.gad.val) STRETCH(1,0)
+
+	TAB "Integrator"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riintegratorname_01ak.gad;		
+	    xn__riintegratorPxrPathTracermaxIndirectBounces_zbckn.gad;		
+	    xn__riintegratorPxrPathTracermaxContinuationLength_vgckn.gad;		
+	    xn__riintegratorPxrPathTracermaxNonStochasticOpacityEvents_wtckn.gad;		
+	    xn__riintegratorPxrPathTracersampleMode_yxbkn.gad;		
+	    xn__riintegratorPxrPathTracernumLightSamples_35bkn.gad;		
+	    xn__riintegratorPxrPathTracernumBxdfSamples_h4bkn.gad;		
+	    xn__riintegratorPxrPathTracernumIndirectSamples_zbckn.gad;		
+	    xn__riintegratorPxrPathTracernumDiffuseSamples_d9bkn.gad;		
+	    xn__riintegratorPxrPathTracernumSpecularSamples_zbckn.gad;		
+	    xn__riintegratorPxrPathTracernumSubsurfaceSamples_8eckn.gad;		
+	    xn__riintegratorPxrPathTracernumRefractionSamples_8eckn.gad;		
+	    xn__riintegratorPxrPathTracerallowCaustics_u2bkn.gad;		
+	    xn__riintegratorPxrPathTraceraccumOpacity_70bkn.gad;		
+	    xn__riintegratorPxrOcclusionnumSamples_cwbkm.gad;		
+	    xn__riintegratorPxrOcclusiondistribution_lzbkm.gad;		
+	    xn__riintegratorPxrOcclusioncosineSpread_lzbkm.gad;		
+	    xn__riintegratorPxrOcclusionfalloff_grbkm.gad;		
+	    xn__riintegratorPxrOcclusionmaxDistance_yxbkm.gad;		
+	    xn__riintegratorPxrOcclusionuseAlbedo_pubkm.gad;		
+	    xn__riintegratorPxrVCMconnectPaths_tpbkg.gad;		
+	    xn__riintegratorPxrVCMmergePaths_kmbkg.gad;		
+	    xn__riintegratorPxrVCMnumLightSamples_pubkg.gad;		
+	    xn__riintegratorPxrVCMnumBxdfSamples_2sbkg.gad;		
+	    xn__riintegratorPxrVCMmaxIndirectBounces_lzbkg.gad;		
+	    Russian_Roulette_folder.gad;		
+	    Indirect_Clamping_folder.gad;		
+	    Vertex_Merging_folder.gad;		
+	    Photon_Guiding_folder.gad;		
+	    xn__riintegratorPxrUnifiedtraceLightPaths_70bkk.gad;		
+	    xn__riintegratorPxrUnifiedmaxIndirectBounces_35bkk.gad;		
+	    xn__riintegratorPxrUnifiedmaxRayDistance_lzbkk.gad;		
+	    xn__riintegratorPxrUnifiedcatchAllLights_lzbkk.gad;		
+	    xn__riintegratorPxrUnifiedemissionMultiplier_35bkk.gad;		
+	    xn__riintegratorPxrUnifiedaccumOpacity_cwbkk.gad;		
+	    Sampling_folder.gad;		
+	    xn__riintegratorPxrVisualizerstyle_tpbkn.gad;		
+	    xn__riintegratorPxrVisualizerwireframe_cwbkn.gad;		
+	    xn__riintegratorPxrVisualizernormalCheck_lzbkn.gad;		
+	    xn__riintegratorPxrVisualizershadedPrimVar_u2bkn.gad;		
+	    xn__riintegratorPxrVisualizermatCap_grbkn.gad;		
+	    Wireframe_Settings_folder.gad;		
+	    xn__riintegratorPxrDirectLightingnumLightSamples_mdckr.gad;		
+	    xn__riintegratorPxrDirectLightingnumBxdfSamples_zbckr.gad;		
+	    xn__riintegratorPxrDebugShadingContextviewchannel_8eckw.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Sampling"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__rihideradaptivemetric_59af.gad;		
+	    xn__rihiderdarkfalloff_94af.gad;		
+	    xn__rihiderexposurebracket_scbf.gad;		
+	    xn__riRiPixelVariance_n3ac.gad;		
+	    xn__rihiderdecidither_n3af.gad;		
+	    xn__rihiderbluenoise_01af.gad;		
+	    xn__rihidergeomShadowTermBias_ohbf.gad;		
+	    xn__rihiderminsamples_n3af.gad;		
+	    xn__rihiderminextrasamples_scbf.gad;		
+	    xn__rihidermaxsamples_n3af.gad;		
+	    xn__rihideradaptall_e0af.gad;		
+	    xn__rihiderextrememotiondof_febf.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Shading"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__rilightingselectionlearningscheme_pubi.gad;		
+	    xn__rishaderoughnessmollification_6nbf.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Render"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__rilimitsgeocachememory_scbg.gad;		
+	    xn__rilimitstexturememory_59ag.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Dicing"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__ridiceoffscreenmultiplier_ohbe.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Advanced"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__ribucketorder_4wag.gad;		
+	    xn__ribucketorderorigin_w6ag.gad;		
+
+	    { STRETCH(1,1) }
+	}
+
+	TAB "Projection"
+	{
+	    LAYOUT(vertical) STRETCH
+
+            HMARGIN(0) VMARGIN(2p) SPACING(0, 2p)
+	    xn__riprojectionname_01ak.gad;		
+	    xn__riprojectionPxrPerspectivefovEnd_2sbko.gad;		
+	    xn__riprojectionPxrCylinderCamerahsweep_yxbkr.gad;		
+	    xn__riprojectionPxrCylinderCameravsweep_yxbkr.gad;		
+	    xn__riprojectionPxrSphereCamerahsweep_pubkp.gad;		
+	    xn__riprojectionPxrSphereCameravsweep_pubkp.gad;		
+	    xn__riprojectionOmnidirectionalStereointerpupilaryDistance_wtckv.gad;		
+	    xn__riprojectionPxrCamerafovEnd_xkbkj.gad;		
+	    Tilt_Shift_folder0.gad;		
+	    Lens_Distortion_folder1.gad;		
+	    Chromatic_Aberration_folder2.gad;		
+	    Vignetting_folder3.gad;		
+	    Shutter_folder4.gad;		
+	    Advanced_folder5.gad;		
+
+	    { STRETCH(1,1) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    folder0.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

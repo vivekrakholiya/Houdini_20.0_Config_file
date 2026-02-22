@@ -1,0 +1,27 @@
+= Create OUT Null =
+
+"""Creates and 'OUT' Null to the output of the currently selected node."""
+
+Common Houdini workflow, is to create an 'OUT' Null that is appended to a Node.  The capital OUT, makes the OUT null appear at the top of Object Lists, making it easy to connect to when an object parm exists.  
+Additionally, you can create an object merge which can then be used either within the same obj context or copied elsewhere.
+
+This method is commonly used for keeping network flows tidy as its easy to eliminate criss-crossing connection wires.
+
+
+:vimeo: Example Use of the Tool
+    #id: 483776672
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+    #!python
+    from OD import shelftools
+    shelftools.createSopOut(nodes=None, name=None, merges=None, randColor=True)
+
+    # nodes is an array of nodes (if none are given, it takes the selected nodes)
+    # name: basename to overwrite the name from the object when a single node is selected. if none is
+    # given, the object name is used.
+    # merges: True/False whether you want to create corresponding object_merge nodes
+    # randColor: True/False whether you want to colorize the nodes with a random color to easily identify them
+    }}}

@@ -1,0 +1,70 @@
+// Magic: 10ac941
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Jan  5 18:02:18 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+uvattribute.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    { WIDTH(0.18) }
+
+    uvattribute.label = PARM_LABEL("UV Attribute", "uvattribute") WIDTH(1.5);
+    PARM_FIELD(string, "uvattribute") VALUE(uvattribute.val) 
+	LABELREF(uvattribute.label) HSTRETCH;
+
+    { WIDTH(0.1) }
+}
+
+borderfusetolerance.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ borderfusetolerance.label = PARM_LABEL("Border Fuse Tolerance", "borderfusetolerance") WIDTH(1.5);
+ PARM(float, 1, "borderfusetolerance", none, none) RANGE(0,1)
+	 LABELREF(borderfusetolerance.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+transfermaterial.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("transfermaterial", "Transfer Material") toggle VALUE(transfermaterial.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":7 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    uvattribute.gad; 
+    borderfusetolerance.gad; 
+    transfermaterial.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

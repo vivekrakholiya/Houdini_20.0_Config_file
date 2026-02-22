@@ -1,0 +1,109 @@
+// Magic: 6c1a4cd0
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Thu Aug  1 22:21:01 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+Bbox.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Bbox", "Boundery box") toggle VALUE(Bbox.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Area.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Area", "Area") toggle VALUE(Area.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Volume.gad = ROW
+{
+    HSTRETCH
+    { WIDTH(0.18) }
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("Volume", "Volume") toggle VALUE(Volume.val);
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Size_filter.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) HSTRETCH
+    { WIDTH(0.18) }
+
+    Size_filter.label = PARM_LABEL_SIMPLE("Size Filter", "Size_filter") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    Size_filter.menu;
+
+    { HSTRETCH }
+
+    { WIDTH(0.1) }
+}
+
+Size_Thureshold.gad = 
+{
+
+ LAYOUT(horizontal) HSTRETCH
+ { WIDTH(0.18) }
+
+ Size_Thureshold.label = PARM_LABEL("Size Threshold", "Size_Thureshold") WIDTH(1.5);
+ PARM(float, 1, "Size_Thureshold", none, none) RANGE(0,10)
+	 LABELREF(Size_Thureshold.label) HSTRETCH;
+
+  { WIDTH(0.1) }
+}
+
+Measuare.gad = 
+
+GROUP simple "Measuare" flat 
+{ 
+    VALUE(Measuare.gad.val) LAYOUT(vertical) HSTRETCH 
+	    Bbox.gad;		
+	    Area.gad;		
+	    Volume.gad;		
+} 
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH 
+    Measuare.gad; 
+    Size_filter.gad; 
+    Size_Thureshold.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val_) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

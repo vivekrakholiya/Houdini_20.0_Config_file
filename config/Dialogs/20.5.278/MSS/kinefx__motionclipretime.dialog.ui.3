@@ -1,0 +1,86 @@
+// Magic: 92d3ea41
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sat Jan 18 16:50:17 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    mode.label = PARM_LABEL_SIMPLE("Mode", "mode") ;
+    { WIDTH(0.09) }
+
+    mode.menu;
+
+    {  }
+
+    {  }
+}
+
+transparent_motionclip.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("transparent_motionclip", "Transparent MotionClip") toggle VALUE(transparent_motionclip.val);
+
+    {  }
+
+    {  }
+}
+
+color_preset.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    color_preset.label = PARM_LABEL_SIMPLE("Color", "color_preset") ;
+    { WIDTH(0.09) }
+
+    color_preset.menu;
+
+    {  }
+
+    {  }
+}
+
+extend_color.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    extend_color.label = PARM_LABEL_SIMPLE("Extend Color", "extend_color") ;
+    { WIDTH(0.09) }
+
+    extend_color.menu;
+
+    {  }
+
+    {  }
+}
+
+# warning cpp warning: "GenV3/subdialog.top.ui":11 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":12 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":13 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    mode.gad; 
+    transparent_motionclip.gad; 
+    color_preset.gad; 
+    extend_color.gad; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,188 @@
+// Magic: 68c40855
+// Automatically generated PSI dialog (PSI version 20.5.278)
+// Sun Aug  4 18:39:34 2024
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+edit_last_stroke.row.join =		
+{
+
+  LAYOUT(horizontal) JUSTIFY(left, center) UNSCALABLE
+
+edit_last_stroke.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("edit_last_stroke", "Edit Last Stroke") toggle VALUE(edit_last_stroke.val);
+
+    {  }
+
+    {  }
+}
+
+show_instance_points.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("show_instance_points", "Show Instance Points") toggle VALUE(show_instance_points.val);
+
+    {  }
+
+    {  }
+}
+
+intersection_menu.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    intersection_menu.label = PARM_LABEL_SIMPLE("Brush Intersection", "intersection_menu") ;
+    { WIDTH(0.09) }
+
+    intersection_menu.menu;
+
+    {  }
+
+    {  }
+}
+
+reset_changed_button.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("reset_changed_button", "Reset Changes")
+	push VALUE(reset_changed_button.val);
+
+    {  }
+}
+
+debug_brush_button.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("debug_brush_button", "Debug Brush")
+	push VALUE(debug_brush_button.val);
+
+    {  }
+}
+
+global_scale.gad = 
+{
+
+ global_scale.label = PARM_LABEL("Asset Scale", "global_scale");
+ PARM(float, 1, "global_scale", none, field) RANGE(0,1)
+	 LABELREF(global_scale.label) HSTRETCH;
+
+  {  }
+}
+
+physics.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("physics", "Use Physics") toggle VALUE(physics.val);
+
+    {  }
+
+    {  }
+}
+
+drawsimguide.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("drawsimguide", "Draw Simulation Geometry") toggle VALUE(drawsimguide.val);
+
+    {  }
+
+    {  }
+}
+
+pivotmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center) 
+    {  }
+
+    pivotmode.label = PARM_LABEL_SIMPLE("Pivot Mode", "pivotmode") ;
+    { WIDTH(0.09) }
+
+    pivotmode.menu;
+
+    {  }
+
+    {  }
+}
+
+localxform.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("localxform", "Local Transform") toggle VALUE(localxform.val);
+
+    {  }
+
+    {  }
+}
+
+addphysics.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("addphysics", "Add Physics")
+	push VALUE(addphysics.val);
+
+    {  }
+}
+
+removephysics.gad = ROW
+{
+    JUSTIFY(left, center)
+    {  }
+
+    PARM_BUTTON("removephysics", "Remove Physics")
+	push VALUE(removephysics.val);
+
+    {  }
+}
+
+displayproxies.gad = ROW
+{
+    
+    {  }
+
+    PARM_BUTTON("displayproxies", "Display Proxies") toggle VALUE(displayproxies.val);
+
+    {  }
+
+    {  }
+}
+}	// Template join.bot
+
+
+# warning cpp warning: "GenV3/subdialog.top.ui":11 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":12 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "GenV3/subdialog.top.ui":13 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    edit_last_stroke.row.join; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}

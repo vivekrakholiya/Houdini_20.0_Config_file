@@ -1,0 +1,13 @@
+= Save Node as Thumbnail =
+
+"""Saves the viewport of the current node as a thumbnail"""
+
+This lets you create a thumbnail of the viewport display at each selected or all nodes.  This is mainly helpful, when you want to illustrate what the nodes do in order, in a sort of "build-up" kind of way.
+
+@parameters
+
+::Current Only:
+    Only Creates an image of the currently selected Node
+
+::Current & Children:
+    Creates an image for the current, and each of its downstream connections.

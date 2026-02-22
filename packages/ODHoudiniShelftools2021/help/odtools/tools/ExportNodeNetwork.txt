@@ -1,0 +1,18 @@
+= Export Node Network =
+
+"""Allows the export of nodes that were saved via the Export Node Network."""
+
+This makes it easy to load/save specific setups and exchange them between sessions of Houdini.  Simply select a node, or a subnet of nodes of any kind, and you'll be prompted for a filename to write to.
+
+NOTE:
+    This function can also be called via python.
+
+    {{{
+    #!python
+    from OD import shelftools
+    shelftools.exportNetwork(nodeFile=None, mode = None, nodes=None)
+
+    # nodeFile: Filename to be written, if none is given, you will be prompted
+    # mode    : Export Mode: 0 = All; 1 = Selected Only
+    # nodes   : Array of Nodes to export (can be a single [node])
+    }}}

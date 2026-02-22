@@ -1,0 +1,36 @@
+  <toolshelf name="HoudiniZone" label="HoudiniZone">
+    <memberTool name="sbg"/>
+  </toolshelf>
+
+  <tool name="sbg" label="Split By Group" icon="SOP_split">
+    <script scriptType="python"><![CDATA[#Written By HoudiniZone
+#Tested in houdini 19.5
+
+import os
+
+if(len(hou.selectedNodes())==0):
+    hou.ui.displayMessage("No Nodes Selected")
+    
+else:
+    node = hou.selectedNodes()[0]
+    geo = node.geometry()
+    full_path = os.path.dirname(node.path()) 
+    pos = node.position()
+    groups = geo.primGroups()
+    
+    x = -3
+    for group in groups:
+        x += 3
+        name = group.name() 
+        next_pos=[pos[0]+x, pos[1]-2]
+        blast_node=hou.node(full_path).createNode("blast","isolate_"+name)
+        blast_node.setFirstInput(node)
+        blast_node.setPosition(next_pos)
+        blast_node.parm("group").set(name)
+        blast_node.parm("negate").set(1)
+        output_pos=[pos[0]+x, pos[1]-3]
+        output=hou.node(full_path).createNode("null","OUT_"+name)
+        output.setPosition(output_pos)
+        output.setInput(0, blast_node)
+        output.setColor(hou.Color((0.4,0.4,0.4)))]]></script>
+  </tool>

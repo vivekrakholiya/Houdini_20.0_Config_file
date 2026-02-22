@@ -1,0 +1,66 @@
+// Magic: 590b5904
+// Automatically generated PSI dialog (PSI version 20.0.547)
+// Sun Jul 13 16:21:15 2025
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+dimmer.gad = NULL { }
+
+light_color.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+    {  }
+
+    light_color.label = PARM_LABEL("Light Color", "light_color") ;
+    PARM(float, 3, "light_color", none, COLOR, "R,G,B") 
+	LABELREF(light_color.label) HSTRETCH;
+
+    {  }
+}
+
+light_enable.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("light_enable", "Light Enabled") toggle VALUE(light_enable.val);
+
+    {  }
+
+    {  }
+}
+
+light_contribprimary.gad = ROW
+{
+    
+    {  }
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("light_contribprimary", "Render Light Geometry") toggle VALUE(light_contribprimary.val);
+
+    {  }
+
+    {  }
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(horizontal) SPACING(0.05) HSTRETCH JUSTIFY(left, center) UNSCALABLE
+    dimmer.gad; 
+    light_color.gad; 
+    light_enable.gad; 
+    light_contribprimary.gad; 
+} 
+// dialog.bot.ui
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) VALUE(open.val_) HSTRETCH
+
+    dialog_norm.gad;
+}
